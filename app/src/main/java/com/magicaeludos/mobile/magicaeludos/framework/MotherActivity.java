@@ -25,6 +25,7 @@ public abstract class MotherActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        assets = new Assets(this);
+
         //Gets the screen size
         Point size = new Point();
         getWindowManager().getDefaultDisplay().getSize(size);
