@@ -1,8 +1,10 @@
 package com.magicaeludos.mobile.magicaeludos.implementation;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import com.magicaeludos.mobile.magicaeludos.R;
 import com.magicaeludos.mobile.magicaeludos.framework.Content;
 import com.magicaeludos.mobile.magicaeludos.framework.Layout;
 import com.magicaeludos.mobile.magicaeludos.framework.MotherActivity;
@@ -13,10 +15,16 @@ public class GameContent implements Content{
 
     private MotherActivity activity;
     private Layout layout;
+    private Background bg;
+    public static final int WIDTH = 1080;
+    public static final int HEIGHT = 480;
+    private int x = 100;
 
     public GameContent(MotherActivity activity, Layout layout) {
         this.activity = activity;
         this.layout = layout;
+        bg = new Background(BitmapFactory.decodeResource(activity.getResources(), R.mipmap.road3));
+        bg.setVector(-5);
     }
     /**
      * Updates the game status. Update is ran every tick of the thread.
@@ -25,7 +33,8 @@ public class GameContent implements Content{
      */
     @Override
     public void update() {
-
+        bg.update();
+        x += 1;
     }
 
     /**
@@ -37,10 +46,14 @@ public class GameContent implements Content{
      */
     @Override
     public void draw(Canvas canvas) {
+        if(canvas!=null){
+            bg.draw(canvas);
+        }
+
         Paint paint = new Paint();
         paint.setColor(Color.WHITE);
-        canvas.drawText("Its working! :D", 100, 100, paint);
-        canvas.drawText("Its not working! :D", 200, 200, paint);
+        canvas.drawText("Its working! :D " + nextGaussian(), x, 100, paint);
+
     }
 
 }
