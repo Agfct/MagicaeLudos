@@ -41,6 +41,7 @@ public class GameContent implements Content{
         paint.setColor(Color.WHITE);
         canvas.drawText("Its working! :D", 100, 100, paint);
         canvas.drawText("Its not working! :D", 200, 200, paint);
+        canvas.drawText("Its branching! :D", 300, 300, paint);
     }
 
 }
