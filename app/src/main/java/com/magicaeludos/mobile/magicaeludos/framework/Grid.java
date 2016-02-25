@@ -96,4 +96,8 @@ public class Grid {
     public int getRowHeight() {
         return rowHeight;
     }
+
+    public Rect getScreenBorders() {
+        return screenBorders;
+    }
 }
