@@ -20,7 +20,7 @@ public class Dummy {
     private Paint paint = new Paint();
     private Rect dstBounds, srcBounds;
 
-    public Dummy(MotherActivity activity, Point point, int width, int height){
+    public Dummy(MotherActivity activity, Point point, int width, int height, int color){
         this.x = point.x;
         this.y = point.y;
         this.width = width;
@@ -28,12 +28,13 @@ public class Dummy {
         tear = BitmapFactory.decodeResource(activity.getResources(), R.drawable.teardrop);
         this.dstBounds = new Rect(x,y,x+width,y+height);
         this.srcBounds = new Rect(0,0,tear.getWidth(),tear.getHeight());
+        paint.setColor(color);
     }
 
     public void draw(Canvas canvas){
-        setDstBounds(new Rect(x,y,x+width,y+height));
+        setDstBounds(new Rect(x, y, x + width, y + height));
 //        canvas.drawBitmap(tear, srcBounds, getDstBounds(),paint);
-        paint.setColor(Color.RED);
+
         canvas.drawRect(dstBounds,paint);
     }
 

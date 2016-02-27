@@ -23,6 +23,8 @@
         android:layout_height="match_parent"
         android:text="I CANT SEE THIS"/>
 
+    <include layout="@layout/after_game_info" android:id="@+id/afterInfo" />
+
 
 
 </RelativeLayout>

@@ -37,12 +37,18 @@ public class GameContent implements Content{
         this.grid = new Grid(this);
         this.touchHandler = new TouchHandler(layout, activity.getScreenWidth(), activity.getScreenHeight());
 
+
         //Test:
         temporaryBackground = BitmapFactory.decodeResource(activity.getResources(), R.drawable.teardrop);
         dummies = new ArrayList<>();
-        dummies.add(new Dummy(getActivity(), grid.getLane(1), grid.getColWidth(), grid.getRowHeight()));
+        dummies.add(new Dummy(getActivity(), grid.getLane(1), grid.getColWidth(), grid.getRowHeight(),Color.RED));
 //        dummies.add(new Dummy(getActivity(),grid.getLane(2),grid.getColWidth(),grid.getRowHeight()));
-        dummies.add(new Dummy(getActivity(), grid.getLane(3), grid.getColWidth(), grid.getRowHeight()));
+        dummies.add(new Dummy(getActivity(), grid.getLane(3), grid.getColWidth(), grid.getRowHeight(),Color.RED));
+
+        //Small blue dummys
+        dummies.add(new Dummy(getActivity(), grid.getInnerLane(1), grid.getInnerWidth(), grid.getInnerHeight(),Color.BLUE));
+        dummies.add(new Dummy(getActivity(), grid.getInnerLane(2), grid.getInnerWidth(), grid.getInnerHeight(),Color.BLUE));
+        dummies.add(new Dummy(getActivity(), grid.getInnerLane(3), grid.getInnerWidth(), grid.getInnerHeight(),Color.BLUE));
     }
 
     /**

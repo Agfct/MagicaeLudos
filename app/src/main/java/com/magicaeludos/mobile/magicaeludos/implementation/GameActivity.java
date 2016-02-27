@@ -58,4 +58,25 @@ public class GameActivity extends MotherActivity {
     public void onBackPressed(){
         this.goTo(MainActivity.class);
     }
+
+
+
+    //Test:
+//    activity.runOnUiThread(new Runnable() {
+//        @Override
+//        public void run() {
+//            ((GameActivity) activity).runAfterGameInfo();
+//        }
+//    });
+    public void runAfterGameInfo(){
+        //Finds the layout defined in the XML activity_game
+        View afterGameInfo = findViewById(R.id.afterInfo);
+        afterGameInfo.setVisibility(View.VISIBLE);
+    }
+
+    public void hideAfterGameInfo(){
+        //Finds the layout defined in the XML activity_game
+        View afterGameInfo = findViewById(R.id.afterInfo);
+        afterGameInfo.setVisibility(View.GONE);
+    }
 }
