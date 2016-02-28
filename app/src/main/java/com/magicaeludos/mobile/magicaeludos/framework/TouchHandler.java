@@ -3,6 +3,7 @@
  */
 package com.magicaeludos.mobile.magicaeludos.framework;
 
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import java.util.ArrayList;
@@ -48,6 +49,7 @@ public class TouchHandler implements View.OnTouchListener{
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         synchronized (this) {
+            Log.w("TouchHandler","Type: "+ event.getAction());
             int action = event.getAction() & MotionEvent.ACTION_MASK;
             int pointerIndex = (event.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK ) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
             int pointerCount = event.getPointerCount();
@@ -106,6 +108,7 @@ public class TouchHandler implements View.OnTouchListener{
                         id[i] = pointerId;
                         touchEventsBuffer.add(touchEvent);
                         break;
+
                 }
             }
             return true;
@@ -158,20 +161,21 @@ public class TouchHandler implements View.OnTouchListener{
         }
     }
 
-    public TouchEvent getSingleTouch(){
-        synchronized (this) {
-            int len = touchEvents.size();
-            for (int i = 0; i < len; i++)
-                touchEventPool.free(touchEvents.get(i));
-            touchEvents.clear();
-            touchEvents.addAll(touchEventsBuffer);
-            touchEventsBuffer.clear();
-            if(touchEvents.size() > 0){
-                return touchEvents.get(0);
-            }
-            return null;
-        }
-    }
+    //Does not work, it only gives you the first event in the list, but there could be multiple events with the same id in the list.
+//    public TouchEvent getSingleTouch(){
+//        synchronized (this) {
+//            int len = touchEvents.size();
+//            for (int i = 0; i < len; i++)
+//                touchEventPool.free(touchEvents.get(i));
+//            touchEvents.clear();
+//            touchEvents.addAll(touchEventsBuffer);
+//            touchEventsBuffer.clear();
+//            if(touchEvents.size() > 0){
+//                return touchEvents.get(0);
+//            }
+//            return null;
+//        }
+//    }
 
     // returns the index for a given pointerId or -1 if no index.
     private int getIndex(int pointerId) {

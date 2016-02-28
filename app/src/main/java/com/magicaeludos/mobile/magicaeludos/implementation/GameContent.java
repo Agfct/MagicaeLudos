@@ -16,6 +16,7 @@ import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler;
 import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler.TouchEvent;
 
 import java.util.ArrayList;
+import java.util.List;
 /**
  * Created by Anders on 10.02.2016.
  */
@@ -41,14 +42,14 @@ public class GameContent implements Content{
         //Test:
         temporaryBackground = BitmapFactory.decodeResource(activity.getResources(), R.drawable.teardrop);
         dummies = new ArrayList<>();
-        dummies.add(new Dummy(getActivity(), grid.getLane(1), grid.getColWidth(), grid.getRowHeight(),Color.RED));
+        dummies.add(new Dummy(this, grid.getLane(1), grid.getColWidth(), grid.getRowHeight(), Color.RED));
 //        dummies.add(new Dummy(getActivity(),grid.getLane(2),grid.getColWidth(),grid.getRowHeight()));
-        dummies.add(new Dummy(getActivity(), grid.getLane(3), grid.getColWidth(), grid.getRowHeight(),Color.RED));
+        dummies.add(new Dummy(this, grid.getLane(3), grid.getColWidth(), grid.getRowHeight(), Color.RED));
 
         //Small blue dummys
-        dummies.add(new Dummy(getActivity(), grid.getInnerLane(1), grid.getInnerWidth(), grid.getInnerHeight(),Color.BLUE));
-        dummies.add(new Dummy(getActivity(), grid.getInnerLane(2), grid.getInnerWidth(), grid.getInnerHeight(),Color.BLUE));
-        dummies.add(new Dummy(getActivity(), grid.getInnerLane(3), grid.getInnerWidth(), grid.getInnerHeight(),Color.BLUE));
+//        dummies.add(new Dummy(this, grid.getInnerLane(1), grid.getInnerWidth(), grid.getInnerHeight(),Color.BLUE));
+        dummies.add(new Dummy(this, grid.getInnerLane(2), grid.getInnerWidth(), grid.getInnerHeight(), Color.BLUE));
+//        dummies.add(new Dummy(this, grid.getInnerLane(3), grid.getInnerWidth(), grid.getInnerHeight(),Color.BLUE));
     }
 
     /**
@@ -60,18 +61,15 @@ public class GameContent implements Content{
     public void update() {
         //TODO: Discuss the use of single touch, and how to solve the issue of "no finger" on screen
         //TODO: Discuss the issue of no redraw on background
-        TouchEvent input = touchHandler.getSingleTouch(); //Gets the current input finger
+        List<TouchEvent> touchEvents = touchHandler.getTouchEvents();
+        dummies.get(2).update(touchEvents);
 
 
 
 
 
 
-        if(input != null) { // Checks if there exsists a finger onscreen at all
-            Log.w("GameContent", "x: " + input.x + " y: " + input.y + " id: " + input.pointer + " type: " + input.type);
-            dummies.get(0).setX(input.x);
-            dummies.get(0).setY(input.y);
-        }
+
     }
 
     /**
@@ -106,5 +104,13 @@ public class GameContent implements Content{
 
     public MotherActivity getActivity() {
         return activity;
+    }
+
+    public Grid getGrid() {
+        return grid;
+    }
+
+    public TouchHandler getTouchHandler() {
+        return touchHandler;
     }
 }

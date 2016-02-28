@@ -37,6 +37,11 @@ public class Grid {
     private Point innerLane2;
     private Point innerLane3;
 
+    //Player defined lanes
+    private Point playerLane1;
+    private Point playerLane2;
+    private Point playerLane3;
+
     //Activity
     private MotherActivity activity;
 
@@ -74,6 +79,11 @@ public class Grid {
         innerLane2 = new Point((colWidth*2) - (colWidth /4),0);
         innerLane3 = new Point((colWidth*3) - (colWidth /4),0);
         Log.w("Grid","iLane1: "+ innerLane1+ " iLane2: "+ innerLane2 + " iLane3: "+ innerLane3);
+
+        playerLane1 = new Point((colWidth*1) - (colWidth /4),screenHeight-(2*rowHeight));
+        playerLane2 = new Point((colWidth*2) - (colWidth /4),screenHeight-(2*rowHeight));
+        playerLane3 = new Point((colWidth*3) - (colWidth /4),screenHeight-(2*rowHeight));
+        Log.w("Grid","iLane1: "+ playerLane1+ " iLane2: "+ playerLane2 + " iLane3: "+ playerLane3);
     }
 
 
@@ -123,6 +133,16 @@ public class Grid {
 
     }
 
+    public Point getPlayerLane(int laneNr){
+        switch (laneNr){
+            case 1:return playerLane1;
+            case 2:return playerLane2;
+            case 3:return playerLane3;
+        }
+        //If a laneNr is not between 1-3 it returns the point of lane 1
+        return playerLane2;
+    }
+
     public int getColWidth() {
         return colWidth;
     }
@@ -141,5 +161,13 @@ public class Grid {
 
     public Rect getScreenBorders() {
         return screenBorders;
+    }
+
+    public int getScreenHeight() {
+        return screenHeight;
+    }
+
+    public int getScreenWidth() {
+        return screenWidth;
     }
 }
