@@ -193,23 +193,43 @@ public class Dummy {
             Log.e("Slingshot", "Degree: " + degree);
 
             //Sets the lane for the player
-            //TODO: not complete, need a up/down left/right choise, and a proper transision between lane 1 2 and 3
-            if(degree > 90 && degree < 270){
-                currentLane = lane1;
-            }else{
-                currentLane = lane3;
+            //Left is between 126 & 234 degrees
+            if(degree >= 126 && degree <= 234){
+                setLaneToLeft();
+            }else if ( (degree <= 54 && degree >= 0) || (degree >= 306 && degree <= 360)){
+                setLaneToRight();
+            }else if (degree > 54 && degree < 126 ){
+                Log.w("Dummy", "Sliding DOWN");
+            } else if (degree > 234 && degree < 306){
+                Log.w("Dummy", "Jumping UP");
             }
         }
     }
 
+    private void setLaneToLeft(){
+        if(currentLane == lane3){
+            currentLane = lane2;
+        }else if (currentLane == lane2){
+            currentLane = lane1;
+        }
+    }
+
+    private void setLaneToRight(){
+        if(currentLane == lane1){
+            currentLane = lane2;
+        }else if (currentLane == lane2){
+            currentLane = lane3;
+        }
+    }
     /**
      * Moves the player to the current lane, the player only moves on the horizontal (x) axis
+     * //TODO: Make shure that the value of x can be exacly "x" or else the player wont stop
      */
     private void movePlayer(){
         if(spriteX < currentLane.x){
-            spriteX +=3; //TODO: Not scalable fix.
+            spriteX +=21; //TODO: Not scalable fix.
         }else if(spriteX > currentLane.x){
-            spriteX -=3; //TODO: Not scalable fix.
+            spriteX -=21; //TODO: Not scalable fix.
         }
     }
 

@@ -4,6 +4,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.Log;
 
@@ -42,9 +43,9 @@ public class GameContent implements Content{
         //Test:
         temporaryBackground = BitmapFactory.decodeResource(activity.getResources(), R.drawable.teardrop);
         dummies = new ArrayList<>();
-        dummies.add(new Dummy(this, grid.getLane(1), grid.getColWidth(), grid.getRowHeight(), Color.RED));
+        dummies.add(new Dummy(this,new Point(grid.getLane(1).x,grid.getLane(1).y+grid.getRowHeight()*5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
 //        dummies.add(new Dummy(getActivity(),grid.getLane(2),grid.getColWidth(),grid.getRowHeight()));
-        dummies.add(new Dummy(this, grid.getLane(3), grid.getColWidth(), grid.getRowHeight(), Color.RED));
+        dummies.add(new Dummy(this, new Point(grid.getLane(3).x,grid.getLane(3).y+grid.getRowHeight()*5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
 
         //Small blue dummys
 //        dummies.add(new Dummy(this, grid.getInnerLane(1), grid.getInnerWidth(), grid.getInnerHeight(),Color.BLUE));
