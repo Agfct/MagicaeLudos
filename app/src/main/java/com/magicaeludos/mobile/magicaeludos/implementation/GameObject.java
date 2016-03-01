@@ -2,9 +2,6 @@ package com.magicaeludos.mobile.magicaeludos.implementation;
 
 import android.graphics.Bitmap;
 
-/**
- * Created by MortenAlver on 28.02.2016.
- */
 public class GameObject {
     protected double x;
     protected double y;
@@ -28,5 +25,4 @@ public class GameObject {
     public void getX(double x){this.x = x;}
     public double getY(){return y;}
     public void getY(double y){this.y = y;}
-
 }
