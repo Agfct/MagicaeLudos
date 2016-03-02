@@ -19,6 +19,7 @@ import com.magicaeludos.mobile.magicaeludos.framework.Probability;
 
 import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler;
 import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler.TouchEvent;
+import com.magicaeludos.mobile.magicaeludos.framework.Water;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,17 +40,21 @@ public class GameContent implements Content{
     Player player;
     Paint paint = new Paint();
     GUIhandler guIhandler;
+    public Water water;
 
     public GameContent(MotherActivity activity, Layout layout) {
         this.activity = activity;
         this.layout = layout;
         this.grid = new Grid(this);
         this.touchHandler = new TouchHandler(layout, activity.getScreenWidth(), activity.getScreenHeight());
-        this.guIhandler = new GUIhandler(activity,grid);
+        water = new Water();
+        this.guIhandler = new GUIhandler(this,grid);
 
 
         //Test:
         temporaryBackground = BitmapFactory.decodeResource(activity.getResources(), R.drawable.teardrop);
+
+
 
         player = new Player(this, grid.getPlayerLane(2),grid.getInnerWidth(),grid.getInnerHeight()*2,temporaryBackground);
 
@@ -76,7 +81,7 @@ public class GameContent implements Content{
 
         //Check here if player and Object collides: ?
 
-
+        water.addWaterAmount(1);
         //Updates the GUI:
         guIhandler.update();
     }
