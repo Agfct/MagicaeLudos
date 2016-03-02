@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">MagicaeLudos</string>
+
+
+
+    <!-- Strings containing information about water-->
+    <string name="water_info_0">
+        Water is important \n
+        that is why we drink it.
+    </string>
 </resources>

@@ -35,8 +35,8 @@ public class GameActivity extends MotherActivity {
 
         //TESTING: This enables you to set background in XML and make surfaceView transparent
         //If you do not have this code then surfaceview is black and nothing can be shown behind it in the XML code.
-        layout.setZOrderOnTop(true);
-        layout.getHolder().setFormat(PixelFormat.TRANSPARENT);
+//        layout.setZOrderOnTop(true);
+//        layout.getHolder().setFormat(PixelFormat.TRANSPARENT);
     }
 
     //When the app is closed down this is ran and it pauses the layout thread
@@ -57,5 +57,26 @@ public class GameActivity extends MotherActivity {
     @Override
     public void onBackPressed(){
         this.goTo(MainActivity.class);
+    }
+
+
+
+    //Test:
+//    activity.runOnUiThread(new Runnable() {
+//        @Override
+//        public void run() {
+//            ((GameActivity) activity).runAfterGameInfo();
+//        }
+//    });
+    public void runAfterGameInfo(){
+        //Finds the layout defined in the XML activity_game
+        View afterGameInfo = findViewById(R.id.afterInfo);
+        afterGameInfo.setVisibility(View.VISIBLE);
+    }
+
+    public void hideAfterGameInfo(){
+        //Finds the layout defined in the XML activity_game
+        View afterGameInfo = findViewById(R.id.afterInfo);
+        afterGameInfo.setVisibility(View.GONE);
     }
 }
