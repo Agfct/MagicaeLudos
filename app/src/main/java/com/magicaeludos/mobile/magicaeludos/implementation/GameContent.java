@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.magicaeludos.mobile.magicaeludos.R;
 import com.magicaeludos.mobile.magicaeludos.framework.Content;
+import com.magicaeludos.mobile.magicaeludos.framework.GUIhandler;
 import com.magicaeludos.mobile.magicaeludos.framework.Grid;
 import com.magicaeludos.mobile.magicaeludos.framework.Layout;
 import com.magicaeludos.mobile.magicaeludos.framework.MotherActivity;
@@ -35,26 +36,28 @@ public class GameContent implements Content{
 
     //Test
     ArrayList<Dummy> dummies;
+    Player player;
     Paint paint = new Paint();
+    GUIhandler guIhandler;
 
     public GameContent(MotherActivity activity, Layout layout) {
         this.activity = activity;
         this.layout = layout;
         this.grid = new Grid(this);
         this.touchHandler = new TouchHandler(layout, activity.getScreenWidth(), activity.getScreenHeight());
+        this.guIhandler = new GUIhandler(activity,grid);
 
 
         //Test:
         temporaryBackground = BitmapFactory.decodeResource(activity.getResources(), R.drawable.teardrop);
+
+        player = new Player(this, grid.getPlayerLane(2),grid.getInnerWidth(),grid.getInnerHeight()*2,temporaryBackground);
+
         dummies = new ArrayList<>();
         dummies.add(new Dummy(this,new Point(grid.getLane(1).x,grid.getLane(1).y+grid.getRowHeight()*5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
 //        dummies.add(new Dummy(getActivity(),grid.getLane(2),grid.getColWidth(),grid.getRowHeight()));
         dummies.add(new Dummy(this, new Point(grid.getLane(3).x,grid.getLane(3).y+grid.getRowHeight()*5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
 
-        //Small blue dummys
-//        dummies.add(new Dummy(this, grid.getInnerLane(1), grid.getInnerWidth(), grid.getInnerHeight(),Color.BLUE));
-        dummies.add(new Dummy(this, grid.getInnerLane(2), grid.getInnerWidth(), grid.getInnerHeight(), Color.BLUE));
-//        dummies.add(new Dummy(this, grid.getInnerLane(3), grid.getInnerWidth(), grid.getInnerHeight(),Color.BLUE));
         prop = new Probability();
     }
 
@@ -66,18 +69,16 @@ public class GameContent implements Content{
     @Override
     public void update() {
         double test = prop.probExp(0.5,1.0/30.0);
-        Log.w("GameContent", "Dette er test variabelen2: "+ test);
-        //TODO: Discuss the use of single touch, and how to solve the issue of "no finger" on screen
-        //TODO: Discuss the issue of no redraw on background
+//        Log.w("GameContent", "Dette er test variabelen2: "+ test);
+
         List<TouchEvent> touchEvents = touchHandler.getTouchEvents();
-        dummies.get(2).update(touchEvents);
+        player.update(touchEvents);
+
+        //Check here if player and Object collides: ?
 
 
-
-
-
-
-
+        //Updates the GUI:
+        guIhandler.update();
     }
 
     /**
@@ -90,7 +91,7 @@ public class GameContent implements Content{
     @Override
     public void draw(Canvas canvas) {
 
-        //TODO: Explain that XML background does not work because surfaceView transparancy does not clear all pixels on every re-draw
+        //Draws the background
         canvas.drawBitmap(temporaryBackground,new Rect(0,0,temporaryBackground.getWidth(),temporaryBackground.getWidth()),grid.getScreenBorders(),paint);
 
         Paint paint = new Paint();
@@ -107,7 +108,11 @@ public class GameContent implements Content{
             dummy.draw(canvas);
         }
 
+        player.draw(canvas);
         grid.draw(canvas);
+
+        //Draws the GUI:
+        guIhandler.draw(canvas);
     }
 
     public MotherActivity getActivity() {
