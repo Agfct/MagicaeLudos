@@ -28,6 +28,9 @@ public class GameContent implements Content{
     private Grid grid;
     private TouchHandler touchHandler;
     private Bitmap temporaryBackground;
+    public static final int HEIGHT = 480;
+    public static final int WIDTH = 160;
+    private Background bg;
 
     //Test
     ArrayList<Dummy> dummies;
@@ -51,6 +54,9 @@ public class GameContent implements Content{
 //        dummies.add(new Dummy(this, grid.getInnerLane(1), grid.getInnerWidth(), grid.getInnerHeight(),Color.BLUE));
         dummies.add(new Dummy(this, grid.getInnerLane(2), grid.getInnerWidth(), grid.getInnerHeight(), Color.BLUE));
 //        dummies.add(new Dummy(this, grid.getInnerLane(3), grid.getInnerWidth(), grid.getInnerHeight(),Color.BLUE));
+
+        bg = new Background(this, BitmapFactory.decodeResource(activity.getResources(), R.mipmap.road3));
+        bg.setDy(5);
     }
 
     /**
@@ -65,8 +71,7 @@ public class GameContent implements Content{
         List<TouchEvent> touchEvents = touchHandler.getTouchEvents();
         dummies.get(2).update(touchEvents);
 
-
-
+        bg.update();
 
 
 
@@ -84,7 +89,15 @@ public class GameContent implements Content{
     public void draw(Canvas canvas) {
 
         //TODO: Explain that XML background does not work because surfaceView transparancy does not clear all pixels on every re-draw
-        canvas.drawBitmap(temporaryBackground,new Rect(0,0,temporaryBackground.getWidth(),temporaryBackground.getWidth()),grid.getScreenBorders(),paint);
+        canvas.drawBitmap(temporaryBackground, new Rect(0, 0, temporaryBackground.getWidth(), temporaryBackground.getWidth()), grid.getScreenBorders(), paint);
+//
+//        final float scaleFactorX = grid.getScreenWidth()/WIDTH;
+//        final float scaleFactorY = grid.getScreenHeight()/HEIGHT;
+//        final int savedState = canvas.save();
+//        canvas.scale(scaleFactorX, scaleFactorY);
+//        bg.draw(canvas);
+//        canvas.restoreToCount(savedState);
+        bg.draw(canvas);
 
         Paint paint = new Paint();
         paint.setColor(Color.WHITE);
