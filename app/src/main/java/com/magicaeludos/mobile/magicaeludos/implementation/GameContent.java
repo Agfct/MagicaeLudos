@@ -1,9 +1,8 @@
 package com.magicaeludos.mobile.magicaeludos.implementation;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.Log;
@@ -13,6 +12,8 @@ import com.magicaeludos.mobile.magicaeludos.framework.Content;
 import com.magicaeludos.mobile.magicaeludos.framework.Grid;
 import com.magicaeludos.mobile.magicaeludos.framework.Layout;
 import com.magicaeludos.mobile.magicaeludos.framework.MotherActivity;
+import com.magicaeludos.mobile.magicaeludos.framework.Probability;
+
 import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler;
 import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler.TouchEvent;
 
@@ -25,6 +26,7 @@ public class GameContent implements Content{
 
     private MotherActivity activity;
     private Layout layout;
+    private Probability prop;
     private Grid grid;
     private TouchHandler touchHandler;
     private Bitmap temporaryBackground;
@@ -51,6 +53,7 @@ public class GameContent implements Content{
 //        dummies.add(new Dummy(this, grid.getInnerLane(1), grid.getInnerWidth(), grid.getInnerHeight(),Color.BLUE));
         dummies.add(new Dummy(this, grid.getInnerLane(2), grid.getInnerWidth(), grid.getInnerHeight(), Color.BLUE));
 //        dummies.add(new Dummy(this, grid.getInnerLane(3), grid.getInnerWidth(), grid.getInnerHeight(),Color.BLUE));
+        prop = new Probability();
     }
 
     /**
@@ -60,6 +63,8 @@ public class GameContent implements Content{
      */
     @Override
     public void update() {
+        double test = prop.probExp(0.5,1.0/30.0);
+        Log.w("GameContent", "Dette er test variabelen2: "+ test);
         //TODO: Discuss the use of single touch, and how to solve the issue of "no finger" on screen
         //TODO: Discuss the issue of no redraw on background
         List<TouchEvent> touchEvents = touchHandler.getTouchEvents();
