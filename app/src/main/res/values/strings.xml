@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">MagicaeLudos</string>
 
+    <!-- Strings that must not change-->
+    <string name="profile_preferences">com.magicaeludos.profile</string>
+    <string name="firstTime">com.magicaeludos.firstTime</string>
+    <string name="totalWater">com.magicaeludos.totalWater</string>
+    <string name="upgradesAcquired">com.magicaeludos.upgradesAcquired</string>
+    <string name="mostWaterInOneRun">com.magicaeludos.mostWaterInOneRun</string>
+    <string name="totalAmountOfRuns">com.magicaeludos.totalAmountOfRuns</string>
+
 
 
     <!-- Strings containing information about water-->
