@@ -35,15 +35,15 @@ public class GUIhandler {
     }
 
     private void fetchResources(){
-        img_waterBar = BitmapFactory.decodeResource(activity.getResources(), R.drawable.water_bar);
-        img_water = BitmapFactory.decodeResource(activity.getResources(), R.drawable.blue_water);
+//        img_waterBar = BitmapFactory.decodeResource(activity.getResources(), R.drawable.water_bar);
+//        img_water = BitmapFactory.decodeResource(activity.getResources(), R.drawable.blue_water);
     }
 
     private void initializeRects(){
-        rectSrc_waterBar = new Rect(0,0,img_waterBar.getWidth(),img_waterBar.getHeight());
-        rectDst_waterBar = new Rect((grid.getColWidth()*3) + (grid.getColWidth()/2),grid.getRowHeight()*2,grid.getScreenWidth(),grid.getRowHeight()*4);
-        rectSrc_water = new Rect(0,0,img_waterBar.getWidth(),img_waterBar.getHeight());
-        rectDst_water = new Rect((grid.getColWidth()*3) + (grid.getColWidth()/2),grid.getRowHeight()*2,grid.getScreenWidth(),grid.getRowHeight()*4);
+//        rectSrc_waterBar = new Rect(0,0,img_waterBar.getWidth(),img_waterBar.getHeight());
+//        rectDst_waterBar = new Rect((grid.getColWidth()*3) + (grid.getColWidth()/2),grid.getRowHeight()*2,grid.getScreenWidth(),grid.getRowHeight()*4);
+//        rectSrc_water = new Rect(0,0,img_waterBar.getWidth(),img_waterBar.getHeight());
+//        rectDst_water = new Rect((grid.getColWidth()*3) + (grid.getColWidth()/2),grid.getRowHeight()*2,grid.getScreenWidth(),grid.getRowHeight()*4);
     }
 
 
@@ -52,7 +52,7 @@ public class GUIhandler {
     }
 
     public void draw(Canvas canvas){
-        canvas.drawBitmap(img_waterBar,rectSrc_waterBar,rectDst_waterBar,paint);
+//        canvas.drawBitmap(img_waterBar,rectSrc_waterBar,rectDst_waterBar,paint);
     }
 
 
