@@ -34,7 +34,7 @@ public class GameContent implements Content{
     private TouchHandler touchHandler;
     private Bitmap temporaryBackground;
     private Background bg;
-    private Obstacle obstacle;
+    private ObstacleHandler obstacles;
 
     //Test
     ArrayList<Dummy> dummies;
@@ -49,6 +49,7 @@ public class GameContent implements Content{
         this.grid = new Grid(this);
         this.touchHandler = new TouchHandler(layout, activity.getScreenWidth(), activity.getScreenHeight());
         this.guIhandler = new GUIhandler(activity,grid);
+        this.obstacles = new ObstacleHandler(this);
         dy = 5;
 
 
@@ -65,7 +66,8 @@ public class GameContent implements Content{
         prop = new Probability();
         bg = new Background(this, BitmapFactory.decodeResource(activity.getResources(), R.mipmap.road3));
         bg.setDy(dy);
-        obstacle = new Obstacle(this, BitmapFactory.decodeResource(activity.getResources(), R.drawable.teardrop),2);
+        Obstacle o = new Obstacle(this, BitmapFactory.decodeResource(activity.getResources(), R.drawable.teardrop),2);
+        obstacles.addObstacle(o);
     }
 
     /**
@@ -82,7 +84,7 @@ public class GameContent implements Content{
         player.update(touchEvents);
 
         bg.update();
-        obstacle.update();
+        obstacles.update();
         //Check here if player and Object collides: ?
 
 
@@ -123,7 +125,7 @@ public class GameContent implements Content{
 
         //Draws the GUI:
         guIhandler.draw(canvas);
-        obstacle.draw(canvas);
+        obstacles.draw(canvas);
     }
 
     public MotherActivity getActivity() {
