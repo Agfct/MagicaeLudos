@@ -66,8 +66,6 @@ public class GameContent implements Content{
         prop = new Probability();
         bg = new Background(this, BitmapFactory.decodeResource(activity.getResources(), R.mipmap.road3));
         bg.setDy(dy);
-        Obstacle o = new Obstacle(this, BitmapFactory.decodeResource(activity.getResources(), R.drawable.teardrop),2);
-        obstacles.addObstacle(o);
     }
 
     /**

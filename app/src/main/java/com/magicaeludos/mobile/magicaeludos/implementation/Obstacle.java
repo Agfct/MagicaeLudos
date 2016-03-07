@@ -7,9 +7,10 @@ import android.graphics.Point;
 import android.graphics.Rect;
 
 import com.magicaeludos.mobile.magicaeludos.framework.Grid;
+import com.magicaeludos.mobile.magicaeludos.framework.Sprite;
 
 public class Obstacle extends GameObject {
-    private Bitmap image;
+//    private Bitmap image;
     private GameContent content;
     private int x, y;
     private int dy;
@@ -20,28 +21,16 @@ public class Obstacle extends GameObject {
 
 
     public Obstacle(GameContent content, Bitmap spriteSheet, int nr){
-//        super( content, point, width, height, spriteSheet);
-        image = spriteSheet;
-        this.content = content;
-        grid = content.getGrid();
-        x = grid.getLane(nr).x;
-        y = grid.getLane(nr).y;
+        super( content, new Point(content.getGrid().getLane(nr).x+content.getGrid().getColWidth()/2-spriteSheet.getWidth()/2,content.getGrid().getLane(nr).y-spriteSheet.getHeight()), spriteSheet.getWidth(), spriteSheet.getHeight(), spriteSheet);
         this.nr = nr;
-        srcRect = new Rect(0, 0, image.getHeight(), image.getWidth());
-        destRect = new Rect(x, y, x+image.getWidth(), y+image.getHeight());
-        dy = content.dy*4;;
+        dy = content.dy*4;
     }
 
-//    public void update(){
-//        destRect.offset(0,dy);
-//    }
-//
-//    public void draw(Canvas canvas){
-//        Paint paint = new Paint();
-//        canvas.drawBitmap(image, srcRect, destRect, paint);
-//    }
+    public void draw(Canvas canvas) {
+        sprite.draw(canvas);
+    }
 
-    public Bitmap getImage(){return image;}
+    public Sprite getImage(){return sprite;}
 
     public Rect getScrRect(){return srcRect;}
 
