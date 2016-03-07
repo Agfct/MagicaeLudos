@@ -53,20 +53,23 @@ public class ObstacleHandler {
         }
     }
 
-    public boolean checkCollition(){
+    public boolean checkCollision(){
         Rect playerBox = content.player.getHitBox();
+        int pHeight = playerBox.right;
+        int pWidth = playerBox.bottom;
         for (Obstacle o: obstacles){
-            // TODO:: Check if player collides with obstacle
-//            Rect oBox = o.getHitBox();
-//            if (oBox.top+oBox.height()>playerBox.top){
-//                if (oBox.top>playerBox.top+playerBox.height()){
-//                    if (oBox.left+oBox.width()<playerBox.left){
-//                       if (oBox.left>playerBox.left+playerBox.bottom){
-//                            return true;
-//                        }
-//                    }
-//                }
-//            }
+            Rect oBox = o.getHitBox();
+            int oHeight = oBox.bottom;
+            int oWidth = oBox.right;
+            if (oBox.top+oHeight>playerBox.top){
+                if (oBox.top<playerBox.top+pHeight){
+                    if (oBox.left+oWidth>playerBox.left){
+                        if (oBox.left<playerBox.left+pWidth){
+                            return true;
+                        }
+                    }
+                }
+            }
         }
         return false;
     }
@@ -75,7 +78,13 @@ public class ObstacleHandler {
         addObstacle();
 
         moveObstacles();
-        checkCollition();
+        if (checkCollision()){
+            try {
+                Thread.sleep(1000);                 //1000 milliseconds is one second.
+            } catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+        }
     }
 
     public void draw(Canvas canvas){
