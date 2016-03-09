@@ -1,12 +1,9 @@
 package com.magicaeludos.mobile.magicaeludos.implementation;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.graphics.Rect;
-import android.util.Log;
 
 import com.magicaeludos.mobile.magicaeludos.R;
 import com.magicaeludos.mobile.magicaeludos.framework.Content;
@@ -32,8 +29,7 @@ public class GameContent implements Content{
     private Probability prop;
     private Grid grid;
     private TouchHandler touchHandler;
-    private Bitmap temporaryBackground;
-    private Background bg;
+    private Background background;
     private ObstacleHandler obstacles;
 
     //Test
@@ -54,13 +50,7 @@ public class GameContent implements Content{
         this.obstacles = new ObstacleHandler(this);
         dy = activity.getScreenHeight()/500*10;
 
-
-        //Test:
-        temporaryBackground = BitmapFactory.decodeResource(activity.getResources(), R.drawable.avatarmdpi);
-
-
-
-        player = new Player(this, grid.getPlayerLane(2),grid.getInnerWidth(),grid.getInnerHeight()*2,temporaryBackground);
+        player = new Player(this, grid.getPlayerLane(2),grid.getInnerWidth(),grid.getInnerHeight()*2, BitmapFactory.decodeResource(activity.getResources(), R.drawable.avatarmdpi));
 
         dummies = new ArrayList<>();
         dummies.add(new Dummy(this,new Point(grid.getLane(1).x,grid.getLane(1).y+grid.getRowHeight()*5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
@@ -68,8 +58,8 @@ public class GameContent implements Content{
         dummies.add(new Dummy(this, new Point(grid.getLane(3).x,grid.getLane(3).y+grid.getRowHeight()*5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
 
         prop = new Probability();
-        bg = new Background(this, BitmapFactory.decodeResource(activity.getResources(), R.mipmap.rsz_bakgrunn));
-        bg.setDy(dy);
+        background = new Background(this, BitmapFactory.decodeResource(activity.getResources(), R.drawable.bck_africa));
+        background.setDy(dy);
     }
 
     /**
@@ -85,7 +75,7 @@ public class GameContent implements Content{
         List<TouchEvent> touchEvents = touchHandler.getTouchEvents();
         player.update(touchEvents);
 
-        bg.update();
+        background.update();
         obstacles.update();
         //Check here if player and Object collides: ?
 
@@ -104,30 +94,31 @@ public class GameContent implements Content{
     @Override
     public void draw(Canvas canvas) {
 
+        //BACK
         //Draws the background
-        canvas.drawBitmap(temporaryBackground,new Rect(0,0,temporaryBackground.getWidth(),temporaryBackground.getWidth()),grid.getScreenBorders(),paint);
-        bg.draw(canvas);
-        
+//        canvas.drawBitmap(temporaryBackground,new Rect(0,0,temporaryBackground.getWidth(),temporaryBackground.getWidth()),grid.getScreenBorders(),paint);
+        background.draw(canvas);
+
+        //MIDDLE
         Paint paint = new Paint();
         paint.setColor(Color.WHITE);
         canvas.drawText("Its working! :D", 100, 100, paint);
-        canvas.drawText("Its not working!  :D", 200, 200, paint);
-        canvas.drawText("Its branching! :D", 300, 300, paint);
-
-
 
         //Test
         for (Dummy dummy: dummies
                 ) {
             dummy.draw(canvas);
         }
+        //Test Ends
 
+        obstacles.draw(canvas);
         player.draw(canvas);
         grid.draw(canvas);
 
+        //FRONT
         //Draws the GUI:
         guIhandler.draw(canvas);
-        obstacles.draw(canvas);
+
     }
 
     public MotherActivity getActivity() {
@@ -144,5 +135,5 @@ public class GameContent implements Content{
 
     public int getSpeed(){return dy;}
 
-    public int getBackgroundHeight(){return bg.getBackgroundHeight();}
+    public int getBackgroundHeight(){return background.getBackgroundHeight();}
 }
