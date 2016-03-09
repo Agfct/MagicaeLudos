@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.util.Log;
 
 import com.magicaeludos.mobile.magicaeludos.R;
 import com.magicaeludos.mobile.magicaeludos.framework.Content;
@@ -17,6 +18,7 @@ import com.magicaeludos.mobile.magicaeludos.framework.Probability;
 
 import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler;
 import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler.TouchEvent;
+import com.magicaeludos.mobile.magicaeludos.framework.Water;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,19 +42,23 @@ public class GameContent implements Content{
     Paint paint = new Paint();
     GUIhandler guIhandler;
     int dy;
+    public Water water;
 
     public GameContent(MotherActivity activity, Layout layout) {
         this.activity = activity;
         this.layout = layout;
         this.grid = new Grid(this);
         this.touchHandler = new TouchHandler(layout, activity.getScreenWidth(), activity.getScreenHeight());
-        this.guIhandler = new GUIhandler(activity,grid);
+        water = new Water();
+        this.guIhandler = new GUIhandler(this,grid);
         this.obstacles = new ObstacleHandler(this);
         dy = activity.getScreenHeight()/500*10;
 
 
         //Test:
         temporaryBackground = BitmapFactory.decodeResource(activity.getResources(), R.drawable.avatarmdpi);
+
+
 
         player = new Player(this, grid.getPlayerLane(2),grid.getInnerWidth(),grid.getInnerHeight()*2,temporaryBackground);
 
@@ -83,7 +89,7 @@ public class GameContent implements Content{
         obstacles.update();
         //Check here if player and Object collides: ?
 
-
+        water.addWaterAmount(1);
         //Updates the GUI:
         guIhandler.update();
     }

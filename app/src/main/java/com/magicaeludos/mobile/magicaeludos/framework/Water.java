@@ -24,6 +24,15 @@ public class Water {
         this.waterAmount = waterAmount;
     }
 
+    public int getWaterAmount() {
+        return waterAmount;
+    }
 
+    public int getDirtyPercentage() {
+        return dirtyPercentage;
+    }
 
+    public int getMaxAmountOfWater() {
+        return maxAmountOfWater;
+    }
 }
