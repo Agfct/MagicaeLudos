@@ -23,7 +23,7 @@ public class Obstacle extends GameObject {
     public Obstacle(GameContent content, Bitmap spriteSheet, int nr){
         super( content, new Point(content.getGrid().getLane(nr).x+content.getGrid().getColWidth()/2-spriteSheet.getWidth()/2,content.getGrid().getLane(nr).y-spriteSheet.getHeight()), spriteSheet.getWidth(), spriteSheet.getHeight(), spriteSheet);
         this.nr = nr;
-        dy = content.dy*4;
+        dy = content.dy/3;
     }
 
     public void draw(Canvas canvas) {

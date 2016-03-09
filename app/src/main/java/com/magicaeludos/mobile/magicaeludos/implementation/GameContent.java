@@ -4,10 +4,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.util.Log;
 
 import com.magicaeludos.mobile.magicaeludos.R;
 import com.magicaeludos.mobile.magicaeludos.framework.Content;
@@ -50,11 +48,11 @@ public class GameContent implements Content{
         this.touchHandler = new TouchHandler(layout, activity.getScreenWidth(), activity.getScreenHeight());
         this.guIhandler = new GUIhandler(activity,grid);
         this.obstacles = new ObstacleHandler(this);
-        dy = 5;
+        dy = activity.getScreenHeight()/500*10;
 
 
         //Test:
-        temporaryBackground = BitmapFactory.decodeResource(activity.getResources(), R.drawable.teardrop);
+        temporaryBackground = BitmapFactory.decodeResource(activity.getResources(), R.drawable.avatarmdpi);
 
         player = new Player(this, grid.getPlayerLane(2),grid.getInnerWidth(),grid.getInnerHeight()*2,temporaryBackground);
 
@@ -64,7 +62,7 @@ public class GameContent implements Content{
         dummies.add(new Dummy(this, new Point(grid.getLane(3).x,grid.getLane(3).y+grid.getRowHeight()*5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
 
         prop = new Probability();
-        bg = new Background(this, BitmapFactory.decodeResource(activity.getResources(), R.mipmap.road3));
+        bg = new Background(this, BitmapFactory.decodeResource(activity.getResources(), R.mipmap.rsz_bakgrunn));
         bg.setDy(dy);
     }
 
@@ -137,4 +135,8 @@ public class GameContent implements Content{
     public TouchHandler getTouchHandler() {
         return touchHandler;
     }
+
+    public int getSpeed(){return dy;}
+
+    public int getBackgroundHeight(){return bg.getBackgroundHeight();}
 }

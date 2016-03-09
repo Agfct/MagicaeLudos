@@ -37,6 +37,8 @@ public class Background {
         return  new Rect(0,0,image.getWidth(), image.getHeight()/2);
     }
 
+    public int getBackgroundHeight(){return image.getHeight();}
+
     public void setDy(int dy){
         this.dy = dy;
     }

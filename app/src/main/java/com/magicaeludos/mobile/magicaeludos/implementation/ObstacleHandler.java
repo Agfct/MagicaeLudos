@@ -26,10 +26,10 @@ public class ObstacleHandler {
     public void addObstacle(){
         // test until the probability is done
         double rand = Math.random();
-        if (rand < 0.04) {
+        if (rand < 0.02) {
             int lane = (int) (3 * Math.random()) + 1;
             Obstacle o;
-            if (rand < 0.03) {
+            if (rand < 0.015) {
                 o = new Obstacle(content,
                         BitmapFactory.decodeResource(content.getActivity().getResources(),
                                 R.drawable.teardrop), lane);
@@ -80,7 +80,7 @@ public class ObstacleHandler {
         moveObstacles();
         if (checkCollision()){
             try {
-                Thread.sleep(1000);                 //1000 milliseconds is one second.
+                Thread.sleep(100);                 //1000 milliseconds is one second.
             } catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
