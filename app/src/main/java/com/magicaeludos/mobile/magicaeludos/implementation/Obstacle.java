@@ -1,11 +1,42 @@
 package com.magicaeludos.mobile.magicaeludos.implementation;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Rect;
+
+import com.magicaeludos.mobile.magicaeludos.framework.Grid;
+import com.magicaeludos.mobile.magicaeludos.framework.Sprite;
 
 public class Obstacle extends GameObject {
+//    private Bitmap image;
+    private GameContent content;
+    private int x, y;
+    private int dy;
+    private Rect srcRect;
+    private Rect destRect;
+    private Grid grid;
+    private int nr;
 
-    public Obstacle(GameContent content, Point point, int width, int height, Bitmap spriteSheet){
-        super( content, point, width, height, spriteSheet);
+
+    public Obstacle(GameContent content, Bitmap spriteSheet, int nr){
+        super( content, new Point(content.getGrid().getLane(nr).x+content.getGrid().getColWidth()/2-spriteSheet.getWidth()/2,content.getGrid().getLane(nr).y-spriteSheet.getHeight()), spriteSheet.getWidth(), spriteSheet.getHeight(), spriteSheet);
+        this.nr = nr;
+        dy = content.dy/3;
     }
+
+    public void draw(Canvas canvas) {
+        sprite.draw(canvas);
+    }
+
+    public Sprite getImage(){return sprite;}
+
+    public Rect getScrRect(){return srcRect;}
+
+    public Rect getDestRect(){return destRect;}
+
+    public void destRectOffset(){destRect.offset(0,dy);}
+
+    public int getDy(){return dy;}
 }
