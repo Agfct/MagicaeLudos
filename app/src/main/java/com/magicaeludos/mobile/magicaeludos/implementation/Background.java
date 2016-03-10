@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+import com.magicaeludos.mobile.magicaeludos.implementation.activities.GameContent;
 /**
  * Created by MortenAlver on 02.03.2016.
  */

@@ -1,4 +1,4 @@
-package com.magicaeludos.mobile.magicaeludos.implementation;
+package com.magicaeludos.mobile.magicaeludos.implementation.activities;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -16,6 +16,10 @@ import com.magicaeludos.mobile.magicaeludos.framework.Probability;
 import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler;
 import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler.TouchEvent;
 import com.magicaeludos.mobile.magicaeludos.framework.Water;
+import com.magicaeludos.mobile.magicaeludos.implementation.Background;
+import com.magicaeludos.mobile.magicaeludos.implementation.Dummy;
+import com.magicaeludos.mobile.magicaeludos.implementation.ObstacleHandler;
+import com.magicaeludos.mobile.magicaeludos.implementation.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -136,4 +140,9 @@ public class GameContent implements Content{
     public int getSpeed(){return dy;}
 
     public int getBackgroundHeight(){return background.getBackgroundHeight();}
+
+    public Player getPlayer() {
+        return player;
+    }
+
 }

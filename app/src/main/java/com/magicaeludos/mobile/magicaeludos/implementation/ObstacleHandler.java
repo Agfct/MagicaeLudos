@@ -2,11 +2,10 @@ package com.magicaeludos.mobile.magicaeludos.implementation;
 
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.Rect;
-import android.util.Log;
 
 import com.magicaeludos.mobile.magicaeludos.R;
+import com.magicaeludos.mobile.magicaeludos.implementation.activities.GameContent;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -54,7 +53,7 @@ public class ObstacleHandler {
     }
 
     public boolean checkCollision(){
-        Rect playerBox = content.player.getHitBox();
+        Rect playerBox = content.getPlayer().getHitBox();
         int pHeight = playerBox.right;
         int pWidth = playerBox.bottom;
         for (Obstacle o: obstacles){

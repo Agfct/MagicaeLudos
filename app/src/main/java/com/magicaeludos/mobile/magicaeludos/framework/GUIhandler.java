@@ -8,7 +8,7 @@ import android.graphics.Rect;
 import android.util.Log;
 
 import com.magicaeludos.mobile.magicaeludos.R;
-import com.magicaeludos.mobile.magicaeludos.implementation.GameContent;
+import com.magicaeludos.mobile.magicaeludos.implementation.activities.GameContent;
 /**
  * Created by Anders Lunde on 02.03.2016.
  */

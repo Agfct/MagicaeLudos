@@ -1,5 +1,4 @@
-package com.magicaeludos.mobile.magicaeludos.implementation;
-import android.support.v7.app.AppCompatActivity;
+package com.magicaeludos.mobile.magicaeludos.implementation.activities;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;

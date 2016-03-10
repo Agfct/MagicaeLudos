@@ -1,11 +1,8 @@
-package com.magicaeludos.mobile.magicaeludos.implementation;
-import android.graphics.PixelFormat;
+package com.magicaeludos.mobile.magicaeludos.implementation.activities;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.magicaeludos.mobile.magicaeludos.R;
-import com.magicaeludos.mobile.magicaeludos.framework.Content;
 import com.magicaeludos.mobile.magicaeludos.framework.Layout;
 import com.magicaeludos.mobile.magicaeludos.framework.MotherActivity;
 /**

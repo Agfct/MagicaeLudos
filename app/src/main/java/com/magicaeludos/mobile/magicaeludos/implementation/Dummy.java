@@ -9,9 +9,9 @@ import android.graphics.Rect;
 import android.util.Log;
 
 import com.magicaeludos.mobile.magicaeludos.R;
-import com.magicaeludos.mobile.magicaeludos.framework.MotherActivity;
 import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler;
 import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler.TouchEvent;
+import com.magicaeludos.mobile.magicaeludos.implementation.activities.GameContent;
 
 import java.util.List;
 /**

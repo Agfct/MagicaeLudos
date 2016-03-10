@@ -11,7 +11,7 @@
     android:layout_centerInParent="true"
     android:visibility="gone"
     android:background="@drawable/teardrop"
-    tools:context=".implementation.MainActivity">
+    tools:context=".implementation.activities.MainActivity">
 
 
     <ImageView

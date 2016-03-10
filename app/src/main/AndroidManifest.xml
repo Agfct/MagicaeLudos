@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
         <!-- Menu Activities -->
         <activity
-            android:name=".implementation.MainActivity"
+            android:name=".implementation.activities.MainActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -21,7 +21,7 @@
         </activity>
         <!-- Game Activities -->
         <activity
-            android:name=".implementation.GameActivity"
+            android:name=".implementation.activities.GameActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:screenOrientation="portrait">
         </activity>

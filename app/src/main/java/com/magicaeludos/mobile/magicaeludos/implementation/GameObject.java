@@ -1,12 +1,11 @@
 package com.magicaeludos.mobile.magicaeludos.implementation;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.Rect;
 
 import com.magicaeludos.mobile.magicaeludos.framework.Sprite;
-
+import com.magicaeludos.mobile.magicaeludos.implementation.activities.GameContent;
 public class GameObject {
 
     GameContent content;

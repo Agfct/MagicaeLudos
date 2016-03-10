@@ -2,13 +2,12 @@ package com.magicaeludos.mobile.magicaeludos.implementation;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 
 import com.magicaeludos.mobile.magicaeludos.framework.Grid;
 import com.magicaeludos.mobile.magicaeludos.framework.Sprite;
-
+import com.magicaeludos.mobile.magicaeludos.implementation.activities.GameContent;
 public class Obstacle extends GameObject {
 //    private Bitmap image;
     private GameContent content;
@@ -23,7 +22,7 @@ public class Obstacle extends GameObject {
     public Obstacle(GameContent content, Bitmap spriteSheet, int nr){
         super( content, new Point(content.getGrid().getLane(nr).x+content.getGrid().getColWidth()/2-spriteSheet.getWidth()/2,content.getGrid().getLane(nr).y-spriteSheet.getHeight()), spriteSheet.getWidth(), spriteSheet.getHeight(), spriteSheet);
         this.nr = nr;
-        dy = content.dy/3;
+        dy = content.getSpeed()/3;
     }
 
     public void draw(Canvas canvas) {
