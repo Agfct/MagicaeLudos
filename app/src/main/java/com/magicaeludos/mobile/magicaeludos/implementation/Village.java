@@ -47,8 +47,9 @@ public class Village {
         this.totalAmountOfRuns = totalAmountOfRuns;
     }
 
-    public void setUpgradesAcquired(Set<String> upgradesAcquired) {
-        this.upgradesAcquired = (TreeSet)upgradesAcquired;
+    public void setUpgradesAcquired(Set<String> setUpgradesAcquired) {
+        TreeSet<String> upgradesAcquired = new TreeSet<>(setUpgradesAcquired);
+        this.upgradesAcquired = upgradesAcquired;
     }
 
     public int getTotalWater() {
