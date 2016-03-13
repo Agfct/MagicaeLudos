@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 import com.magicaeludos.mobile.magicaeludos.R;
+import com.magicaeludos.mobile.magicaeludos.framework.ObstacleType;
 import com.magicaeludos.mobile.magicaeludos.implementation.activities.GameContent;
 
 import java.util.ArrayList;
@@ -31,12 +32,12 @@ public class ObstacleHandler {
             if (rand < 0.015) {
                 o = new Obstacle(content,
                         BitmapFactory.decodeResource(content.getActivity().getResources(),
-                                R.drawable.teardrop), lane);
+                                R.drawable.teardrop), lane, ObstacleType.WATER_DROP);
             }
             else {
                 o = new Obstacle(content,
                         BitmapFactory.decodeResource(content.getActivity().getResources(),
-                                R.mipmap.ic_launcher),lane);
+                                R.mipmap.ic_launcher),lane, ObstacleType.STONE);
             }
             obstacles.add(o);
         }
@@ -52,7 +53,7 @@ public class ObstacleHandler {
         }
     }
 
-    public boolean checkCollision(){
+    public Obstacle checkCollision(){
         Rect playerBox = content.getPlayer().getHitBox();
         int pHeight = playerBox.right;
         int pWidth = playerBox.bottom;
@@ -64,24 +65,38 @@ public class ObstacleHandler {
                 if (oBox.top<playerBox.top+pHeight){
                     if (oBox.left+oWidth>playerBox.left){
                         if (oBox.left<playerBox.left+pWidth){
-                            return true;
+                            return o;
                         }
                     }
                 }
             }
         }
-        return false;
+        return null;
     }
 
     public void update(){
         addObstacle();
 
         moveObstacles();
-        if (checkCollision()){
-            try {
-                Thread.sleep(100);                 //1000 milliseconds is one second.
-            } catch(InterruptedException ex) {
-                Thread.currentThread().interrupt();
+        Obstacle obstacle = checkCollision();
+        if (obstacle != null){
+            switch (obstacle.getType()) {
+                case ObstacleType.WATER_DROP:
+                    obstacles.remove(obstacle);
+                    break;
+                case ObstacleType.STONE:
+                    try {
+                        Thread.sleep(100);                 //1000 milliseconds is one second.
+                    } catch (InterruptedException ex) {
+                        Thread.currentThread().interrupt();
+                    }
+                    break;
+                default:
+                    try {
+                        Thread.sleep(100);                 //1000 milliseconds is one second.
+                    } catch (InterruptedException ex) {
+                        Thread.currentThread().interrupt();
+                    }
             }
         }
     }

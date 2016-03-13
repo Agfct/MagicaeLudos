@@ -52,7 +52,7 @@ public class GameContent implements Content{
         water = new Water();
         this.guIhandler = new GUIhandler(this,grid);
         this.obstacles = new ObstacleHandler(this);
-        dy = activity.getScreenHeight()/500*10;
+        dy = activity.getScreenHeight()/500*5;
 
         player = new Player(this, grid.getPlayerLane(2),grid.getInnerWidth(),grid.getInnerHeight()*2, BitmapFactory.decodeResource(activity.getResources(), R.drawable.avatarmdpi));
 
@@ -63,7 +63,6 @@ public class GameContent implements Content{
 
         prop = new Probability();
         background = new Background(this, BitmapFactory.decodeResource(activity.getResources(), R.drawable.bck_africa));
-        background.setDy(dy);
     }
 
     /**
