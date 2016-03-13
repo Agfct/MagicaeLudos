@@ -20,6 +20,16 @@ public class Sprite {
     private Rect srcBounds;
     private Paint paint;
 
+    //Animation
+    private boolean animated = false;
+    private int nrOfFrames;
+    private int nrOfTypes;
+    private int frameLength;
+    private int frameHeight;
+    private int animationLength = 30; //Number of ms between next frame
+    private int animationCounter = 30; //counter.
+
+
     public Sprite(int x, int y, int width, int height, Bitmap bitmap) {
         this.x = x;
         this.y = y;
@@ -30,24 +40,60 @@ public class Sprite {
         this.srcBounds = new Rect(0,0,bitmap.getWidth(),bitmap.getHeight());
         paint = new Paint();
     }
-    /**
-     * Creates a sprite with set source and destination bounds
-     * @param x
-     * @param y
-     * @param width
-     * @param height
-     * @param bitmap
-     * @param srcBounds
-     */
-    public Sprite(int x, int y, int width, int height, Bitmap bitmap, Rect srcBounds) {
+
+    //Constructor for animated sprites
+    public Sprite(int x, int y, int width, int height, Bitmap bitmap , int nrOfFrames) {
+        this.animated = true;
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.bitmap = bitmap;
+        this.nrOfFrames = nrOfFrames;
+        this.nrOfTypes = 1;
+        this.frameLength = bitmap.getWidth()/nrOfFrames;
+        this.frameHeight = bitmap.getHeight()/nrOfTypes;
         this.dstBounds = new Rect(x,y,x+width,y+height);
-        this.srcBounds = srcBounds;
+        this.srcBounds = new Rect(0,0,frameLength,frameHeight);
         paint = new Paint();
+    }
+
+    //Constructor for animated sprites with several types of animations (run, jump, and so on)
+    public Sprite(int x, int y, int width, int height, Bitmap bitmap , int nrOfFrames, int nrOfAnimationTypes) {
+        this.animated = true;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.bitmap = bitmap;
+        this.animated = true;
+        this.nrOfFrames = nrOfFrames;
+        this.nrOfTypes = nrOfAnimationTypes;
+        this.frameLength = bitmap.getWidth()/nrOfFrames;
+        this.frameHeight = bitmap.getHeight()/nrOfTypes;
+        this.dstBounds = new Rect(x,y,x+width,y+height);
+        this.srcBounds = new Rect(0,0,frameLength,frameHeight);
+        paint = new Paint();
+    }
+
+    //Like an update() method but purely animation focused
+    public void animate(){
+        if(animated){
+            if(animationCounter <= 0){
+                animationCounter = animationLength;
+                //If at the end of the animation we reset
+                if((srcBounds.right+frameLength) > bitmap.getWidth()){
+                    setSrcBounds(new Rect(0,0,frameLength,frameHeight));
+
+                }else{
+                    setSrcBounds(new Rect(srcBounds.left+frameLength,srcBounds.top,srcBounds.right+frameLength,srcBounds.bottom));
+                }
+            }else {
+                animationCounter -=1;
+            }
+
+
+        }
     }
 
     public void draw(Canvas canvas){

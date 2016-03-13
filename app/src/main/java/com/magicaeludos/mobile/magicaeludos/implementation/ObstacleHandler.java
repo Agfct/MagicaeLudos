@@ -53,6 +53,7 @@ public class ObstacleHandler {
     }
 
     public boolean checkCollision(){
+        //TODO Suggestion for collision: "Rect.intersects(player.getHitBox(), obstacle.getHitBox)"
         Rect playerBox = content.getPlayer().getHitBox();
         int pHeight = playerBox.right;
         int pWidth = playerBox.bottom;

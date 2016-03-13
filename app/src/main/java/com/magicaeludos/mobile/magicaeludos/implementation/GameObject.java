@@ -26,6 +26,26 @@ public class GameObject {
         this.sprite = new Sprite((int)x,(int)y,width,height,sprite);
     }
 
+    //Game object using animations
+    public GameObject(GameContent content, Point point, int width, int height, Bitmap sprite, int frames){
+        this.content = content;
+        this.x = point.x;
+        this.y = point.y;
+        this.width = width;
+        this.height = height;
+        this.sprite = new Sprite((int)x,(int)y,width,height,sprite, frames);
+    }
+
+    //Game object using several animations
+    public GameObject(GameContent content, Point point, int width, int height, Bitmap sprite, int frames, int animationTypes){
+        this.content = content;
+        this.x = point.x;
+        this.y = point.y;
+        this.width = width;
+        this.height = height;
+        this.sprite = new Sprite((int)x,(int)y,width,height,sprite, frames, animationTypes);
+    }
+
 
     public void setSpriteImage(Bitmap image){sprite.setBitmap(image);}
     public Sprite getSprite(){return sprite;}
