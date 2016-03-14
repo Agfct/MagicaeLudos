@@ -12,6 +12,7 @@ import com.magicaeludos.mobile.magicaeludos.implementation.activities.GameConten
 public class Obstacle extends GameObject {
 //    private Bitmap image;
     private GameContent content;
+    private int hitBoxDifferenceWidth, hitBoxDifferenceHeight;
     private int x, y;
     private int dy;
     private Rect srcRect;
@@ -26,6 +27,7 @@ public class Obstacle extends GameObject {
         this.nr = nr;
         dy = content.getSpeed();
         this.obstacleType = obstacleType;
+        setHitBoxDifferences(120,0);
     }
 
     public void draw(Canvas canvas) {
@@ -43,4 +45,17 @@ public class Obstacle extends GameObject {
     public int getDy(){return dy;}
 
     public ObstacleType getType(){return obstacleType;}
+
+    public void setHitBoxDifferences(int hitBoxDifferenceWidth, int hitBoxDifferenceHeight){
+        this.hitBoxDifferenceWidth = hitBoxDifferenceWidth;
+        this.hitBoxDifferenceHeight = hitBoxDifferenceHeight;
+    }
+
+    @Override
+    public Rect getHitBox(){
+        return new Rect(sprite.getX()+hitBoxDifferenceWidth/2,
+                sprite.getY()+hitBoxDifferenceHeight/2,
+                sprite.getHeight()-hitBoxDifferenceWidth,
+                sprite.getWidth()-hitBoxDifferenceHeight);
+    }
 }
