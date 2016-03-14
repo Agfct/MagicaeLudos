@@ -18,10 +18,10 @@ public class Obstacle extends GameObject {
     private Rect destRect;
     private Grid grid;
     private int nr;
-    private int obstacleType;
+    private ObstacleType obstacleType;
 
 
-    public Obstacle(GameContent content, Bitmap spriteSheet, int nr, int obstacleType){
+    public Obstacle(GameContent content, Bitmap spriteSheet, int nr, ObstacleType obstacleType){
         super( content, new Point(content.getGrid().getLane(nr).x+content.getGrid().getColWidth()/2-spriteSheet.getWidth()/2,content.getGrid().getLane(nr).y-spriteSheet.getHeight()), spriteSheet.getWidth(), spriteSheet.getHeight(), spriteSheet);
         this.nr = nr;
         dy = content.getSpeed();
@@ -42,5 +42,5 @@ public class Obstacle extends GameObject {
 
     public int getDy(){return dy;}
 
-    public int getType(){return obstacleType;}
+    public ObstacleType getType(){return obstacleType;}
 }

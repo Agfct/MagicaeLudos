@@ -81,10 +81,10 @@ public class ObstacleHandler {
         Obstacle obstacle = checkCollision();
         if (obstacle != null){
             switch (obstacle.getType()) {
-                case ObstacleType.WATER_DROP:
+                case WATER_DROP:
                     obstacles.remove(obstacle);
                     break;
-                case ObstacleType.STONE:
+                case STONE:
                     try {
                         Thread.sleep(100);                 //1000 milliseconds is one second.
                     } catch (InterruptedException ex) {
