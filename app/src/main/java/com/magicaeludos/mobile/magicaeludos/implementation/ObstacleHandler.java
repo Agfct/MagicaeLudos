@@ -37,7 +37,7 @@ public class ObstacleHandler {
             else {
                 o = new Obstacle(content,
                         BitmapFactory.decodeResource(content.getActivity().getResources(),
-                                R.mipmap.ic_launcher),lane, ObstacleType.STONE);
+                                R.drawable.stone_smal),lane, ObstacleType.STONE);
             }
             obstacles.add(o);
         }

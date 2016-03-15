@@ -79,7 +79,7 @@ public class GameContent implements Content{
         gameSetting = new GameSetting(this, activity.getIntent().getIntExtra(activity.getString(R.string.level),0));
 
         //Player
-        player = new Player(this, grid.getPlayerLane(2),grid.getInnerWidth(),grid.getInnerHeight()*2, BitmapFactory.decodeResource(activity.getResources(), R.drawable.avatarmdpi));
+        player = new Player(this, grid.getPlayerLane(2),grid.getColWidth()/4*3,grid.getInnerHeight()*3, BitmapFactory.decodeResource(activity.getResources(), R.drawable.avatarmdpi));
 
         //Water
         water = gameSetting.getWater();
