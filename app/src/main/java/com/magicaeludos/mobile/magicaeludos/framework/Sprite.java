@@ -26,8 +26,8 @@ public class Sprite {
     private int nrOfTypes;
     private int frameLength;
     private int frameHeight;
-    private int animationLength = 30; //Number of ms between next frame
-    private int animationCounter = 30; //counter.
+    private int animationLength = 8; //Number of ms between next frame
+    private int animationCounter = 8; //counter.
 
 
     public Sprite(int x, int y, int width, int height, Bitmap bitmap) {
