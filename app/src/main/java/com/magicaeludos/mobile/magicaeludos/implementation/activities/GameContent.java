@@ -8,6 +8,7 @@ import android.graphics.Point;
 import com.magicaeludos.mobile.magicaeludos.R;
 import com.magicaeludos.mobile.magicaeludos.framework.Content;
 import com.magicaeludos.mobile.magicaeludos.framework.GUIhandler;
+import com.magicaeludos.mobile.magicaeludos.framework.GameSetting;
 import com.magicaeludos.mobile.magicaeludos.framework.Grid;
 import com.magicaeludos.mobile.magicaeludos.framework.Layout;
 import com.magicaeludos.mobile.magicaeludos.framework.MotherActivity;
@@ -35,6 +36,16 @@ public class GameContent implements Content{
     private TouchHandler touchHandler;
     private Background background;
     private ObstacleHandler obstacles;
+    private GameSetting gameSetting;
+
+    //Time
+    private double gameTime = 0;
+    private double currentGameTime = 0;
+    private double startTime = 0;
+    private double timeElapsed = 0;
+
+    //Pause
+    private boolean running = false;
 
     //Test
     ArrayList<Dummy> dummies;
@@ -54,6 +65,8 @@ public class GameContent implements Content{
         this.obstacles = new ObstacleHandler(this);
         dy = activity.getScreenHeight()/500*10;
 
+        initializeGameSettings();
+        
         player = new Player(this, grid.getPlayerLane(2),grid.getInnerWidth(),grid.getInnerHeight()*2, BitmapFactory.decodeResource(activity.getResources(), R.drawable.animated_avatar));
 
         dummies = new ArrayList<>();
@@ -64,6 +77,14 @@ public class GameContent implements Content{
         prop = new Probability();
         background = new Background(this, BitmapFactory.decodeResource(activity.getResources(), R.drawable.bck_africa));
         background.setDy(dy);
+
+        startGame(); //TODO: 3.. 2.. 1.. Countdown before startingGame ?
+    }
+
+    //TODO: put more stuff here and clean out constructor for GameContent
+    private void initializeGameSettings(){
+        gameSetting = new GameSetting(this, activity.getIntent().getIntExtra(activity.getString(R.string.level),0));
+
     }
 
     /**
@@ -73,19 +94,19 @@ public class GameContent implements Content{
      */
     @Override
     public void update() {
-        double test = prop.probExp(0.5,1.0/30.0);
+        if(running) {
+            runGameTime();
+            double test = prop.probExp(0.5, 1.0 / 30.0);
 //        Log.w("GameContent", "Dette er test variabelen2: "+ test);
-
-        List<TouchEvent> touchEvents = touchHandler.getTouchEvents();
-        player.update(touchEvents);
-
-        background.update();
-        obstacles.update();
-        //Check here if player and Object collides: ?
-
-        water.addWaterAmount(1);
-        //Updates the GUI:
-        guIhandler.update();
+            List<TouchEvent> touchEvents = touchHandler.getTouchEvents();
+            player.update(touchEvents);
+            background.update();
+            obstacles.update();
+            //Check here if player and Object collides: ?
+            water.addWaterAmount(1);
+            //Updates the GUI:
+            guIhandler.update();
+        }
     }
 
     /**
@@ -106,7 +127,8 @@ public class GameContent implements Content{
         //MIDDLE
         Paint paint = new Paint();
         paint.setColor(Color.WHITE);
-        canvas.drawText("Its working! :D", 100, 100, paint);
+        canvas.drawText("Game Time: " + currentGameTime, 100, 100, paint);
+        canvas.drawText("Time Elapsed: " + timeElapsed, 100, 120, paint);
 
         //Test
         for (Dummy dummy: dummies
@@ -122,6 +144,34 @@ public class GameContent implements Content{
         //FRONT
         //Draws the GUI:
         guIhandler.draw(canvas);
+
+    }
+
+    /**
+     * Counts game time in seconds
+     */
+    private void runGameTime(){
+        timeElapsed = System.currentTimeMillis() - startTime;
+        int seconds = (int) (timeElapsed / 1000);
+        currentGameTime = gameTime - seconds;
+
+        //TODO: Change this if endGame location
+        if(currentGameTime <= 0) {
+            endGame();
+        }
+
+    }
+
+    private void startGame(){
+        if(!running){
+            startTime = System.currentTimeMillis();
+            running = true;
+        }
+    }
+
+    public void endGame(){
+        running = false;
+        activity.goTo(AfterGameActivity.class);
 
     }
 
@@ -145,4 +195,7 @@ public class GameContent implements Content{
         return player;
     }
 
+    public void setGameTime(double gameTime) {
+        this.gameTime = gameTime;
+    }
 }

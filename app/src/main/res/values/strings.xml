@@ -9,6 +9,8 @@
     <string name="mostWaterInOneRun">com.magicaeludos.mostWaterInOneRun</string>
     <string name="totalAmountOfRuns">com.magicaeludos.totalAmountOfRuns</string>
 
+    <string name="level">level</string>
+
 
 
     <!-- Strings containing information about water-->

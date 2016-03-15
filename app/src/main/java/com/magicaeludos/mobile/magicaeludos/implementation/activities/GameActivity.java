@@ -1,5 +1,6 @@
 package com.magicaeludos.mobile.magicaeludos.implementation.activities;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.magicaeludos.mobile.magicaeludos.R;
@@ -65,15 +66,21 @@ public class GameActivity extends MotherActivity {
 //            ((GameActivity) activity).runAfterGameInfo();
 //        }
 //    });
-    public void runAfterGameInfo(){
-        //Finds the layout defined in the XML activity_game
-        View afterGameInfo = findViewById(R.id.afterInfo);
-        afterGameInfo.setVisibility(View.VISIBLE);
-    }
+//    public void runAfterGameInfo(){
+//        //Finds the layout defined in the XML activity_game
+//        View afterGameInfo = findViewById(R.id.afterInfo);
+//        afterGameInfo.setVisibility(View.VISIBLE);
+//    }
+//
+//    public void hideAfterGameInfo(){
+//        //Finds the layout defined in the XML activity_game
+//        View afterGameInfo = findViewById(R.id.afterInfo);
+//        afterGameInfo.setVisibility(View.GONE);
+//    }
 
-    public void hideAfterGameInfo(){
-        //Finds the layout defined in the XML activity_game
-        View afterGameInfo = findViewById(R.id.afterInfo);
-        afterGameInfo.setVisibility(View.GONE);
+
+    public void goToAfterGame(View view){
+        Log.w("LevelSelectActivity", "Going to the AfterGame");
+        goTo(MainActivity.class);
     }
 }

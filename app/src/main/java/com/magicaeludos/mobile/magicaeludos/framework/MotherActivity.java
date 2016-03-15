@@ -63,6 +63,16 @@ public abstract class MotherActivity extends FragmentActivity {
         overridePendingTransition(0, 0);
     }
 
+    /**Used for some transitions between activities.
+     * Prevents animation between activities and closes the activity after the transition is done.
+     * @param intent
+     */
+    public void goTo(Intent intent){
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
+        finish(); //Ends the previous activity
+        overridePendingTransition(0, 0);
+    }
 
     // This snippet hides the system bars.
     private void hideSystemUI() {
