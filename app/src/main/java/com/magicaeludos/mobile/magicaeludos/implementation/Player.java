@@ -55,7 +55,7 @@ public class Player extends GameObject {
      * @param spriteSheet
      */
     public Player(GameContent content, Point point, int width, int height, Bitmap spriteSheet){
-        super(content, point, width, height, spriteSheet);
+        super(content, point, width, height, spriteSheet, 4, 1); //TODO: the number 4 is the number of frames in the player animation cycle and 1 is number of animation types (running  = 1, then if jumping its 2)
         this.touchHandler = content.getTouchHandler();
 
         //Defining the box that registers swipe input
@@ -69,7 +69,6 @@ public class Player extends GameObject {
         this.lane2 = content.getGrid().getPlayerLane(2);
         this.lane3 = content.getGrid().getPlayerLane(3);
         this.currentLane = lane2;
-
         Log.w("Dummy", "SwipeX: " + swipeBoxX + " swipeY: " + swipeBoxY + " swipe Width: " + swipeBoxWidth + " swipeHeight: " + swipeBoxHeight);
         paint.setColor(color);
     }
@@ -82,6 +81,7 @@ public class Player extends GameObject {
             checkThumbSwipe(event);
         }
 
+        sprite.animate();
         movePlayer();
 
     }
@@ -220,6 +220,7 @@ public class Player extends GameObject {
             setX(getX()- Math.min(movementSpeed, getX() - laneX)); //TODO: Not scalable fix.
         }
     }
+
 
     public void draw(Canvas canvas){
 

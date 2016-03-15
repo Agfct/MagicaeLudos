@@ -54,7 +54,7 @@ public class GameContent implements Content{
         this.obstacles = new ObstacleHandler(this);
         dy = activity.getScreenHeight()/500*10;
 
-        player = new Player(this, grid.getPlayerLane(2),grid.getInnerWidth(),grid.getInnerHeight()*2, BitmapFactory.decodeResource(activity.getResources(), R.drawable.avatarmdpi));
+        player = new Player(this, grid.getPlayerLane(2),grid.getInnerWidth(),grid.getInnerHeight()*2, BitmapFactory.decodeResource(activity.getResources(), R.drawable.animated_avatar));
 
         dummies = new ArrayList<>();
         dummies.add(new Dummy(this,new Point(grid.getLane(1).x,grid.getLane(1).y+grid.getRowHeight()*5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
