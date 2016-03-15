@@ -19,6 +19,16 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".implementation.activities.VillageActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".implementation.activities.LevelSelectActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait">
+        </activity>
         <!-- Game Activities -->
         <activity
             android:name=".implementation.activities.GameActivity"
