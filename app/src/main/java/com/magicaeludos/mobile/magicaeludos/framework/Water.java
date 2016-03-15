@@ -9,7 +9,7 @@ public class Water {
     private int dirtyPercentage;
     private int maxAmountOfWater;
 
-    public Water (){
+    public Water (int startingAmount, int maxAmountOfWater){
         this.waterAmount = 0;
         this.dirtyPercentage = 0;
         this.maxAmountOfWater = 200;

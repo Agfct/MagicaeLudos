@@ -80,9 +80,9 @@ public class Grid {
         innerLane3 = new Point((colWidth*3) - (colWidth /4),0);
         Log.w("Grid","iLane1: "+ innerLane1+ " iLane2: "+ innerLane2 + " iLane3: "+ innerLane3);
 
-        playerLane1 = new Point((colWidth*1) - (colWidth /4),screenHeight-(2*rowHeight));
-        playerLane2 = new Point((colWidth*2) - (colWidth /4),screenHeight-(2*rowHeight));
-        playerLane3 = new Point((colWidth*3) - (colWidth /4),screenHeight-(2*rowHeight));
+        playerLane1 = new Point((colWidth*1) - (colWidth /4 + colWidth/8),screenHeight-(2*rowHeight));
+        playerLane2 = new Point((colWidth*2) - (colWidth /4 + colWidth/8),screenHeight-(2*rowHeight));
+        playerLane3 = new Point((colWidth*3) - (colWidth /4 + colWidth/8),screenHeight-(2*rowHeight));
         Log.w("Grid","iLane1: "+ playerLane1+ " iLane2: "+ playerLane2 + " iLane3: "+ playerLane3);
     }
 

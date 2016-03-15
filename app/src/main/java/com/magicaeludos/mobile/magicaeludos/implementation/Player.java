@@ -57,6 +57,8 @@ public class Player extends GameObject {
     public Player(GameContent content, Point point, int width, int height, Bitmap spriteSheet){
         super(content, point, width, height, spriteSheet, 1, 1); //TODO: the number 4 is the number of frames in the player animation cycle and 1 is number of animation types (running  = 1, then if jumping its 2)
         this.touchHandler = content.getTouchHandler();
+        this.movementSpeed = content.getGrid().getScreenWidth()/16;
+        Log.w("Player", "MovementSpeed: "+ movementSpeed);
 
         //Defining the box that registers swipe input
         this.swipeBoxX = 0;

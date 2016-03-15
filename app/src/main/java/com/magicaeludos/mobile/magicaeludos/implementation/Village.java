@@ -38,6 +38,9 @@ public class Village {
     public void setTotalWater(int totalWater) {
         this.totalWater = totalWater;
     }
+    public void addTotalWater(int addedWaterAmount){
+        this.totalWater += addedWaterAmount;
+    }
 
     public void setMostWaterInOneRun(int mostWaterInOneRun) {
         this.mostWaterInOneRun = mostWaterInOneRun;
