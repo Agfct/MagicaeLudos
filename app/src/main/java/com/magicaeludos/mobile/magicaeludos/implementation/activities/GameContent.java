@@ -82,7 +82,7 @@ public class GameContent implements Content{
         obstacles.update();
         //Check here if player and Object collides: ?
 
-        water.addWaterAmount(1);
+//        water.addWaterAmount(1);
         //Updates the GUI:
         guIhandler.update();
     }

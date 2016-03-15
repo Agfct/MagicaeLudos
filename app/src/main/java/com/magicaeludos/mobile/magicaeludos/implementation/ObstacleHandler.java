@@ -83,6 +83,7 @@ public class ObstacleHandler {
             switch (obstacle.getType()) {
                 case WATER_DROP:
                     obstacles.remove(obstacle);
+                    content.water.addWaterAmount(20);
                     break;
                 case STONE:
                     try {

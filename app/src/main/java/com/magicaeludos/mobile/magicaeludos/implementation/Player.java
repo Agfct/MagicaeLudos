@@ -237,7 +237,7 @@ public class Player extends GameObject {
 
     @Override
     public Rect getHitBox(){
-        return new Rect(sprite.getX(),sprite.getY()+(sprite.getWidth() / 2),sprite.getHeight(),sprite.getWidth());
+        return new Rect(sprite.getX(),sprite.getY()+(sprite.getHeight() / 2),sprite.getWidth(),sprite.getWidth());
     }
 
 }
