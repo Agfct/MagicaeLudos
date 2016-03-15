@@ -21,6 +21,7 @@ import com.magicaeludos.mobile.magicaeludos.implementation.Background;
 import com.magicaeludos.mobile.magicaeludos.implementation.Dummy;
 import com.magicaeludos.mobile.magicaeludos.implementation.ObstacleHandler;
 import com.magicaeludos.mobile.magicaeludos.implementation.Player;
+import com.magicaeludos.mobile.magicaeludos.implementation.Village;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +35,12 @@ public class GameContent implements Content{
     private Probability prop;
     private Grid grid;
     private TouchHandler touchHandler;
+    private GUIhandler guIhandler;
     private Background background;
     private ObstacleHandler obstacles;
     private GameSetting gameSetting;
+    private Paint paint = new Paint();
+
 
     //Time
     private double gameTime = 0;
@@ -47,41 +51,52 @@ public class GameContent implements Content{
     //Pause
     private boolean running = false;
 
+    //GameObjects
+    private Player player;
+    private int dy;
+    public Water water;
+
+
     //Test
     ArrayList<Dummy> dummies;
-    Player player;
-    Paint paint = new Paint();
-    GUIhandler guIhandler;
-    int dy;
-    public Water water;
+
 
     public GameContent(MotherActivity activity, Layout layout) {
         this.activity = activity;
         this.layout = layout;
         this.grid = new Grid(this);
         this.touchHandler = new TouchHandler(layout, activity.getScreenWidth(), activity.getScreenHeight());
-        water = new Water();
-        this.guIhandler = new GUIhandler(this,grid);
         this.obstacles = new ObstacleHandler(this);
-        dy = activity.getScreenHeight()/500*5;
 
         initializeGameSettings();
-        
-        player = new Player(this, grid.getPlayerLane(2),grid.getInnerWidth(),grid.getInnerHeight()*2, BitmapFactory.decodeResource(activity.getResources(), R.drawable.avatarmdpi));
 
-        dummies = new ArrayList<>();
-        dummies.add(new Dummy(this,new Point(grid.getLane(1).x,grid.getLane(1).y+grid.getRowHeight()*5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
-//        dummies.add(new Dummy(getActivity(),grid.getLane(2),grid.getColWidth(),grid.getRowHeight()));
-        dummies.add(new Dummy(this, new Point(grid.getLane(3).x,grid.getLane(3).y+grid.getRowHeight()*5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
-
-        prop = new Probability();
-        background = new Background(this, BitmapFactory.decodeResource(activity.getResources(), R.drawable.bck_africa));
         startGame(); //TODO: 3.. 2.. 1.. Countdown before startingGame ?
     }
 
-    //TODO: put more stuff here and clean out constructor for GameContent
     private void initializeGameSettings(){
+
+        //Game Settings. Contains the variables for game difficulty
         gameSetting = new GameSetting(this, activity.getIntent().getIntExtra(activity.getString(R.string.level),0));
+
+        //Player
+        player = new Player(this, grid.getPlayerLane(2),grid.getInnerWidth(),grid.getInnerHeight()*2, BitmapFactory.decodeResource(activity.getResources(), R.drawable.avatarmdpi));
+
+        //Water
+        water = gameSetting.getWater();
+
+        //GUI handler
+        this.guIhandler = new GUIhandler(this,grid);
+
+        prop = new Probability();
+
+        //Images
+        background = new Background(this, BitmapFactory.decodeResource(activity.getResources(), R.drawable.bck_africa));
+
+        //Testing
+        dummies = new ArrayList<>();
+        dummies.add(new Dummy(this, new Point(grid.getLane(1).x, grid.getLane(1).y + grid.getRowHeight() * 5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
+//        dummies.add(new Dummy(getActivity(),grid.getLane(2),grid.getColWidth(),grid.getRowHeight()));
+        dummies.add(new Dummy(this, new Point(grid.getLane(3).x, grid.getLane(3).y + grid.getRowHeight() * 5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
 
     }
 
@@ -123,7 +138,6 @@ public class GameContent implements Content{
         background.draw(canvas);
 
         //MIDDLE
-        Paint paint = new Paint();
         paint.setColor(Color.WHITE);
         canvas.drawText("Game Time: " + currentGameTime, 100, 100, paint);
         canvas.drawText("Time Elapsed: " + timeElapsed, 100, 120, paint);
@@ -169,8 +183,17 @@ public class GameContent implements Content{
 
     public void endGame(){
         running = false;
+        updateVillage();
         activity.goTo(AfterGameActivity.class);
 
+    }
+
+    //Updates the village after end game
+    //TODO: Need to handle dirty water, and other variables.
+    private void updateVillage(){
+        Village village = activity.getVillage();
+        village.addTotalWater(water.getWaterAmount());
+        village.saveVillageData();
     }
 
     public MotherActivity getActivity() {
@@ -186,6 +209,10 @@ public class GameContent implements Content{
     }
 
     public int getSpeed(){return dy;}
+
+    public void setGameSpeed(int speed){
+        dy = activity.getScreenHeight()/500*speed;
+    }
 
     public int getBackgroundHeight(){return background.getBackgroundHeight();}
 

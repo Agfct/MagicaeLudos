@@ -9,7 +9,9 @@ public class GameSetting {
 
     private GameContent content;
     private double gameTime;
+    private int gameSpeed;
     private int gameDifficulty;
+    private Water water;
 
 
     public GameSetting (GameContent content, int gameDifficulty){
@@ -25,11 +27,20 @@ public class GameSetting {
 
         if(gameDifficulty == 1){
             gameTime = 60;
+            gameSpeed = 10;
+            water = new Water(0,200); //TODO: Add upgrades that increases water amount
         }else {
             gameTime = 60;
+            gameSpeed = 5;
+            water = new Water(0,200);
         }
 
 
         content.setGameTime(gameTime);
+        content.setGameSpeed(gameSpeed);
+    }
+
+    public Water getWater() {
+        return water;
     }
 }

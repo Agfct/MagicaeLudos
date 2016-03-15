@@ -19,8 +19,6 @@ public class LevelSelectActivity extends MotherActivity {
         String level = (String)view.getTag();
         Log.w("LevelSelectActivity","Level: " + level);
         Log.w("LevelSelectActivity", "Going to the Game");
-        getVillage().setTotalWater(getVillage().getTotalWater() + 1);//TODO: REMOVE THIS LINE
-        getVillage().saveVillageData();//TODO: REMOVE THIS LINE
 
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra(this.getString(R.string.level),  Integer.parseInt(level));
