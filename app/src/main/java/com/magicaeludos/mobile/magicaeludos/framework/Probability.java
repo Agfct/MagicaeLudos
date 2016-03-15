@@ -1,5 +1,7 @@
 package com.magicaeludos.mobile.magicaeludos.framework;
 
+import android.util.Log;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,7 @@ public class Probability {
     int lane3Block = 0;
 
     /*Constants to define game performance*/
-    double rockRate = 1.0; /*Arrival rate of rock*/
+    double rockRate = 1; /*Arrival rate of rock*/
     int rockLength = 10; /*Number of frames the rock blocks a lane. Might also block some space on the path*/
     int rockWidth = 1; /*Numer of lanes the rock is covering*/
     int rockPri = 10; /*Prioritizing index used to choose between obstacles if they want to enter at same time*/
@@ -112,6 +114,7 @@ public class Probability {
         }
         /*If there are at least 2 lanes open and adjacent, simulate obstacles requiring 2-lane-width*/
         if(connectedLanes == 2 || connectedLanes == 3){
+
             if(sendObstacle(logRate)){obstacles.add(new Obstacle("Log",logRate,logWidth,logLength,logPri));}
         }
 
@@ -331,6 +334,9 @@ public class Probability {
         /*Set the number of frames the lane is supposed to be closed based on the
         obstacle that is sent to the lane*/
         blockLanes(chosen);
+        Log.w("test: ", lane1Block + "  " + lane2Block + "  " + lane3Block + "  " + lane1 + "  " +
+                lane2 + "  " + lane3);
+        Log.w("test2: ", chosen.printObstacle());
 
     }
 

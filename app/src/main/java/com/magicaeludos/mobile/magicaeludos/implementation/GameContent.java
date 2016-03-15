@@ -36,6 +36,7 @@ public class GameContent implements Content{
     //Test
     ArrayList<Dummy> dummies;
     Paint paint = new Paint();
+    //Probability board;
 
     public GameContent(MotherActivity activity, Layout layout) {
         this.activity = activity;
@@ -50,12 +51,14 @@ public class GameContent implements Content{
         dummies.add(new Dummy(this,new Point(grid.getLane(1).x,grid.getLane(1).y+grid.getRowHeight()*5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
 //        dummies.add(new Dummy(getActivity(),grid.getLane(2),grid.getColWidth(),grid.getRowHeight()));
         dummies.add(new Dummy(this, new Point(grid.getLane(3).x,grid.getLane(3).y+grid.getRowHeight()*5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
+        //board = new Probability(); //Test
+
 
         //Small blue dummys
 //        dummies.add(new Dummy(this, grid.getInnerLane(1), grid.getInnerWidth(), grid.getInnerHeight(),Color.BLUE));
         dummies.add(new Dummy(this, grid.getInnerLane(2), grid.getInnerWidth(), grid.getInnerHeight(), Color.BLUE));
 //        dummies.add(new Dummy(this, grid.getInnerLane(3), grid.getInnerWidth(), grid.getInnerHeight(),Color.BLUE));
-        prop = new Probability();
+        //prop = new Probability();
     }
 
     /**
@@ -64,13 +67,15 @@ public class GameContent implements Content{
      * Update shoud contain everything that needs to be updated in the game (movement, calculations.. everything!)
      */
     @Override
+
     public void update() {
-        double test = prop.probExp(0.5,1.0/30.0);
-        Log.w("GameContent", "Dette er test variabelen2: "+ test);
+        //double test = prop.probExp(0.5,1.0/30.0);
+        //Log.w("GameContent", "Dette er test variabelen2: "+ test);
         //TODO: Discuss the use of single touch, and how to solve the issue of "no finger" on screen
         //TODO: Discuss the issue of no redraw on background
         List<TouchEvent> touchEvents = touchHandler.getTouchEvents();
         dummies.get(2).update(touchEvents);
+        //board.sendObstacles();
 
 
 
