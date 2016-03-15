@@ -63,7 +63,7 @@ public class GameContent implements Content{
         water = new Water();
         this.guIhandler = new GUIhandler(this,grid);
         this.obstacles = new ObstacleHandler(this);
-        dy = activity.getScreenHeight()/500*10;
+        dy = activity.getScreenHeight()/500*5;
 
         initializeGameSettings();
         
@@ -76,8 +76,6 @@ public class GameContent implements Content{
 
         prop = new Probability();
         background = new Background(this, BitmapFactory.decodeResource(activity.getResources(), R.drawable.bck_africa));
-        background.setDy(dy);
-
         startGame(); //TODO: 3.. 2.. 1.. Countdown before startingGame ?
     }
 
@@ -103,7 +101,7 @@ public class GameContent implements Content{
             background.update();
             obstacles.update();
             //Check here if player and Object collides: ?
-            water.addWaterAmount(1);
+//            water.addWaterAmount(1);
             //Updates the GUI:
             guIhandler.update();
         }
