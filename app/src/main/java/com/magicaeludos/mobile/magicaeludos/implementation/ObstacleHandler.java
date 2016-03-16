@@ -33,11 +33,14 @@ public class ObstacleHandler {
     public void addObstacle(){
         // test until the probability is done
         double rand = Math.random();
-        if (rand < 0.02) {
+        if (rand < 0.04) {
             int lane = (int) (3 * Math.random()) + 1;
             Obstacle o;
             if (rand < 0.015) {
                 o = createWaterDrop(lane);
+            }
+            else if (rand < 0.03) {
+                o = createPuddle(lane);
             }
             else {
                 o = createStone(lane);
@@ -88,6 +91,9 @@ public class ObstacleHandler {
                     obstacles.remove(obstacle);
                     content.water.addWaterAmount(20);
                     break;
+                case PUDDLE:
+                    content.water.addWaterAmount(1);
+                    break;
                 case STONE:
                     try {
                         Thread.sleep(100);  //TODO: FIX               //1000 milliseconds is one second.
@@ -132,7 +138,15 @@ public class ObstacleHandler {
 //        TODO:: create log obstacle
         Obstacle o = new Obstacle(content,
                 BitmapFactory.decodeResource(content.getActivity().getResources(),
-                        R.drawable.stone_smal),lane, ObstacleType.STONE);
+                        R.drawable.stone_smal),lane, ObstacleType.LOG);
+        o.setHitBoxDifferences(hitboxWidthLog, hitboxHeightLog);
+        return o;
+    }
+
+    private Obstacle createPuddle(int lane){
+        Obstacle o = new Obstacle(content,
+                BitmapFactory.decodeResource(content.getActivity().getResources(),
+                        R.mipmap.ic_launcher),lane, ObstacleType.PUDDLE);
         o.setHitBoxDifferences(hitboxWidthLog, hitboxHeightLog);
         return o;
     }
