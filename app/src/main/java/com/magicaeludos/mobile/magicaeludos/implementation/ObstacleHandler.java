@@ -18,12 +18,15 @@ import java.util.List;
 public class ObstacleHandler {
     List<Obstacle> obstacles = new ArrayList<Obstacle>();
     private GameContent content;
+
+//    hitbox sizes
     private final int hitboxWidthWater = 110;
     private final int hitboxHeightWater = 0;
     private final int hitboxWidthStone = 110;
     private final int hitboxHeightStone = 0;
     private final int hitboxWidthLog = 110;
     private final int hitboxHeightLog = 0;
+
 
 
     public ObstacleHandler(GameContent content){
@@ -89,16 +92,19 @@ public class ObstacleHandler {
             switch (obstacle.getType()) {
                 case WATER_DROP:
                     obstacles.remove(obstacle);
-                    content.water.addWaterAmount(20);
+                    content.water.addWaterAmount(content.getWaterDropAmount());
                     break;
                 case PUDDLE:
-                    content.water.addWaterAmount(1);
+                    content.water.addWaterAmount(content.getWaterDropAmount()/10);
                     break;
                 case STONE:
                     try {
                         Thread.sleep(100);  //TODO: FIX               //1000 milliseconds is one second.
                     } catch (InterruptedException ex) {
                         Thread.currentThread().interrupt();
+                    }
+                    if (content.water.getWaterAmount()>50){
+                        content.water.addWaterAmount(-50);
                     }
                     break;
                 default:
@@ -147,6 +153,7 @@ public class ObstacleHandler {
         Obstacle o = new Obstacle(content,
                 BitmapFactory.decodeResource(content.getActivity().getResources(),
                         R.mipmap.ic_launcher),lane, ObstacleType.PUDDLE);
+        o.sprite.setHeight(o.sprite.getHeight()*3);
         o.setHitBoxDifferences(hitboxWidthLog, hitboxHeightLog);
         return o;
     }

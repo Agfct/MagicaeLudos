@@ -55,6 +55,7 @@ public class GameContent implements Content{
     private Player player;
     private int dy;
     public Water water;
+    private int waterDropAmount;
 
 
     //Test
@@ -222,5 +223,13 @@ public class GameContent implements Content{
 
     public void setGameTime(double gameTime) {
         this.gameTime = gameTime;
+    }
+
+    public void setWaterDropAmount(int waterDropAmount) {
+        this.waterDropAmount = waterDropAmount;
+    }
+
+    public int getWaterDropAmount() {
+        return waterDropAmount;
     }
 }
