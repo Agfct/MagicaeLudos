@@ -20,6 +20,7 @@ public class Obstacle extends GameObject {
     private Grid grid;
     private int nr;
     private ObstacleType obstacleType;
+    private boolean collition = false;
 
 
     public Obstacle(GameContent content, Bitmap spriteSheet, int nr, ObstacleType obstacleType){
@@ -49,6 +50,10 @@ public class Obstacle extends GameObject {
         this.hitBoxDifferenceWidth = hitBoxDifferenceWidth;
         this.hitBoxDifferenceHeight = hitBoxDifferenceHeight;
     }
+
+    public boolean getCollition(){return collition;}
+
+    public void setCollition(boolean collition){this.collition = collition;}
 
     @Override
     public Rect getHitBox(){

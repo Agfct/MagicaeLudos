@@ -98,12 +98,13 @@ public class ObstacleHandler {
                     content.water.addWaterAmount(content.getWaterDropAmount()/10);
                     break;
                 case STONE:
-                    try {
-                        Thread.sleep(100);  //TODO: FIX               //1000 milliseconds is one second.
-                    } catch (InterruptedException ex) {
-                        Thread.currentThread().interrupt();
-                    }
-                    if (content.water.getWaterAmount()>50){
+                    if (!obstacle.getCollition()) {
+                        try {
+                            Thread.sleep(200);  //TODO: FIX               //1000 milliseconds is one second.
+                        } catch (InterruptedException ex) {
+                            Thread.currentThread().interrupt();
+                        }
+                        obstacle.setCollition(true);
                         content.water.addWaterAmount(-50);
                     }
                     break;

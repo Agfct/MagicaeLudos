@@ -22,6 +22,9 @@ public class Water {
         if (this.waterAmount>maxAmountOfWater){
             this.waterAmount = maxAmountOfWater;
         }
+        else if( this.waterAmount<0) {
+            this.waterAmount = 0;
+        }
     }
     private void setWaterAmount(int waterAmount){
         this.waterAmount = waterAmount;
