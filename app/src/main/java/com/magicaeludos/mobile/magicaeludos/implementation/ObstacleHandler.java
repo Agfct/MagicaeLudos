@@ -18,6 +18,13 @@ import java.util.List;
 public class ObstacleHandler {
     List<Obstacle> obstacles = new ArrayList<Obstacle>();
     private GameContent content;
+    private final int hitboxWidthWater = 110;
+    private final int hitboxHeightWater = 0;
+    private final int hitboxWidthStone = 110;
+    private final int hitboxHeightStone = 0;
+    private final int hitboxWidthLog = 110;
+    private final int hitboxHeightLog = 0;
+
 
     public ObstacleHandler(GameContent content){
         this.content = content;
@@ -30,14 +37,10 @@ public class ObstacleHandler {
             int lane = (int) (3 * Math.random()) + 1;
             Obstacle o;
             if (rand < 0.015) {
-                o = new Obstacle(content,
-                        BitmapFactory.decodeResource(content.getActivity().getResources(),
-                                R.drawable.teardrop), lane, ObstacleType.WATER_DROP);
+                o = createWaterDrop(lane);
             }
             else {
-                o = new Obstacle(content,
-                        BitmapFactory.decodeResource(content.getActivity().getResources(),
-                                R.drawable.stone_smal),lane, ObstacleType.STONE);
+                o = createStone(lane);
             }
             obstacles.add(o);
         }
@@ -106,5 +109,31 @@ public class ObstacleHandler {
         for (Obstacle o : obstacles){
             o.draw(canvas);
         }
+    }
+
+    private Obstacle createWaterDrop(int lane){
+        Obstacle o = new Obstacle(content,
+                BitmapFactory.decodeResource(content.getActivity().getResources(),
+                        R.drawable.teardrop), lane, ObstacleType.WATER_DROP);
+        o.setHitBoxDifferences(hitboxWidthWater, hitboxHeightWater);
+        return o;
+    }
+
+    private Obstacle createStone(int lane){
+        Obstacle o = new Obstacle(content,
+                BitmapFactory.decodeResource(content.getActivity().getResources(),
+                        R.drawable.stone_smal),lane, ObstacleType.STONE);
+        o.sprite.setWidth(o.sprite.getWidth()*2);
+        o.setHitBoxDifferences(hitboxWidthStone, hitboxHeightStone);
+        return o;
+    }
+
+    private Obstacle createLog(int lane){
+//        TODO:: create log obstacle
+        Obstacle o = new Obstacle(content,
+                BitmapFactory.decodeResource(content.getActivity().getResources(),
+                        R.drawable.stone_smal),lane, ObstacleType.STONE);
+        o.setHitBoxDifferences(hitboxWidthLog, hitboxHeightLog);
+        return o;
     }
 }

@@ -27,7 +27,6 @@ public class Obstacle extends GameObject {
         this.nr = nr;
         dy = content.getSpeed();
         this.obstacleType = obstacleType;
-        setHitBoxDifferences(120,0);
     }
 
     public void draw(Canvas canvas) {
