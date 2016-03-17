@@ -110,6 +110,16 @@ public class ObstacleHandler {
                         obstacle.setCollition(true);
                         content.water.addWaterAmount(-50);
                     }
+                case LOG:
+                    if (!obstacle.getCollition()) {
+                        try {
+                            Thread.sleep(200);  //TODO: FIX               //1000 milliseconds is one second.
+                        } catch (InterruptedException ex) {
+                            Thread.currentThread().interrupt();
+                        }
+                        obstacle.setCollition(true);
+                        content.water.addWaterAmount(-50);
+                    }
                     break;
                 default:
                     try {
