@@ -59,7 +59,7 @@ public class Obstacle extends GameObject {
     public Rect getHitBox(){
         return new Rect(sprite.getX()+hitBoxDifferenceWidth/2,
                 sprite.getY()+hitBoxDifferenceHeight/2,
-                sprite.getHeight()-hitBoxDifferenceWidth,
-                sprite.getWidth()-hitBoxDifferenceHeight);
+                sprite.getWidth()-hitBoxDifferenceWidth,
+                sprite.getHeight()-hitBoxDifferenceHeight);
     }
 }
