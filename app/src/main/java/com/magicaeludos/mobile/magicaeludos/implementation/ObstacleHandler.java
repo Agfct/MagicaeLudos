@@ -39,11 +39,14 @@ public class ObstacleHandler {
         if (rand < 0.04) {
             int lane = (int) (3 * Math.random()) + 1;
             Obstacle o;
-            if (rand < 0.015) {
+            if (rand < 0.01) {
                 o = createWaterDrop(lane);
             }
-            else if (rand < 0.03) {
+            else if (rand < 0.02) {
                 o = createPuddle(lane);
+            }
+            else if (rand < 0.03) {
+                o = createLog(lane);
             }
             else {
                 o = createStone(lane);
@@ -145,7 +148,8 @@ public class ObstacleHandler {
 //        TODO:: create log obstacle
         Obstacle o = new Obstacle(content,
                 BitmapFactory.decodeResource(content.getActivity().getResources(),
-                        R.drawable.stone_smal),lane, ObstacleType.LOG);
+                        R.mipmap.ic_launcher),lane, ObstacleType.LOG);
+        o.sprite.setWidth(content.getGrid().getColWidth()*2);
         o.setHitBoxDifferences(hitboxWidthLog, hitboxHeightLog);
         return o;
     }
