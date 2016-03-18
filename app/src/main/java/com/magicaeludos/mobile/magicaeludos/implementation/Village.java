@@ -2,8 +2,8 @@ package com.magicaeludos.mobile.magicaeludos.implementation;
 import com.magicaeludos.mobile.magicaeludos.framework.FileIO;
 import com.magicaeludos.mobile.magicaeludos.framework.MotherActivity;
 
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.ArrayList;
+
 /**
  * Created by Anders on 10.03.2016.
  * The village is a static class that contains the information about progress, total amount of water and other important values.
@@ -14,13 +14,18 @@ public class Village {
     private MotherActivity activity;
     private FileIO fileIO;
 
+    //Finals
+    private final int NUMBEROFRUNSPRDAY = 5;
+    private final int AMOUNTOFWATERPRVILLAGER = 20;
+    private ArrayList<Integer> villagerMilestones;
+
     //Values
     private int totalWater;
     private int mostWaterInOneRun;
     private int totalAmountOfRuns;
     private int runsLeftToday = 0;
     private int currentDay = 0;
-    private int nrOfVillagers = 5;
+    private int nrOfVillagers = 1;
 
     //Uppgrades
     private int bucketUpgrade = 0;
@@ -29,7 +34,17 @@ public class Village {
     public Village(MotherActivity activity) {
         this.activity = activity;
         this.fileIO = new FileIO(activity);
+        setVillagerMilestones();
         loadVillageData();
+    }
+
+    //Defines the different villager levels (5, 10, 20, 30) that increases villager size
+    private void setVillagerMilestones(){
+        villagerMilestones = new ArrayList<>();
+        villagerMilestones.add(5);
+        villagerMilestones.add(10);
+        villagerMilestones.add(20);
+        villagerMilestones.add(30);
     }
 
     public void loadVillageData(){
@@ -91,6 +106,18 @@ public class Village {
         this.runsLeftToday = runsLeftToday;
     }
 
+    public int getNUMBEROFRUNSPRDAY() {
+        return NUMBEROFRUNSPRDAY;
+    }
+
+    public int getAMOUNTOFWATERPRVILLAGER() {
+        return AMOUNTOFWATERPRVILLAGER;
+    }
+
+    public ArrayList<Integer> getVillagerMilestones() {
+        return villagerMilestones;
+    }
+
     /* UPPGRADES */
     /* 1 Bigger Bucket */
     /* Water cleaner */
@@ -109,5 +136,18 @@ public class Village {
         }else if(nr == 2){
             waterCleanerUpgrade = value;
         }
+    }
+
+    public double getDirtyWaterMultiplier(){
+        if (waterCleanerUpgrade == 0){
+            return 0.25;
+        }else if (waterCleanerUpgrade == 1){
+            return 0.5;
+        }else if (waterCleanerUpgrade == 2){
+            return 0.75;
+        }else if (waterCleanerUpgrade == 3){
+            return 1;
+        }
+        return 0;
     }
 }

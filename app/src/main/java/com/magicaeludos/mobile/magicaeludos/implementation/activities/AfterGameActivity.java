@@ -16,10 +16,10 @@ public class AfterGameActivity extends MotherActivity {
 
         int cleanWater = this.getIntent().getIntExtra("cleanWater", 0);
         int dirtyWater = this.getIntent().getIntExtra("dirtyWater", 0);
-        double upgradeFactor = 0.25; //TODO: Change based on upgrade version
+        double upgradeFactor = getVillage().getDirtyWaterMultiplier(); //TODO: Change based on upgrade version
         int totalWater = cleanWater + (int)(dirtyWater * upgradeFactor);
         TextView totalWaterAmount = (TextView) findViewById(R.id.intTotalWaterAmount);
-        totalWaterAmount.setText(totalWater + " l");
+        totalWaterAmount.setText(cleanWater + " + "+dirtyWater+"*"+upgradeFactor+" = "+totalWater+ " l");
     }
 
     public void goToMainActivity(View view){

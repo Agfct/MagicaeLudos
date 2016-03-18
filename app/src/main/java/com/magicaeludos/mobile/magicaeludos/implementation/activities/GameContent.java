@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.util.Log;
 
 import com.magicaeludos.mobile.magicaeludos.R;
 import com.magicaeludos.mobile.magicaeludos.framework.Content;
@@ -186,8 +187,8 @@ public class GameContent implements Content{
         running = false;
         updateVillage();
         Intent intent = new Intent(activity, AfterGameActivity.class);
-        intent.putExtra("cleanWater",water.getCleanWater());
-        intent.putExtra("dirtyWater",water.getDirtyWater());
+        intent.putExtra("cleanWater", water.getCleanWater());
+        intent.putExtra("dirtyWater", water.getDirtyWater());
         activity.goTo(intent);
 
     }
@@ -195,19 +196,60 @@ public class GameContent implements Content{
     //Updates the village after end game and updates all variables
     //TODO: Need to handle dirty water, and other variables.
     private void updateVillage(){
+        //Updating current values
         Village village = activity.getVillage();
-        addWaterToVillage();
-        village.addTotalWater(water.getCleanWater());
+        village.setTotalAmountOfRuns(village.getTotalAmountOfRuns() + 1);
+        int totalWater = water.getCleanWater() + (int)(water.getDirtyWater() * village.getDirtyWaterMultiplier());
+        village.addTotalWater(totalWater);
+
+        //Adds a new top score to mostWater in on run
+        if(totalWater > village.getMostWaterInOneRun()){
+            village.setMostWaterInOneRun(totalWater);
+        }
+
+        //If this is the last run of the day
+        if(village.getRunsLeftToday() == 1){
+            village.setCurrentDay(village.getCurrentDay() + 1);
+            village.setRunsLeftToday(village.getNUMBEROFRUNSPRDAY());
+
+
+            //FEEDING THE VILLAGERS
+
+            int currentNumberOfVillagers = village.getNrOfVillagers();
+            //If you do not have enough water
+            //Remove all water
+            //Set number of villagers down one level
+            Log.w("GameContent","OverflowWater: "+ village.getTotalWater()/(currentNumberOfVillagers*village.getAMOUNTOFWATERPRVILLAGER()));
+            if(village.getTotalWater()/(currentNumberOfVillagers*village.getAMOUNTOFWATERPRVILLAGER())< 0){
+                village.setTotalWater(0);
+                int newAmountOfVillagers = 0;
+                //Cannot fall below 1 villager
+                if(currentNumberOfVillagers == 1 ){
+                    newAmountOfVillagers = 1;
+                }else {
+                    ArrayList<Integer> villagerMilestones = village.getVillagerMilestones();
+                    for (int i = 0; i < villagerMilestones.size(); i++){
+                        if (currentNumberOfVillagers == villagerMilestones.get(i)) {
+                            if(i == 0){
+                                newAmountOfVillagers = 1;
+                                break;
+                            }else {
+                                newAmountOfVillagers = villagerMilestones.get(i-1);
+                                break;
+                            }
+                        }
+                    }
+                }
+                village.setNrOfVillagers(newAmountOfVillagers);
+            } //TODO: Check that going down in villagers work and make the "else if " villagers are going up
+
+        }
+
 
         //Saves the village data to storage
         village.saveVillageData();
     }
 
-    //Calculates the amount of water gained this round
-    private void addWaterToVillage(){
-
-
-    }
 
     public MotherActivity getActivity() {
         return activity;
