@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
         <!-- Menu Activities -->
         <activity
-            android:name=".implementation.MainActivity"
+            android:name=".implementation.activities.MainActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -19,9 +19,24 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".implementation.activities.VillageActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".implementation.activities.LevelSelectActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".implementation.activities.AfterGameActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait">
+        </activity>
         <!-- Game Activities -->
         <activity
-            android:name=".implementation.GameActivity"
+            android:name=".implementation.activities.GameActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:screenOrientation="portrait">
         </activity>

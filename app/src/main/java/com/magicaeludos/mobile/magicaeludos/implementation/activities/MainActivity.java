@@ -1,5 +1,4 @@
-package com.magicaeludos.mobile.magicaeludos.implementation;
-import android.support.v7.app.AppCompatActivity;
+package com.magicaeludos.mobile.magicaeludos.implementation.activities;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,10 +14,15 @@ public class MainActivity extends MotherActivity {
 
 
     public void goToGameActivity(View view){
-        Log.w("MainActivity", "Going to the Game");
-        goTo(GameActivity.class);
+        Log.w("MainActivity", "Going to the Level select");
+        goTo(LevelSelectActivity.class);
     }
+
+    public void goToVillageActivity(View view){
+        Log.w("MainActivity", "Going to the Village");
+        goTo(VillageActivity.class);
+    }
+
+
+
 }
-
-
-

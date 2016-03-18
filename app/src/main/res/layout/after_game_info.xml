@@ -8,33 +8,34 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_centerInParent="true"
+    android:visibility="visible"
+    android:background="@drawable/teardrop"
     tools:context=".implementation.activities.MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Magicae Ludos"
-        android:textSize="@dimen/large_text"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"/>
-    <ImageButton
-        android:id="@+id/btnGameActivity"
+
+    <ImageView
+        android:id="@+id/infoImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/teardrop"
-        android:onClick="goToGameActivity"
+        android:layout_above="@+id/infoParagraph"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="90dp"/>
+    <TextView
+        android:id="@+id/infoParagraph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/water_info_0"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
     <Button
-        android:id="@+id/btnVillageActivity"
+        android:id="@+id/btnMainActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Village"
-        android:onClick="goToVillageActivity"
-        android:layout_below="@+id/btnGameActivity"
-        android:layout_alignLeft="@+id/btnGameActivity"
-        android:layout_alignStart="@+id/btnGameActivity"
-        android:layout_marginTop="49dp"/>
+        android:text="Press Me!"
+        android:onClick="goToMainActivity"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="51dp"/>
 </RelativeLayout>

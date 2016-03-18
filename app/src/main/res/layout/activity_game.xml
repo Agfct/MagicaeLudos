@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".implementation.MainActivity">
+    tools:context=".implementation.activities.MainActivity">
 
     <!-- Everything in the background-->
     <ImageView
@@ -22,6 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="I CANT SEE THIS"/>
+
+    <!--<include layout="@layout/after_game_info" android:id="@+id/afterInfo" />-->
 
 
 

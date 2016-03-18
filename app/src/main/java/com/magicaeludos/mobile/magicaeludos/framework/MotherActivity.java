@@ -10,6 +10,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.WindowManager;
+
+import com.magicaeludos.mobile.magicaeludos.implementation.Village;
 /**
  * Created by Anders on 11.01.2016.
  * The MotherActivity is meant to gather all the Activities in the application under one roof.
@@ -19,12 +21,15 @@ public abstract class MotherActivity extends FragmentActivity {
 
     private int screenWidth;
     private int screenHeight;
+    private static Village village;
 //    private static Assets assets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        village = new Village(this);
 //        assets = new Assets(this);
+
         //Gets the screen size
         Point size = new Point();
         getWindowManager().getDefaultDisplay().getSize(size);
@@ -58,6 +63,16 @@ public abstract class MotherActivity extends FragmentActivity {
         overridePendingTransition(0, 0);
     }
 
+    /**Used for some transitions between activities.
+     * Prevents animation between activities and closes the activity after the transition is done.
+     * @param intent
+     */
+    public void goTo(Intent intent){
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
+        finish(); //Ends the previous activity
+        overridePendingTransition(0, 0);
+    }
 
     // This snippet hides the system bars.
     private void hideSystemUI() {
@@ -77,5 +92,9 @@ public abstract class MotherActivity extends FragmentActivity {
     }
     public int getScreenHeight(){
         return screenHeight;
+    }
+
+    public static Village getVillage() {
+        return village;
     }
 }
