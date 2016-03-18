@@ -1,4 +1,5 @@
 package com.magicaeludos.mobile.magicaeludos.implementation.activities;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -116,7 +117,7 @@ public class GameContent implements Content{
             background.update();
             obstacles.update();
             //Check here if player and Object collides: ?
-//            water.addWaterAmount(1);
+//            water.addCleanWater(1);
             //Updates the GUI:
             guIhandler.update();
         }
@@ -184,16 +185,28 @@ public class GameContent implements Content{
     public void endGame(){
         running = false;
         updateVillage();
-        activity.goTo(AfterGameActivity.class);
+        Intent intent = new Intent(activity, AfterGameActivity.class);
+        intent.putExtra("cleanWater",water.getCleanWater());
+        intent.putExtra("dirtyWater",water.getDirtyWater());
+        activity.goTo(intent);
 
     }
 
-    //Updates the village after end game
+    //Updates the village after end game and updates all variables
     //TODO: Need to handle dirty water, and other variables.
     private void updateVillage(){
         Village village = activity.getVillage();
-        village.addTotalWater(water.getWaterAmount());
+        addWaterToVillage();
+        village.addTotalWater(water.getCleanWater());
+
+        //Saves the village data to storage
         village.saveVillageData();
+    }
+
+    //Calculates the amount of water gained this round
+    private void addWaterToVillage(){
+
+
     }
 
     public MotherActivity getActivity() {

@@ -5,31 +5,39 @@ package com.magicaeludos.mobile.magicaeludos.framework;
  */
 public class Water {
 
-    private int waterAmount;
-    private int dirtyPercentage;
+    private int cleanWater;
+    private int dirtyWater;
     private int maxAmountOfWater;
 
     public Water (int startingAmount, int maxAmountOfWater){
-        this.waterAmount = 0;
-        this.dirtyPercentage = 0;
+        this.cleanWater = 0;
+        this.dirtyWater = 0;
         this.maxAmountOfWater = 200;
         //Initialize water here
     }
 
 
-    public void addWaterAmount(int waterAmount){
-        this.waterAmount += waterAmount;
+    public void addCleanWater(int cleanWaterAmount){
+        this.cleanWater += cleanWaterAmount;
     }
-    private void setWaterAmount(int waterAmount){
-        this.waterAmount = waterAmount;
-    }
-
-    public int getWaterAmount() {
-        return waterAmount;
+    private void setCleanWater(int cleanWater){
+        this.cleanWater = cleanWater;
     }
 
-    public int getDirtyPercentage() {
-        return dirtyPercentage;
+    public void addDirtyWater(int dirtyWaterAmount){
+        this.dirtyWater += dirtyWaterAmount;
+    }
+
+    private void setDirtyWater(int dirtyWater){
+        this.dirtyWater = dirtyWater;
+    }
+
+    public int getCleanWater() {
+        return cleanWater;
+    }
+
+    public int getDirtyWater() {
+        return dirtyWater;
     }
 
     public int getMaxAmountOfWater() {

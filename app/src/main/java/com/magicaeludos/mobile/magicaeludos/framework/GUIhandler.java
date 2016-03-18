@@ -79,7 +79,7 @@ public class GUIhandler {
             Log.w("GUIhandler","DIVISION BY ZERO: Max Amount of water is 0");
         }
         //This line chooses the height of the rect, the Math.min is to prevent overflow.
-        int height = Math.min((int)(numberOfBars * water.getWaterAmount()),(int)(numberOfBars*maxWaterAmount));
+        int height = Math.min((int)(numberOfBars * water.getCleanWater()),(int)(numberOfBars*maxWaterAmount));
         rectDst_water = new Rect(barX, barY2 - height,grid.getScreenWidth(), barY2);
 
     }

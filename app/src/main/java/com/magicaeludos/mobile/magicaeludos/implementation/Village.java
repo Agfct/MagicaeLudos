@@ -18,8 +18,13 @@ public class Village {
     private int totalWater;
     private int mostWaterInOneRun;
     private int totalAmountOfRuns;
-    private TreeSet<String> upgradesAcquired;
-    private int nrOfVillagers = 5; //Calculated value ?
+    private int runsLeftToday = 0;
+    private int currentDay = 0;
+    private int nrOfVillagers = 5;
+
+    //Uppgrades
+    private int bucketUpgrade = 0;
+    private int waterCleanerUpgrade = 0;
 
     public Village(MotherActivity activity) {
         this.activity = activity;
@@ -50,11 +55,6 @@ public class Village {
         this.totalAmountOfRuns = totalAmountOfRuns;
     }
 
-    public void setUpgradesAcquired(Set<String> setUpgradesAcquired) {
-        TreeSet<String> upgradesAcquired = new TreeSet<>(setUpgradesAcquired);
-        this.upgradesAcquired = upgradesAcquired;
-    }
-
     public int getTotalWater() {
         return totalWater;
     }
@@ -67,11 +67,47 @@ public class Village {
         return totalAmountOfRuns;
     }
 
-    public TreeSet<String> getUpgradesAcquired() {
-        return upgradesAcquired;
-    }
-
     public int getNrOfVillagers() {
         return nrOfVillagers;
+    }
+
+    public int getRunsLeftToday() {
+        return runsLeftToday;
+    }
+
+    public int getCurrentDay() {
+        return currentDay;
+    }
+
+    public void setNrOfVillagers(int nrOfVillagers) {
+        this.nrOfVillagers = nrOfVillagers;
+    }
+
+    public void setCurrentDay(int currentDay) {
+        this.currentDay = currentDay;
+    }
+
+    public void setRunsLeftToday(int runsLeftToday) {
+        this.runsLeftToday = runsLeftToday;
+    }
+
+    /* UPPGRADES */
+    /* 1 Bigger Bucket */
+    /* Water cleaner */
+    public int getUpgradeNr(int nr){
+        switch (nr){
+            case 1: return bucketUpgrade;
+            case 2: return waterCleanerUpgrade;
+        }
+
+        return -1;
+    }
+
+    public void setUpgradeNr(int nr, int value){
+        if(nr == 1){
+            bucketUpgrade = value;
+        }else if(nr == 2){
+            waterCleanerUpgrade = value;
+        }
     }
 }

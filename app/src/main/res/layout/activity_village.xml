@@ -102,6 +102,45 @@
         android:layout_alignTop="@+id/txtNrOfRuns"
         android:layout_alignLeft="@+id/valueMostWaterInOneRun"
         android:layout_alignRight="@+id/valueTotalWater"/>
+    <TextView
+        android:id="@+id/txtCurrentDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Day:"
+        android:textSize="@dimen/medium_text"
+        android:layout_below="@+id/txtNrOfRuns"
+        android:layout_alignRight="@+id/txtNrOfRuns"
+        android:layout_alignEnd="@+id/txtNrOfRuns"
+        android:layout_marginTop="33dp" />
+    <TextView
+        android:id="@+id/valueCurrentDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="@dimen/medium_text"
+        android:layout_alignTop="@+id/txtCurrentDay"
+        android:layout_alignLeft="@+id/valueRunsLeftToday"
+        android:layout_alignStart="@+id/valueRunsLeftToday" />
+
+    <TextView
+        android:id="@+id/txtRunsLeftToday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Runs Left Today:"
+        android:textSize="@dimen/medium_text"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignRight="@+id/txtNrOfRuns"
+        android:layout_alignEnd="@+id/txtNrOfRuns"
+        android:layout_marginBottom="19dp" />
+    <TextView
+        android:id="@+id/valueRunsLeftToday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="@dimen/medium_text"
+        android:layout_alignTop="@+id/txtRunsLeftToday"
+        android:layout_alignLeft="@+id/valueNrOfRuns"
+        android:layout_alignStart="@+id/valueNrOfRuns" />
 
     <Button
         android:id="@+id/btnLeaveVillage"
