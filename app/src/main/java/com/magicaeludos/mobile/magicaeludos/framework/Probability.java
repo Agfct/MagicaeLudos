@@ -338,6 +338,7 @@ public class Probability {
         int connectedLanes = connectedLanes();
         int lanesOpen = lanesOpen();
 
+
         /*choose/simulate what obstacleProbs to send this frame if there are enough open lanes*/
         List<Obstacle> obstacleProbs = new ArrayList<Obstacle>();
         if(lane1 || lane2 || lane3){
@@ -380,3 +381,4 @@ public class Probability {
 *
 * Remember this:
 *   # */
+
