@@ -1,4 +1,7 @@
 package com.magicaeludos.mobile.magicaeludos.framework;
+import android.util.Log;
+
+import com.magicaeludos.mobile.magicaeludos.implementation.Village;
 import com.magicaeludos.mobile.magicaeludos.implementation.activities.GameContent;
 /**
  * Created by Anders on 14.03.2016.
@@ -12,11 +15,13 @@ public class GameSetting {
     private int gameSpeed;
     private int gameDifficulty;
     private Water water;
+    private Village village;
 
 
     public GameSetting (GameContent content, int gameDifficulty){
         this.content = content;
         this.gameDifficulty = gameDifficulty;
+        this.village = content.getActivity().getVillage();
         setValues();
     }
 
@@ -25,14 +30,15 @@ public class GameSetting {
      */
     private void setValues(){
 
+        Log.w("GameSettings","Difficulty: " +gameDifficulty+ " bucketSize: " + village.getBucketSize());
         if(gameDifficulty == 1){
             gameTime = 60;
             gameSpeed = 10;
-            water = new Water(0,200); //TODO: Add upgrades that increases water amount
+            water = new Water(0,village.getBucketSize());
         }else {
             gameTime = 60;
             gameSpeed = 5;
-            water = new Water(0,200);
+            water = new Water(0,village.getBucketSize());
         }
 
 

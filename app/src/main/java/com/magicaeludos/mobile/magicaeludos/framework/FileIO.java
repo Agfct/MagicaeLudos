@@ -41,9 +41,9 @@ public class FileIO {
             editor.putInt(activity.getString(R.string.upgradeNr2), 0);
             editor.putInt(activity.getString(R.string.mostWaterInOneRun), 0);
             editor.putInt(activity.getString(R.string.totalAmountOfRuns), 0);
-            editor.putInt(activity.getString(R.string.villages),0);
+            editor.putInt(activity.getString(R.string.villages),1);
             editor.putInt(activity.getString(R.string.currentDay), 0);
-            editor.putInt(activity.getString(R.string.runsLeftToday),0);
+            editor.putInt(activity.getString(R.string.runsLeftToday),5);
 
             editor.commit();
 
@@ -105,9 +105,9 @@ public class FileIO {
         editor.putInt(activity.getString(R.string.upgradeNr2), 0);
         editor.putInt(activity.getString(R.string.mostWaterInOneRun),0);
         editor.putInt(activity.getString(R.string.totalAmountOfRuns),0);
-        editor.putInt(activity.getString(R.string.villages), 0);
+        editor.putInt(activity.getString(R.string.villages), 1);
         editor.putInt(activity.getString(R.string.currentDay), 0);
-        editor.putInt(activity.getString(R.string.runsLeftToday),0);
+        editor.putInt(activity.getString(R.string.runsLeftToday),5);
 
         editor.commit();
     }

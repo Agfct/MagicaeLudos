@@ -1,4 +1,6 @@
 package com.magicaeludos.mobile.magicaeludos.implementation;
+import android.util.Log;
+
 import com.magicaeludos.mobile.magicaeludos.framework.FileIO;
 import com.magicaeludos.mobile.magicaeludos.framework.MotherActivity;
 
@@ -96,6 +98,7 @@ public class Village {
 
     public void setNrOfVillagers(int nrOfVillagers) {
         this.nrOfVillagers = nrOfVillagers;
+        checkUpgrades();
     }
 
     public void setCurrentDay(int currentDay) {
@@ -118,6 +121,14 @@ public class Village {
         return villagerMilestones;
     }
 
+    //Upgrades based on the amout of villagers
+    //TODO: Create this method, upgrading depending on the amount of villagers
+    private void checkUpgrades(){
+        Log.w("Village","UpppgradeNr. 1: " + bucketUpgrade + " 2: "+waterCleanerUpgrade);
+
+
+    }
+
     /* UPPGRADES */
     /* 1 Bigger Bucket */
     /* Water cleaner */
@@ -136,6 +147,20 @@ public class Village {
         }else if(nr == 2){
             waterCleanerUpgrade = value;
         }
+    }
+
+    //UPGRADES:
+    public int getBucketSize(){
+        if (bucketUpgrade == 0){
+            return 200;
+        }else if (bucketUpgrade == 1){
+            return 400;
+        }else if (bucketUpgrade == 2){
+            return 800;
+        }else if (bucketUpgrade == 3){
+            return 1600;
+        }
+        return 0;
     }
 
     public double getDirtyWaterMultiplier(){
