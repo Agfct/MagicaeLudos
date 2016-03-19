@@ -223,4 +223,6 @@ public class GameContent implements Content{
     public void setGameTime(double gameTime) {
         this.gameTime = gameTime;
     }
+
+    public Probability getProp(){return prop;}
 }

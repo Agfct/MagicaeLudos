@@ -1,7 +1,5 @@
 package com.magicaeludos.mobile.magicaeludos.framework;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -104,20 +102,20 @@ public class Probability {
         if(lanesOpen()==3){n=3;}
         return n;
     }
-    public int obstaclesWidth(List<Obstacle> obstacleProbs){
-        /*Return the total width of all obstacleProbs
-        obstacleProbs: The obstacleProbs to send*/
+    public int obstaclesWidth(List<ObstacleProb> obstacleProbProbs){
+        /*Return the total width of all obstacleProbProbs
+        obstacleProbProbs: The obstacleProbProbs to send*/
         int width = 0;
-        for(int i=0; i< obstacleProbs.size(); i++){
-            width = width + obstacleProbs.get(i).getWidth();
+        for(int i=0; i< obstacleProbProbs.size(); i++){
+            width = width + obstacleProbProbs.get(i).getWidth();
         }
         return width;
     }
-    public List<Obstacle> simulateObstacles(int connectedLanes, List<Obstacle> obstacleProbs, int lanesOpen){
-        /*Simulate obstacleProbs*/
+    public List<ObstacleProb> simulateObstacles(int connectedLanes, List<ObstacleProb> obstacleProbProbs, int lanesOpen){
+        /*Simulate obstacleProbProbs*/
 
 
-        /*Run all samplers and add to 'obstacleProbs' if true*/
+        /*Run all samplers and add to 'obstacleProbProbs' if true*/
 
         /*If there are 3 lanes open, simulate obstacles requiring 3-lane-width*/
         if(connectedLanes == 3){
@@ -127,70 +125,73 @@ public class Probability {
         if(connectedLanes == 2 || connectedLanes == 3) {
             //Sample non-collectables:
             if (lanesOpen > 0) {
-                if (sendObstacle(logRate)){obstacleProbs.add(new Obstacle(ObstacleType.LOG, logRate, logWidth, logLength, logPri, logCollect));}
+                if (sendObstacle(logRate)){
+                    obstacleProbProbs.add(new ObstacleProb(ObstacleType.LOG, logRate, logWidth, logLength, logPri, logCollect));}
             }
             //Sample collectables:
         }
 
-        /*Simulate obstacleProbs requiring only one lane*/
+        /*Simulate obstacleProbProbs requiring only one lane*/
         //Sample non-collectables:
         if(lanesOpen>0) {
-            if (sendObstacle(rockRate)){obstacleProbs.add(new Obstacle(ObstacleType.STONE, rockRate, rockWidth, rockLength, rockPri, rockCollect));}
+            if (sendObstacle(rockRate)){
+                obstacleProbProbs.add(new ObstacleProb(ObstacleType.STONE, rockRate, rockWidth, rockLength, rockPri, rockCollect));}
         }
         //Sample collectables:
-        if (sendObstacle(dropRate)){obstacleProbs.add(new Obstacle(ObstacleType.WATER_DROP, dropRate, dropWidth, dropLength, dropPri, dropCollect));}
+        if (sendObstacle(dropRate)){
+            obstacleProbProbs.add(new ObstacleProb(ObstacleType.WATER_DROP, dropRate, dropWidth, dropLength, dropPri, dropCollect));}
 
-        return obstacleProbs;
+        return obstacleProbProbs;
     }
-    public int findLargestPri(List<Obstacle> obstacleProbs){
+    public int findLargestPri(List<ObstacleProb> obstacleProbProbs){
         /*Return the index of the obstacle with the largest priority index found in list*/
-        /*obstacleProbs: list of obstacleProbs*/
+        /*obstacleProbProbs: list of obstacleProbProbs*/
 
         int pri = -1000;
         int index = 0;
 
-        for (int i=0; i< obstacleProbs.size(); i++){
-            if (pri < obstacleProbs.get(i).getPriIndex()){
-                pri = obstacleProbs.get(i).getPriIndex();
+        for (int i=0; i< obstacleProbProbs.size(); i++){
+            if (pri < obstacleProbProbs.get(i).getPriIndex()){
+                pri = obstacleProbProbs.get(i).getPriIndex();
                 index = i;
             }
         }
         return index;
     }
-    public List<Obstacle> cutObstacles(List<Obstacle> obstacleProbs){
-        /*Cut required obstacleProbs from list
-        obstacleProbs: list with obstacleProbs*/
-        List<Obstacle> cutObstacleProbs = new ArrayList<Obstacle>();
+    public List<ObstacleProb> cutObstacles(List<ObstacleProb> obstacleProbProbs){
+        /*Cut required obstacleProbProbs from list
+        obstacleProbProbs: list with obstacleProbProbs*/
+        List<ObstacleProb> cutObstacleProbProbs = new ArrayList<ObstacleProb>();
 
         int index;
-        int end = obstacleProbs.size();
+        int end = obstacleProbProbs.size();
         for (int i=0; i<end; i++){
-            index = findLargestPri(obstacleProbs);
-            cutObstacleProbs.add(obstacleProbs.get(index));
-            obstacleProbs.remove(obstacleProbs.size()-1);
+            index = findLargestPri(obstacleProbProbs);
+            cutObstacleProbProbs.add(obstacleProbProbs.get(index));
+            obstacleProbProbs.remove(obstacleProbProbs.size()-1);
         }
 
-        while(obstaclesWidth(cutObstacleProbs) > lanesOpen()){
-            cutObstacleProbs.remove(cutObstacleProbs.size()-1);
+        while(obstaclesWidth(cutObstacleProbProbs) > lanesOpen()){
+            cutObstacleProbProbs.remove(cutObstacleProbProbs.size()-1);
         }
 
-        return cutObstacleProbs;
+        return cutObstacleProbProbs;
     }
-    public Obstacle chooseObstacle(List<Obstacle> obstacleProbs){
+    public ObstacleProb chooseObstacle(List<ObstacleProb> obstacleProbProbs){
         /*Choose the one obstacle with the highest priority index.
-        obstacleProbs: list with obstacleProbs*/
+        obstacleProbProbs: list with obstacleProbProbs*/
 
-        int index = findLargestPri(obstacleProbs);
-        return obstacleProbs.get(index);
+        int index = findLargestPri(obstacleProbProbs);
+        return obstacleProbProbs.get(index);
     }
-    public List<Obstacle> distributeObstacles(List<Obstacle> obstacleProbs, int lanesOpen){
+    public List<ObstacleProb> distributeObstacles(List<ObstacleProb> obstacleProbProbs, int lanesOpen){
         /*Distribute obstacle uniformly on the open lanes
-        obstacleProbs: The obstacleProbs to distribute
+        obstacleProbProbs: The obstacleProbProbs to distribute
         lanesOpen: Number of open lanes
          */
 
         Random random = new Random();
-        int n = obstacleProbs.size();
+        int n = obstacleProbProbs.size();
         Vector<Integer> lanes = new Vector<Integer>();
 
         int index = 0;
@@ -210,39 +211,39 @@ public class Probability {
         }
 
         for(int i=0; i<lanes.size(); i++){
-            obstacleProbs.get(i).setLane(lanes.get(i));
+            obstacleProbProbs.get(i).setLane(lanes.get(i));
         }
 
 
-        return obstacleProbs;
+        return obstacleProbProbs;
 
     }
-    public List<Obstacle> chooseLanes(int lanesOpen, List<Obstacle> obstacleProbs){
-        /*Choose uniformly what lanes to send the obstacleProbs to
+    public List<ObstacleProb> chooseLanes(int lanesOpen, List<ObstacleProb> obstacleProbProbs){
+        /*Choose uniformly what lanes to send the obstacleProbProbs to
         lanesOpen: Number of open lanes
-        obstacleProbs: list of obstacleProbs*/
+        obstacleProbProbs: list of obstacleProbProbs*/
 
         /*NOT DONE HERE!!!*/
 
-        int n = obstacleProbs.size();
+        int n = obstacleProbProbs.size();
 
         if(n == 3){
             /*distribute singles*/
-            obstacleProbs = distributeObstacles(obstacleProbs, lanesOpen);
+            obstacleProbProbs = distributeObstacles(obstacleProbProbs, lanesOpen);
         }
         if(n == 2){
 
         }
 
-        return obstacleProbs;
+        return obstacleProbProbs;
 
     }
-    public int chooseLane(Obstacle obstacleProb){
+    public int chooseLane(ObstacleProb obstacleProbProb){
         /*Choose the lane the obstacle(non-collectable!) will be sent to*/
-        /*obstacleProb: Obstacle to send*/
+        /*obstacleProbProb: ObstacleProb to send*/
 
         int lanesOpen;
-        if(obstacleProb.getCollect()==false){lanesOpen = lanesOpen();}
+        if(obstacleProbProb.getCollect()==false){lanesOpen = lanesOpen();}
         else{lanesOpen = 0;
             if(lane1 == true){lanesOpen++;}
             if(lane2 == true){lanesOpen++;}
@@ -250,7 +251,7 @@ public class Probability {
         }
 
         int lane;
-        int width = obstacleProb.getWidth();
+        int width = obstacleProbProb.getWidth();
         Random random = new Random();
         if(lanesOpen == 3){
             if(width==1){lane = randomInteger(1,3,random);}
@@ -278,13 +279,13 @@ public class Probability {
         }
         return lane;
     }
-    public void blockLanes(Obstacle obstacleProb){
-        /*Block the lanes that obstacleProb occupies and set blosk timer
-        lane: The lane the obstacleProb starts blocking*/
+    public void blockLanes(ObstacleProb obstacleProbProb){
+        /*Block the lanes that obstacleProbProb occupies and set blosk timer
+        lane: The lane the obstacleProbProb starts blocking*/
 
-        int lane = obstacleProb.getLane();
-        int width = obstacleProb.getWidth();
-        int time = obstacleProb.getLength();
+        int lane = obstacleProbProb.getLane();
+        int width = obstacleProbProb.getWidth();
+        int time = obstacleProbProb.getLength();
 
         if(lane == 3){
             lane3 = false;
@@ -330,7 +331,7 @@ public class Probability {
             if(lane3Block==0){lane3 = true;}
         }
     }
-    public Obstacle sendObstacles(){
+    public ObstacleProb sendObstacles(){
         /*Need also to update lanes before this*/
         updateLanes();
 
@@ -339,20 +340,20 @@ public class Probability {
         int lanesOpen = lanesOpen();
 
 
-        /*choose/simulate what obstacleProbs to send this frame if there are enough open lanes*/
-        List<Obstacle> obstacleProbs = new ArrayList<Obstacle>();
+        /*choose/simulate what obstacleProbProbs to send this frame if there are enough open lanes*/
+        List<ObstacleProb> obstacleProbProbs = new ArrayList<ObstacleProb>();
         if(lane1 || lane2 || lane3){
-            obstacleProbs = simulateObstacles(connectedLanes, obstacleProbs, lanesOpen);
+            obstacleProbProbs = simulateObstacles(connectedLanes, obstacleProbProbs, lanesOpen);
         }
 
         /*If no obstacle was chosen, end function*/
-        Obstacle chosen = new Obstacle(ObstacleType.STONE,1.0,1,10,1,rockCollect);
-        if(obstacleProbs.size()==0){
+        ObstacleProb chosen = new ObstacleProb(ObstacleType.STONE,1.0,1,10,1,rockCollect);
+        if(obstacleProbProbs.size()==0){
             return null;
         }
         else {
             /*Choose only one obstacle with the largest priority index*/
-            chosen = chooseObstacle(obstacleProbs);
+            chosen = chooseObstacle(obstacleProbProbs);
 
         /*FROM THIS ON, WE FOLLOW CHOICE 2) ABOVE!*/
 

@@ -3,7 +3,7 @@ package com.magicaeludos.mobile.magicaeludos.framework;
 /**
  * Created by Andreas on 07.03.2016.
  */
-public class Obstacle{
+public class ObstacleProb {
     ObstacleType name; /*Name of the object*/
     double rate; /*Arrival rate of object*/
     int width; /*Number of lanes the object is covering*/
@@ -13,7 +13,7 @@ public class Obstacle{
                 an obstacle of width 2 is sent, a value of lane=2 means it covers its length from lane 2.*/
     boolean collect; /*True if obstacle can be collected, false if it as actual obstacle*/
 
-    public Obstacle(ObstacleType name, double rate, int width, int length, int priIndex, boolean collect){
+    public ObstacleProb(ObstacleType name, double rate, int width, int length, int priIndex, boolean collect){
         this.name = name;
         this.rate = rate;
         this.width = width;
