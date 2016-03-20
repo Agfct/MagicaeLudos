@@ -185,10 +185,11 @@ public class GameContent implements Content{
 
     public void endGame(){
         running = false;
-        updateVillage();
         Intent intent = new Intent(activity, AfterGameActivity.class);
         intent.putExtra("cleanWater", water.getCleanWater());
         intent.putExtra("dirtyWater", water.getDirtyWater());
+        intent.putExtra("dirtyWaterMultiplier", activity.getVillage().getDirtyWaterMultiplier());
+        updateVillage();
         activity.goTo(intent);
 
     }

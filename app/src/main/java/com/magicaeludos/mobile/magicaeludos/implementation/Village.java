@@ -122,11 +122,31 @@ public class Village {
     }
 
     //Upgrades based on the amout of villagers
-    //TODO: Create this method, upgrading depending on the amount of villagers
+    //TODO: Improve method ?
     private void checkUpgrades(){
-        Log.w("Village","UpppgradeNr. 1: " + bucketUpgrade + " 2: "+waterCleanerUpgrade);
-
-
+        Log.w("Village","Before UpppgradeNr. 1: " + bucketUpgrade + " 2: "+waterCleanerUpgrade);
+        if(nrOfVillagers >= 5){
+            if(bucketUpgrade == 0){
+                bucketUpgrade = 1;
+            }
+        }
+        if(nrOfVillagers >= 10){
+            if(bucketUpgrade == 1){
+                bucketUpgrade = 2;
+            }
+            if(waterCleanerUpgrade == 0){
+                waterCleanerUpgrade = 1;
+            }
+        }
+        if(nrOfVillagers >= 20){
+            if(bucketUpgrade == 2){
+                bucketUpgrade = 3;
+            }
+            if(waterCleanerUpgrade == 1){
+                waterCleanerUpgrade = 2;
+            }
+        }
+        Log.w("Village","After UpppgradeNr. 1: " + bucketUpgrade + " 2: "+waterCleanerUpgrade);
     }
 
     /* UPPGRADES */
