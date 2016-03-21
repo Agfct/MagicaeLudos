@@ -35,8 +35,6 @@
         android:layout_height="wrap_content"
         android:text="TotalWaterCollected: "
         android:layout_above="@+id/btnMainActivity"
-        android:layout_toLeftOf="@+id/infoImage"
-        android:layout_toStartOf="@+id/infoImage"
         android:layout_marginBottom="40dp" />
     <TextView
         android:id="@+id/intTotalWaterAmount"
@@ -44,8 +42,10 @@
         android:layout_height="wrap_content"
         android:text="0"
         android:layout_alignTop="@+id/txtTotalWater"
-        android:layout_toRightOf="@+id/infoImage"
-        android:layout_toEndOf="@+id/infoImage" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="22dp"
+        android:layout_marginEnd="22dp" />
     <Button
         android:id="@+id/btnMainActivity"
         android:layout_width="wrap_content"

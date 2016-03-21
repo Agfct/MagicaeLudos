@@ -95,10 +95,10 @@ public class GameContent implements Content{
         background = new Background(this, BitmapFactory.decodeResource(activity.getResources(), R.drawable.bck_africa));
 
         //Testing
-        dummies = new ArrayList<>();
-        dummies.add(new Dummy(this, new Point(grid.getLane(1).x, grid.getLane(1).y + grid.getRowHeight() * 5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
+//        dummies = new ArrayList<>();
+//        dummies.add(new Dummy(this, new Point(grid.getLane(1).x, grid.getLane(1).y + grid.getRowHeight() * 5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
 //        dummies.add(new Dummy(getActivity(),grid.getLane(2),grid.getColWidth(),grid.getRowHeight()));
-        dummies.add(new Dummy(this, new Point(grid.getLane(3).x, grid.getLane(3).y + grid.getRowHeight() * 5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
+//        dummies.add(new Dummy(this, new Point(grid.getLane(3).x, grid.getLane(3).y + grid.getRowHeight() * 5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
 
     }
 
@@ -145,10 +145,10 @@ public class GameContent implements Content{
         canvas.drawText("Time Elapsed: " + timeElapsed, 100, 120, paint);
 
         //Test
-        for (Dummy dummy: dummies
-                ) {
-            dummy.draw(canvas);
-        }
+//        for (Dummy dummy: dummies
+//                ) {
+//            dummy.draw(canvas);
+//        }
         //Test Ends
 
         obstacles.draw(canvas);
