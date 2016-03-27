@@ -13,8 +13,8 @@ public class Obstacle extends GameObject {
 //    private Bitmap image;
     private GameContent content;
     private int hitBoxDifferenceWidth, hitBoxDifferenceHeight;
-    private int x, y;
-    private int dy;
+    private double y;
+    private double speed;
     private Rect srcRect;
     private Rect destRect;
     private Grid grid;
@@ -26,7 +26,7 @@ public class Obstacle extends GameObject {
     public Obstacle(GameContent content, Bitmap spriteSheet, int nr, ObstacleType obstacleType){
         super( content, new Point(content.getGrid().getLane(nr).x+content.getGrid().getColWidth()/2-spriteSheet.getWidth()/2,content.getGrid().getLane(nr).y-spriteSheet.getHeight()), spriteSheet.getWidth(), spriteSheet.getHeight(), spriteSheet);
         this.nr = nr;
-        dy = content.getSpeed();
+        speed = content.getSpeed();
         this.obstacleType = obstacleType;
     }
 
@@ -40,9 +40,9 @@ public class Obstacle extends GameObject {
 
     public Rect getDestRect(){return destRect;}
 
-    public void destRectOffset(){destRect.offset(0,dy);}
+    public double getY(){return y;}
 
-    public int getDy(){return dy;}
+    public void setY(double y){this.y = y;}
 
     public ObstacleType getType(){return obstacleType;}
 

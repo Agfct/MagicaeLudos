@@ -3,6 +3,7 @@ package com.magicaeludos.mobile.magicaeludos.implementation;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.util.Log;
 
 import com.magicaeludos.mobile.magicaeludos.R;
 import com.magicaeludos.mobile.magicaeludos.framework.ObstacleType;
@@ -58,10 +59,17 @@ public class ObstacleHandler {
     public void moveObstacles(){
         for (Iterator<Obstacle> iterator = obstacles.iterator(); iterator.hasNext(); ) {
             Obstacle o = iterator.next();
-            o.sprite.setY(o.sprite.getY()+o.getDy());
+            o.setY(o.getY()+content.getSpeed());
+            o.sprite.setY((int)o.getY());
+            Log.v("Y", ""+o.getY()+" speed: "+content.getSpeed());
             if (o.sprite.getY()>content.getGrid().getScreenHeight()) {
                 iterator.remove();
             }
+
+//            o.sprite.setY(o.sprite.getY()+o.getDy());
+//            if (o.sprite.getY()>content.getGrid().getScreenHeight()) {
+//                iterator.remove();
+//            }
         }
     }
 
