@@ -19,7 +19,6 @@
 
     <!-- Strings containing information about water-->
     <string name="water_info_0">
-        Water is important \n
-        that is why we drink it.
+        "800 children under five years of age die every day from diarrhea due to lack of safe water, sanitation and basic hygiene"
     </string>
 </resources>

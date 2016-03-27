@@ -42,8 +42,8 @@ public class AfterGameActivity extends MotherActivity {
         ImageView waterInfoImage = (ImageView) findViewById(R.id.infoImage);
 
         switch (factNr){
-            case 0: waterInfoTxT.setText(R.string.water_info_0); waterInfoImage.setImageResource(R.drawable.bck_village); break;
-            case 1: waterInfoTxT.setText(R.string.water_info_0); break;
+            case 0: waterInfoTxT.setText(R.string.water_info_0); waterInfoImage.setImageResource(R.drawable.img_water_info_0); break;
+            case 1: waterInfoTxT.setText(R.string.water_info_0); waterInfoImage.setImageResource(R.drawable.img_water_info_0); break;
         }
 
     }
