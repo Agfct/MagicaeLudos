@@ -43,12 +43,12 @@ public class ObstacleHandler {
             if (rand < 0.01) {
                 o = createWaterDrop(lane);
             }
-            else if (rand < 0.02) {
-                o = createPuddle(lane);
-            }
-            else if (rand < 0.03) {
-                o = createLog(lane);
-            }
+//            else if (rand < 0.02) {
+//                o = createPuddle(lane);
+//            }
+//            else if (rand < 0.03) {
+//                o = createLog(lane);
+//            }
             else {
                 o = createStone(lane);
             }
@@ -157,7 +157,7 @@ public class ObstacleHandler {
         Obstacle o = new Obstacle(content,
                 BitmapFactory.decodeResource(content.getActivity().getResources(),
                         R.drawable.stone_smal),lane, ObstacleType.STONE);
-        o.sprite.setWidth(o.sprite.getWidth()*2);
+//        o.sprite.setWidth(o.sprite.getWidth()*2);
         o.setHitBoxDifferences(hitboxWidthStone, hitboxHeightStone);
         return o;
     }
