@@ -233,4 +233,6 @@ public class GameContent implements Content{
     public int getWaterDropAmount() {
         return waterDropAmount;
     }
+
+    public Probability getProp(){return prop;}
 }
