@@ -40,25 +40,20 @@ public class ObstacleHandler {
     public void addObstacle(){
         prop = content.getProp();
         ObstacleProb oProb = prop.sendObstacles();
-        if (oProb != null){
+        if (oProb != null) {
+            Obstacle o;
             switch (oProb.getName()) {
                 case WATER_DROP:
-                    obstacles.add(new Obstacle(content,
-                            BitmapFactory.decodeResource(content.getActivity().getResources(),
-                                    R.drawable.teardrop), oProb.getLane(), ObstacleType.WATER_DROP));
+                    o = createWaterDrop(oProb.getLane());
+                    obstacles.add(o);
                     break;
                 case STONE:
-                    obstacles.add(new Obstacle(content,
-                            BitmapFactory.decodeResource(content.getActivity().getResources(),
-                                    R.mipmap.ic_launcher), oProb.getLane(), ObstacleType.STONE));
+                    o = createStone(oProb.getLane());
+                    obstacles.add(o);
+                    break;
                 default:
+                    break;
             }
-            else {
-                o = new Obstacle(content,
-                        BitmapFactory.decodeResource(content.getActivity().getResources(),
-                                R.drawable.stone_smal),lane, ObstacleType.STONE);
-            }
-            obstacles.add(o);
         }
     }
 
@@ -167,7 +162,7 @@ public class ObstacleHandler {
         Obstacle o = new Obstacle(content,
                 BitmapFactory.decodeResource(content.getActivity().getResources(),
                         R.mipmap.ic_launcher),lane, ObstacleType.LOG);
-        o.sprite.setWidth(content.getGrid().getColWidth()*2);
+        o.sprite.setWidth(content.getGrid().getColWidth() * 2);
         o.setHitBoxDifferences(hitboxWidthLog, hitboxHeightLog);
         return o;
     }
