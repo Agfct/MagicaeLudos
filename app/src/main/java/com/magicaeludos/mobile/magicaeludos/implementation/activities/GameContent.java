@@ -1,9 +1,11 @@
 package com.magicaeludos.mobile.magicaeludos.implementation.activities;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.util.Log;
 
 import com.magicaeludos.mobile.magicaeludos.R;
 import com.magicaeludos.mobile.magicaeludos.framework.Content;
@@ -93,10 +95,10 @@ public class GameContent implements Content{
         background = new Background(this, BitmapFactory.decodeResource(activity.getResources(), R.drawable.bck_africa));
 
         //Testing
-        dummies = new ArrayList<>();
-        dummies.add(new Dummy(this, new Point(grid.getLane(1).x, grid.getLane(1).y + grid.getRowHeight() * 5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
+//        dummies = new ArrayList<>();
+//        dummies.add(new Dummy(this, new Point(grid.getLane(1).x, grid.getLane(1).y + grid.getRowHeight() * 5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
 //        dummies.add(new Dummy(getActivity(),grid.getLane(2),grid.getColWidth(),grid.getRowHeight()));
-        dummies.add(new Dummy(this, new Point(grid.getLane(3).x, grid.getLane(3).y + grid.getRowHeight() * 5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
+//        dummies.add(new Dummy(this, new Point(grid.getLane(3).x, grid.getLane(3).y + grid.getRowHeight() * 5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
 
     }
 
@@ -116,7 +118,7 @@ public class GameContent implements Content{
             background.update();
             obstacles.update();
             //Check here if player and Object collides: ?
-//            water.addWaterAmount(1);
+//            water.addCleanWater(1);
             //Updates the GUI:
             guIhandler.update();
         }
@@ -143,10 +145,10 @@ public class GameContent implements Content{
         canvas.drawText("Time Elapsed: " + timeElapsed, 100, 120, paint);
 
         //Test
-        for (Dummy dummy: dummies
-                ) {
-            dummy.draw(canvas);
-        }
+//        for (Dummy dummy: dummies
+//                ) {
+//            dummy.draw(canvas);
+//        }
         //Test Ends
 
         obstacles.draw(canvas);
@@ -183,18 +185,139 @@ public class GameContent implements Content{
 
     public void endGame(){
         running = false;
+        Intent intent = new Intent(activity, AfterGameActivity.class);
+        intent.putExtra("cleanWater", water.getCleanWater());
+        intent.putExtra("dirtyWater", water.getDirtyWater());
+        intent.putExtra("dirtyWaterMultiplier", activity.getVillage().getDirtyWaterMultiplier());
         updateVillage();
-        activity.goTo(AfterGameActivity.class);
+        activity.goTo(intent);
 
     }
 
-    //Updates the village after end game
-    //TODO: Need to handle dirty water, and other variables.
+    //Updates the village after end game and updates all variables
     private void updateVillage(){
+        //Updating current values
         Village village = activity.getVillage();
-        village.addTotalWater(water.getWaterAmount());
+
+        //Increasing number of runs by 1
+        village.setTotalAmountOfRuns(village.getTotalAmountOfRuns() + 1);
+
+        //Calculating total water amount and adding it to the village
+        int totalWater = water.getCleanWater() + (int)(water.getDirtyWater() * village.getDirtyWaterMultiplier());
+        village.addTotalWater(totalWater);
+
+        //Adds a new top score to mostWater in on run
+        if(totalWater > village.getMostWaterInOneRun()){
+            village.setMostWaterInOneRun(totalWater);
+        }
+
+        int runsLeftToday = village.getRunsLeftToday();
+        //If this is the last run of the day
+        if(runsLeftToday == 1){
+            village.setCurrentDay(village.getCurrentDay() + 1);
+            village.setRunsLeftToday(village.getNUMBEROFRUNSPRDAY());
+
+
+            //FEEDING THE VILLAGERS
+
+            int currentNumberOfVillagers = village.getNrOfVillagers();
+            int totalWaterLeft = village.getTotalWater() - (currentNumberOfVillagers*village.getAMOUNTOFWATERPRVILLAGER());
+            //If you do not have enough water
+            //Remove all water
+            //Set number of villagers down one level
+            Log.w("GameContent", "OverflowWater: " + (village.getTotalWater() - (currentNumberOfVillagers * village.getAMOUNTOFWATERPRVILLAGER())));
+            if(totalWaterLeft < 0){
+                village.setTotalWater(0);
+                int newAmountOfVillagers = 0;
+                //Cannot fall below 1 villager
+                if(currentNumberOfVillagers == 1 ){
+                    newAmountOfVillagers = 1;
+                }else {
+                    ArrayList<Integer> villagerMilestones = village.getVillagerMilestones();
+                    for (int i = 0; i < villagerMilestones.size(); i++){
+                        if (currentNumberOfVillagers == villagerMilestones.get(i)) {
+                            if(i == 0){
+                                newAmountOfVillagers = 1;
+                                break;
+                            }else {
+                                newAmountOfVillagers = villagerMilestones.get(i-1);
+                                break;
+                            }
+                        }
+                    }
+                }
+                village.setNrOfVillagers(newAmountOfVillagers);
+            }
+            //If you have enough water
+            //Remove all water required for villagers
+            else if( totalWaterLeft == 0){
+                village.setTotalWater(0);
+                village.setNrOfVillagers(village.getNrOfVillagers());
+            }else if (totalWaterLeft > 0) {
+                //If the amount of excessive water is enough to go up on level then set the number of villagers up one level.
+                int nrOfVillagersFedByExcessiveWater = totalWaterLeft/village.getAMOUNTOFWATERPRVILLAGER();
+                Log.w("GameContent", "TotalWaterLeft: " + totalWaterLeft + " ExcessiveVillagers: " + nrOfVillagersFedByExcessiveWater);
+                int newAmountOfVillagers = 0;
+                ArrayList<Integer> villagerMilestones = village.getVillagerMilestones();
+                for (int i = 0; i < villagerMilestones.size(); i++){
+                    Log.w("GameContent","exsessive + currentVillagers = "+ (nrOfVillagersFedByExcessiveWater + currentNumberOfVillagers)+ " Milestone: "+ villagerMilestones.get(i));
+                    if(nrOfVillagersFedByExcessiveWater + currentNumberOfVillagers < villagerMilestones.get(i)){
+                        if(i == 0){ //Below the lowest milestone
+                            newAmountOfVillagers = village.getNrOfVillagers();
+                            village.setNrOfVillagers(newAmountOfVillagers);
+                            int waterLeftAfterNewAmountOfVillagers = totalWaterLeft - ((newAmountOfVillagers - currentNumberOfVillagers) * village.getAMOUNTOFWATERPRVILLAGER());
+                            Log.w("GameContent", " (1)WaterLeftAfterNewAmountOfVillagers: " + waterLeftAfterNewAmountOfVillagers);
+                            village.setTotalWater(waterLeftAfterNewAmountOfVillagers);
+                            break;
+                        }else if(i > 0) {
+                            newAmountOfVillagers = villagerMilestones.get(i - 1);
+                            village.setNrOfVillagers(newAmountOfVillagers);
+                            int waterLeftAfterNewAmountOfVillagers = totalWaterLeft - ((newAmountOfVillagers - currentNumberOfVillagers) * village.getAMOUNTOFWATERPRVILLAGER());
+                            Log.w("GameContent", " (2)WaterLeftAfterNewAmountOfVillagers: " + waterLeftAfterNewAmountOfVillagers);
+                            village.setTotalWater(waterLeftAfterNewAmountOfVillagers);
+                            break;
+                        }
+                    }
+                    //The above code does not consider the case where the milestone is above the highest available milestone so this "if clause" handles that case.
+                    //If all other milestones is to low:
+                    if(i == villagerMilestones.size()-1){
+                        //If the current milestone has been before
+                        if(villagerMilestones.get(i) > village.getNrOfVillagers()){
+                            newAmountOfVillagers = villagerMilestones.get(i);
+                            village.setNrOfVillagers(newAmountOfVillagers);
+                            int waterLeftAfterNewAmountOfVillagers = totalWaterLeft - ((newAmountOfVillagers - currentNumberOfVillagers) * village.getAMOUNTOFWATERPRVILLAGER());
+                            Log.w("GameContent", " (3)WaterLeftAfterNewAmountOfVillagers: " + waterLeftAfterNewAmountOfVillagers);
+                            village.setTotalWater(waterLeftAfterNewAmountOfVillagers);
+                        }else{
+                            //If there is no more VillagerMilestones:
+                            //Set number of villagers to the highest possivble milestone
+                            Log.w("GameContent","No more milestones, highest milestone selected");
+                            newAmountOfVillagers = villagerMilestones.get(i);
+                            village.setNrOfVillagers(newAmountOfVillagers);
+                            int waterLeftAfterNewAmountOfVillagers = totalWaterLeft - ((newAmountOfVillagers - currentNumberOfVillagers) * village.getAMOUNTOFWATERPRVILLAGER());
+                            Log.w("GameContent", " (4)WaterLeftAfterNewAmountOfVillagers: " + waterLeftAfterNewAmountOfVillagers);
+                            village.setTotalWater(waterLeftAfterNewAmountOfVillagers);
+                        }
+
+
+                    }
+                }
+
+
+            }
+        }
+        //Else if this is not the last run
+        else if(runsLeftToday > 1){
+            village.setRunsLeftToday(runsLeftToday - 1);
+
+        }else{
+            Log.e("GameContent", "ERROR: THIS SHOUD NOT HAPPEN, CHECK updateVillage() METHOD");
+        }
+
+        //Saves the village data to storage
         village.saveVillageData();
     }
+
 
     public MotherActivity getActivity() {
         return activity;

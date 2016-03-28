@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".implementation.activities.MainActivity">
+
+    <TextView
+        android:id="@+id/txtUpgrades"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upgrades"
+        android:textSize="@dimen/large_text"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+    <RelativeLayout
+        android:id="@+id/upgradeWave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/bucketUpgrade2">
+        <ImageView
+            android:id="@+id/upgradeWaveImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/uppgrades_wave" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtBucketUpgrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bucket:"
+        android:textSize="@dimen/medium_text"
+        android:layout_above="@+id/valueCleaningStation"
+        android:layout_toLeftOf="@+id/cleaningStationUpgrade2"
+        android:layout_toStartOf="@+id/cleaningStationUpgrade2" />
+    <TextView
+        android:id="@+id/valueBucketUpgrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="@dimen/medium_text"
+        android:layout_alignTop="@+id/txtBucketUpgrade"
+        android:layout_alignRight="@+id/txtUpgrades"
+        android:layout_alignEnd="@+id/txtUpgrades" />
+    <TextView
+        android:id="@+id/txtCleaningStation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CleaningStation:"
+        android:textSize="@dimen/medium_text"
+        android:layout_below="@+id/txtUpgrades"
+        android:layout_toLeftOf="@+id/cleaningStationUpgrade2"
+        android:layout_toStartOf="@+id/cleaningStationUpgrade2"
+        android:layout_marginTop="40dp" />
+    <TextView
+        android:id="@+id/valueCleaningStation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="@dimen/medium_text"
+        android:layout_alignTop="@+id/txtCleaningStation"
+        android:layout_alignRight="@+id/txtUpgrades"
+        android:layout_alignEnd="@+id/txtUpgrades" />
+    <!-- Upgrade level 1 (5+)-->
+    <ImageView
+        android:id="@+id/bucketUpgrade1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/uppgrade_bucket_1"
+        android:layout_above="@+id/btnBackToVillage"
+        android:layout_alignLeft="@+id/bucketUpgrade3"
+        android:layout_alignStart="@+id/bucketUpgrade3"
+        android:layout_marginBottom="99dp" />
+    <!-- Upgrade level 2 (10+)-->
+    <ImageView
+    android:id="@+id/bucketUpgrade2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/uppgrade_bucket_1"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/bucketUpgrade1"
+        android:layout_alignStart="@+id/bucketUpgrade1" />
+    <ImageView
+        android:id="@+id/cleaningStationUpgrade1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/uppgrade_bucket_1"
+        android:layout_alignTop="@+id/bucketUpgrade2"
+        android:layout_toLeftOf="@+id/valueCleaningStation"
+        android:layout_toStartOf="@+id/valueCleaningStation" />
+    <!-- Upgrade level 3 (20+)-->
+    <ImageView
+        android:id="@+id/bucketUpgrade3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/uppgrade_bucket_1"
+        android:layout_below="@+id/txtCleaningStation"
+        android:layout_toLeftOf="@+id/txtUpgrades"
+        android:layout_toStartOf="@+id/txtUpgrades"
+        android:layout_marginTop="52dp" />
+    <ImageView
+        android:id="@+id/cleaningStationUpgrade2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/uppgrade_bucket_1"
+        android:layout_alignTop="@+id/bucketUpgrade3"
+        android:layout_alignLeft="@+id/cleaningStationUpgrade1"
+        android:layout_alignStart="@+id/cleaningStationUpgrade1" />
+
+    <Button
+        android:id="@+id/btnBackToVillage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Leave"
+        android:onClick="goToVillageActivity"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+    <ImageView
+        android:id="@+id/defaultUpgrades"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/bucketUpgrade1"
+        android:layout_alignTop="@+id/btnBackToVillage"
+        android:layout_toRightOf="@+id/bucketUpgrade1" />
+
+
+</RelativeLayout>

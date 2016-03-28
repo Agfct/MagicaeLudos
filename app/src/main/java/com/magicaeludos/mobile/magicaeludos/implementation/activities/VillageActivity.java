@@ -27,16 +27,25 @@ public class VillageActivity extends MotherActivity {
         goTo(MainActivity.class);
     }
 
+    public void goToUpgradesActivity(View view){
+        Log.w("VillageActivity", "Going to the Upgrade Activity");
+        goTo(UpgradesActivity.class);
+    }
+
     private void updateVillageData(){
         TextView totalWater = (TextView) findViewById(R.id.valueTotalWater);
-        TextView NrOfVillagers = (TextView) findViewById(R.id.valueVillagers);
+        TextView nrOfVillagers = (TextView) findViewById(R.id.valueVillagers);
         TextView bestRun = (TextView) findViewById(R.id.valueMostWaterInOneRun);
-        TextView NrOfRuns = (TextView) findViewById(R.id.valueNrOfRuns);
+        TextView nrOfRuns = (TextView) findViewById(R.id.valueNrOfRuns);
+        TextView currentDay = (TextView) findViewById(R.id.valueCurrentDay);
+        TextView runsLeftToday = (TextView) findViewById(R.id.valueRunsLeftToday);
 
         totalWater.setText(Integer.toString(village.getTotalWater()));
-        NrOfVillagers.setText(Integer.toString(village.getNrOfVillagers()));
+        nrOfVillagers.setText(Integer.toString(village.getNrOfVillagers()));
         bestRun.setText(Integer.toString(village.getMostWaterInOneRun()));
-        NrOfRuns.setText(Integer.toString(village.getTotalAmountOfRuns()));
+        nrOfRuns.setText(Integer.toString(village.getTotalAmountOfRuns()));
+        currentDay.setText(Integer.toString(village.getCurrentDay()));
+        runsLeftToday.setText(Integer.toString(village.getRunsLeftToday()));
 
     }
 }

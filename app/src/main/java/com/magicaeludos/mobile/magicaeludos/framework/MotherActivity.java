@@ -27,7 +27,9 @@ public abstract class MotherActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        village = new Village(this);
+        if(village == null){
+            village = new Village(this);
+        }
 //        assets = new Assets(this);
 
         //Gets the screen size

@@ -28,7 +28,7 @@ public class FileIO {
         this.activity = activity;
 
         SharedPreferences sharedPref = activity.getSharedPreferences(activity.getString(R.string.profile_preferences), Context.MODE_PRIVATE);
-
+        clearSavedData(); //TODO: REMOVE
         //If this is the first time you start the app it will initialize all variables
         if(!sharedPref.getBoolean(activity.getString(R.string.firstTime), Boolean.FALSE)){
             Log.w("FileIO", "NO PROFILE, CREATING NEW PROFILE DATA");
@@ -37,9 +37,13 @@ public class FileIO {
 
             //Sets all the values that will be saved inGame
             editor.putInt(activity.getString(R.string.totalWater), 0);
-            editor.putStringSet(activity.getString(R.string.upgradesAcquired), new TreeSet<String>());
+            editor.putInt(activity.getString(R.string.upgradeNr1), 0);
+            editor.putInt(activity.getString(R.string.upgradeNr2), 0);
             editor.putInt(activity.getString(R.string.mostWaterInOneRun), 0);
-            editor.putInt(activity.getString(R.string.totalAmountOfRuns),0);
+            editor.putInt(activity.getString(R.string.totalAmountOfRuns), 0);
+            editor.putInt(activity.getString(R.string.villages),1);
+            editor.putInt(activity.getString(R.string.currentDay), 0);
+            editor.putInt(activity.getString(R.string.runsLeftToday),5);
 
             editor.commit();
 
@@ -55,9 +59,13 @@ public class FileIO {
         SharedPreferences sharedPref = activity.getSharedPreferences(activity.getString(R.string.profile_preferences), Context.MODE_PRIVATE);
 
         village.setTotalWater(sharedPref.getInt(activity.getString(R.string.totalWater),0));
-        village.setMostWaterInOneRun(sharedPref.getInt(activity.getString(R.string.mostWaterInOneRun),0));
-        village.setTotalAmountOfRuns(sharedPref.getInt(activity.getString(R.string.totalAmountOfRuns),0));
-        village.setUpgradesAcquired(sharedPref.getStringSet(activity.getString(R.string.upgradesAcquired),new TreeSet<String>()));
+        village.setMostWaterInOneRun(sharedPref.getInt(activity.getString(R.string.mostWaterInOneRun), 0));
+        village.setTotalAmountOfRuns(sharedPref.getInt(activity.getString(R.string.totalAmountOfRuns), 0));
+        village.setUpgradeNr(1,sharedPref.getInt(activity.getString(R.string.upgradeNr1), 0));
+        village.setUpgradeNr(2,sharedPref.getInt(activity.getString(R.string.upgradeNr2), 0));
+        village.setNrOfVillagers(sharedPref.getInt(activity.getString(R.string.villages), 0));
+        village.setCurrentDay(sharedPref.getInt(activity.getString(R.string.currentDay), 0));
+        village.setRunsLeftToday(sharedPref.getInt(activity.getString(R.string.runsLeftToday),0));
 
     }
 
@@ -71,9 +79,14 @@ public class FileIO {
         SharedPreferences.Editor editor = sharedPref.edit();
 
         editor.putInt(activity.getString(R.string.totalWater), village.getTotalWater());
-        editor.putStringSet(activity.getString(R.string.upgradesAcquired), new TreeSet<String>());
+        editor.putInt(activity.getString(R.string.upgradeNr1), village.getUpgradeNr(1));
+        editor.putInt(activity.getString(R.string.upgradeNr2), village.getUpgradeNr(2));
         editor.putInt(activity.getString(R.string.mostWaterInOneRun), village.getMostWaterInOneRun());
         editor.putInt(activity.getString(R.string.totalAmountOfRuns),village.getTotalAmountOfRuns());
+        editor.putInt(activity.getString(R.string.villages), village.getNrOfVillagers());
+        editor.putInt(activity.getString(R.string.currentDay), village.getCurrentDay());
+        editor.putInt(activity.getString(R.string.runsLeftToday),village.getRunsLeftToday());
+
 
         editor.commit();
     }
@@ -88,9 +101,13 @@ public class FileIO {
 
         //Resets all the values to default
         editor.putInt(activity.getString(R.string.totalWater), 0);
-        editor.putStringSet(activity.getString(R.string.upgradesAcquired),new TreeSet<String>());
+        editor.putInt(activity.getString(R.string.upgradeNr1), 0);
+        editor.putInt(activity.getString(R.string.upgradeNr2), 0);
         editor.putInt(activity.getString(R.string.mostWaterInOneRun),0);
         editor.putInt(activity.getString(R.string.totalAmountOfRuns),0);
+        editor.putInt(activity.getString(R.string.villages), 1);
+        editor.putInt(activity.getString(R.string.currentDay), 0);
+        editor.putInt(activity.getString(R.string.runsLeftToday),5);
 
         editor.commit();
     }
