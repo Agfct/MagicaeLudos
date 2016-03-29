@@ -17,7 +17,7 @@ public class Water {
         this.maxAmountOfWater = maxAmountOfWater;
     }
 
-//TODO: CHECK THIS if its correct.
+//TODO: CHECK THIS if its correct. (Water amount was 300 on the first run. 200 on second run)
     public void addCleanWater(int cleanWaterAmount){
         int totalWater = cleanWater + dirtyWater;
         int spaceLeft = (maxAmountOfWater - totalWater);
@@ -28,10 +28,10 @@ public class Water {
                 this.cleanWater += cleanWaterAmount;
             }
         }else{
-            if( cleanWater - cleanWaterAmount < 0){
+            if( cleanWater + cleanWaterAmount < 0){
                 cleanWater = 0;
             }else {
-                cleanWater -= cleanWaterAmount;
+                cleanWater += cleanWaterAmount;
             }
         }
        
@@ -53,17 +53,17 @@ public class Water {
     public void addDirtyWater(int dirtyWaterAmount){
         int totalWater = cleanWater + dirtyWater;
         int spaceLeft = (maxAmountOfWater - totalWater);
-        if(cleanWaterAmount >= 0){
+        if(dirtyWaterAmount >= 0){
             if( dirtyWaterAmount > spaceLeft){
                 this.dirtyWater += spaceLeft;
             }else{
                 this.dirtyWater += dirtyWaterAmount;
             } 
         }else{
-            if( dirtyWater - dirtyWaterAmount < 0){
+            if( dirtyWater + dirtyWaterAmount < 0){
                 dirtyWater = 0;
             }else {
-                dirtyWater -= dirtyWaterAmount;
+                dirtyWater += dirtyWaterAmount;
             }
         }
     
