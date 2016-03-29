@@ -17,17 +17,34 @@ public class Water {
         this.maxAmountOfWater = maxAmountOfWater;
     }
 
-
+//TODO: CHECK THIS if its correct.
     public void addCleanWater(int cleanWaterAmount){
         int totalWater = cleanWater + dirtyWater;
         int spaceLeft = (maxAmountOfWater - totalWater);
-        if( cleanWaterAmount > spaceLeft){
-            this.cleanWater += spaceLeft;
+        if(cleanWaterAmount >= 0){
+            if( cleanWaterAmount > spaceLeft){
+                this.cleanWater += spaceLeft;
+            }else{
+                this.cleanWater += cleanWaterAmount;
+            }
         }else{
-            this.cleanWater += cleanWaterAmount;
+            if( cleanWater - cleanWaterAmount < 0){
+                cleanWater = 0;
+            }else {
+                cleanWater -= cleanWaterAmount;
+            }
         }
+       
         Log.w("Water", "Added MaxWater: "+ maxAmountOfWater+ " totalWater "+ totalWater);
 
+//    public void addWaterAmount(int waterAmount){
+//        this.waterAmount += waterAmount;
+//        if (this.waterAmount>maxAmountOfWater){
+//            this.waterAmount = maxAmountOfWater;
+//        }
+//        else if( this.waterAmount<0) {
+//            this.waterAmount = 0;
+//        }
     }
     private void setCleanWater(int cleanWater){
         this.cleanWater = cleanWater;
@@ -36,11 +53,20 @@ public class Water {
     public void addDirtyWater(int dirtyWaterAmount){
         int totalWater = cleanWater + dirtyWater;
         int spaceLeft = (maxAmountOfWater - totalWater);
-        if( dirtyWaterAmount > spaceLeft){
-            this.dirtyWater += spaceLeft;
+        if(cleanWaterAmount >= 0){
+            if( dirtyWaterAmount > spaceLeft){
+                this.dirtyWater += spaceLeft;
+            }else{
+                this.dirtyWater += dirtyWaterAmount;
+            } 
         }else{
-            this.dirtyWater += dirtyWaterAmount;
+            if( dirtyWater - dirtyWaterAmount < 0){
+                dirtyWater = 0;
+            }else {
+                dirtyWater -= dirtyWaterAmount;
+            }
         }
+    
         Log.w("Water", "Added MaxWater: "+ maxAmountOfWater+ " totalWater "+ totalWater);
     }
 

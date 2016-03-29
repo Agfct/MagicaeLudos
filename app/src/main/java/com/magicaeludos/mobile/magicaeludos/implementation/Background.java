@@ -12,7 +12,7 @@ import com.magicaeludos.mobile.magicaeludos.implementation.activities.GameConten
 public class Background {
     private Bitmap image;
     private GameContent content;
-    private int x, y;
+    private double y;
 //    private int dy;
     private Rect rect;
 
@@ -23,10 +23,11 @@ public class Background {
     }
 
     public void update(){
-        rect.offset(0,-content.getSpeed());
-        if (rect.top <= 0){
-            rect.offsetTo(0,image.getHeight()/2);
+        y -= content.getSpeed();
+        if (y <= 0){
+            y = image.getHeight()/2;
         }
+        rect.offsetTo(0,(int)(y));
     }
 
     public void draw(Canvas canvas){

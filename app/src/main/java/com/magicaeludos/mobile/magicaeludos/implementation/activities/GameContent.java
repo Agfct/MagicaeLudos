@@ -55,8 +55,9 @@ public class GameContent implements Content{
 
     //GameObjects
     private Player player;
-    private int dy;
+    private double speed;
     public Water water;
+    private int waterDropAmount;
 
 
     //Test
@@ -69,6 +70,7 @@ public class GameContent implements Content{
         this.grid = new Grid(this);
         this.touchHandler = new TouchHandler(layout, activity.getScreenWidth(), activity.getScreenHeight());
         this.obstacles = new ObstacleHandler(this);
+        speed = activity.getScreenHeight()/100*1;
 
         initializeGameSettings();
 
@@ -331,10 +333,10 @@ public class GameContent implements Content{
         return touchHandler;
     }
 
-    public int getSpeed(){return dy;}
+    public double getSpeed(){return speed;}
 
     public void setGameSpeed(int speed){
-        dy = activity.getScreenHeight()/500*speed;
+        this.speed = activity.getScreenHeight()/(double)500*speed;
     }
 
     public int getBackgroundHeight(){return background.getBackgroundHeight();}
@@ -346,4 +348,14 @@ public class GameContent implements Content{
     public void setGameTime(double gameTime) {
         this.gameTime = gameTime;
     }
+
+    public void setWaterDropAmount(int waterDropAmount) {
+        this.waterDropAmount = waterDropAmount;
+    }
+
+    public int getWaterDropAmount() {
+        return waterDropAmount;
+    }
+
+    public Probability getProp(){return prop;}
 }

@@ -16,6 +16,7 @@ public class GameSetting {
     private int gameDifficulty;
     private Water water;
     private Village village;
+    private int waterDropAmount;
 
 
     public GameSetting (GameContent content, int gameDifficulty){
@@ -34,19 +35,24 @@ public class GameSetting {
         if(gameDifficulty == 1){
             gameTime = 60;
             gameSpeed = 10;
+            waterDropAmount = 20;
             water = new Water(0,village.getBucketSize());
         }else {
             gameTime = 60;
             gameSpeed = 5;
+            waterDropAmount = 30;
             water = new Water(0,village.getBucketSize());
         }
 
 
         content.setGameTime(gameTime);
         content.setGameSpeed(gameSpeed);
+        content.setWaterDropAmount(waterDropAmount);
     }
 
     public Water getWater() {
         return water;
     }
+
+    public int getWaterDropAmount() {return waterDropAmount;}
 }
