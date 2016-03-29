@@ -18,10 +18,10 @@
         android:layout_height="match_parent"/>
 
     <!-- Everything in the foreground-->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="I CANT SEE THIS"/>
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:text="I CANT SEE THIS"/>-->
 
     <!--<include layout="@layout/after_game_info" android:id="@+id/afterInfo" />-->
 

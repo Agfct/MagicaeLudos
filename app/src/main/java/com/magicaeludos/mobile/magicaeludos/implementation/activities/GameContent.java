@@ -143,8 +143,10 @@ public class GameContent implements Content{
 
         //MIDDLE
         paint.setColor(Color.WHITE);
+        paint.setTextSize(this.getActivity().getApplicationContext().getResources().getDimensionPixelSize(R.dimen.large_text));
         canvas.drawText("Game Time: " + currentGameTime, 100, 100, paint);
-        canvas.drawText("Time Elapsed: " + timeElapsed, 100, 120, paint);
+//        canvas.drawText("Time Elapsed: " + timeElapsed, 100, 120, paint);
+        paint = new Paint();
 
         //Test
 //        for (Dummy dummy: dummies
@@ -349,7 +351,7 @@ public class GameContent implements Content{
         this.gameTime = gameTime;
     }
 
-    public void setWaterDropAmount(int waterDropAmount) {
+    public void setWaterDropAmount(int waterDropAmount) { //TODO: MOVE to Water class
         this.waterDropAmount = waterDropAmount;
     }
 
