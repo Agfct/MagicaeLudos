@@ -23,6 +23,7 @@ public class Player extends GameObject {
     private double movementSpeed = 21;
     private int jumpVariable = 0;
     private double jumpStart = 0;
+    private double jumpLength = 0;
 
     //The variables needed to check for a straight line drag
     private TouchHandler touchHandler;
@@ -59,6 +60,7 @@ public class Player extends GameObject {
         super(content, point, width, height, spriteSheet, 4, 2); //TODO: the number 4 is the number of frames in the player animation cycle and 1 is number of animation types (running  = 1, then if jumping its 2)
         this.touchHandler = content.getTouchHandler();
         this.movementSpeed = content.getGrid().getScreenWidth()/16;
+        this.jumpLength = content.getGrid().getRowHeight()*2;
         Log.w("Player", "MovementSpeed: "+ movementSpeed);
 
         //Defining the box that registers swipe input
@@ -225,7 +227,8 @@ public class Player extends GameObject {
 
     private void startSpriteJump(){
         sprite.setSrcBound(1);
-        sprite.setAnimationTime(1);
+        int animationTime = (int)((jumpLength/content.getSpeed())/4);
+        sprite.setAnimationTime(animationTime);
     }
     private void endSpriteJump(){
         sprite.setSrcBound(0);
@@ -247,7 +250,6 @@ public class Player extends GameObject {
     }
 
     private void checkJump(){
-        double jumpLength = content.getGrid().getRowHeight()*10;
 
         if(jumpVariable == 1){
             if(jumpStart >= jumpLength ){

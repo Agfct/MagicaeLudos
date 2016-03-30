@@ -83,15 +83,14 @@ public class Sprite {
         this.frameHeight = bitmap.getHeight()/nrOfTypes;
         this.dstBounds = new Rect(x,y,x+width,y+height);
         for (int i = 0; i < nrOfAnimationTypes; i++){
-            Log.w("Sprite", "Animation type NR: " + i);
             this.srcBounds.add(new Rect(0, i * frameHeight, frameLength, frameHeight + frameHeight * i));
-            Log.w("Sprite", "AJ START: " + 0 + " "+ (i * frameHeight) + " "+ frameLength +" "+ (frameHeight + frameHeight * i));
         }
         paint = new Paint();
     }
 
     //Like an update() method but purely animation focused
     public void animate(){
+        Log.w("Sprite", "Animated (1)");
         if(animated){
             if(animationCounter <= 0){
                 animationCounter = animationLength;
@@ -111,17 +110,15 @@ public class Sprite {
     }
 
     public void animateJump(){
+        Log.w("Sprite", "Animated Jump (2)"+ srcBound);
         if(animated){
             if(animationCounter <= 0){
                 animationCounter = animationLength;
-                Log.w("Sprite","Full Height: "+ bitmap.getHeight()+ " Width:"+bitmap.getWidth() + " fixedHeight : " +frameHeight + " fixed Width: " + frameLength);
                 //If at the end of the animation we reset
                 if((srcBounds.get(srcBound).right+frameLength) > bitmap.getWidth()){
-                    setSrcBounds(new Rect(0,srcBound*frameHeight,frameLength,frameHeight + (srcBound*frameHeight)));
-                    Log.w("Sprite", "AJ End "+ (srcBound*frameHeight) + " "+frameLength + " " + frameHeight*srcBound);
+                    setSrcBounds(new Rect(0, srcBound * frameHeight, frameLength, frameHeight + (srcBound * frameHeight)));
                 }else{
-                    setSrcBounds(new Rect(srcBounds.get(srcBound).left+frameLength,srcBounds.get(srcBound).top,srcBounds.get(srcBound).right+frameLength,srcBounds.get(srcBound).bottom));
-                    Log.w("Sprite", "AJ normal: "+ (srcBounds.get(srcBound).left+frameLength) +" "+ (srcBounds.get(srcBound).top) +" "+ (srcBounds.get(srcBound).right+frameLength)+" "+srcBounds.get(srcBound).bottom);
+                    setSrcBounds(new Rect(srcBounds.get(srcBound).left + frameLength, srcBounds.get(srcBound).top, srcBounds.get(srcBound).right + frameLength, srcBounds.get(srcBound).bottom));
                 }
             }else {
                 animationCounter -=1;
