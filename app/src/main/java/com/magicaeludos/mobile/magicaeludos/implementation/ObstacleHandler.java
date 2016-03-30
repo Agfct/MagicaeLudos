@@ -171,6 +171,7 @@ public class ObstacleHandler {
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
+        content.incrementHitCounter();
         content.water.addCleanWater(-50); //TODO: Create a variable
     }
 

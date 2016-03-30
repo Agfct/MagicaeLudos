@@ -58,6 +58,7 @@ public class GameContent implements Content{
     private double speed;
     public Water water;
     private int waterDropAmount;
+    private int hitCounter;
 
 
     //Test
@@ -91,7 +92,7 @@ public class GameContent implements Content{
         //GUI handler
         this.guIhandler = new GUIhandler(this,grid);
 
-        prop = new Probability();
+        prop = new Probability(gameSetting.getUsableObstacles());
 
         //Images
         background = new Background(this, BitmapFactory.decodeResource(activity.getResources(), R.drawable.bck_africa));
@@ -360,4 +361,8 @@ public class GameContent implements Content{
     }
 
     public Probability getProp(){return prop;}
+
+    public void incrementHitCounter(){hitCounter+=1;}
+
+    public int getHitCounter(){return hitCounter;};
 }
