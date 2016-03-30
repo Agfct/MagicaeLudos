@@ -247,7 +247,7 @@ public class Player extends GameObject {
     }
 
     private void checkJump(){
-        double jumpLength = content.getGrid().getRowHeight();
+        double jumpLength = content.getGrid().getRowHeight()*10;
 
         if(jumpVariable == 1){
             if(jumpStart >= jumpLength ){
