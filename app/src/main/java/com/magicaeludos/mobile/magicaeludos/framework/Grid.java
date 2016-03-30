@@ -91,9 +91,9 @@ public class Grid {
     public void draw(Canvas canvas){
         Paint paint = new Paint();
         paint.setColor(Color.WHITE);
-        canvas.drawText("COLS: " + COLS + " ROWS: " + ROWS,50,50,paint);
-        canvas.drawText("colWidth: " + colWidth + " rowHeight: " + rowHeight, 50, 70, paint);
-        canvas.drawText("screenWidth: " + screenWidth + " screenHeight: " + screenHeight, 50, 150, paint);
+//        canvas.drawText("COLS: " + COLS + " ROWS: " + ROWS,50,50,paint);
+//        canvas.drawText("colWidth: " + colWidth + " rowHeight: " + rowHeight, 50, 70, paint);
+//        canvas.drawText("screenWidth: " + screenWidth + " screenHeight: " + screenHeight, 50, 150, paint);
     }
 
     /**

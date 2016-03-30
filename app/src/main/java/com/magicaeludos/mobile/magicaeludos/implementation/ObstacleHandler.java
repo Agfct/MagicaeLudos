@@ -98,7 +98,7 @@ public class ObstacleHandler {
             switch (obstacle.getType()) {
                 case WATER_DROP:
                     obstacles.remove(obstacle);
-                    content.water.addCleanWater(20);
+                    content.water.addCleanWater(5);
                     break;
                 case PUDDLE:
                     content.water.addCleanWater(content.getWaterDropAmount() / 10);
