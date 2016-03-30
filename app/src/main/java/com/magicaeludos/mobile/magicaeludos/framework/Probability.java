@@ -51,6 +51,18 @@ public class Probability {
     public Probability(Set<ObstacleType> obstacles){
         this.obs = obstacles;
     }
+
+    public void setRockRate(double rate){rockRate = rate;}
+    public void setRocklength(double length){rockRate = length;}
+    public void setRockPri(double pri){rockRate = pri;}
+    public void setLogRate(double rate){logRate = rate;}
+    public void setLogLength(double length){logRate = length;}
+    public void setLogPri(double pri){logRate = pri;}
+    public void setDropRate(double rate){dropRate = rate;}
+    public void setDropLength(double length){dropRate = length;}
+    public void setDropPri(double pri){dropRate = pri;}
+    public void setMaxLaneBlock(int lanes){maxLaneBlock = lanes;}
+
     public double probExp(double rate, double timeStep){
         /*Using a exponential arrival times with given rate, compute the probability that
          an arrival happens in a given timeStep.
