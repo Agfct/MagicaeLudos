@@ -72,14 +72,14 @@ public class ObstacleHandler {
         Rect playerBox = content.getPlayer().getHitBox();
         int pHeight = playerBox.right;
         int pWidth = playerBox.bottom;
-        for (Obstacle o: obstacles){
+        for (Obstacle o: obstacles) {
             Rect oBox = o.getHitBox();
             int oHeight = oBox.bottom;
             int oWidth = oBox.right;
-            if (oBox.top+oHeight>playerBox.top){
-                if (oBox.top<playerBox.top+pHeight){
-                    if (oBox.left+oWidth>playerBox.left){
-                        if (oBox.left<playerBox.left+pWidth){
+            if (oBox.top + oHeight > playerBox.top) {
+                if (oBox.top < playerBox.top + pHeight) {
+                    if (oBox.left + oWidth > playerBox.left) {
+                        if (oBox.left < playerBox.left + pWidth) {
                             return o;
                         }
                     }
@@ -171,16 +171,16 @@ public class ObstacleHandler {
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        content.water.addCleanWater(-50); //TODO: Create a variable
+        content.water.addCleanWater(-content.getWaterDropAmount()*10); //TODO: Create a variable
     }
 
     private void CollectableHit(ObstacleType oType){
         switch (oType){
             case WATER_DROP:
-                content.water.addCleanWater(5);
+                content.water.addCleanWater(content.getWaterDropAmount());
                 break;
             case PUDDLE:
-                content.water.addCleanWater(content.getWaterDropAmount() / 10);
+                content.water.addDirtyWater(content.getWaterDropAmount() / 10);
                 break;
         }
     }

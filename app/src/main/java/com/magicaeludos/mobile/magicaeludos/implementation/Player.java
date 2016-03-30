@@ -283,4 +283,6 @@ public class Player extends GameObject {
         return new Rect(sprite.getX(),sprite.getY()+(sprite.getHeight() / 2),sprite.getWidth(),sprite.getWidth());
     }
 
+    public int getJumpVariable(){return jumpVariable;}
+
 }
