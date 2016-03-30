@@ -95,30 +95,35 @@ public class ObstacleHandler {
         moveObstacles();
         Obstacle obstacle = checkCollision();
         if (obstacle != null){
-            switch (obstacle.getType()) {
-                case WATER_DROP:
-                    obstacles.remove(obstacle);
-                    CollectableHit(obstacle.getType());
-                    break;
-                case PUDDLE:
-                    CollectableHit(obstacle.getType());
-                    break;
-                case STONE:
-                    if (!obstacle.getCollition()) {
-                        ObstacleHit(obstacle.getType());
-                        obstacle.setCollition(true);
-                    }
-                    break;
-                case LOG:
-                    if (!obstacle.getCollition()) {
-
+            if (content.getPlayer().getJumpVariable() == 0) {
+                switch (obstacle.getType()) {
+                    case WATER_DROP:
+                        obstacles.remove(obstacle);
+                        CollectableHit(obstacle.getType());
+                        break;
+                    case PUDDLE:
+                        CollectableHit(obstacle.getType());
+                        break;
+                    case STONE:
                         if (!obstacle.getCollition()) {
                             ObstacleHit(obstacle.getType());
                             obstacle.setCollition(true);
                         }
-                        obstacle.setCollition(true);
-                    }
-                    break;
+                        break;
+                    case LOG:
+                        if (!obstacle.getCollition()) {
+
+                            if (!obstacle.getCollition()) {
+                                ObstacleHit(obstacle.getType());
+                                obstacle.setCollition(true);
+                            }
+                            obstacle.setCollition(true);
+                        }
+                        break;
+                }
+            }
+            else if (content.getPlayer().getJumpVariable() == 0) {
+                //TODO: Add obstacle you cannot jump over here
             }
         }
     }
