@@ -98,38 +98,27 @@ public class ObstacleHandler {
             switch (obstacle.getType()) {
                 case WATER_DROP:
                     obstacles.remove(obstacle);
-                    content.water.addCleanWater(5);
+                    CollectableHit(obstacle.getType());
                     break;
                 case PUDDLE:
-                    content.water.addCleanWater(content.getWaterDropAmount() / 10);
+                    CollectableHit(obstacle.getType());
                     break;
                 case STONE:
                     if (!obstacle.getCollition()) {
-                        try {
-                            Thread.sleep(200);  //TODO: FIX               //1000 milliseconds is one second.
-                        } catch (InterruptedException ex) {
-                            Thread.currentThread().interrupt();
-                        }
+                        ObstacleHit(obstacle.getType());
                         obstacle.setCollition(true);
-                        content.water.addCleanWater(-50);
-                    }
-                case LOG:
-                    if (!obstacle.getCollition()) {
-                        try {
-                            Thread.sleep(200);  //TODO: FIX               //1000 milliseconds is one second.
-                        } catch (InterruptedException ex) {
-                            Thread.currentThread().interrupt();
-                        }
-                        obstacle.setCollition(true);
-                        content.water.addCleanWater(-50);
                     }
                     break;
-                default:
-                    try {
-                        Thread.sleep(100);                 //1000 milliseconds is one second.
-                    } catch (InterruptedException ex) {
-                        Thread.currentThread().interrupt();
+                case LOG:
+                    if (!obstacle.getCollition()) {
+
+                        if (!obstacle.getCollition()) {
+                            ObstacleHit(obstacle.getType());
+                            obstacle.setCollition(true);
+                        }
+                        obstacle.setCollition(true);
                     }
+                    break;
             }
         }
     }
@@ -171,8 +160,28 @@ public class ObstacleHandler {
         Obstacle o = new Obstacle(content,
                 BitmapFactory.decodeResource(content.getActivity().getResources(),
                         R.mipmap.ic_launcher),lane, ObstacleType.PUDDLE);
-        o.sprite.setHeight(o.sprite.getHeight()*3);
+        o.sprite.setHeight(o.sprite.getHeight() * 3);
         o.setHitBoxDifferences(hitboxWidthLog, hitboxHeightLog);
         return o;
+    }
+
+    private void ObstacleHit(ObstacleType oType){
+        try {
+            Thread.sleep(200);  //TODO: FIX               //1000 milliseconds is one second.
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        content.water.addCleanWater(-50); //TODO: Create a variable
+    }
+
+    private void CollectableHit(ObstacleType oType){
+        switch (oType){
+            case WATER_DROP:
+                content.water.addCleanWater(5);
+                break;
+            case PUDDLE:
+                content.water.addCleanWater(content.getWaterDropAmount() / 10);
+                break;
+        }
     }
 }
