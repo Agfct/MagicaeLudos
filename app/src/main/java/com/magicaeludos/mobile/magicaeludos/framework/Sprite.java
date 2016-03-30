@@ -7,6 +7,10 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * Created by Anders on 27.01.2016.
  * The sprite class is supposed to contain all necessary information to draw a sprite.
@@ -17,8 +21,10 @@ public class Sprite {
     private int width, height;
     private Bitmap bitmap;
     private Rect dstBounds;
-    private Rect srcBounds;
+    private ArrayList<Rect> srcBounds;
+//    private Rect srcBounds;
     private Paint paint;
+    private int srcBound = 0;
 
     //Animation
     private boolean animated = false;
@@ -31,18 +37,20 @@ public class Sprite {
 
 
     public Sprite(int x, int y, int width, int height, Bitmap bitmap) {
+        this.srcBounds = new ArrayList<>();
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.bitmap = bitmap;
         this.dstBounds = new Rect(x,y,x+width,y+height);
-        this.srcBounds = new Rect(0,0,bitmap.getWidth(),bitmap.getHeight());
+        this.srcBounds.add(new Rect(0,0,bitmap.getWidth(),bitmap.getHeight()));
         paint = new Paint();
     }
 
     //Constructor for animated sprites
     public Sprite(int x, int y, int width, int height, Bitmap bitmap , int nrOfFrames) {
+        this.srcBounds = new ArrayList<>();
         this.animated = true;
         this.x = x;
         this.y = y;
@@ -54,12 +62,13 @@ public class Sprite {
         this.frameLength = bitmap.getWidth()/nrOfFrames;
         this.frameHeight = bitmap.getHeight()/nrOfTypes;
         this.dstBounds = new Rect(x,y,x+width,y+height);
-        this.srcBounds = new Rect(0,0,frameLength,frameHeight);
+        this.srcBounds.add(new Rect(0,0,frameLength,bitmap.getHeight()));
         paint = new Paint();
     }
 
     //Constructor for animated sprites with several types of animations (run, jump, and so on)
     public Sprite(int x, int y, int width, int height, Bitmap bitmap , int nrOfFrames, int nrOfAnimationTypes) {
+        this.srcBounds = new ArrayList<>();
         this.animated = true;
         this.x = x;
         this.y = y;
@@ -72,7 +81,9 @@ public class Sprite {
         this.frameLength = bitmap.getWidth()/nrOfFrames;
         this.frameHeight = bitmap.getHeight()/nrOfTypes;
         this.dstBounds = new Rect(x,y,x+width,y+height);
-        this.srcBounds = new Rect(0,0,frameLength,frameHeight);
+        for (int i = 0; i < nrOfAnimationTypes; i++){
+            this.srcBounds.add(new Rect(0,i*frameHeight,frameLength,frameHeight+frameHeight*i));
+        }
         paint = new Paint();
     }
 
@@ -82,11 +93,30 @@ public class Sprite {
             if(animationCounter <= 0){
                 animationCounter = animationLength;
                 //If at the end of the animation we reset
-                if((srcBounds.right+frameLength) > bitmap.getWidth()){
-                    setSrcBounds(new Rect(0,0,frameLength,frameHeight));
+                if((srcBounds.get(srcBound).right+frameLength) > bitmap.getWidth()){
+                    setSrcBounds(new Rect(0,srcBound*frameHeight,frameLength,frameHeight));
 
                 }else{
-                    setSrcBounds(new Rect(srcBounds.left+frameLength,srcBounds.top,srcBounds.right+frameLength,srcBounds.bottom));
+                    setSrcBounds(new Rect(srcBounds.get(srcBound).left+frameLength,srcBounds.get(srcBound).top,srcBounds.get(srcBound).right+frameLength,srcBounds.get(srcBound).bottom));
+                }
+            }else {
+                animationCounter -=1;
+            }
+
+
+        }
+    }
+
+    public void animateJump(){
+        if(animated){
+            if(animationCounter <= 0){
+                animationCounter = animationLength;
+                //If at the end of the animation we reset
+                if((srcBounds.get(srcBound).right+frameLength) > bitmap.getWidth()){
+                    setSrcBounds(new Rect(0,srcBound*frameHeight,frameLength,frameHeight));
+
+                }else{
+                    setSrcBounds(new Rect(srcBounds.get(srcBound).left+frameLength,srcBounds.get(srcBound).top,srcBounds.get(srcBound).right+frameLength,srcBounds.get(srcBound).bottom));
                 }
             }else {
                 animationCounter -=1;
@@ -98,7 +128,7 @@ public class Sprite {
 
     public void draw(Canvas canvas){
         setDstBounds(new Rect(x,y,x+width,y+height));
-        canvas.drawBitmap(bitmap, srcBounds, getDstBounds(),paint);
+        canvas.drawBitmap(bitmap, srcBounds.get(srcBound), getDstBounds(),paint);
     }
     public int getX() {
         return x;
@@ -137,15 +167,24 @@ public class Sprite {
         this.dstBounds = dstBounds;
     }
     public Rect getSrcBounds() {
-        return srcBounds;
+        return srcBounds.get(srcBound);
     }
     public void setSrcBounds(Rect srcBounds) {
-        this.srcBounds = srcBounds;
+        this.srcBounds.add(srcBound,srcBounds);
     }
     public Paint getPaint() {
         return paint;
     }
     public void setPaint(Paint paint) {
         this.paint = paint;
+    }
+
+    public void setSrcBound(int srcBound) {
+        this.srcBound = srcBound;
+    }
+
+    public void setAnimationTime(int animationTime) {
+        this.animationLength = animationTime;
+        this.animationCounter = animationTime;
     }
 }

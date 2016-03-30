@@ -79,10 +79,10 @@
         android:layout_marginBottom="99dp" />
     <!-- Upgrade level 2 (10+)-->
     <ImageView
-    android:id="@+id/bucketUpgrade2"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/uppgrade_bucket_1"
+        android:id="@+id/bucketUpgrade2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/uppgrade_bucket_1"
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/bucketUpgrade1"
         android:layout_alignStart="@+id/bucketUpgrade1" />

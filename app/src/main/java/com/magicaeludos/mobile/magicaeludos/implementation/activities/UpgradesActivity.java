@@ -48,8 +48,11 @@ public class UpgradesActivity extends MotherActivity {
         }
         else if (nrOfVillagers == 20){
             bucketUpgrade = (ImageView) findViewById(R.id.bucketUpgrade3);
+        }else if (nrOfVillagers >= 30){
+            bucketUpgrade = (ImageView) findViewById(R.id.bucketUpgrade3);
         }else{
             bucketUpgrade = (ImageView) findViewById(R.id.defaultUpgrades);
+
         }
 
 
