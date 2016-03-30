@@ -35,12 +35,12 @@ public class GameSetting {
         if(gameDifficulty == 1){
             gameTime = 60;
             gameSpeed = 10;
-            waterDropAmount = 20;
+            waterDropAmount = 5;
             water = new Water(0,village.getBucketSize());
         }else {
             gameTime = 60;
-            gameSpeed = 5;
-            waterDropAmount = 30;
+            gameSpeed = 12;
+            waterDropAmount = 10;
             water = new Water(0,village.getBucketSize());
         }
 
