@@ -3,6 +3,7 @@ package com.magicaeludos.mobile.magicaeludos.framework;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.Vector;
 
 /**
@@ -11,40 +12,65 @@ import java.util.Vector;
 public class Probability {
 
     /*Changable variables:*/
-    boolean lane1 = true; /*True if lanes is open for obstacle*/
-    boolean lane2 = true;
-    boolean lane3 = true;
-    int lane1Block = 0; /*Numbers of frames a lane is blocked before open again*/
-    int lane2Block = 0;
-    int lane3Block = 0;
+    private boolean lane1 = true; /*True if lanes is open for obstacle*/
+    private boolean lane2 = true;
+    private boolean lane3 = true;
+    private int lane1Block = 0; /*Numbers of frames a lane is blocked before open again*/
+    private int lane2Block = 0;
+    private int lane3Block = 0;
 
     /*Constants to define game performance*/
-    double rockRate = 2; /*Arrival rate of rock*/
-    int rockLength = 30; /*Number of frames the rock blocks a lane. Might also block some space on the path*/
-    int rockWidth = 1; /*Number of lanes the rock is covering*/
-    int rockPri = 10; /*Prioritizing index used to choose between obstacles if they want to enter at same time*/
-    boolean rockCollect = false;
+    private double rockRate = 2; /*Arrival rate of rock*/
+    private int rockLength = 20; /*Number of frames the rock blocks a lane. Might also block some space on the path*/
+    private int rockWidth = 1; /*Number of lanes the rock is covering*/
+    private int rockPri = 10; /*Prioritizing index used to choose between obstacles if they want to enter at same time*/
+    private boolean rockCollect = false;
 
-    double logRate = 2.5;
-    int logLength = 10;
-    int logWidth = 2;
-    int logPri = 5;
-    boolean logCollect = false;
+    private double logRate = 2.5;
+    private int logLength = 20;
+    private int logWidth = 2;
+    private int logPri = 5;
+    private boolean logCollect = false;
 
-    double dropRate = 2;
-    int dropLength = 10;
-    int dropWidth = 1;
-    int dropPri = 8;
-    boolean dropCollect = true;
+    private double dropRate = 2;
+    private int dropLength = 10;
+    private int dropWidth = 1;
+    private int dropPri = 8;
+    private boolean dropCollect = true;
+
+    private double puddleRate = 2;
+    private int puddleLength = 10;
+    private int puddleWidth = 1;
+    private int puddlePri = 7;
+    private boolean puddleCollect = false;
 
 
-    double timeStep = 1.0/30.0; /*Time steps in seconds*/
-    int maxLaneBlock = 2; /*Maximal allowed number of lanes blocked at the same time*/
+    private double timeStep = 1.0/30.0; /*Time steps in seconds*/
+    private int maxLaneBlock = 2; /*Maximal allowed number of lanes blocked at the same time*/
+    private Set<ObstacleType> obs; /*List of obstacles to sample from*/
 
 
 
     /*Random rand = new Random();
     return  Math.log(1-rand.nextDouble())/(-rate);*/
+
+    public Probability(Set<ObstacleType> obstacles){
+        this.obs = obstacles;
+    }
+
+    public void setRockRate(double rate){rockRate = rate;}
+    public void setRocklength(int length){rockLength = length;}
+    public void setRockPri(int pri){rockPri = pri;}
+    public void setLogRate(double rate){logRate = rate;}
+    public void setLogLength(int length){logLength = length;}
+    public void setLogPri(int pri){logPri = pri;}
+    public void setDropRate(double rate){dropRate = rate;}
+    public void setDropLength(int length){dropLength = length;}
+    public void setDropPri(int pri){dropPri = pri;}
+    public void setPuddleRate(double rate){puddleRate = rate;}
+    public void setPuddleLength(int length){puddleLength = length;}
+    public void setPuddlePri(int pri){puddlePri = pri;}
+    public void setMaxLaneBlock(int lanes){maxLaneBlock = lanes;}
 
     public double probExp(double rate, double timeStep){
         /*Using a exponential arrival times with given rate, compute the probability that
@@ -124,9 +150,20 @@ public class Probability {
         /*If there are at least 2 lanes open and adjacent, simulate obstacles requiring 2-lane-width*/
         if(connectedLanes == 2 || connectedLanes == 3) {
             //Sample non-collectables:
-            if (lanesOpen > 0) {
-                if (sendObstacle(logRate)){
-                    obstacleProbProbs.add(new ObstacleProb(ObstacleType.LOG, logRate, logWidth, logLength, logPri, logCollect));}
+            if(maxLaneBlock == 2) {
+                if (lanesOpen > maxLaneBlock) {
+                    if (obs.contains(ObstacleType.LOG)) {
+                        if (sendObstacle(logRate)) {obstacleProbProbs.add(new ObstacleProb(ObstacleType.LOG, logRate, logWidth, logLength, logPri, logCollect));}
+                    }
+                }
+            }
+
+            if(maxLaneBlock == 3) {
+                if (lanesOpen > 1) {
+                    if (obs.contains(ObstacleType.LOG)) {
+                        if (sendObstacle(logRate)) {obstacleProbProbs.add(new ObstacleProb(ObstacleType.LOG, logRate, logWidth, logLength, logPri, logCollect));}
+                    }
+                }
             }
             //Sample collectables:
         }
@@ -134,12 +171,17 @@ public class Probability {
         /*Simulate obstacleProbProbs requiring only one lane*/
         //Sample non-collectables:
         if(lanesOpen>0) {
-            if (sendObstacle(rockRate)){
-                obstacleProbProbs.add(new ObstacleProb(ObstacleType.STONE, rockRate, rockWidth, rockLength, rockPri, rockCollect));}
+            if(obs.contains(ObstacleType.STONE)) {
+                if (sendObstacle(rockRate)){obstacleProbProbs.add(new ObstacleProb(ObstacleType.STONE, rockRate, rockWidth, rockLength, rockPri, rockCollect));}
+            }
+            if(obs.contains(ObstacleType.PUDDLE)){
+                if(sendObstacle(puddleRate)){obstacleProbProbs.add(new ObstacleProb(ObstacleType.PUDDLE, puddleRate, puddleWidth, puddleLength, puddlePri, puddleCollect));}
+            }
         }
         //Sample collectables:
-        if (sendObstacle(dropRate)){
-            obstacleProbProbs.add(new ObstacleProb(ObstacleType.WATER_DROP, dropRate, dropWidth, dropLength, dropPri, dropCollect));}
+        if(obs.contains(ObstacleType.WATER_DROP)) {
+            if (sendObstacle(dropRate)){obstacleProbProbs.add(new ObstacleProb(ObstacleType.WATER_DROP, dropRate, dropWidth, dropLength, dropPri, dropCollect));}
+        }
 
         return obstacleProbProbs;
     }

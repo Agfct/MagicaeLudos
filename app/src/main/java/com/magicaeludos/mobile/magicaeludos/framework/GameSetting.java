@@ -3,6 +3,10 @@ import android.util.Log;
 
 import com.magicaeludos.mobile.magicaeludos.implementation.Village;
 import com.magicaeludos.mobile.magicaeludos.implementation.activities.GameContent;
+
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by Anders on 14.03.2016.
  * Contains settings on game difficulty and length.
@@ -17,6 +21,7 @@ public class GameSetting {
     private Water water;
     private Village village;
     private int waterDropAmount;
+    private Set<ObstacleType> usableObstacles = new HashSet<>();
 
 
     public GameSetting (GameContent content, int gameDifficulty){
@@ -37,11 +42,17 @@ public class GameSetting {
             gameSpeed = 10;
             waterDropAmount = 5;
             water = new Water(0,village.getBucketSize());
+            usableObstacles.add(ObstacleType.WATER_DROP);
+            usableObstacles.add(ObstacleType.STONE);
+            usableObstacles.add(ObstacleType.LOG);
         }else {
             gameTime = 60;
             gameSpeed = 12;
-            waterDropAmount = 10;
+            waterDropAmount = 30;
             water = new Water(0,village.getBucketSize());
+            usableObstacles.add(ObstacleType.WATER_DROP);
+            usableObstacles.add(ObstacleType.STONE);
+            usableObstacles.add(ObstacleType.LOG);
         }
 
 
@@ -55,4 +66,6 @@ public class GameSetting {
     }
 
     public int getWaterDropAmount() {return waterDropAmount;}
+
+    public Set<ObstacleType> getUsableObstacles(){return usableObstacles;}
 }
