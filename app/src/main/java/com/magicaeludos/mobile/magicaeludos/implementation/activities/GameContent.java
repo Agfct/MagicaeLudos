@@ -91,6 +91,7 @@ public class GameContent implements Content{
         //GUI handler
         this.guIhandler = new GUIhandler(this,grid);
 
+        //Probability
         prop = new Probability();
 
         //Images

@@ -15,13 +15,14 @@ import java.util.List;
 
 public class Player extends GameObject {
 
-    private GameContent content;
     private int hitBoxX, hitBoxY;
     private int hitBoxWidth, hitBoxHeight;
     private Rect hitBox = new Rect();
     private Paint paint = new Paint();
     private int color = Color.BLUE;
     private double movementSpeed = 21;
+    private int jumpVariable = 0;
+    private double jumpStart = 0;
 
     //The variables needed to check for a straight line drag
     private TouchHandler touchHandler;
@@ -55,7 +56,7 @@ public class Player extends GameObject {
      * @param spriteSheet
      */
     public Player(GameContent content, Point point, int width, int height, Bitmap spriteSheet){
-        super(content, point, width, height, spriteSheet, 4, 1); //TODO: the number 4 is the number of frames in the player animation cycle and 1 is number of animation types (running  = 1, then if jumping its 2)
+        super(content, point, width, height, spriteSheet, 4, 2); //TODO: the number 4 is the number of frames in the player animation cycle and 1 is number of animation types (running  = 1, then if jumping its 2)
         this.touchHandler = content.getTouchHandler();
         this.movementSpeed = content.getGrid().getScreenWidth()/16;
         Log.w("Player", "MovementSpeed: "+ movementSpeed);
@@ -83,7 +84,12 @@ public class Player extends GameObject {
             checkThumbSwipe(event);
         }
 
-        sprite.animate();
+        if(jumpVariable == 1){
+            sprite.animateJump();
+        }else{
+            sprite.animate();
+        }
+
         movePlayer();
 
     }
@@ -191,6 +197,12 @@ public class Player extends GameObject {
                 Log.w("Dummy", "Sliding DOWN");
             } else if (degree > 234 && degree < 306){
                 Log.w("Dummy", "Jumping UP");
+                if(jumpVariable == 0){
+                    jumpVariable = 1;
+                    jumpStart = 0;
+                    startSpriteJump();
+
+                }
             }
         }
     }
@@ -210,6 +222,16 @@ public class Player extends GameObject {
             currentLane = lane3;
         }
     }
+
+    private void startSpriteJump(){
+        sprite.setSrcBound(1);
+        sprite.setAnimationTime(1);
+    }
+    private void endSpriteJump(){
+        sprite.setSrcBound(0);
+        sprite.setAnimationTime(8);
+
+    }
     /**
      * Moves the player to the current lane, the player only moves on the horizontal (x) axis
      * //TODO: Make shure that the value of x can be exacly "x" or else the player wont stop
@@ -220,6 +242,24 @@ public class Player extends GameObject {
             setX(getX()+ Math.min(movementSpeed, laneX - getX())); //TODO: Not scalable fix.
         }else if(sprite.getX() > laneX){
             setX(getX()- Math.min(movementSpeed, getX() - laneX)); //TODO: Not scalable fix.
+        }
+        checkJump();
+    }
+
+    private void checkJump(){
+        double jumpLength = content.getGrid().getRowHeight();
+
+        if(jumpVariable == 1){
+            if(jumpStart >= jumpLength ){
+                jumpVariable = 0;
+                endSpriteJump();
+                Log.w("Player","STOPPED JUMP, Jump Start:"+ jumpStart);
+            }else if (jumpStart + content.getSpeed() >= jumpLength){
+                jumpStart += jumpLength - jumpStart;
+            }else{
+                jumpStart += content.getSpeed();
+            }
+
         }
     }
 
