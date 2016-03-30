@@ -44,6 +44,7 @@ public class GameSetting {
             water = new Water(0,village.getBucketSize());
             usableObstacles.add(ObstacleType.WATER_DROP);
             usableObstacles.add(ObstacleType.STONE);
+            usableObstacles.add(ObstacleType.LOG);
         }else {
             gameTime = 60;
             gameSpeed = 12;

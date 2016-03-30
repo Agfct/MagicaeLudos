@@ -27,7 +27,7 @@ public class Probability {
     private boolean rockCollect = false;
 
     private double logRate = 2.5;
-    private int logLength = 10;
+    private int logLength = 20;
     private int logWidth = 2;
     private int logPri = 5;
     private boolean logCollect = false;

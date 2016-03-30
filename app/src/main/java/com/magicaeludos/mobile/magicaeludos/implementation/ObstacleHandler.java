@@ -51,6 +51,9 @@ public class ObstacleHandler {
                     o = createStone(oProb.getLane());
                     obstacles.add(o);
                     break;
+                case LOG:
+                    o = createLog(oProb.getLane());
+                    obstacles.add(o);
                 default:
                     break;
             }
@@ -116,7 +119,6 @@ public class ObstacleHandler {
                             ObstacleHit(obstacle.getType());
                             obstacle.setCollition(true);
                         }
-                        obstacle.setCollition(true);
                     }
                     break;
             }
@@ -150,8 +152,9 @@ public class ObstacleHandler {
 //        TODO:: create log obstacle
         Obstacle o = new Obstacle(content,
                 BitmapFactory.decodeResource(content.getActivity().getResources(),
-                        R.mipmap.ic_launcher),lane, ObstacleType.LOG);
+                        R.drawable.log),lane, ObstacleType.LOG);
         o.sprite.setWidth(content.getGrid().getColWidth() * 2);
+        o.sprite.setHeight(o.sprite.getHeight()*2);
         o.setHitBoxDifferences(hitboxWidthLog, hitboxHeightLog);
         return o;
     }
