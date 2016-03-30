@@ -21,7 +21,7 @@ public class Probability {
 
     /*Constants to define game performance*/
     private double rockRate = 2; /*Arrival rate of rock*/
-    private int rockLength = 30; /*Number of frames the rock blocks a lane. Might also block some space on the path*/
+    private int rockLength = 20; /*Number of frames the rock blocks a lane. Might also block some space on the path*/
     private int rockWidth = 1; /*Number of lanes the rock is covering*/
     private int rockPri = 10; /*Prioritizing index used to choose between obstacles if they want to enter at same time*/
     private boolean rockCollect = false;
@@ -38,6 +38,12 @@ public class Probability {
     private int dropPri = 8;
     private boolean dropCollect = true;
 
+    private double puddleRate = 2;
+    private int puddleLength = 10;
+    private int puddleWidth = 1;
+    private int puddlePri = 7;
+    private boolean puddleCollect = false;
+
 
     private double timeStep = 1.0/30.0; /*Time steps in seconds*/
     private int maxLaneBlock = 2; /*Maximal allowed number of lanes blocked at the same time*/
@@ -53,14 +59,17 @@ public class Probability {
     }
 
     public void setRockRate(double rate){rockRate = rate;}
-    public void setRocklength(double length){rockRate = length;}
-    public void setRockPri(double pri){rockRate = pri;}
+    public void setRocklength(int length){rockLength = length;}
+    public void setRockPri(int pri){rockPri = pri;}
     public void setLogRate(double rate){logRate = rate;}
-    public void setLogLength(double length){logRate = length;}
-    public void setLogPri(double pri){logRate = pri;}
+    public void setLogLength(int length){logLength = length;}
+    public void setLogPri(int pri){logPri = pri;}
     public void setDropRate(double rate){dropRate = rate;}
-    public void setDropLength(double length){dropRate = length;}
-    public void setDropPri(double pri){dropRate = pri;}
+    public void setDropLength(int length){dropLength = length;}
+    public void setDropPri(int pri){dropPri = pri;}
+    public void setPuddleRate(double rate){puddleRate = rate;}
+    public void setPuddleLength(int length){puddleLength = length;}
+    public void setPuddlePri(int pri){puddlePri = pri;}
     public void setMaxLaneBlock(int lanes){maxLaneBlock = lanes;}
 
     public double probExp(double rate, double timeStep){
@@ -141,9 +150,19 @@ public class Probability {
         /*If there are at least 2 lanes open and adjacent, simulate obstacles requiring 2-lane-width*/
         if(connectedLanes == 2 || connectedLanes == 3) {
             //Sample non-collectables:
-            if (lanesOpen > 0) {
-                if(obs.contains(ObstacleType.LOG)) {
-                    if (sendObstacle(logRate)){obstacleProbProbs.add(new ObstacleProb(ObstacleType.LOG, logRate, logWidth, logLength, logPri, logCollect));}
+            if(maxLaneBlock == 2) {
+                if (lanesOpen > maxLaneBlock) {
+                    if (obs.contains(ObstacleType.LOG)) {
+                        if (sendObstacle(logRate)) {obstacleProbProbs.add(new ObstacleProb(ObstacleType.LOG, logRate, logWidth, logLength, logPri, logCollect));}
+                    }
+                }
+            }
+
+            if(maxLaneBlock == 3) {
+                if (lanesOpen > 1) {
+                    if (obs.contains(ObstacleType.LOG)) {
+                        if (sendObstacle(logRate)) {obstacleProbProbs.add(new ObstacleProb(ObstacleType.LOG, logRate, logWidth, logLength, logPri, logCollect));}
+                    }
                 }
             }
             //Sample collectables:
@@ -154,6 +173,9 @@ public class Probability {
         if(lanesOpen>0) {
             if(obs.contains(ObstacleType.STONE)) {
                 if (sendObstacle(rockRate)){obstacleProbProbs.add(new ObstacleProb(ObstacleType.STONE, rockRate, rockWidth, rockLength, rockPri, rockCollect));}
+            }
+            if(obs.contains(ObstacleType.PUDDLE)){
+                if(sendObstacle(puddleRate)){obstacleProbProbs.add(new ObstacleProb(ObstacleType.PUDDLE, puddleRate, puddleWidth, puddleLength, puddlePri, puddleCollect));}
             }
         }
         //Sample collectables:
