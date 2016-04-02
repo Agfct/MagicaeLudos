@@ -144,7 +144,7 @@ public class ObstacleHandler {
     private Obstacle createWaterDrop(int lane){
         Obstacle o = new Obstacle(content,
                 BitmapFactory.decodeResource(content.getActivity().getResources(),
-                        R.drawable.teardrop), lane, 1, ObstacleType.WATER_DROP);
+                        R.drawable.teardrop), lane, 1, 1, ObstacleType.WATER_DROP);
         o.setHitBoxDifferences(hitboxWidthWater, hitboxHeightWater);
         return o;
     }
@@ -152,7 +152,7 @@ public class ObstacleHandler {
     private Obstacle createStone(int lane){
         Obstacle o = new Obstacle(content,
                 BitmapFactory.decodeResource(content.getActivity().getResources(),
-                        R.drawable.stone_smal),lane, 1, ObstacleType.STONE);
+                        R.drawable.stone_smal),lane, 1, 1, ObstacleType.STONE);
 //        o.sprite.setWidth(o.sprite.getWidth()*2);
         o.setHitBoxDifferences(hitboxWidthStone, hitboxHeightStone);
         return o;
@@ -162,7 +162,7 @@ public class ObstacleHandler {
 //        TODO:: create log obstacle (Fix size ? )
         Obstacle o = new Obstacle(content,
                 BitmapFactory.decodeResource(content.getActivity().getResources(),
-                        R.drawable.log),lane, 2, ObstacleType.LOG);
+                        R.drawable.log),lane, 2, 2, ObstacleType.LOG);
 //       o.sprite.setWidth(content.getGrid().getColWidth() * 2);
 //       o.sprite.setHeight(o.sprite.getHeight()*2);
         o.setHitBoxDifferences(hitboxWidthLog, hitboxHeightLog);
@@ -172,7 +172,7 @@ public class ObstacleHandler {
     private Obstacle createPuddle(int lane){
         Obstacle o = new Obstacle(content,
                 BitmapFactory.decodeResource(content.getActivity().getResources(),
-                        R.mipmap.ic_launcher),lane, 2, ObstacleType.PUDDLE);
+                        R.mipmap.ic_launcher),lane, 2, 2, ObstacleType.PUDDLE);
         o.sprite.setHeight(o.sprite.getHeight() * 3);
         o.setHitBoxDifferences(hitboxWidthLog, hitboxHeightLog);
         return o;

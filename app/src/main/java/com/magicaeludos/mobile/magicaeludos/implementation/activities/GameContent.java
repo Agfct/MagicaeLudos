@@ -198,7 +198,7 @@ public class GameContent implements Content{
             ending = true;
             Obstacle village = new Obstacle(this,
                     BitmapFactory.decodeResource(this.getActivity().getResources(),
-                            R.drawable.stone_small),0, 3, ObstacleType.VILLAGE);
+                            R.drawable.stone_small),0, 3, 5, ObstacleType.VILLAGE);
             obstacles.add(village);
         }
     }
