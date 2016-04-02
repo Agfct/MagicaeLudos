@@ -16,7 +16,7 @@ public class AndroidThread extends Thread {
     private Layout currentLayout;
     private boolean isRunning = false;
     private final int MAX_FPS = 30;
-    private final int MAX_FRAME_SKIPS = 5;
+    private final int MAX_FRAME_SKIPS = 0;
     private final int FRAME_PERIOD = 1000 / MAX_FPS;
 
     public AndroidThread(Layout layout){

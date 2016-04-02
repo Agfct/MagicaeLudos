@@ -90,7 +90,7 @@ public class Sprite {
 
     //Like an update() method but purely animation focused
     public void animate(){
-        Log.w("Sprite", "Animated (1)");
+//        Log.w("Sprite", "Animated (1)");
         if(animated){
             if(animationCounter <= 0){
                 animationCounter = animationLength;
@@ -115,6 +115,7 @@ public class Sprite {
             if(animationCounter <= 0){
                 animationCounter = animationLength;
                 //If at the end of the animation we reset
+                Log.w("Sprite", "Animated Jump (3)"+ srcBound);
                 if((srcBounds.get(srcBound).right+frameLength) > bitmap.getWidth()){
                     setSrcBounds(new Rect(0, srcBound * frameHeight, frameLength, frameHeight + (srcBound * frameHeight)));
                 }else{
@@ -130,6 +131,7 @@ public class Sprite {
 
     public void draw(Canvas canvas){
         setDstBounds(new Rect(x,y,x+width,y+height));
+        Log.w("Sprite", "SrcBounds: "+ srcBounds.get(srcBound) + " src: "+ srcBound);
         canvas.drawBitmap(bitmap, srcBounds.get(srcBound), getDstBounds(),paint);
     }
     public int getX() {

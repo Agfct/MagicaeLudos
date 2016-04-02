@@ -8,6 +8,8 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.Log;
 
+import com.magicaeludos.mobile.magicaeludos.framework.BGM;
+import com.magicaeludos.mobile.magicaeludos.framework.SFX;
 import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler;
 import com.magicaeludos.mobile.magicaeludos.implementation.activities.GameContent;
 
@@ -48,6 +50,9 @@ public class Player extends GameObject {
     private Point lane2;
     private Point lane3;
 
+    //Audio
+    private BGM runningBGM;
+
     /**
      *
      * @param content
@@ -86,6 +91,9 @@ public class Player extends GameObject {
             checkThumbSwipe(event);
         }
 
+        //TODO: Check if update running faster than draw causes the jumping animation to fail.
+        //TODO: Fix: Remove frame skips in AndroidThread. Or fix some other way with update still showing images
+        //TODO: Setting frames to 0 did not fix the issue.
         if(jumpVariable == 1){
             sprite.animateJump();
         }else{
@@ -94,6 +102,23 @@ public class Player extends GameObject {
 
         movePlayer();
 
+    }
+
+    public void draw(Canvas canvas){
+
+//        if(jumpVariable == 1){
+//            sprite.animateJump();
+//        }
+        sprite.draw(canvas);
+        //Draws additional information if development mode is on
+        if(color == Color.BLUE) {
+
+            paint.setColor(Color.BLUE);
+            canvas.drawRect(startX, startY, startX + 5, startY + 5, paint);
+            paint.setColor(Color.RED);
+            canvas.drawRect(lastDraggedX, lastDraggedY, lastDraggedX + 5, lastDraggedY + 5, paint);
+        }
+        paint.setColor(color);
     }
 
     /**
@@ -266,19 +291,7 @@ public class Player extends GameObject {
     }
 
 
-    public void draw(Canvas canvas){
 
-        sprite.draw(canvas);
-        //Draws additional information if development mode is on
-        if(color == Color.BLUE) {
-
-            paint.setColor(Color.BLUE);
-            canvas.drawRect(startX, startY, startX + 5, startY + 5, paint);
-            paint.setColor(Color.RED);
-            canvas.drawRect(lastDraggedX, lastDraggedY, lastDraggedX + 5, lastDraggedY + 5, paint);
-        }
-        paint.setColor(color);
-    }
 
     @Override
     public Rect getHitBox(){
