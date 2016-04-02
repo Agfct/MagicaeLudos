@@ -93,11 +93,16 @@ public class ObstacleHandler {
     }
 
     public void update(){
-        addObstacle();
+        if (!content.getEnding()) {
+            addObstacle();
+        }
 
         moveObstacles();
         Obstacle obstacle = checkCollision();
         if (obstacle != null){
+            if (obstacle.getType() == ObstacleType.VILLAGE){
+                content.endGame();
+            }
             if (content.getPlayer().getJumpVariable() == 0) {
                 switch (obstacle.getType()) {
                     case WATER_DROP:
@@ -179,7 +184,7 @@ public class ObstacleHandler {
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        content.water.addCleanWater(-content.getWaterDropAmount()*10); //TODO: Create a variable
+        content.water.addCleanWater(-content.getWaterDropAmount() * 10); //TODO: Create a variable
         content.incrementHitCounter();
     }
 
@@ -192,5 +197,9 @@ public class ObstacleHandler {
                 content.water.addDirtyWater(content.getWaterDropAmount() / 10);
                 break;
         }
+    }
+
+    public void add(Obstacle o){
+        obstacles.add(o);
     }
 }

@@ -14,6 +14,7 @@ import com.magicaeludos.mobile.magicaeludos.framework.GameSetting;
 import com.magicaeludos.mobile.magicaeludos.framework.Grid;
 import com.magicaeludos.mobile.magicaeludos.framework.Layout;
 import com.magicaeludos.mobile.magicaeludos.framework.MotherActivity;
+import com.magicaeludos.mobile.magicaeludos.framework.ObstacleType;
 import com.magicaeludos.mobile.magicaeludos.framework.Probability;
 
 import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler;
@@ -21,6 +22,7 @@ import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler.TouchEvent;
 import com.magicaeludos.mobile.magicaeludos.framework.Water;
 import com.magicaeludos.mobile.magicaeludos.implementation.Background;
 import com.magicaeludos.mobile.magicaeludos.implementation.Dummy;
+import com.magicaeludos.mobile.magicaeludos.implementation.Obstacle;
 import com.magicaeludos.mobile.magicaeludos.implementation.ObstacleHandler;
 import com.magicaeludos.mobile.magicaeludos.implementation.Player;
 import com.magicaeludos.mobile.magicaeludos.implementation.Village;
@@ -59,6 +61,7 @@ public class GameContent implements Content{
     public Water water;
     private int waterDropAmount;
     private int hitCounter;
+    private boolean ending = false;
 
 
     //Test
@@ -177,7 +180,8 @@ public class GameContent implements Content{
 
         //TODO: Change this if endGame location
         if(currentGameTime <= 0) {
-            endGame();
+            spawnVillage();
+//            endGame();
         }
 
     }
@@ -186,6 +190,16 @@ public class GameContent implements Content{
         if(!running){
             startTime = System.currentTimeMillis();
             running = true;
+        }
+    }
+
+    private void spawnVillage() {
+        if (ending == false){
+            ending = true;
+            Obstacle village = new Obstacle(this,
+                    BitmapFactory.decodeResource(this.getActivity().getResources(),
+                            R.drawable.stone_small),0, 3, ObstacleType.VILLAGE);
+            obstacles.add(village);
         }
     }
 
@@ -365,5 +379,7 @@ public class GameContent implements Content{
 
     public void incrementHitCounter(){hitCounter+=1;}
 
-    public int getHitCounter(){return hitCounter;};
+    public int getHitCounter(){return hitCounter;}
+
+    public boolean getEnding(){return ending;}
 }
