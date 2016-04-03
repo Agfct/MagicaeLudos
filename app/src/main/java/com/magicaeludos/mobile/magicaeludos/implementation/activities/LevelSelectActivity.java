@@ -36,6 +36,15 @@ public class LevelSelectActivity extends MotherActivity {
         goTo(MainActivity.class);
     }
 
+    public void developerMode(View view){
+        if(isDeveloperModeOn()){
+            setDeveloperModeOn(false);
+        }else{
+            setDeveloperModeOn(true);
+        }
+        Log.w("LevelSelectActivity","DEVMODE: " + isDeveloperModeOn());
+    }
+
 
 
 }

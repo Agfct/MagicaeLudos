@@ -21,7 +21,7 @@ public abstract class MotherActivity extends FragmentActivity {
     private int screenWidth;
     private int screenHeight;
     private static Village village;
-    private boolean developerModeOn = true;
+    private static boolean developerModeOn = true;
 //    private static Assets assets;
 
     @Override
@@ -102,5 +102,9 @@ public abstract class MotherActivity extends FragmentActivity {
 
     public boolean isDeveloperModeOn() {
         return developerModeOn;
+    }
+
+    public void setDeveloperModeOn(boolean developerModeOn) {
+        this.developerModeOn = developerModeOn;
     }
 }

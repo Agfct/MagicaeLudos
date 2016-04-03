@@ -48,4 +48,13 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
+    <Button
+        android:id="@+id/btnDevMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="developer"
+        android:onClick="developerMode"
+        android:background="@color/Transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
 </RelativeLayout>

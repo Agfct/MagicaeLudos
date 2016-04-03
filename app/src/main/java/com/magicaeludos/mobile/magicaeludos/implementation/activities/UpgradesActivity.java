@@ -70,6 +70,8 @@ public class UpgradesActivity extends MotherActivity {
         bar.setLayoutParams(lp);
     }
 
+
+
 }
 
 

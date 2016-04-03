@@ -60,6 +60,7 @@ public class Obstacle extends GameObject {
 
     public void setCollition(boolean collition){this.collition = collition;}
 
+    //TODO: Adjust hitBoxSize
     @Override
     public Rect getHitBox(){
         return new Rect(sprite.getX()+hitBoxDifferenceWidth/2,
