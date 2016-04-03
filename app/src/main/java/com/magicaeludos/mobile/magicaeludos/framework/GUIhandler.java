@@ -40,7 +40,7 @@ public class GUIhandler {
         this.content = content;
         this.activity = content.getActivity();
         this.grid = grid;
-        this.water = content.water; //TODO: replace with correct water location
+        this.water = content.water;
 
         //Setting some values
         this.barY2 = grid.getRowHeight()*4;
@@ -49,6 +49,7 @@ public class GUIhandler {
 
         fetchResources();
         initializeRects();
+        calculateWaterAmount();
     }
 
     private void fetchResources(){

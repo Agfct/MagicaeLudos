@@ -2,6 +2,7 @@ package com.magicaeludos.mobile.magicaeludos.implementation.activities;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ViewFlipper;
 
 import com.magicaeludos.mobile.magicaeludos.R;
 import com.magicaeludos.mobile.magicaeludos.framework.Layout;
@@ -30,6 +31,9 @@ public class GameActivity extends MotherActivity {
         //Creates a Layout class that updates using the AndroidThread
         //It also adds the content to the layout (making the layout update and draw the content class)
         layout.initialize(this, content);
+
+        //Puts the correct gameInfo based on level selected
+        setCorrectGameInfo();
 
         //TESTING: This enables you to set background in XML and make surfaceView transparent
         //If you do not have this code then surfaceview is black and nothing can be shown behind it in the XML code.
@@ -83,6 +87,18 @@ public class GameActivity extends MotherActivity {
 //        afterGameInfo.setVisibility(View.GONE);
 //    }
 
+    private void setCorrectGameInfo(){
+        int level = getIntent().getIntExtra(getString(R.string.level), 0);
+        ViewFlipper viewFlipper = (ViewFlipper) findViewById(R.id.vf);
+        Log.w("GameActivity", "Level: "+ level);
+        viewFlipper.setDisplayedChild(level-1);
+    }
+
+    public void startGame(View view){
+        ViewFlipper viewFlipper = (ViewFlipper) findViewById(R.id.vf);
+        viewFlipper.setVisibility(View.GONE);
+        content.startGame();
+    }
 
     public void goToAfterGame(View view){
         Log.w("LevelSelectActivity", "Going to the AfterGame");

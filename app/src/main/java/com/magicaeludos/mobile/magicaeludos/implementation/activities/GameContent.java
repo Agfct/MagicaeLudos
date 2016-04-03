@@ -84,7 +84,7 @@ public class GameContent implements Content{
 
         initializeGameSettings();
 
-        startGame(); //TODO: 3.. 2.. 1.. Countdown before startingGame ?
+//        startGame(); //TODO: 3.. 2.. 1.. Countdown before startingGame ?
     }
 
     private void initializeGameSettings(){
@@ -196,7 +196,7 @@ public class GameContent implements Content{
 
     }
 
-    private void startGame(){
+    protected void startGame(){
         if(!running){
             startTime = System.currentTimeMillis();
             running = true;

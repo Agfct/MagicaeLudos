@@ -108,12 +108,13 @@ public class Player extends GameObject {
 //        }
         sprite.draw(canvas);
         //Draws additional information if development mode is on
-        if(color == Color.BLUE) {
-
+        if(content.getActivity().isDeveloperModeOn()) {
             paint.setColor(Color.BLUE);
             canvas.drawRect(startX, startY, startX + 5, startY + 5, paint);
             paint.setColor(Color.RED);
             canvas.drawRect(lastDraggedX, lastDraggedY, lastDraggedX + 5, lastDraggedY + 5, paint);
+
+            canvas.drawRect(getHitBox(),paint);
         }
         paint.setColor(color);
     }
@@ -284,7 +285,7 @@ public class Player extends GameObject {
 
     @Override
     public Rect getHitBox(){
-        return new Rect(sprite.getX(),sprite.getY()+(sprite.getHeight() / 2),sprite.getWidth(),sprite.getWidth());
+        return new Rect(sprite.getX(),sprite.getY()+(sprite.getHeight() / 2),sprite.getX()+sprite.getWidth(),sprite.getY()+sprite.getHeight());
     }
 
     public int getJumpVariable(){return jumpVariable;}

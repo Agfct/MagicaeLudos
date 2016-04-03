@@ -24,6 +24,11 @@ public class UpgradesActivity extends MotherActivity {
         updateUpgradesData();
     }
 
+    //Captures the back button press
+    @Override
+    public void onBackPressed(){
+        goTo(VillageActivity.class);
+    }
 
     public void goToVillageActivity(View view){
         Log.w("VillageActivity", "Going to the Village");

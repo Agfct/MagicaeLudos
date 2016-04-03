@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.WindowManager;
 
@@ -22,6 +21,7 @@ public abstract class MotherActivity extends FragmentActivity {
     private int screenWidth;
     private int screenHeight;
     private static Village village;
+    private boolean developerModeOn = true;
 //    private static Assets assets;
 
     @Override
@@ -98,5 +98,9 @@ public abstract class MotherActivity extends FragmentActivity {
 
     public static Village getVillage() {
         return village;
+    }
+
+    public boolean isDeveloperModeOn() {
+        return developerModeOn;
     }
 }

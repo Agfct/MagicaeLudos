@@ -2,6 +2,8 @@ package com.magicaeludos.mobile.magicaeludos.implementation;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 
@@ -11,7 +13,6 @@ import com.magicaeludos.mobile.magicaeludos.framework.Sprite;
 import com.magicaeludos.mobile.magicaeludos.implementation.activities.GameContent;
 public class Obstacle extends GameObject {
 //    private Bitmap image;
-    private GameContent content;
     private int hitBoxDifferenceWidth, hitBoxDifferenceHeight;
     private double y;
     private double speed;
@@ -32,6 +33,10 @@ public class Obstacle extends GameObject {
 
     public void draw(Canvas canvas) {
         sprite.draw(canvas);
+
+        if(content.getActivity().isDeveloperModeOn()) {
+            canvas.drawRect(getHitBox(),new Paint());
+        }
     }
 
     public Sprite getImage(){return sprite;}
@@ -59,7 +64,7 @@ public class Obstacle extends GameObject {
     public Rect getHitBox(){
         return new Rect(sprite.getX()+hitBoxDifferenceWidth/2,
                 sprite.getY()+hitBoxDifferenceHeight/2,
-                sprite.getWidth()-hitBoxDifferenceWidth,
-                sprite.getHeight()-hitBoxDifferenceHeight);
+                sprite.getX()+sprite.getWidth()-hitBoxDifferenceWidth,
+                sprite.getY() +sprite.getHeight()-hitBoxDifferenceHeight);
     }
 }
