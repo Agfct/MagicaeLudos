@@ -91,9 +91,6 @@ public class Player extends GameObject {
             checkThumbSwipe(event);
         }
 
-        //TODO: Check if update running faster than draw causes the jumping animation to fail.
-        //TODO: Fix: Remove frame skips in AndroidThread. Or fix some other way with update still showing images
-        //TODO: Setting frames to 0 did not fix the issue.
         if(jumpVariable == 1){
             sprite.animateJump();
         }else{
@@ -191,7 +188,6 @@ public class Player extends GameObject {
         float x = lastX - firstX;
         float y = lastY - firstY;
 
-        Log.w("Slingshot", " Is X or Y 0 ?.  X: " + x + " Y: " + y);
         //If both swipeBoxX and swipeBoxY is zero that means the start and end points are the same, this is not a valid cast.
         if(!(x == 0 && y == 0)) {
             double degree = -1;
@@ -205,7 +201,7 @@ public class Player extends GameObject {
                 degree = Math.toDegrees(Math.atan(y / x)) + 180;
             else if (x >= 0 && y < 0)
                 degree = Math.toDegrees(Math.atan(y / x)) + 360;
-            Log.e("Slingshot", "Degree: " + degree);
+            Log.e("Player", "Degree: " + degree);
 
             //Sets the lane for the player
             //Left is between 126 & 234 degrees
@@ -214,9 +210,9 @@ public class Player extends GameObject {
             }else if ( (degree <= 54 && degree >= 0) || (degree >= 306 && degree <= 360)){
                 setLaneToRight();
             }else if (degree > 54 && degree < 126 ){
-                Log.w("Dummy", "Sliding DOWN");
+                Log.w("Player", "Sliding DOWN");
             } else if (degree > 234 && degree < 306){
-                Log.w("Dummy", "Jumping UP");
+                Log.w("Player", "Jumping UP");
                 if(jumpVariable == 0){
                     jumpVariable = 1;
                     jumpStart = 0;
@@ -255,14 +251,14 @@ public class Player extends GameObject {
     }
     /**
      * Moves the player to the current lane, the player only moves on the horizontal (x) axis
-     * //TODO: Make shure that the value of x can be exacly "x" or else the player wont stop
+     * //TODO: Make sure that the value of x can be exacly "x" or else the player wont stop
      */
     private void movePlayer(){
         double laneX = currentLane.x;
         if(sprite.getX() < laneX){
-            setX(getX()+ Math.min(movementSpeed, laneX - getX())); //TODO: Not scalable fix.
+            setX(getX()+ Math.min(movementSpeed, laneX - getX()));
         }else if(sprite.getX() > laneX){
-            setX(getX()- Math.min(movementSpeed, getX() - laneX)); //TODO: Not scalable fix.
+            setX(getX()- Math.min(movementSpeed, getX() - laneX));
         }
         checkJump();
     }
