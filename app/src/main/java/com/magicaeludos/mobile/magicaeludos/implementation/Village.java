@@ -16,6 +16,12 @@ public class Village {
     private MotherActivity activity;
     private FileIO fileIO;
 
+    //Audio
+    private int bgmLevel = 30;
+    private int sfxLevel = 50;
+    private boolean bgmSound = true;
+    private boolean sfxSound = true;
+
     //Finals
     private final int NUMBEROFRUNSPRDAY = 5;
     private final int AMOUNTOFWATERPRVILLAGER = 20;
@@ -194,5 +200,13 @@ public class Village {
             return 1;
         }
         return 0;
+    }
+
+    public int getBgmLevel() {
+        return bgmLevel;
+    }
+
+    public int getSfxLevel() {
+        return sfxLevel;
     }
 }

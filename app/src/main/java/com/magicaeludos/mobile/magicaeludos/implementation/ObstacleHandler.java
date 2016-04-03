@@ -1,14 +1,18 @@
 package com.magicaeludos.mobile.magicaeludos.implementation;
 
+import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.os.Vibrator;
 import android.util.Log;
 
 import com.magicaeludos.mobile.magicaeludos.R;
+import com.magicaeludos.mobile.magicaeludos.framework.MotherActivity;
 import com.magicaeludos.mobile.magicaeludos.framework.ObstacleProb;
 import com.magicaeludos.mobile.magicaeludos.framework.ObstacleType;
 import com.magicaeludos.mobile.magicaeludos.framework.Probability;
+import com.magicaeludos.mobile.magicaeludos.framework.SFX;
 import com.magicaeludos.mobile.magicaeludos.implementation.activities.GameContent;
 
 import java.util.ArrayList;
@@ -31,10 +35,27 @@ public class ObstacleHandler {
     private final int hitboxWidthLog = 110;
     private final int hitboxHeightLog = 0;
 
+    //Obstacle sounds (SFX)
+    private SFX sfx_waterDrop;
+    private SFX sfx_stone;
+    private SFX sfx_wood;
+
+    //Vibration
+    private Vibrator vibrator;
+
 
 
     public ObstacleHandler(GameContent content){
         this.content = content;
+        addSounds();
+        vibrator =  (Vibrator) content.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+    }
+
+    private void addSounds(){
+        MotherActivity activity = content.getActivity();
+        sfx_waterDrop = content.getGameAudio().createSound(activity.getBaseContext(), R.raw.water_drop, activity.getVillage().getSfxLevel());
+        sfx_stone = content.getGameAudio().createSound(activity.getBaseContext(), R.raw.stone, activity.getVillage().getSfxLevel());
+        sfx_wood = content.getGameAudio().createSound(activity.getBaseContext(), R.raw.wood_hard, activity.getVillage().getSfxLevel());
     }
 
     public void addObstacle(){
@@ -44,6 +65,7 @@ public class ObstacleHandler {
             Obstacle o;
             switch (oProb.getName()) {
                 case WATER_DROP:
+                    Log.w("ObstacleHandler", "Water_drop");
                     o = createWaterDrop(oProb.getLane());
                     obstacles.add(o);
                     break;
@@ -101,6 +123,7 @@ public class ObstacleHandler {
             if (content.getPlayer().getJumpVariable() == 0) {
                 switch (obstacle.getType()) {
                     case WATER_DROP:
+                        sfx_waterDrop.play();
                         obstacles.remove(obstacle);
                         CollectableHit(obstacle.getType());
                         break;
@@ -109,6 +132,8 @@ public class ObstacleHandler {
                         break;
                     case STONE:
                         if (!obstacle.getCollition()) {
+                            sfx_stone.play();
+                            vibrator.vibrate(100);
                             ObstacleHit(obstacle.getType());
                             obstacle.setCollition(true);
                         }
@@ -117,6 +142,7 @@ public class ObstacleHandler {
                         if (!obstacle.getCollition()) {
 
                             if (!obstacle.getCollition()) {
+                                sfx_wood.play();
                                 ObstacleHit(obstacle.getType());
                                 obstacle.setCollition(true);
                             }

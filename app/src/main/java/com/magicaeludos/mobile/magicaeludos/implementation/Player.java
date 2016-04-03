@@ -8,6 +8,8 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.Log;
 
+import com.magicaeludos.mobile.magicaeludos.framework.BGM;
+import com.magicaeludos.mobile.magicaeludos.framework.SFX;
 import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler;
 import com.magicaeludos.mobile.magicaeludos.implementation.activities.GameContent;
 
@@ -47,6 +49,9 @@ public class Player extends GameObject {
     private Point lane1;
     private Point lane2;
     private Point lane3;
+
+    //Audio
+    private BGM runningBGM;
 
     /**
      *
@@ -96,6 +101,23 @@ public class Player extends GameObject {
 
     }
 
+    public void draw(Canvas canvas){
+
+//        if(jumpVariable == 1){
+//            sprite.animateJump();
+//        }
+        sprite.draw(canvas);
+        //Draws additional information if development mode is on
+        if(color == Color.BLUE) {
+
+            paint.setColor(Color.BLUE);
+            canvas.drawRect(startX, startY, startX + 5, startY + 5, paint);
+            paint.setColor(Color.RED);
+            canvas.drawRect(lastDraggedX, lastDraggedY, lastDraggedX + 5, lastDraggedY + 5, paint);
+        }
+        paint.setColor(color);
+    }
+
     /**
      * Swipe validator method.
      * It calculates from the point of TOUCH_DOWN to the drag ends and a TOUCH_UP happens.
@@ -108,11 +130,9 @@ public class Player extends GameObject {
         //If you touch inside the square
         if (event.x > swipeBoxX && event.x < swipeBoxX + swipeBoxWidth - 1 && event.y > swipeBoxY
                 && event.y < swipeBoxY + swipeBoxHeight - 1) {
-            Log.w("Dummy", "PRESSED INSIDE BOX");
 
             //If there are no previously touched events we keep the X and Y of the touch for further references
             if(tEventId == -1 ){
-                Log.w("Dummy", "NR 1");
                 startX = temp_position_x;
                 startY = temp_position_y;
                 touch_state = true;
@@ -122,18 +142,15 @@ public class Player extends GameObject {
 
                 //If you touch up inside the box wihtout dragging first
                 if(event.type == TouchHandler.TouchEvent.TOUCH_UP && event.pointer == tEventId && !dragged){
-                    Log.w("Dummy", "NR EXTRA -----------------------------------------------");
                     tEventId = -1;
                     touch_state = false;
                 }
                 //if you are dragging inside the square it keeps the current drag value for calculation.
                 else if (event.type == TouchHandler.TouchEvent.TOUCH_DRAGGED && touch_state && event.pointer == tEventId) {
-                    Log.w("Dummy", "NR 2");
                     lastDraggedX = event.x;
                     lastDraggedY = event.y;
                     dragged = true;
                 } else if (event.type == TouchHandler.TouchEvent.TOUCH_UP && event.pointer == tEventId && dragged) {
-                    Log.w("Dummy", "NR 3 -----------------------------------------------");
                     tEventId = -1;
                     touch_state = false;
                     dragged = false;
@@ -146,7 +163,6 @@ public class Player extends GameObject {
         }else {
             //if one has an id and you release outside the square
             if (event.type == TouchHandler.TouchEvent.TOUCH_UP && event.pointer == tEventId && dragged) {
-                Log.w("Dummy", "NR 4 -----------------------------------------------");
                 tEventId = -1;
                 touch_state = false;
                 dragged = false;
@@ -169,11 +185,9 @@ public class Player extends GameObject {
      */
     private void calculateCast(int firstX, int firstY, int lastX, int lastY){
 
-
         float x = lastX - firstX;
         float y = lastY - firstY;
 
-        Log.w("Slingshot", " Is X or Y 0 ?.  X: " + x + " Y: " + y);
         //If both swipeBoxX and swipeBoxY is zero that means the start and end points are the same, this is not a valid cast.
         if(!(x == 0 && y == 0)) {
             double degree = -1;
@@ -187,7 +201,7 @@ public class Player extends GameObject {
                 degree = Math.toDegrees(Math.atan(y / x)) + 180;
             else if (x >= 0 && y < 0)
                 degree = Math.toDegrees(Math.atan(y / x)) + 360;
-            Log.e("Slingshot", "Degree: " + degree);
+            Log.e("Player", "Degree: " + degree);
 
             //Sets the lane for the player
             //Left is between 126 & 234 degrees
@@ -196,9 +210,9 @@ public class Player extends GameObject {
             }else if ( (degree <= 54 && degree >= 0) || (degree >= 306 && degree <= 360)){
                 setLaneToRight();
             }else if (degree > 54 && degree < 126 ){
-                Log.w("Dummy", "Sliding DOWN");
+                Log.w("Player", "Sliding DOWN");
             } else if (degree > 234 && degree < 306){
-                Log.w("Dummy", "Jumping UP");
+                Log.w("Player", "Jumping UP");
                 if(jumpVariable == 0){
                     jumpVariable = 1;
                     jumpStart = 0;
@@ -237,14 +251,14 @@ public class Player extends GameObject {
     }
     /**
      * Moves the player to the current lane, the player only moves on the horizontal (x) axis
-     * //TODO: Make shure that the value of x can be exacly "x" or else the player wont stop
+     * //TODO: Make sure that the value of x can be exacly "x" or else the player wont stop
      */
     private void movePlayer(){
         double laneX = currentLane.x;
         if(sprite.getX() < laneX){
-            setX(getX()+ Math.min(movementSpeed, laneX - getX())); //TODO: Not scalable fix.
+            setX(getX()+ Math.min(movementSpeed, laneX - getX()));
         }else if(sprite.getX() > laneX){
-            setX(getX()- Math.min(movementSpeed, getX() - laneX)); //TODO: Not scalable fix.
+            setX(getX()- Math.min(movementSpeed, getX() - laneX));
         }
         checkJump();
     }
@@ -266,19 +280,7 @@ public class Player extends GameObject {
     }
 
 
-    public void draw(Canvas canvas){
 
-        sprite.draw(canvas);
-        //Draws additional information if development mode is on
-        if(color == Color.BLUE) {
-
-            paint.setColor(Color.BLUE);
-            canvas.drawRect(startX, startY, startX + 5, startY + 5, paint);
-            paint.setColor(Color.RED);
-            canvas.drawRect(lastDraggedX, lastDraggedY, lastDraggedX + 5, lastDraggedY + 5, paint);
-        }
-        paint.setColor(color);
-    }
 
     @Override
     public Rect getHitBox(){

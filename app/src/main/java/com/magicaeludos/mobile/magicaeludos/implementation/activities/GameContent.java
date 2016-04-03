@@ -5,9 +5,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.os.Vibrator;
 import android.util.Log;
 
 import com.magicaeludos.mobile.magicaeludos.R;
+import com.magicaeludos.mobile.magicaeludos.framework.Audio;
+import com.magicaeludos.mobile.magicaeludos.framework.BGM;
 import com.magicaeludos.mobile.magicaeludos.framework.Content;
 import com.magicaeludos.mobile.magicaeludos.framework.GUIhandler;
 import com.magicaeludos.mobile.magicaeludos.framework.GameSetting;
@@ -21,6 +24,7 @@ import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler.TouchEvent;
 import com.magicaeludos.mobile.magicaeludos.framework.Water;
 import com.magicaeludos.mobile.magicaeludos.implementation.Background;
 import com.magicaeludos.mobile.magicaeludos.implementation.Dummy;
+import com.magicaeludos.mobile.magicaeludos.implementation.GameAudio;
 import com.magicaeludos.mobile.magicaeludos.implementation.ObstacleHandler;
 import com.magicaeludos.mobile.magicaeludos.implementation.Player;
 import com.magicaeludos.mobile.magicaeludos.implementation.Village;
@@ -60,6 +64,10 @@ public class GameContent implements Content{
     private int waterDropAmount;
     private int hitCounter;
 
+    //Audio
+    private Audio gameAudio;
+    private BGM backgroundMusic;
+
 
     //Test
     ArrayList<Dummy> dummies;
@@ -70,6 +78,7 @@ public class GameContent implements Content{
         this.layout = layout;
         this.grid = new Grid(this);
         this.touchHandler = new TouchHandler(layout, activity.getScreenWidth(), activity.getScreenHeight());
+        this.gameAudio = new GameAudio(activity);
         this.obstacles = new ObstacleHandler(this);
         speed = activity.getScreenHeight()/100*1;
 
@@ -81,7 +90,7 @@ public class GameContent implements Content{
     private void initializeGameSettings(){
 
         //Game Settings. Contains the variables for game difficulty
-        gameSetting = new GameSetting(this, activity.getIntent().getIntExtra(activity.getString(R.string.level),0));
+        gameSetting = new GameSetting(this, activity.getIntent().getIntExtra(activity.getString(R.string.level), 0));
 
         //Player
         player = new Player(this, grid.getPlayerLane(2),grid.getColWidth()/4*3,grid.getInnerHeight()*3, BitmapFactory.decodeResource(activity.getResources(), R.drawable.animate_avatar));
@@ -97,6 +106,11 @@ public class GameContent implements Content{
 
         //Images
         background = new Background(this, BitmapFactory.decodeResource(activity.getResources(), R.drawable.bck_africa));
+
+        //Audio
+        backgroundMusic = gameAudio.createMusic(activity.getBaseContext(), R.raw.running_music);
+        backgroundMusic.setLooping(true);
+        backgroundMusic.setVolume(activity.getVillage().getBgmLevel());
 
         //Testing
 //        dummies = new ArrayList<>();
@@ -186,11 +200,13 @@ public class GameContent implements Content{
         if(!running){
             startTime = System.currentTimeMillis();
             running = true;
+            startBackgroundAudio();
         }
     }
 
     public void endGame(){
         running = false;
+        stopBackgroundAudio();
         Intent intent = new Intent(activity, AfterGameActivity.class);
         intent.putExtra("cleanWater", water.getCleanWater());
         intent.putExtra("dirtyWater", water.getDirtyWater());
@@ -366,4 +382,23 @@ public class GameContent implements Content{
     public void incrementHitCounter(){hitCounter+=1;}
 
     public int getHitCounter(){return hitCounter;};
+
+    public Audio getGameAudio() {
+        return gameAudio;
+    }
+
+    public void startBackgroundAudio(){
+        backgroundMusic.play();
+    }
+    public void stopBackgroundAudio(){
+        backgroundMusic.stop();
+    }
+    public void pauseBackgroundAudio(){
+        backgroundMusic.pause();
+    }
+
+
+    public boolean isRunning() {
+        return running;
+    }
 }

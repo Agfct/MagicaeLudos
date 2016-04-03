@@ -42,6 +42,7 @@ public class GameActivity extends MotherActivity {
     public void onPause() {
         super.onPause();
         layout.pauseAll();
+        content.pauseBackgroundAudio();
     }
 
     //When the app is opened this is ran and it starts / restarts the layout thread
@@ -49,6 +50,10 @@ public class GameActivity extends MotherActivity {
     public void onResume() {
         super.onResume();
         layout.resumeAll();
+//        if(content.isRunning()) {
+//            content.startBackgroundAudio();
+//        }
+        content.startBackgroundAudio();
     }
 
     //Captures the back button press
