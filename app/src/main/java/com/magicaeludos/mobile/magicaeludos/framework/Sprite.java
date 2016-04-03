@@ -110,15 +110,17 @@ public class Sprite {
     }
 
     public void animateJump(){
-        Log.w("Sprite", "Animated Jump (2)"+ srcBound);
+        Log.w("Sprite", "Animated Jump (2)" + srcBound);
         if(animated){
             if(animationCounter <= 0){
                 animationCounter = animationLength;
                 //If at the end of the animation we reset
                 Log.w("Sprite", "Animated Jump (3)"+ srcBound);
                 if((srcBounds.get(srcBound).right+frameLength) > bitmap.getWidth()){
+                    Log.w("Sprite", "Animated Jump (IF)"+ srcBound);
                     setSrcBounds(new Rect(0, srcBound * frameHeight, frameLength, frameHeight + (srcBound * frameHeight)));
                 }else{
+                    Log.w("Sprite", "Animated Jump (else)"+ srcBound);
                     setSrcBounds(new Rect(srcBounds.get(srcBound).left + frameLength, srcBounds.get(srcBound).top, srcBounds.get(srcBound).right + frameLength, srcBounds.get(srcBound).bottom));
                 }
             }else {
@@ -130,8 +132,10 @@ public class Sprite {
     }
 
     public void draw(Canvas canvas){
-        setDstBounds(new Rect(x,y,x+width,y+height));
-        Log.w("Sprite", "SrcBounds: "+ srcBounds.get(srcBound) + " src: "+ srcBound);
+        setDstBounds(new Rect(x, y, x + width, y + height));
+        if (nrOfTypes == 2) {
+            Log.w("Sprite", "SrcBounds: " + srcBounds.get(srcBound) + " src: " + srcBound);
+        }
         canvas.drawBitmap(bitmap, srcBounds.get(srcBound), getDstBounds(),paint);
     }
     public int getX() {
@@ -185,10 +189,16 @@ public class Sprite {
 
     public void setSrcBound(int srcBound) {
         this.srcBound = srcBound;
+
+        //Resets the Animation to default
+        for (int i = 0; i < nrOfTypes; i++){
+            this.srcBounds.set(i, new Rect(0, i * frameHeight, frameLength, frameHeight + frameHeight * i));
+        }
     }
 
     public void setAnimationTime(int animationTime) {
         this.animationLength = animationTime;
         this.animationCounter = animationTime;
     }
+
 }

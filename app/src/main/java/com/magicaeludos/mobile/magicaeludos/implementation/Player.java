@@ -133,11 +133,9 @@ public class Player extends GameObject {
         //If you touch inside the square
         if (event.x > swipeBoxX && event.x < swipeBoxX + swipeBoxWidth - 1 && event.y > swipeBoxY
                 && event.y < swipeBoxY + swipeBoxHeight - 1) {
-            Log.w("Dummy", "PRESSED INSIDE BOX");
 
             //If there are no previously touched events we keep the X and Y of the touch for further references
             if(tEventId == -1 ){
-                Log.w("Dummy", "NR 1");
                 startX = temp_position_x;
                 startY = temp_position_y;
                 touch_state = true;
@@ -147,18 +145,15 @@ public class Player extends GameObject {
 
                 //If you touch up inside the box wihtout dragging first
                 if(event.type == TouchHandler.TouchEvent.TOUCH_UP && event.pointer == tEventId && !dragged){
-                    Log.w("Dummy", "NR EXTRA -----------------------------------------------");
                     tEventId = -1;
                     touch_state = false;
                 }
                 //if you are dragging inside the square it keeps the current drag value for calculation.
                 else if (event.type == TouchHandler.TouchEvent.TOUCH_DRAGGED && touch_state && event.pointer == tEventId) {
-                    Log.w("Dummy", "NR 2");
                     lastDraggedX = event.x;
                     lastDraggedY = event.y;
                     dragged = true;
                 } else if (event.type == TouchHandler.TouchEvent.TOUCH_UP && event.pointer == tEventId && dragged) {
-                    Log.w("Dummy", "NR 3 -----------------------------------------------");
                     tEventId = -1;
                     touch_state = false;
                     dragged = false;
@@ -171,7 +166,6 @@ public class Player extends GameObject {
         }else {
             //if one has an id and you release outside the square
             if (event.type == TouchHandler.TouchEvent.TOUCH_UP && event.pointer == tEventId && dragged) {
-                Log.w("Dummy", "NR 4 -----------------------------------------------");
                 tEventId = -1;
                 touch_state = false;
                 dragged = false;
@@ -193,7 +187,6 @@ public class Player extends GameObject {
      * @param lastY
      */
     private void calculateCast(int firstX, int firstY, int lastX, int lastY){
-
 
         float x = lastX - firstX;
         float y = lastY - firstY;
