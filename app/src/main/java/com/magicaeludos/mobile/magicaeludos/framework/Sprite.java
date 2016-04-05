@@ -133,9 +133,6 @@ public class Sprite {
 
     public void draw(Canvas canvas){
         setDstBounds(new Rect(x, y, x + width, y + height));
-        if (nrOfTypes == 2) {
-            Log.w("Sprite", "SrcBounds: " + srcBounds.get(srcBound) + " src: " + srcBound);
-        }
         canvas.drawBitmap(bitmap, srcBounds.get(srcBound), getDstBounds(),paint);
     }
     public int getX() {
