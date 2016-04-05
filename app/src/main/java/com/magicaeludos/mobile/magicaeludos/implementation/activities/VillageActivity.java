@@ -21,6 +21,11 @@ public class VillageActivity extends MotherActivity {
         updateVillageData();
     }
 
+    //Captures the back button press
+    @Override
+    public void onBackPressed(){
+        this.goTo(MainActivity.class);
+    }
 
     public void goToMainActivity(View view){
         Log.w("VillageActivity", "Going to the MainMenu");

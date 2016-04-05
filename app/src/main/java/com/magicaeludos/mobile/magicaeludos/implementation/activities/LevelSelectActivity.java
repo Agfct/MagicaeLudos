@@ -21,13 +21,28 @@ public class LevelSelectActivity extends MotherActivity {
         Log.w("LevelSelectActivity", "Going to the Game");
 
         Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra(this.getString(R.string.level),  Integer.parseInt(level));
+        intent.putExtra(this.getString(R.string.level), Integer.parseInt(level));
         goTo(intent);
     }
 
     public void goToMainActivity(View view){
         Log.w("LevelSelectActivity", "Going to the Mainmenu");
         goTo(MainActivity.class);
+    }
+
+    //Captures the back button press
+    @Override
+    public void onBackPressed(){
+        goTo(MainActivity.class);
+    }
+
+    public void developerMode(View view){
+        if(isDeveloperModeOn()){
+            setDeveloperModeOn(false);
+        }else{
+            setDeveloperModeOn(true);
+        }
+        Log.w("LevelSelectActivity","DEVMODE: " + isDeveloperModeOn());
     }
 
 

@@ -15,7 +15,13 @@
 
     <string name="level">level</string>
 
-
+    <!-- Level spesific strings-->
+    <string name="level_info_1">
+        A person uses 20L every day, getting the water required for a person to live is hard.
+    </string>
+        <string name="level_info_2">
+        Dirty water is bad. But puddles of dirty water is better than no water.
+    </string>
 
     <!-- Strings containing information about water-->
     <string name="water_info_0">

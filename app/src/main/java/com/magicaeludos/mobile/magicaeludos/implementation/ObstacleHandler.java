@@ -99,17 +99,20 @@ public class ObstacleHandler {
         int pWidth = playerBox.bottom;
         for (Obstacle o: obstacles) {
             Rect oBox = o.getHitBox();
-            int oHeight = oBox.bottom;
-            int oWidth = oBox.right;
-            if (oBox.top + oHeight > playerBox.top) {
-                if (oBox.top < playerBox.top + pHeight) {
-                    if (oBox.left + oWidth > playerBox.left) {
-                        if (oBox.left < playerBox.left + pWidth) {
-                            return o;
-                        }
-                    }
-                }
+            if(Rect.intersects(playerBox,oBox)){
+                return o; //TODO: Sprite HitBox Fixed, but now Collision does not work.
             }
+//            int oHeight = oBox.bottom;
+//            int oWidth = oBox.right;
+//            if (oBox.top + oHeight > playerBox.top) {
+//                if (oBox.top < playerBox.top + pHeight) {
+//                    if (oBox.left + oWidth > playerBox.left) {
+//                        if (oBox.left < playerBox.left + pWidth) {
+//                            return o;
+//                        }
+//                    }
+//                }
+//            }
         }
         return null;
     }

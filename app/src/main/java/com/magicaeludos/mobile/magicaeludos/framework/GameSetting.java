@@ -45,7 +45,15 @@ public class GameSetting {
             usableObstacles.add(ObstacleType.WATER_DROP);
             usableObstacles.add(ObstacleType.STONE);
             usableObstacles.add(ObstacleType.LOG);
-        }else {
+        }else if(gameDifficulty == 2){
+            gameTime = 60;
+            gameSpeed = 10;
+            waterDropAmount = 10;
+            water = new Water(0,village.getBucketSize());
+            usableObstacles.add(ObstacleType.WATER_DROP);
+            usableObstacles.add(ObstacleType.STONE);
+            usableObstacles.add(ObstacleType.LOG);
+        }else{
             gameTime = 60;
             gameSpeed = 12;
             waterDropAmount = 30;
@@ -68,4 +76,8 @@ public class GameSetting {
     public int getWaterDropAmount() {return waterDropAmount;}
 
     public Set<ObstacleType> getUsableObstacles(){return usableObstacles;}
+
+    public int getGameDifficulty() {
+        return gameDifficulty;
+    }
 }

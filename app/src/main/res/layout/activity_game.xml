@@ -23,7 +23,16 @@
         <!--android:layout_height="match_parent"-->
         <!--android:text="I CANT SEE THIS"/>-->
 
-    <!--<include layout="@layout/after_game_info" android:id="@+id/afterInfo" />-->
+    <ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+                 android:id="@+id/vf"
+                 android:visibility="visible"
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent" >
+
+        <include android:id="@+id/level_info_1" layout="@layout/level_info_1" />
+        <include android:id="@+id/level_info_2" layout="@layout/level_info_2" />
+
+    </ViewFlipper>
 
 
 
