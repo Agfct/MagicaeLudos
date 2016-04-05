@@ -24,8 +24,8 @@ public class Obstacle extends GameObject {
     private boolean collition = false;
 
 
-    public Obstacle(GameContent content, Bitmap spriteSheet, int nr, int nrOfLanes, ObstacleType obstacleType){
-        super( content, new Point(content.getGrid().getLane(nr).x+(int)((content.getGrid().getColWidth()-content.getGrid().getInnerWidth())/2),content.getGrid().getLane(nr).y-spriteSheet.getHeight()), content.getGrid().getColWidth()*(nrOfLanes-1)+content.getGrid().getInnerWidth(), content.getGrid().getInnerHeight(), spriteSheet);
+    public Obstacle(GameContent content, Bitmap spriteSheet, int nr, int nrOfLanes, int nrOfRows, ObstacleType obstacleType){
+        super( content, new Point(content.getGrid().getLane(nr).x+(int)((content.getGrid().getColWidth()-content.getGrid().getInnerWidth())/2),content.getGrid().getLane(nr).y-content.getGrid().getInnerHeight()*nrOfRows), content.getGrid().getColWidth()*(nrOfLanes-1)+content.getGrid().getInnerWidth(), content.getGrid().getInnerHeight()* nrOfRows, spriteSheet);
         this.nr = nr;
         speed = content.getSpeed();
         this.obstacleType = obstacleType;

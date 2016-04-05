@@ -17,6 +17,7 @@ import com.magicaeludos.mobile.magicaeludos.framework.GameSetting;
 import com.magicaeludos.mobile.magicaeludos.framework.Grid;
 import com.magicaeludos.mobile.magicaeludos.framework.Layout;
 import com.magicaeludos.mobile.magicaeludos.framework.MotherActivity;
+import com.magicaeludos.mobile.magicaeludos.framework.ObstacleType;
 import com.magicaeludos.mobile.magicaeludos.framework.Probability;
 
 import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler;
@@ -25,6 +26,7 @@ import com.magicaeludos.mobile.magicaeludos.framework.Water;
 import com.magicaeludos.mobile.magicaeludos.implementation.Background;
 import com.magicaeludos.mobile.magicaeludos.implementation.Dummy;
 import com.magicaeludos.mobile.magicaeludos.implementation.GameAudio;
+import com.magicaeludos.mobile.magicaeludos.implementation.Obstacle;
 import com.magicaeludos.mobile.magicaeludos.implementation.ObstacleHandler;
 import com.magicaeludos.mobile.magicaeludos.implementation.Player;
 import com.magicaeludos.mobile.magicaeludos.implementation.Village;
@@ -63,6 +65,7 @@ public class GameContent implements Content{
     public Water water;
     private int waterDropAmount;
     private int hitCounter;
+    private boolean ending = false;
 
     //Audio
     private Audio gameAudio;
@@ -191,7 +194,8 @@ public class GameContent implements Content{
 
         //TODO: Change this if endGame location
         if(currentGameTime <= 0) {
-            endGame();
+            spawnVillage();
+//            endGame();
         }
 
     }
@@ -204,6 +208,7 @@ public class GameContent implements Content{
         }
     }
 
+
     public void endGame(){
         running = false;
         stopBackgroundAudio();
@@ -215,6 +220,17 @@ public class GameContent implements Content{
         activity.goTo(intent);
 
     }
+
+    private void spawnVillage() {
+        if (ending == false){
+            ending = true;
+            Obstacle village = new Obstacle(this,
+                    BitmapFactory.decodeResource(this.getActivity().getResources(),
+                            R.drawable.stone_small),0, 3, 5, ObstacleType.VILLAGE);
+            obstacles.add(village);
+        }
+    }
+
 
     //Updates the village after end game and updates all variables
     private void updateVillage(){
@@ -401,4 +417,6 @@ public class GameContent implements Content{
     public boolean isRunning() {
         return running;
     }
+
+    public boolean getEnding(){return ending;}
 }
