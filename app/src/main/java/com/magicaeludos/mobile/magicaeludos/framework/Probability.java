@@ -40,7 +40,7 @@ public class Probability {
 
     private double puddleRate = 2;
     private int puddleLength = 10;
-    private int puddleWidth = 1;
+    private int puddleWidth = 2;
     private int puddlePri = 7;
     private boolean puddleCollect = false;
 

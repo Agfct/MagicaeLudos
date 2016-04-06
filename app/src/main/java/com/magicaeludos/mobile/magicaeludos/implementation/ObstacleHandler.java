@@ -206,7 +206,6 @@ public class ObstacleHandler {
         Obstacle o = new Obstacle(content,
                 BitmapFactory.decodeResource(content.getActivity().getResources(),
                         R.drawable.puddle),lane, 2, 2, ObstacleType.PUDDLE);
-        o.sprite.setHeight(o.sprite.getHeight() * 3);
         o.setHitBoxDifferences(hitboxWidthLog, hitboxHeightLog);
         return o;
     }
