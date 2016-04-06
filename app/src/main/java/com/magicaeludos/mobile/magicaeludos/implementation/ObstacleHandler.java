@@ -191,7 +191,7 @@ public class ObstacleHandler {
 //        TODO:: create log obstacle (Fix size ? )
         Obstacle o = new Obstacle(content,
                 BitmapFactory.decodeResource(content.getActivity().getResources(),
-                        R.drawable.log),lane, 2, 2, ObstacleType.LOG);
+                        R.drawable.log),lane, 2, 1, ObstacleType.LOG);
 //       o.sprite.setWidth(content.getGrid().getColWidth() * 2);
 //       o.sprite.setHeight(o.sprite.getHeight()*2);
         o.setHitBoxDifferences(hitboxWidthLog, hitboxHeightLog);
