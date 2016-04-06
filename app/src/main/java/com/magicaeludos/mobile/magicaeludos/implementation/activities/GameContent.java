@@ -105,7 +105,7 @@ public class GameContent implements Content{
         this.guIhandler = new GUIhandler(this,grid);
 
         //Probability
-        prop = new Probability(gameSetting.getUsableObstacles());
+        prop = new Probability(gameSetting.getUsableObstacles(), gameSetting.getGameDifficulty());
 
         //Images
         background = new Background(this, BitmapFactory.decodeResource(activity.getResources(), R.drawable.bck_africa));
