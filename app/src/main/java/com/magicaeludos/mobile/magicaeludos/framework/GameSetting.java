@@ -53,6 +53,7 @@ public class GameSetting {
             usableObstacles.add(ObstacleType.WATER_DROP);
             usableObstacles.add(ObstacleType.STONE);
             usableObstacles.add(ObstacleType.LOG);
+            usableObstacles.add(ObstacleType.PUDDLE);
         }else{
             gameTime = 60;
             gameSpeed = 12;
