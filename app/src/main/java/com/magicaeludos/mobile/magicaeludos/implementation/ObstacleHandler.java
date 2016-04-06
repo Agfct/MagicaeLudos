@@ -200,7 +200,7 @@ public class ObstacleHandler {
     private Obstacle createWaterDrop(int lane){
         Obstacle o = new Obstacle(content,
                 BitmapFactory.decodeResource(content.getActivity().getResources(),
-                        R.drawable.teardrop), lane, 1, 1, ObstacleType.WATER_DROP);
+                        R.drawable.clean_water), lane, 1, 1, ObstacleType.WATER_DROP);
         o.setHitBoxDifferences(hitboxWidthWater, hitboxHeightWater);
         return o;
     }
