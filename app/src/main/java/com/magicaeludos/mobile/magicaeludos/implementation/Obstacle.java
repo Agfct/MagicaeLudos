@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.util.Log;
 
 import com.magicaeludos.mobile.magicaeludos.framework.Grid;
 import com.magicaeludos.mobile.magicaeludos.framework.ObstacleType;
@@ -13,7 +14,7 @@ import com.magicaeludos.mobile.magicaeludos.framework.Sprite;
 import com.magicaeludos.mobile.magicaeludos.implementation.activities.GameContent;
 public class Obstacle extends GameObject {
 //    private Bitmap image;
-    private int hitBoxDifferenceWidth, hitBoxDifferenceHeight;
+    private double hitBoxDifferenceFactorWidth, hitBoxDifferenceFactorHeight;
     private double y;
     private double speed;
     private Rect srcRect;
@@ -51,9 +52,9 @@ public class Obstacle extends GameObject {
 
     public ObstacleType getType(){return obstacleType;}
 
-    public void setHitBoxDifferences(int hitBoxDifferenceWidth, int hitBoxDifferenceHeight){
-        this.hitBoxDifferenceWidth = hitBoxDifferenceWidth;
-        this.hitBoxDifferenceHeight = hitBoxDifferenceHeight;
+    public void setHitBoxDifferences(double hitBoxDifferenceFactorWidth, double hitBoxDifferenceFactorHeight){
+        this.hitBoxDifferenceFactorWidth = hitBoxDifferenceFactorWidth;
+        this.hitBoxDifferenceFactorHeight = hitBoxDifferenceFactorHeight;
     }
 
     public boolean getCollition(){return collition;}
@@ -63,9 +64,9 @@ public class Obstacle extends GameObject {
     //TODO: Adjust hitBoxSize
     @Override
     public Rect getHitBox(){
-        return new Rect(sprite.getX()+hitBoxDifferenceWidth/2,
-                sprite.getY()+hitBoxDifferenceHeight/2,
-                sprite.getX()+sprite.getWidth()-hitBoxDifferenceWidth,
-                sprite.getY() +sprite.getHeight()-hitBoxDifferenceHeight);
+        return new Rect(sprite.getX()+(int)(hitBoxDifferenceFactorWidth*sprite.getWidth()),
+                sprite.getY()+(int)(hitBoxDifferenceFactorHeight*sprite.getHeight()),
+                sprite.getX()+sprite.getWidth()-(int)(hitBoxDifferenceFactorWidth*sprite.getWidth()),
+                sprite.getY()+sprite.getHeight()-(int)(hitBoxDifferenceFactorHeight*sprite.getHeight()));
     }
 }

@@ -28,12 +28,14 @@ public class ObstacleHandler {
     private Probability prop;
 
 //    hitbox sizes
-    private final int hitboxWidthWater = 110;
-    private final int hitboxHeightWater = 0;
-    private final int hitboxWidthStone = 110;
-    private final int hitboxHeightStone = 0;
-    private final int hitboxWidthLog = 110;
-    private final int hitboxHeightLog = 0;
+    private final double hitboxWidthWater = 0.2;
+    private final double hitboxHeightWater = 0.2;
+    private final double hitboxWidthStone = 0.2;
+    private final double hitboxHeightStone = 0.2;
+    private final double hitboxWidthLog = 0.2;
+    private final double hitboxHeightLog = 0.3;
+    private final double hitboxWidthPuddle = 0.1;
+    private final double hitboxHeightPuddle= 0.0;
 
     //Obstacle sounds (SFX)
     private SFX sfx_waterDrop;
@@ -76,9 +78,11 @@ public class ObstacleHandler {
                 case LOG:
                     o = createLog(oProb.getLane());
                     obstacles.add(o);
+                    break;
                 case PUDDLE:
                     o = createPuddle(oProb.getLane());
                     obstacles.add(o);
+                    break;
                 default:
                     Log.v("Add obstacle","Try to add not existing obstacle");
                     break;
@@ -206,7 +210,7 @@ public class ObstacleHandler {
         Obstacle o = new Obstacle(content,
                 BitmapFactory.decodeResource(content.getActivity().getResources(),
                         R.drawable.puddle),lane, 2, 2, ObstacleType.PUDDLE);
-        o.setHitBoxDifferences(hitboxWidthLog, hitboxHeightLog);
+        o.setHitBoxDifferences(hitboxWidthPuddle, hitboxHeightPuddle);
         return o;
     }
 
