@@ -44,6 +44,13 @@ public class Probability {
     private int puddlePri = 7;
     private boolean puddleCollect = false;
 
+    private double treeRate = 2;
+    private int treeLength = 20;
+    private int treeWidth = 2;
+    private int treePri = 9;
+    private boolean treeCollect = false;
+
+
     private double timeStep = 1.0/30.0; /*Time steps in seconds*/
     private int maxLaneBlock = 2; /*Maximal allowed number of lanes blocked at the same time*/
     private Set<ObstacleType> obs; /*List of obstacles to sample from*/
@@ -93,6 +100,8 @@ public class Probability {
             dropRate = 2.5;   dropLength = 6;
 
             puddleRate = 2; puddleLength = 8;
+
+            treeRate = 2;   treeLength = 25;
 
             maxLaneBlock = 3;
         }
@@ -184,6 +193,9 @@ public class Probability {
                     if(obs.contains(ObstacleType.PUDDLE)){
                         if(sendObstacle(puddleRate)){obstacleProbProbs.add(new ObstacleProb(ObstacleType.PUDDLE, puddleRate, puddleWidth, puddleLength, puddlePri, puddleCollect));}
                     }
+                    if(obs.contains(ObstacleType.TREE)){
+                        if(sendObstacle(treeRate)){obstacleProbProbs.add(new ObstacleProb(ObstacleType.TREE, treeRate, treeWidth, treeLength, treePri, treeCollect));}
+                    }
                 }
             }
 
@@ -194,6 +206,9 @@ public class Probability {
                     }
                     if(obs.contains(ObstacleType.PUDDLE)){
                         if(sendObstacle(puddleRate)){obstacleProbProbs.add(new ObstacleProb(ObstacleType.PUDDLE, puddleRate, puddleWidth, puddleLength, puddlePri, puddleCollect));}
+                    }
+                    if(obs.contains(ObstacleType.TREE)){
+                        if(sendObstacle(treeRate)){obstacleProbProbs.add(new ObstacleProb(ObstacleType.TREE, treeRate, treeWidth, treeLength, treePri, treeCollect));}
                     }
                 }
             }
