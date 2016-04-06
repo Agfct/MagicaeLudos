@@ -76,7 +76,11 @@ public class ObstacleHandler {
                 case LOG:
                     o = createLog(oProb.getLane());
                     obstacles.add(o);
+                case PUDDLE:
+                    o = createPuddle(oProb.getLane());
+                    obstacles.add(o);
                 default:
+                    Log.v("Add obstacle","Try to add not existing obstacle");
                     break;
             }
         }
@@ -201,7 +205,7 @@ public class ObstacleHandler {
     private Obstacle createPuddle(int lane){
         Obstacle o = new Obstacle(content,
                 BitmapFactory.decodeResource(content.getActivity().getResources(),
-                        R.mipmap.ic_launcher),lane, 2, 2, ObstacleType.PUDDLE);
+                        R.drawable.puddle),lane, 2, 2, ObstacleType.PUDDLE);
         o.sprite.setHeight(o.sprite.getHeight() * 3);
         o.setHitBoxDifferences(hitboxWidthLog, hitboxHeightLog);
         return o;
