@@ -419,4 +419,12 @@ public class GameContent implements Content{
     }
 
     public boolean getEnding(){return ending;}
+
+    public double getCurrentGameTime() {
+        return currentGameTime;
+    }
+
+    public GameSetting getGameSetting() {
+        return gameSetting;
+    }
 }

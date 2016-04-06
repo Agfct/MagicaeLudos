@@ -40,6 +40,16 @@
         android:layout_below="@+id/btnLevel1"
         android:layout_centerHorizontal="true"/>
     <Button
+        android:id="@+id/btnLevel3"
+        android:tag="3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Level 3"
+        android:onClick="goToGameActivity"
+        android:layout_marginTop="47dp"
+        android:layout_below="@+id/btnLevel2"
+        android:layout_centerHorizontal="true"/>
+    <Button
         android:id="@+id/btnBackToMainMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

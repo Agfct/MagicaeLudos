@@ -14,11 +14,12 @@ public class Water {
     public Water (int startingAmount, int maxAmountOfWater){
         this.cleanWater = startingAmount;
         this.dirtyWater = 0;
-        this.maxAmountOfWater = maxAmountOfWater;
+        this.maxAmountOfWater = maxAmountOfWater+100;
     }
 
 //TODO: CHECK THIS if its correct. (Water amount was 300 on the first run. 200 on second run)
     public void addCleanWater(int cleanWaterAmount){
+        addDirtyWater(cleanWaterAmount);
         int totalWater = cleanWater + dirtyWater;
         int spaceLeft = (maxAmountOfWater - totalWater);
         if(cleanWaterAmount >= 0){
@@ -35,7 +36,7 @@ public class Water {
             }
         }
        
-        Log.w("Water", "Added MaxWater: "+ maxAmountOfWater+ " totalWater "+ totalWater);
+        Log.w("Water", "Added clean Water: "+ cleanWater+ " totalWater "+ totalWater);
 
 //    public void addWaterAmount(int waterAmount){
 //        this.waterAmount += waterAmount;
@@ -51,6 +52,7 @@ public class Water {
     }
 
     public void addDirtyWater(int dirtyWaterAmount){
+        Log.w("Dirty","DIRTY: "+ dirtyWaterAmount);
         int totalWater = cleanWater + dirtyWater;
         int spaceLeft = (maxAmountOfWater - totalWater);
         if(dirtyWaterAmount >= 0){
@@ -66,8 +68,9 @@ public class Water {
                 dirtyWater += dirtyWaterAmount;
             }
         }
-    
-        Log.w("Water", "Added MaxWater: "+ maxAmountOfWater+ " totalWater "+ totalWater);
+
+
+        Log.w("Water", "Added dirty water: "+ dirtyWater + " totalWater "+ totalWater);
     }
 
     private void setDirtyWater(int dirtyWater){
@@ -80,6 +83,19 @@ public class Water {
 
     public int getDirtyWater() {
         return dirtyWater;
+    }
+
+    public int getTotalWater(){
+        return cleanWater + dirtyWater;
+    }
+
+    public int getDirtyWaterPercentage(){
+        Log.w("Water","max: " +getMaxAmountOfWater()+ " dirty: " + getDirtyWater());
+        if(getTotalWater() > 0) {
+            return (int)(((double)getDirtyWater() / (double)getTotalWater())*100);
+        }else{
+            return 0;
+        }
     }
 
     public int getMaxAmountOfWater() {

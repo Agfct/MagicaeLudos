@@ -80,4 +80,8 @@ public class GameSetting {
     public int getGameDifficulty() {
         return gameDifficulty;
     }
+
+    public double getGameTime() {
+        return gameTime;
+    }
 }
