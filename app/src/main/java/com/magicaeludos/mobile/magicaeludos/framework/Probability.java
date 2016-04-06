@@ -40,22 +40,22 @@ public class Probability {
 
     private double puddleRate = 2;
     private int puddleLength = 10;
-    private int puddleWidth = 1;
+    private int puddleWidth = 2;
     private int puddlePri = 7;
     private boolean puddleCollect = false;
-
 
     private double timeStep = 1.0/30.0; /*Time steps in seconds*/
     private int maxLaneBlock = 2; /*Maximal allowed number of lanes blocked at the same time*/
     private Set<ObstacleType> obs; /*List of obstacles to sample from*/
 
-
+/*this is a test*/
 
     /*Random rand = new Random();
     return  Math.log(1-rand.nextDouble())/(-rate);*/
 
-    public Probability(Set<ObstacleType> obstacles){
+    public Probability(Set<ObstacleType> obstacles, int gameDifficuly){
         this.obs = obstacles;
+        setDifficultyParameters(gameDifficuly);
     }
 
     public void setRockRate(double rate){rockRate = rate;}
@@ -71,6 +71,32 @@ public class Probability {
     public void setPuddleLength(int length){puddleLength = length;}
     public void setPuddlePri(int pri){puddlePri = pri;}
     public void setMaxLaneBlock(int lanes){maxLaneBlock = lanes;}
+
+    public void setDifficultyParameters(int gameDifficulty){
+        if(gameDifficulty == 1){
+            /*difficulty is default*/
+        }
+        else if(gameDifficulty ==2){
+            rockRate = 5;   rockLength = 15;
+
+            logRate = 5;  logLength = 15;
+
+            dropRate = 2;   dropLength = 6;
+
+            puddleRate = 2; puddleLength = 8;
+        }
+        else if(gameDifficulty ==3){
+            rockRate = 4;   rockLength = 18;
+
+            logRate = 4;  logLength = 18;
+
+            dropRate = 2.5;   dropLength = 6;
+
+            puddleRate = 2; puddleLength = 8;
+
+            maxLaneBlock = 3;
+        }
+    }
 
     public double probExp(double rate, double timeStep){
         /*Using a exponential arrival times with given rate, compute the probability that
@@ -155,6 +181,9 @@ public class Probability {
                     if (obs.contains(ObstacleType.LOG)) {
                         if (sendObstacle(logRate)) {obstacleProbProbs.add(new ObstacleProb(ObstacleType.LOG, logRate, logWidth, logLength, logPri, logCollect));}
                     }
+                    if(obs.contains(ObstacleType.PUDDLE)){
+                        if(sendObstacle(puddleRate)){obstacleProbProbs.add(new ObstacleProb(ObstacleType.PUDDLE, puddleRate, puddleWidth, puddleLength, puddlePri, puddleCollect));}
+                    }
                 }
             }
 
@@ -162,6 +191,9 @@ public class Probability {
                 if (lanesOpen > 1) {
                     if (obs.contains(ObstacleType.LOG)) {
                         if (sendObstacle(logRate)) {obstacleProbProbs.add(new ObstacleProb(ObstacleType.LOG, logRate, logWidth, logLength, logPri, logCollect));}
+                    }
+                    if(obs.contains(ObstacleType.PUDDLE)){
+                        if(sendObstacle(puddleRate)){obstacleProbProbs.add(new ObstacleProb(ObstacleType.PUDDLE, puddleRate, puddleWidth, puddleLength, puddlePri, puddleCollect));}
                     }
                 }
             }
@@ -173,9 +205,6 @@ public class Probability {
         if(lanesOpen>0) {
             if(obs.contains(ObstacleType.STONE)) {
                 if (sendObstacle(rockRate)){obstacleProbProbs.add(new ObstacleProb(ObstacleType.STONE, rockRate, rockWidth, rockLength, rockPri, rockCollect));}
-            }
-            if(obs.contains(ObstacleType.PUDDLE)){
-                if(sendObstacle(puddleRate)){obstacleProbProbs.add(new ObstacleProb(ObstacleType.PUDDLE, puddleRate, puddleWidth, puddleLength, puddlePri, puddleCollect));}
             }
         }
         //Sample collectables:
@@ -374,6 +403,7 @@ public class Probability {
         }
     }
     public ObstacleProb sendObstacles(){
+
         /*Need also to update lanes before this*/
         updateLanes();
 
