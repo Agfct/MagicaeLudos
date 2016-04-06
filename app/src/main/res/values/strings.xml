@@ -27,4 +27,16 @@
     <string name="water_info_0">
         "800 children under five years of age die every day from diarrhea due to lack of safe water, sanitation and basic hygiene"
     </string>
+    <string name="water_info_1">
+        "I følge FN trenger hver og en av oss mellom 20 - 50 liter vann om dagen for å sikre grunnleggende behov for drikke, matlaging og renhold. Nordmenn bruker i snitt 200 liter vann pr dag. Det er 20 ganger så mye som en landsbybeboer i Kenya."
+    </string>
+    <string name="water_info_2">
+        "Skittent vann er en av hovedårsakene til at mennesker blir syke, og problemet er størst i fattige områder. Tyfoidfeber, kolera, difteri, diaré og hepatitt er eksempler på sykdommer som smitter gjennom skittent drikkevann."
+    </string>
+    <string name="water_info_3">
+        "FNs bærekraftmål nr. 6 er som følger: “Sikre bærekraftig forvaltning av, og tilgang til, rent vann og gode sanitærforhold for alle.” Dette kommer av at millioner av mennesker dør hvert år av sykdommer de får fordi de ikke har tilgang til rent vann og toalett. Flesteparten av disse er barn."
+    </string>
+    <string name="water_info_4">
+        "I 1992 vedtok FNs generalforsamling at 22. mars skulle være Verdens vanndag. Hvert år setter UN Water, enheten som koordinerer FNs arbeid med vann og sanitær, et nytt tema for vanndagen."
+    </string>
 </resources>

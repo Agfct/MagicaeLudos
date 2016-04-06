@@ -35,7 +35,7 @@ public class AfterGameActivity extends MotherActivity {
     //Randomly selects a water info from the database to display
     private void setWaterInfo(){
         Random random = new Random();
-        int factNr = random.nextInt(1);
+        int factNr = random.nextInt(4);
         Log.w("AfterGameActivity", "Random Int: " + factNr);
 
         TextView waterInfoTxT = (TextView) findViewById(R.id.infoParagraph);
@@ -43,7 +43,10 @@ public class AfterGameActivity extends MotherActivity {
 
         switch (factNr){
             case 0: waterInfoTxT.setText(R.string.water_info_0); waterInfoImage.setImageResource(R.drawable.img_water_info_0); break;
-            case 1: waterInfoTxT.setText(R.string.water_info_0); waterInfoImage.setImageResource(R.drawable.img_water_info_0); break;
+            case 1: waterInfoTxT.setText(R.string.water_info_1); waterInfoImage.setImageResource(R.drawable.img_water_info_1); break;
+            case 2: waterInfoTxT.setText(R.string.water_info_2); waterInfoImage.setImageResource(R.drawable.img_water_info_2); break;
+            case 3: waterInfoTxT.setText(R.string.water_info_3); waterInfoImage.setImageResource(R.drawable.img_water_info_3); break;
+            case 4: waterInfoTxT.setText(R.string.water_info_4); waterInfoImage.setImageResource(R.drawable.img_water_info_4); break;
         }
 
     }
