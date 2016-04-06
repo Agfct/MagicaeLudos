@@ -162,7 +162,6 @@ public class ObstacleHandler {
                         break;
                     case LOG:
                         if (!obstacle.getCollition()) {
-
                             if (!obstacle.getCollition()) {
                                 sfx_wood.play();
                                 ObstacleHit(obstacle.getType());
@@ -170,15 +169,23 @@ public class ObstacleHandler {
                             }
                         }
                         break;
+                    case TREE:
+                        if (!obstacle.getCollition()) {
+                            sfx_wood.play();
+                            ObstacleHit(obstacle.getType());
+                            obstacle.setCollition(true);
+                            break;
+                        }
                 }
-            }
-            else {
+            } else {
                 switch (obstacle.getType()) {
                     case TREE:
-                        sfx_wood.play();
-                        ObstacleHit(obstacle.getType());
-                        obstacle.setCollition(true);
-                        break;
+                        if (!obstacle.getCollition()) {
+                            sfx_wood.play();
+                            ObstacleHit(obstacle.getType());
+                            obstacle.setCollition(true);
+                            break;
+                        }
                 }
             }
         }
@@ -240,7 +247,7 @@ public class ObstacleHandler {
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        content.water.addCleanWater(-content.getWaterDropAmount() * 10); //TODO: Create a variable
+        content.water.addCleanWater(-content.getWaterDropAmount() * 5); //TODO: Create a variable
         content.incrementHitCounter();
     }
 
