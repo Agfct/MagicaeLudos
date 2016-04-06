@@ -39,4 +39,12 @@
     <string name="water_info_4">
         "I 1992 vedtok FNs generalforsamling at 22. mars skulle være Verdens vanndag. Hvert år setter UN Water, enheten som koordinerer FNs arbeid med vann og sanitær, et nytt tema for vanndagen."
     </string>
+
+    <!-- Strings containing information source-->
+    <string name="water_info_source_0">
+        "Kilde FN"
+    </string>
+    <string name="water_info_source_1">
+        "Kilde FN"
+    </string>
 </resources>

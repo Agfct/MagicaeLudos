@@ -15,7 +15,7 @@
 
     <ImageView
         android:id="@+id/infoImage"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/teardrop"
         android:layout_above="@+id/infoParagraph"
@@ -28,6 +28,13 @@
         android:text="@string/water_info_0"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/infoSource"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/water_info_source_0"
+        android:paddingBottom="20dp"
+        android:layout_above="@+id/txtTotalWater"/>
     <TextView
         android:id="@+id/txtTotalWater"
         android:layout_width="wrap_content"
