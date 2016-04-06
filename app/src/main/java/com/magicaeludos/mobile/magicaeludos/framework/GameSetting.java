@@ -54,6 +54,7 @@ public class GameSetting {
             usableObstacles.add(ObstacleType.STONE);
             usableObstacles.add(ObstacleType.LOG);
             usableObstacles.add(ObstacleType.PUDDLE);
+            usableObstacles.add(ObstacleType.TREE);
         }else{
             gameTime = 60;
             gameSpeed = 12;

@@ -21,7 +21,7 @@ public abstract class MotherActivity extends FragmentActivity {
     private int screenWidth;
     private int screenHeight;
     private static Village village;
-    private static boolean developerModeOn = true;
+    private static boolean developerModeOn = false;
 //    private static Assets assets;
 
     @Override

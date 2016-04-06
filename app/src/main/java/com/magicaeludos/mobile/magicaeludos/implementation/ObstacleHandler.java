@@ -36,6 +36,8 @@ public class ObstacleHandler {
     private final double hitboxHeightLog = 0.3;
     private final double hitboxWidthPuddle = 0.1;
     private final double hitboxHeightPuddle= 0.0;
+    private final double hitboxWidthTree = 0.1;
+    private final double hitboxHeightTree= 0.0;
 
     //Obstacle sounds (SFX)
     private SFX sfx_waterDrop;
@@ -81,6 +83,10 @@ public class ObstacleHandler {
                     break;
                 case PUDDLE:
                     o = createPuddle(oProb.getLane());
+                    obstacles.add(o);
+                    break;
+                case TREE:
+                    o = createTree(oProb.getLane());
                     obstacles.add(o);
                     break;
                 default:
@@ -166,8 +172,14 @@ public class ObstacleHandler {
                         break;
                 }
             }
-            else if (content.getPlayer().getJumpVariable() == 0) {
-                //TODO: Add obstacle you cannot jump over here
+            else {
+                switch (obstacle.getType()) {
+                    case TREE:
+                        sfx_wood.play();
+                        ObstacleHit(obstacle.getType());
+                        obstacle.setCollition(true);
+                        break;
+                }
             }
         }
     }
@@ -211,6 +223,14 @@ public class ObstacleHandler {
                 BitmapFactory.decodeResource(content.getActivity().getResources(),
                         R.drawable.puddle),lane, 2, 2, ObstacleType.PUDDLE);
         o.setHitBoxDifferences(hitboxWidthPuddle, hitboxHeightPuddle);
+        return o;
+    }
+
+    private Obstacle createTree(int lane){
+        Obstacle o = new Obstacle(content,
+                BitmapFactory.decodeResource(content.getActivity().getResources(),
+                        R.drawable.tree),lane, 2, 2, ObstacleType.TREE);
+        o.setHitBoxDifferences(hitboxWidthTree, hitboxHeightTree);
         return o;
     }
 
