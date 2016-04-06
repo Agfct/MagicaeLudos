@@ -55,6 +55,16 @@ public class GameSetting {
             usableObstacles.add(ObstacleType.LOG);
             usableObstacles.add(ObstacleType.PUDDLE);
             usableObstacles.add(ObstacleType.TREE);
+        }else if(gameDifficulty == 3){
+            gameTime = 60;
+            gameSpeed = 10;
+            waterDropAmount = 20;
+            water = new Water(0,village.getBucketSize());
+            usableObstacles.add(ObstacleType.WATER_DROP);
+            usableObstacles.add(ObstacleType.STONE);
+            usableObstacles.add(ObstacleType.LOG);
+            usableObstacles.add(ObstacleType.PUDDLE);
+            usableObstacles.add(ObstacleType.TREE);
         }else{
             gameTime = 60;
             gameSpeed = 12;

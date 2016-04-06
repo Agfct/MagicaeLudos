@@ -28,14 +28,14 @@
         android:onClick="goToGameActivity"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
-    <Button
+    <ImageButton
         android:id="@+id/btnVillageActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Village"
+        android:src="@drawable/village_ikon"
+        android:background="@drawable/village_ikon"
         android:onClick="goToVillageActivity"
+        android:layout_marginTop="88dp"
         android:layout_below="@+id/btnGameActivity"
-        android:layout_alignLeft="@+id/btnGameActivity"
-        android:layout_alignStart="@+id/btnGameActivity"
-        android:layout_marginTop="49dp"/>
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
