@@ -1,7 +1,5 @@
 package com.magicaeludos.mobile.magicaeludos.framework;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -41,7 +39,7 @@ public class Probability {
     private boolean dropCollect = true;
 
     private double puddleRate = 2;
-    private int puddleLength = 10;
+    private int puddleLength = 20;
     private int puddleWidth = 2;
     private int puddlePri = 7;
     private boolean puddleCollect = false;
@@ -51,13 +49,14 @@ public class Probability {
     private int maxLaneBlock = 2; /*Maximal allowed number of lanes blocked at the same time*/
     private Set<ObstacleType> obs; /*List of obstacles to sample from*/
 
-
+/*this is a test*/
 
     /*Random rand = new Random();
     return  Math.log(1-rand.nextDouble())/(-rate);*/
 
-    public Probability(Set<ObstacleType> obstacles){
+    public Probability(Set<ObstacleType> obstacles, int gameDifficuly){
         this.obs = obstacles;
+        setDifficultyParameters(gameDifficuly);
     }
 
     public void setRockRate(double rate){rockRate = rate;}
@@ -73,6 +72,21 @@ public class Probability {
     public void setPuddleLength(int length){puddleLength = length;}
     public void setPuddlePri(int pri){puddlePri = pri;}
     public void setMaxLaneBlock(int lanes){maxLaneBlock = lanes;}
+
+    public void setDifficultyParameters(int gameDifficulty){
+        if(gameDifficulty == 1){
+            /*difficulty is default*/
+        }
+        else if(gameDifficulty ==2){
+            rockRate = 3;   rockLength = 18;
+
+            logRate = 3;  logLength = 18;
+
+            dropRate = 2;   dropLength = 8;
+
+            puddleRate = 4; puddleLength = 20;
+        }
+    }
 
     public double probExp(double rate, double timeStep){
         /*Using a exponential arrival times with given rate, compute the probability that
@@ -165,7 +179,7 @@ public class Probability {
 
             if(maxLaneBlock == 3) {
                 if (lanesOpen > 1) {
-                    if(obs.contains(ObstacleType.LOG)) {
+                    if (obs.contains(ObstacleType.LOG)) {
                         if (sendObstacle(logRate)) {obstacleProbProbs.add(new ObstacleProb(ObstacleType.LOG, logRate, logWidth, logLength, logPri, logCollect));}
                     }
                     if(obs.contains(ObstacleType.PUDDLE)){
@@ -379,6 +393,7 @@ public class Probability {
         }
     }
     public ObstacleProb sendObstacles(){
+
         /*Need also to update lanes before this*/
         updateLanes();
 
@@ -412,8 +427,7 @@ public class Probability {
         /*Set the number of frames the lane is supposed to be closed based on the
         obstacle that is sent to the lane*/
             blockLanes(chosen);
-            Log.w("chosen: ", chosen.printObstacle());
-            Log.w("info: ", lane1+", "+lane2+", "+lane3+", "+lane1Block+", "+lane2Block+", "+lane3Block);
+            //Log.w("chosen: ", chosen.printObstacle());
             return chosen;
         }
     }
