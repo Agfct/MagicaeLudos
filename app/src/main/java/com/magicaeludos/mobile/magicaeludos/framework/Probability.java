@@ -44,7 +44,6 @@ public class Probability {
     private int puddlePri = 7;
     private boolean puddleCollect = false;
 
-
     private double timeStep = 1.0/30.0; /*Time steps in seconds*/
     private int maxLaneBlock = 2; /*Maximal allowed number of lanes blocked at the same time*/
     private Set<ObstacleType> obs; /*List of obstacles to sample from*/
