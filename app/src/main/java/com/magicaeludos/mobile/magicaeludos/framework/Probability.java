@@ -39,7 +39,7 @@ public class Probability {
     private boolean dropCollect = true;
 
     private double puddleRate = 2;
-    private int puddleLength = 20;
+    private int puddleLength = 10;
     private int puddleWidth = 2;
     private int puddlePri = 7;
     private boolean puddleCollect = false;
@@ -77,13 +77,24 @@ public class Probability {
             /*difficulty is default*/
         }
         else if(gameDifficulty ==2){
-            rockRate = 3;   rockLength = 18;
+            rockRate = 5;   rockLength = 15;
 
-            logRate = 3;  logLength = 18;
+            logRate = 5;  logLength = 15;
 
-            dropRate = 2;   dropLength = 8;
+            dropRate = 2;   dropLength = 6;
 
-            puddleRate = 4; puddleLength = 20;
+            puddleRate = 2; puddleLength = 8;
+        }
+        else if(gameDifficulty ==3){
+            rockRate = 4;   rockLength = 18;
+
+            logRate = 4;  logLength = 18;
+
+            dropRate = 2.5;   dropLength = 6;
+
+            puddleRate = 2; puddleLength = 8;
+
+            maxLaneBlock = 3;
         }
     }
 
