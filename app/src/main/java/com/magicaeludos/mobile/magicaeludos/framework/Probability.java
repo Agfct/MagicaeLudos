@@ -49,7 +49,7 @@ public class Probability {
     private int maxLaneBlock = 2; /*Maximal allowed number of lanes blocked at the same time*/
     private Set<ObstacleType> obs; /*List of obstacles to sample from*/
 
-
+/*this is a test*/
 
     /*Random rand = new Random();
     return  Math.log(1-rand.nextDouble())/(-rate);*/
