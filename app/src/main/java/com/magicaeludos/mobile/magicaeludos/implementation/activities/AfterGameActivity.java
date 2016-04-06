@@ -47,9 +47,12 @@ public class AfterGameActivity extends MotherActivity {
                 waterInfoSrc.setText(R.string.water_info_source_0);break;
             case 1: waterInfoTxT.setText(R.string.water_info_1); waterInfoImage.setImageResource(R.drawable.img_water_info_1);
                 waterInfoSrc.setText(R.string.water_info_source_1); break;
-            case 2: waterInfoTxT.setText(R.string.water_info_2); waterInfoImage.setImageResource(R.drawable.img_water_info_2); break;
-            case 3: waterInfoTxT.setText(R.string.water_info_3); waterInfoImage.setImageResource(R.drawable.img_water_info_3); break;
-            case 4: waterInfoTxT.setText(R.string.water_info_4); waterInfoImage.setImageResource(R.drawable.img_water_info_4); break;
+            case 2: waterInfoTxT.setText(R.string.water_info_2); waterInfoImage.setImageResource(R.drawable.img_water_info_2);
+                waterInfoSrc.setText(R.string.water_info_source_2);break;
+            case 3: waterInfoTxT.setText(R.string.water_info_3); waterInfoImage.setImageResource(R.drawable.img_water_info_3);
+                waterInfoSrc.setText(R.string.water_info_source_3);break;
+            case 4: waterInfoTxT.setText(R.string.water_info_4); waterInfoImage.setImageResource(R.drawable.img_water_info_4);
+                waterInfoSrc.setText(R.string.water_info_source_4);break;
         }
 
     }
