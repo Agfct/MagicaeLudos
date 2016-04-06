@@ -39,8 +39,8 @@ public class Probability {
     private boolean dropCollect = true;
 
     private double puddleRate = 2;
-    private int puddleLength = 10;
-    private int puddleWidth = 1;
+    private int puddleLength = 20;
+    private int puddleWidth = 2;
     private int puddlePri = 7;
     private boolean puddleCollect = false;
 
@@ -48,14 +48,16 @@ public class Probability {
     private double timeStep = 1.0/30.0; /*Time steps in seconds*/
     private int maxLaneBlock = 2; /*Maximal allowed number of lanes blocked at the same time*/
     private Set<ObstacleType> obs; /*List of obstacles to sample from*/
+    private int gameDifficulty;
 
 /*this is a test*/
 
     /*Random rand = new Random();
     return  Math.log(1-rand.nextDouble())/(-rate);*/
 
-    public Probability(Set<ObstacleType> obstacles){
+    public Probability(Set<ObstacleType> obstacles, int gameDifficuly){
         this.obs = obstacles;
+        this.gameDifficulty = gameDifficuly;
     }
 
     public void setRockRate(double rate){rockRate = rate;}
@@ -374,6 +376,7 @@ public class Probability {
         }
     }
     public ObstacleProb sendObstacles(){
+
         /*Need also to update lanes before this*/
         updateLanes();
 
