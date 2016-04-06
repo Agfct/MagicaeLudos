@@ -1,5 +1,7 @@
 package com.magicaeludos.mobile.magicaeludos.framework;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -155,13 +157,19 @@ public class Probability {
                     if (obs.contains(ObstacleType.LOG)) {
                         if (sendObstacle(logRate)) {obstacleProbProbs.add(new ObstacleProb(ObstacleType.LOG, logRate, logWidth, logLength, logPri, logCollect));}
                     }
+                    if(obs.contains(ObstacleType.PUDDLE)){
+                        if(sendObstacle(puddleRate)){obstacleProbProbs.add(new ObstacleProb(ObstacleType.PUDDLE, puddleRate, puddleWidth, puddleLength, puddlePri, puddleCollect));}
+                    }
                 }
             }
 
             if(maxLaneBlock == 3) {
                 if (lanesOpen > 1) {
-                    if (obs.contains(ObstacleType.LOG)) {
+                    if(obs.contains(ObstacleType.LOG)) {
                         if (sendObstacle(logRate)) {obstacleProbProbs.add(new ObstacleProb(ObstacleType.LOG, logRate, logWidth, logLength, logPri, logCollect));}
+                    }
+                    if(obs.contains(ObstacleType.PUDDLE)){
+                        if(sendObstacle(puddleRate)){obstacleProbProbs.add(new ObstacleProb(ObstacleType.PUDDLE, puddleRate, puddleWidth, puddleLength, puddlePri, puddleCollect));}
                     }
                 }
             }
@@ -173,9 +181,6 @@ public class Probability {
         if(lanesOpen>0) {
             if(obs.contains(ObstacleType.STONE)) {
                 if (sendObstacle(rockRate)){obstacleProbProbs.add(new ObstacleProb(ObstacleType.STONE, rockRate, rockWidth, rockLength, rockPri, rockCollect));}
-            }
-            if(obs.contains(ObstacleType.PUDDLE)){
-                if(sendObstacle(puddleRate)){obstacleProbProbs.add(new ObstacleProb(ObstacleType.PUDDLE, puddleRate, puddleWidth, puddleLength, puddlePri, puddleCollect));}
             }
         }
         //Sample collectables:
@@ -407,7 +412,8 @@ public class Probability {
         /*Set the number of frames the lane is supposed to be closed based on the
         obstacle that is sent to the lane*/
             blockLanes(chosen);
-            //Log.w("chosen: ", chosen.printObstacle());
+            Log.w("chosen: ", chosen.printObstacle());
+            Log.w("info: ", lane1+", "+lane2+", "+lane3+", "+lane1Block+", "+lane2Block+", "+lane3Block);
             return chosen;
         }
     }
