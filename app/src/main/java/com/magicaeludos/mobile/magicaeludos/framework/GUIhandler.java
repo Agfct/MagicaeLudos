@@ -27,11 +27,16 @@ public class GUIhandler {
     private int barY2;
     private int barY;
     private int barX;
+    private int waterBarY2;
+    private int waterBarHeight;
+    private int barWaterBottom = 67;
+    private int barWaterTop = 45;
     private int pBarY2;
     private int pBarY;
     private int pBarX;
     private int pBarX2;
     private int barHeight;
+    private int pBarVillageHeight = 30;
     private int plBarY2;
     private int plBarY;
     private int plYRatio;
@@ -59,6 +64,7 @@ public class GUIhandler {
     private Rect rectDst_player;
 
 
+
     public GUIhandler (GameContent content, Grid grid){
         this.content = content;
         this.activity = content.getActivity();
@@ -69,13 +75,22 @@ public class GUIhandler {
         this.barY2 = grid.getRowHeight()*4;
         this.barY = grid.getRowHeight()*2;
         this.barX = (grid.getColWidth()*3) + (grid.getColWidth()/2);
+        this.barWaterBottom = (int)((double)barWaterBottom / (432/(double)(barY2 - barY)));
+        this.barWaterTop = (int)((double)barWaterTop / (432/(double)(barY2 - barY)));
+        this.waterBarHeight = (barY2 - barY) - (barWaterTop+barWaterBottom);
+        Log.w("GUIhandler","WaterBarHeight" + waterBarHeight + " BarY2: "+ barY2);
+        this.waterBarY2= barY2-barWaterBottom;
+        Log.w("GUIhandler","WaterBarY2 " + waterBarY2 + " BarWaterBottom: "+ barWaterBottom);
+
 
         //Setting some values for progress bar
         this.pBarY2 = grid.getRowHeight()*4;
         this.pBarY = grid.getRowHeight()*2;
         this.barHeight = pBarY2 - plBarY;
         this.pBarX = 0;
-        this.pBarX2 = grid.getColWidth()/2;;
+        this.pBarX2 = grid.getColWidth()/2;
+        //Given that default village icon height is pBarVillageHeight and largest image size is 144
+        this.pBarVillageHeight = (int)((double)pBarVillageHeight / (144.0/(double)barHeight));
 
         //Setting some values for player icon
         this.plYRatio = grid.getRowHeight()*4 - ((grid.getRowHeight()*3) + grid.getInnerHeight());
@@ -101,8 +116,8 @@ public class GUIhandler {
     private void initializeRects(){
         rectSrc_waterBar = new Rect(0,0,img_waterBar.getWidth(),img_waterBar.getHeight());
         rectDst_waterBar = new Rect(barX,barY,grid.getScreenWidth(), barY2);
-        rectSrc_water = new Rect(0,0,img_waterBar.getWidth(),img_waterBar.getHeight());
-        rectDst_water = new Rect((grid.getColWidth()*3) + (grid.getColWidth()/2),grid.getRowHeight()*2,grid.getScreenWidth(), barY2);
+        rectSrc_water = new Rect(0,0,img_water.getWidth(),img_water.getHeight());
+        rectDst_water = new Rect((grid.getColWidth()*3) + (grid.getColWidth()/2),grid.getRowHeight()*2,grid.getScreenWidth(), waterBarY2);
         rectSrc_progressBar = new Rect(0,0,img_progressBar.getWidth(),img_progressBar.getHeight());
         rectDst_progressBar = new Rect(pBarX,pBarY,pBarX2, pBarY2);
         rectSrc_player = new Rect(0,0,img_player.getWidth(),img_player.getHeight());
@@ -118,16 +133,15 @@ public class GUIhandler {
     //Changes the size of the rectangle depending on the amount of water
     private void calculateWaterAmount(){
         double numberOfBars = 0;
-        double barHeight = barY2 - barY;
         double maxWaterAmount = water.getMaxAmountOfWater();
         try {
-            numberOfBars = (barHeight / maxWaterAmount);
+            numberOfBars = (waterBarHeight / maxWaterAmount);
         }catch (ArithmeticException e){
             Log.w("GUIhandler","DIVISION BY ZERO: Max Amount of water is 0");
         }
         //This line chooses the height of the rect, the Math.min is to prevent overflow.
         int height = Math.min((int) (numberOfBars * water.getTotalWater()), (int) (numberOfBars * maxWaterAmount));
-        rectDst_water = new Rect(barX, barY2 - height,grid.getScreenWidth(), barY2);
+        rectDst_water = new Rect(barX, waterBarY2 - height,grid.getScreenWidth(), waterBarY2);
 
         //Set dirty amount of the image
         int dirtyPercentage = water.getDirtyWaterPercentage();
@@ -144,7 +158,7 @@ public class GUIhandler {
         }
         Log.w("GUIHandler", "WaterColor"+waterColor);
         ColorFilter filter = new LightingColorFilter(0, 0); //TODO: Fix to add correct color value
-        waterPaint.setColorFilter(filter);
+//        waterPaint.setColorFilter(filter);
 
     }
 
@@ -155,14 +169,16 @@ public class GUIhandler {
         Log.w("GUIHnalder", "TimeLeft: " + timeLeft);
         double maxTime =  content.getGameSetting().getGameTime();
         Log.w("GUIHnalder","Formel: "+ (barY2 *(1-((maxTime-timeLeft)/maxTime))));
-        plBarY2 = (int)(barY *(1-((maxTime-timeLeft)/maxTime)))+ (barHeight/2);
+//        plBarY2 = (int)((barY-pBarVillageHeight) * (1-((maxTime-timeLeft)/maxTime))+ (barHeight/2)-pBarVillageHeight);
+        Log.w("GUIhandler","BarHeight:" + barHeight+ "barY: " + barY);
+        plBarY2 = (int)((((double)barHeight/2)-(double)pBarVillageHeight) * (1-((maxTime-timeLeft)/maxTime)) + ((double)barY + (double)pBarVillageHeight));
         plBarY = plBarY2-plYRatio;
         rectDst_player = new Rect(plBarX, plBarY,plBarX2, plBarY2);
     }
     public void draw(Canvas canvas){
         //Draws the water bar: BackGround, the actuall water, the bar itself
         canvas.drawBitmap(img_waterBar_back,rectSrc_waterBar,rectDst_waterBar,paint);
-        canvas.drawBitmap(img_water,rectSrc_water,rectDst_water,waterPaint);
+        canvas.drawBitmap(img_water, rectSrc_water, rectDst_water, waterPaint);
         canvas.drawBitmap(img_waterBar,rectSrc_waterBar,rectDst_waterBar,paint);
 
         //Draws the progressbar

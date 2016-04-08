@@ -11,7 +11,11 @@ import com.magicaeludos.mobile.magicaeludos.framework.MotherActivity;
 
 import java.util.Random;
 
+
 public class AfterGameActivity extends MotherActivity {
+    private double time;
+    private double delay = 2000; //A delay on 1000 = 1 sec
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,17 +23,32 @@ public class AfterGameActivity extends MotherActivity {
 
         setWaterInfo();
 
+        time = System.currentTimeMillis();
+
         int cleanWater = this.getIntent().getIntExtra("cleanWater", 0);
         int dirtyWater = this.getIntent().getIntExtra("dirtyWater", 0);
         double dirtyWaterMultiplier = this.getIntent().getDoubleExtra("dirtyWaterMultiplier", 0);
         int totalWater = cleanWater + (int)(dirtyWater * dirtyWaterMultiplier);
+        TextView totalCleanWater = (TextView) findViewById(R.id.intCleanWaterAmount);
+        TextView totalDirtyWater = (TextView) findViewById(R.id.intDirtyWaterAmount);
         TextView totalWaterAmount = (TextView) findViewById(R.id.intTotalWaterAmount);
-        totalWaterAmount.setText(cleanWater + " + "+dirtyWater+"*"+dirtyWaterMultiplier+" = "+totalWater+ " l");
+//        totalWaterAmount.setText(cleanWater + " + " + dirtyWater + "*" + dirtyWaterMultiplier + " = "+totalWater+ " l");
+        totalCleanWater.setText(cleanWater+" l");
+        totalDirtyWater.setText(dirtyWater + " l * " + dirtyWaterMultiplier);
+        totalWaterAmount.setText(totalWater+" l");
     }
 
     public void goToMainActivity(View view){
         Log.w("AfterGameActivity", "Going to the MainMenu");
+        Log.w("AfterGameActivity", "TimeElapsed: " + (System.currentTimeMillis() - time) + " > "+delay);
+        if((System.currentTimeMillis() - time) > delay)
         goTo(MainActivity.class);
+    }
+
+    public void goToVillageActivity(View view){
+        Log.w("AfterGameActivity", "Going to the Village");
+        if((System.currentTimeMillis() - time) > delay)
+        goTo(VillageActivity.class);
     }
 
     //Randomly selects a water info from the database to display

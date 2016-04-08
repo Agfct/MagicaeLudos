@@ -19,7 +19,7 @@ public class Water {
 
 //TODO: CHECK THIS if its correct. (Water amount was 300 on the first run. 200 on second run)
     public void addCleanWater(int cleanWaterAmount){
-        addDirtyWater(cleanWaterAmount);
+        addDirtyWater(cleanWaterAmount*50);
         int totalWater = cleanWater + dirtyWater;
         int spaceLeft = (maxAmountOfWater - totalWater);
         if(cleanWaterAmount >= 0){
