@@ -94,8 +94,8 @@ public class GUIhandler {
         img_waterBar_back = BitmapFactory.decodeResource(activity.getResources(), R.drawable.water_bar);
         img_water = BitmapFactory.decodeResource(activity.getResources(), R.drawable.blue_water);
 
-        img_progressBar = BitmapFactory.decodeResource(activity.getResources(), R.drawable.water_bar);
-        img_player = BitmapFactory.decodeResource(activity.getResources(), R.drawable.blue_water);
+        img_progressBar = BitmapFactory.decodeResource(activity.getResources(), R.drawable.village_tracking);
+        img_player = BitmapFactory.decodeResource(activity.getResources(), R.drawable.avatar);
     }
 
     private void initializeRects(){
@@ -143,7 +143,7 @@ public class GUIhandler {
             waterColor = 255;
         }
         Log.w("GUIHandler", "WaterColor"+waterColor);
-        ColorFilter filter = new LightingColorFilter(waterColor, 0);
+        ColorFilter filter = new LightingColorFilter(0, 0); //TODO: Fix to add correct color value
         waterPaint.setColorFilter(filter);
 
     }

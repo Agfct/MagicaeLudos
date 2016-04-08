@@ -27,6 +27,9 @@ public class ObstacleHandler {
     private GameContent content;
     private Probability prop;
 
+    //Amount of water multiplied
+    private final int WATERMULTIPLIER = 5;
+
 //    hitbox sizes
     private final double hitboxWidthWater = 0.2;
     private final double hitboxHeightWater = 0.2;
@@ -247,7 +250,7 @@ public class ObstacleHandler {
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        content.water.addCleanWater(-content.getWaterDropAmount() * 5); //TODO: Create a variable
+        content.water.removeWater(content.getWaterDropAmount() * WATERMULTIPLIER);
         content.incrementHitCounter();
     }
 

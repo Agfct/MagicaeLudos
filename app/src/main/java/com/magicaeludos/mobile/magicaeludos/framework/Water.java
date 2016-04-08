@@ -73,6 +73,16 @@ public class Water {
         Log.w("Water", "Added dirty water: "+ dirtyWater + " totalWater "+ totalWater);
     }
 
+    //Removes both clean and dirty water
+    public void removeWater(int removedWater){
+        int cleanWaterRemoved = (int)((double)removedWater*((double)getCleanWaterPercentage()/100));
+        addCleanWater(-cleanWaterRemoved);
+//        int dirtyWaterRemoved = (int)((double)removedWater*((double)getDirtyWaterPercentage()/100));
+        int dirtyWaterRemoved = removedWater - cleanWaterRemoved;
+        addDirtyWater(-dirtyWaterRemoved);
+        Log.w("Water","removedWater: "+ removedWater+ " CleanWaterRemoved: "+ cleanWaterRemoved + " dirtyWaterRemoved: "+ dirtyWaterRemoved);
+    }
+
     private void setDirtyWater(int dirtyWater){
         this.dirtyWater = dirtyWater;
     }
@@ -90,9 +100,15 @@ public class Water {
     }
 
     public int getDirtyWaterPercentage(){
-        Log.w("Water","max: " +getMaxAmountOfWater()+ " dirty: " + getDirtyWater());
         if(getTotalWater() > 0) {
             return (int)(((double)getDirtyWater() / (double)getTotalWater())*100);
+        }else{
+            return 0;
+        }
+    }
+    public int getCleanWaterPercentage(){
+        if(getTotalWater() > 0) {
+            return (int)(((double)getCleanWater() / (double)getTotalWater())*100);
         }else{
             return 0;
         }

@@ -90,7 +90,7 @@
         android:id="@+id/cleaningStationUpgrade1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/uppgrade_bucket_1"
+        android:src="@drawable/purifier_1"
         android:layout_alignTop="@+id/bucketUpgrade2"
         android:layout_toLeftOf="@+id/valueCleaningStation"
         android:layout_toStartOf="@+id/valueCleaningStation" />
@@ -108,7 +108,7 @@
         android:id="@+id/cleaningStationUpgrade2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/uppgrade_bucket_1"
+        android:src="@drawable/purifier_2"
         android:layout_alignTop="@+id/bucketUpgrade3"
         android:layout_alignLeft="@+id/cleaningStationUpgrade1"
         android:layout_alignStart="@+id/cleaningStationUpgrade1" />
