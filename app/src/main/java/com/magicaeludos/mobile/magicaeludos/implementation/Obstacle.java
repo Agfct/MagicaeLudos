@@ -15,7 +15,6 @@ import com.magicaeludos.mobile.magicaeludos.implementation.activities.GameConten
 public class Obstacle extends GameObject {
 //    private Bitmap image;
     private double hitBoxDifferenceFactorWidth, hitBoxDifferenceFactorHeight;
-    private double y;
     private double speed;
     private Rect srcRect;
     private Rect destRect;
@@ -46,9 +45,9 @@ public class Obstacle extends GameObject {
 
     public Rect getDestRect(){return destRect;}
 
-    public double getY(){return y;}
+    public double getObstacleY(){return getY();}
 
-    public void setY(double y){this.y = y;}
+    public void setObstacleY(double y){setY(y);}
 
     public ObstacleType getType(){return obstacleType;}
 
