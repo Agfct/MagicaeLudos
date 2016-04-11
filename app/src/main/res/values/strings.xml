@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">MagicaeLudos</string>
 
+    <string name="credits">Anders Lunde \n Morten Alver Normann \n Thea Hove Johansen \n Andreas Malmgård \n Marcus Nickelsen \n Anna Karina Magnussen</string>
+
     <!-- Strings that must not change-->
     <string name="profile_preferences">com.magicaeludos.profile</string>
     <string name="firstTime">com.magicaeludos.firstTime</string>
