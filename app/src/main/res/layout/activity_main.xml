@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:text="Magicae Ludos"
         android:textSize="@dimen/large_text"
+        android:textColor="@color/black"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="75dp"/>
@@ -24,8 +25,8 @@
         android:id="@+id/btnGameActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/teardrop"
-        android:background="@drawable/teardrop"
+        android:src="@drawable/play_img"
+        android:background="@drawable/play_img"
         android:onClick="goToGameActivity"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
@@ -33,12 +34,12 @@
         android:id="@+id/btnVillageActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/village_ikon"
-        android:background="@drawable/village_ikon"
+        android:src="@drawable/village_img"
+        android:background="@drawable/village_img"
         android:onClick="goToVillageActivity"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="50dp"
         android:layout_below="@+id/btnGameActivity"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"/>
     <Button
         android:id="@+id/btnCredits"
         android:layout_width="wrap_content"
