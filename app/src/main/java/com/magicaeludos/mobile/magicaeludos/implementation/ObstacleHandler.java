@@ -261,7 +261,7 @@ public class ObstacleHandler {
                 content.water.addCleanWater(content.getWaterDropAmount());
                 break;
             case PUDDLE:
-                content.water.addDirtyWater(content.getWaterDropAmount() / 10);
+                content.water.addDirtyWater((double)content.getWaterDropAmount() / 5.0);
                 break;
         }
     }

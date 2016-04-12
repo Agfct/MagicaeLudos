@@ -7,8 +7,8 @@ import android.util.Log;
  */
 public class Water {
 
-    private int cleanWater;
-    private int dirtyWater;
+    private double cleanWater;
+    private double dirtyWater;
     private int maxAmountOfWater;
 
     public Water (int startingAmount, int maxAmountOfWater){
@@ -17,11 +17,9 @@ public class Water {
         this.maxAmountOfWater = maxAmountOfWater+100;
     }
 
-//TODO: CHECK THIS if its correct. (Water amount was 300 on the first run. 200 on second run)
-    public void addCleanWater(int cleanWaterAmount){
-        addDirtyWater(cleanWaterAmount*50);
-        int totalWater = cleanWater + dirtyWater;
-        int spaceLeft = (maxAmountOfWater - totalWater);
+    public void addCleanWater(double cleanWaterAmount){
+        double totalWater = cleanWater + dirtyWater;
+        double spaceLeft = (maxAmountOfWater - totalWater);
         if(cleanWaterAmount >= 0){
             if( cleanWaterAmount > spaceLeft){
                 this.cleanWater += spaceLeft;
@@ -51,10 +49,10 @@ public class Water {
         this.cleanWater = cleanWater;
     }
 
-    public void addDirtyWater(int dirtyWaterAmount){
+    public void addDirtyWater(double dirtyWaterAmount){
         Log.w("Dirty","DIRTY: "+ dirtyWaterAmount);
-        int totalWater = cleanWater + dirtyWater;
-        int spaceLeft = (maxAmountOfWater - totalWater);
+        double totalWater = cleanWater + dirtyWater;
+        double spaceLeft = (maxAmountOfWater - totalWater);
         if(dirtyWaterAmount >= 0){
             if( dirtyWaterAmount > spaceLeft){
                 this.dirtyWater += spaceLeft;
@@ -88,15 +86,15 @@ public class Water {
     }
 
     public int getCleanWater() {
-        return cleanWater;
+        return (int)cleanWater;
     }
 
     public int getDirtyWater() {
-        return dirtyWater;
+        return (int)dirtyWater;
     }
 
     public int getTotalWater(){
-        return cleanWater + dirtyWater;
+        return (int)cleanWater + (int)dirtyWater;
     }
 
     public int getDirtyWaterPercentage(){

@@ -17,7 +17,7 @@ public class Village {
     private FileIO fileIO;
 
     //Audio
-    private int bgmLevel = 30;
+    private int bgmLevel = 40;
     private int sfxLevel = 50;
     private boolean bgmSound = true;
     private boolean sfxSound = true;
@@ -128,7 +128,6 @@ public class Village {
     }
 
     //Upgrades based on the amout of villagers
-    //TODO: Improve method ?
     private void checkUpgrades(){
         Log.w("Village","Before UpppgradeNr. 1: " + bucketUpgrade + " 2: "+waterCleanerUpgrade);
         if(nrOfVillagers >= 5){
@@ -178,13 +177,13 @@ public class Village {
     //UPGRADES:
     public int getBucketSize(){
         if (bucketUpgrade == 0){
-            return 200;
+            return 100;
         }else if (bucketUpgrade == 1){
-            return 400;
+            return 200;
         }else if (bucketUpgrade == 2){
-            return 800;
+            return 400;
         }else if (bucketUpgrade == 3){
-            return 1600;
+            return 800;
         }
         return 0;
     }
