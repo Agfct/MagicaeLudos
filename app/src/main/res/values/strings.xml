@@ -28,32 +28,32 @@
         "800 children under five years of age die every day from diarrhea due to lack of safe water, sanitation and basic hygiene."
     </string>
     <string name="water_info_1">
-        "I følge FN trenger hver og en av oss mellom 20 - 50 liter vann om dagen for å sikre grunnleggende behov for drikke, matlaging og renhold. Nordmenn bruker i snitt 200 liter vann pr dag. Det er 20 ganger så mye som en landsbybeboer i Kenya."
+        "According to the UN, the required amount of water to ensure basic human needs such as drinking, cooking and cleaning is 20 – 50 litres per person each day. A Norwegian citizen uses on average 200 litres of water per day. That is 20 times the daily usage of a villager in Kenya."
     </string>
     <string name="water_info_2">
-        "Skittent vann er en av hovedårsakene til at mennesker blir syke, og problemet er størst i fattige områder. Tyfoidfeber, kolera, difteri, diaré og hepatitt er eksempler på sykdommer som smitter gjennom skittent drikkevann."
+        "Polluted water is one of the main causes of human disease, and the problem is most severe in poor areas. Typhoid fever, cholera, diphtheria, diarrhoea and hepatitis are examples of diseases that are transmitted through polluted drinking water."
     </string>
     <string name="water_info_3">
-        "FNs bærekraftmål nr. 6 er som følger: “Sikre bærekraftig forvaltning av, og tilgang til, rent vann og gode sanitærforhold for alle.” Dette kommer av at millioner av mennesker dør hvert år av sykdommer de får fordi de ikke har tilgang til rent vann og toalett. Flesteparten av disse er barn."
+        "Clean drinking water is part of the UN’s sustainable development goals and reads: “Ensure access to water and sanitation for all.” This goal exists because of the fact that millions of people die each year of diseases due to the lack of access to clean drinking water and good sanitation. Most of these people are children."
     </string>
     <string name="water_info_4">
-        "I 1992 vedtok FNs generalforsamling at 22. mars skulle være Verdens vanndag. Hvert år setter UN Water, enheten som koordinerer FNs arbeid med vann og sanitær, et nytt tema for vanndagen."
+        "In 1992, the UN General Assembly decided that the 22nd of March should be the World Water Day. Every year, UN Water (the unit coordinating UN related work on water and sanitation) decide on a new theme for the World Water Day. In 2016, the theme was “Water and Jobs.”"
     </string>
 
     <!-- Strings containing information source-->
     <string name="water_info_source_0">
-        "Kilde: UNICEF (blogs.unicef.org)"
+        "Source: UNICEF (blogs.unicef.org)"
     </string>
     <string name="water_info_source_1">
-        "Kilde: UNICEF (unicef.no/rent-vann-sanitaer)"
+        "Source: UNICEF (unicef.no/rent-vann-sanitaer)"
     </string>
     <string name="water_info_source_2">
-        "Kilde: FN (fn.no/Tema/Vann)"
+        "Source: United Nations (fn.no/Tema/Vann)"
     </string>
      <string name="water_info_source_3">
-        "Kilde: FN (fn.no/Tema/Vann)"
+        "Source: United Nations (fn.no/Tema/Vann)"
     </string>
      <string name="water_info_source_4">
-        "Kilde: FN (fn.no/Tema/Vann)"
+        "Source: United Nations (fn.no/Tema/Vann)"
     </string>
 </resources>

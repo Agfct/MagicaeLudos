@@ -38,7 +38,7 @@ public class GameSetting {
 
         Log.w("GameSettings","Difficulty: " +gameDifficulty+ " bucketSize: " + village.getBucketSize());
         if(gameDifficulty == 1){
-            gameTime = 60;
+            gameTime = 3;
             gameSpeed = 10;
             waterDropAmount = 5;
             water = new Water(0,village.getBucketSize());

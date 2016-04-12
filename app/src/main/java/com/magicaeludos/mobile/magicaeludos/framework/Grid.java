@@ -108,6 +108,7 @@ public class Grid {
             case 1:return lane1;
             case 2:return lane2;
             case 3:return lane3;
+            case 4:return new Point(-135,0);
         }
         //If a laneNr is not between 1-3 it returns the point of lane 1
         return lane1;
