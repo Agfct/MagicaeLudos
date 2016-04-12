@@ -45,9 +45,9 @@ public class VillageActivity extends MotherActivity {
         TextView currentDay = (TextView) findViewById(R.id.valueCurrentDay);
         TextView runsLeftToday = (TextView) findViewById(R.id.valueRunsLeftToday);
 
-        totalWater.setText(Integer.toString(village.getTotalWater()));
+        totalWater.setText(Integer.toString(village.getTotalWater())+" L");
         nrOfVillagers.setText(Integer.toString(village.getNrOfVillagers()));
-        bestRun.setText(Integer.toString(village.getMostWaterInOneRun()));
+        bestRun.setText(Integer.toString(village.getMostWaterInOneRun())+" L");
         nrOfRuns.setText(Integer.toString(village.getTotalAmountOfRuns()));
         currentDay.setText(Integer.toString(village.getCurrentDay()));
         runsLeftToday.setText(Integer.toString(village.getRunsLeftToday()));

@@ -52,7 +52,7 @@
         android:id="@+id/txtVillagers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="# Villagers:"
+        android:text="Villagers:"
         android:textSize="@dimen/medium_text"
         android:layout_below="@+id/txtTotalWater"
         android:layout_alignRight="@+id/txtTotalWater"
@@ -64,7 +64,7 @@
         android:text="0"
         android:textSize="@dimen/medium_text"
         android:layout_alignTop="@+id/txtVillagers"
-        android:layout_alignRight="@+id/valueTotalWater"
+        android:layout_alignRight="@+id/valueMostWaterInOneRun"
         android:layout_alignEnd="@+id/valueTotalWater"/>
     <TextView
         android:id="@+id/txtMostWaterInOneRun"
@@ -99,9 +99,8 @@
         android:layout_height="wrap_content"
         android:text="0"
         android:textSize="@dimen/medium_text"
-        android:layout_alignTop="@+id/txtNrOfRuns"
-        android:layout_alignLeft="@+id/valueMostWaterInOneRun"
-        android:layout_alignRight="@+id/valueTotalWater"/>
+        android:layout_below="@+id/valueMostWaterInOneRun"
+        android:layout_alignRight="@+id/valueMostWaterInOneRun" />
     <TextView
         android:id="@+id/txtCurrentDay"
         android:layout_width="wrap_content"
@@ -119,8 +118,7 @@
         android:text="0"
         android:textSize="@dimen/medium_text"
         android:layout_alignTop="@+id/txtCurrentDay"
-        android:layout_alignLeft="@+id/valueRunsLeftToday"
-        android:layout_alignStart="@+id/valueRunsLeftToday" />
+        android:layout_alignRight="@+id/valueMostWaterInOneRun" />
 
     <TextView
         android:id="@+id/txtRunsLeftToday"
@@ -138,8 +136,7 @@
         android:text="0"
         android:textSize="@dimen/medium_text"
         android:layout_alignTop="@+id/txtRunsLeftToday"
-        android:layout_alignLeft="@+id/valueNrOfRuns"
-        android:layout_alignStart="@+id/valueNrOfRuns" />
+        android:layout_alignRight="@+id/valueMostWaterInOneRun" />
 
     <Button
         android:id="@+id/btnLeaveVillage"
