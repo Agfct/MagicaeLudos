@@ -12,31 +12,28 @@
     tools:context=".implementation.activities.MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/header_credits"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Magicae Ludos"
+        android:text="Credits"
         android:textSize="@dimen/large_text"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"/>
-    <ImageButton
-        android:id="@+id/btnGameActivity"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/txt_credits"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/teardrop"
-        android:background="@drawable/teardrop"
-        android:onClick="goToGameActivity"
+        android:text="@string/credits"
+        android:textSize="@dimen/medium_text"
+        android:gravity="center"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
-    <ImageButton
-        android:id="@+id/btnVillageActivity"
+    <Button
+        android:id="@+id/btnMainMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/village_ikon"
-        android:background="@drawable/village_ikon"
-        android:onClick="goToVillageActivity"
-        android:layout_marginTop="88dp"
-        android:layout_below="@+id/btnGameActivity"
-        android:layout_centerHorizontal="true" />
+        android:onClick="goToMainActivity"
+        android:text="Main Menu"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

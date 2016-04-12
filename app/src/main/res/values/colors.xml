@@ -5,4 +5,9 @@
     <color name="colorAccent">#FF4081</color>
     <color name="BLACK">#80000000</color>
     <color name="Transparent">#00000000</color>
+
+    <color name="water_clean">#30acac</color>
+    <color name="water_villagers">#272241</color>
+    <color name="water_nextVillagers">#004356</color>
+    <color name="water_dirty">#631919</color>
 </resources>

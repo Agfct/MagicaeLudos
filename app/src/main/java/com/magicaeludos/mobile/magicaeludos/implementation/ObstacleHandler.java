@@ -158,7 +158,7 @@ public class ObstacleHandler {
                     case STONE:
                         if (!obstacle.getCollition()) {
                             sfx_stone.play();
-                            vibrator.vibrate(100);
+
                             ObstacleHit(obstacle.getType());
                             obstacle.setCollition(true);
                         }
@@ -245,6 +245,7 @@ public class ObstacleHandler {
     }
 
     private void ObstacleHit(ObstacleType oType){
+        vibrator.vibrate(100);
         try {
             Thread.sleep(200);  //TODO: FIX               //1000 milliseconds is one second.
         } catch (InterruptedException ex) {

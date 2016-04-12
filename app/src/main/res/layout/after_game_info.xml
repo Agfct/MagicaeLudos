@@ -18,40 +18,129 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/teardrop"
-        android:layout_above="@+id/infoParagraph"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="90dp"/>
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp"/>
     <TextView
         android:id="@+id/infoParagraph"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/water_info_0"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/infoImage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
     <TextView
         android:id="@+id/infoSource"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/water_info_source_0"
         android:paddingBottom="20dp"
-        android:layout_above="@+id/txtTotalWater"/>
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/infoParagraph"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
     <TextView
         android:id="@+id/txtTotalWater"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TotalWaterCollected: "
+        android:textSize="@dimen/medium_text"
+        android:text="TotalWaterCollected"
+        android:layout_marginBottom="101dp"
         android:layout_above="@+id/btnMainActivity"
-        android:layout_marginBottom="40dp" />
+        android:layout_centerHorizontal="true"/>
+    <ImageView
+        android:id="@+id/img_cleanWater"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/clean_water"
+        android:layout_alignTop="@+id/txtTotalWater"
+        android:layout_toLeftOf="@+id/txtTotalWater"
+        android:layout_toStartOf="@+id/txtTotalWater"
+        android:layout_marginTop="33dp"/>
+    <TextView
+        android:id="@+id/intCleanWaterAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="01"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/img_cleanWater"
+        android:layout_alignRight="@+id/img_cleanWater"
+        android:layout_alignEnd="@+id/img_cleanWater"/>
+    <TextView
+        android:id="@+id/addition1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/medium_text"
+        android:text="+"
+        android:layout_alignBottom="@+id/img_dirtyWater"
+        android:layout_toRightOf="@+id/btnMainActivity"
+        android:layout_toEndOf="@+id/btnMainActivity"/>
+    <ImageView
+        android:id="@+id/img_dirtyWater"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dirty_water"
+        android:layout_above="@+id/intCleanWaterAmount"
+        android:layout_toRightOf="@+id/btnMainActivity"
+        android:layout_toEndOf="@+id/btnMainActivity"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp"/>
+    <TextView
+        android:id="@+id/intDirtyWaterAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="02"
+        android:layout_alignTop="@+id/intTotalWaterAmount"
+        android:layout_alignRight="@+id/img_purifierIcon"
+        android:layout_alignEnd="@+id/img_purifierIcon"/>
+    <TextView
+        android:id="@+id/multiplyer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/medium_text"
+        android:text="*"
+        android:layout_alignBottom="@+id/img_dirtyWater"
+        android:layout_toLeftOf="@+id/img_purifierIcon"
+        android:layout_toStartOf="@+id/img_purifierIcon"/>
+    <ImageView
+        android:id="@+id/img_purifierIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/purifier_3"
+        android:layout_above="@+id/intCleanWaterAmount"
+        android:layout_toRightOf="@+id/img_dirtyWater"
+        android:layout_toEndOf="@+id/img_dirtyWater"/>
+    <TextView
+        android:id="@+id/equals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/medium_text"
+        android:text="="
+        android:layout_marginRight="19dp"
+        android:layout_marginEnd="19dp"
+        android:layout_alignBottom="@+id/img_totalBucket"
+        android:layout_toLeftOf="@+id/img_totalBucket"
+        android:layout_toStartOf="@+id/img_totalBucket"/>
+    <ImageView
+        android:id="@+id/img_totalBucket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/uppgrade_bucket_1"
+        android:layout_above="@+id/intCleanWaterAmount"
+        android:layout_alignRight="@+id/btnVillageActivity"
+        android:layout_alignEnd="@+id/btnVillageActivity"/>
+
+
     <TextView
         android:id="@+id/intTotalWaterAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"
-        android:layout_alignTop="@+id/txtTotalWater"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="22dp"
-        android:layout_marginEnd="22dp" />
+        android:text="03"
+        android:layout_alignTop="@+id/intCleanWaterAmount"
+        android:layout_alignRight="@+id/img_totalBucket"
+        android:layout_alignEnd="@+id/img_totalBucket"/>
     <Button
         android:id="@+id/btnMainActivity"
         android:layout_width="wrap_content"
@@ -59,6 +148,17 @@
         android:text="Main Menu"
         android:onClick="goToMainActivity"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="51dp"/>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+    <Button
+        android:id="@+id/btnVillageActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Village"
+        android:onClick="goToVillageActivity"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/infoParagraph"
+        android:layout_alignEnd="@+id/infoParagraph"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"/>
 </RelativeLayout>

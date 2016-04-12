@@ -52,7 +52,6 @@
         android:layout_height="wrap_content"
         android:text="# Villagers:"
         android:textSize="@dimen/medium_text"
-        android:layout_marginTop="31dp"
         android:layout_below="@+id/txtTotalWater"
         android:layout_alignRight="@+id/txtTotalWater"
         android:layout_alignEnd="@+id/txtTotalWater"/>
@@ -89,10 +88,9 @@
         android:layout_height="wrap_content"
         android:text="Nr of Runs:"
         android:textSize="@dimen/medium_text"
-        android:layout_marginTop="37dp"
         android:layout_below="@+id/txtMostWaterInOneRun"
-        android:layout_alignRight="@+id/txtMostWaterInOneRun"
-        android:layout_alignEnd="@+id/txtMostWaterInOneRun"/>
+        android:layout_alignRight="@+id/txtVillagers"
+        android:layout_alignEnd="@+id/txtVillagers"/>
     <TextView
         android:id="@+id/valueNrOfRuns"
         android:layout_width="wrap_content"
@@ -128,10 +126,9 @@
         android:layout_height="wrap_content"
         android:text="Runs Left Today:"
         android:textSize="@dimen/medium_text"
-        android:layout_alignBottom="@+id/imageView"
-        android:layout_alignRight="@+id/txtNrOfRuns"
-        android:layout_alignEnd="@+id/txtNrOfRuns"
-        android:layout_marginBottom="19dp" />
+        android:layout_below="@+id/txtCurrentDay"
+        android:layout_alignRight="@+id/txtCurrentDay"
+        android:layout_alignEnd="@+id/txtCurrentDay"/>
     <TextView
         android:id="@+id/valueRunsLeftToday"
         android:layout_width="wrap_content"
@@ -160,4 +157,38 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/txtVillage"
         android:layout_toEndOf="@+id/txtVillage" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignLeft="@+id/txtRunsLeftToday"
+        android:layout_alignStart="@+id/txtRunsLeftToday"
+        android:layout_above="@+id/btnLeaveVillage"
+        android:layout_below="@+id/txtRunsLeftToday"
+        android:rowCount="1"
+        android:columnCount="2"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/howVillageWorks"
+            android:layout_width="228dp"
+            android:layout_height="wrap_content"
+            android:text="The villagers consumes water every day, and when a new day starts additional villagers arrives if you have enough water to support them"
+            android:textSize="@dimen/activity_horizontal_margin"
+            android:layout_alignTop="@+id/txtRunsLeftToday"
+            android:layout_alignLeft="@+id/valueNrOfRuns"
+            android:layout_alignStart="@+id/valueNrOfRuns"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:layout_marginTop="0dp"/>
+
+        <ImageView
+            android:id="@+id/village_waterBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/clean_water"
+            android:layout_column="1"
+            android:layout_row="0"/>
+    </GridLayout>
+
 </RelativeLayout>
