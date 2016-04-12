@@ -31,10 +31,12 @@
         android:layout_height="wrap_content"
         android:text="TotalWater:"
         android:textSize="@dimen/medium_text"
-        android:layout_alignTop="@+id/imageView"
+        android:layout_marginTop="57dp"
+        android:layout_below="@+id/txtVillage"
         android:layout_toRightOf="@+id/btnLeaveVillage"
         android:layout_toEndOf="@+id/btnLeaveVillage"
-        android:layout_marginTop="57dp"/>
+        android:layout_marginLeft="23dp"
+        android:layout_marginStart="23dp" />
     <TextView
         android:id="@+id/valueTotalWater"
         android:layout_width="wrap_content"
@@ -127,8 +129,8 @@
         android:text="Runs Left Today:"
         android:textSize="@dimen/medium_text"
         android:layout_below="@+id/txtCurrentDay"
-        android:layout_alignRight="@+id/txtCurrentDay"
-        android:layout_alignEnd="@+id/txtCurrentDay"/>
+        android:layout_alignRight="@+id/txtVillagers"
+        android:layout_alignEnd="@+id/txtVillagers" />
     <TextView
         android:id="@+id/valueRunsLeftToday"
         android:layout_width="wrap_content"
@@ -143,7 +145,7 @@
         android:id="@+id/btnLeaveVillage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Leave"
+        android:text="Back"
         android:onClick="goToMainActivity"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
@@ -158,37 +160,22 @@
         android:layout_toRightOf="@+id/txtVillage"
         android:layout_toEndOf="@+id/txtVillage" />
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignLeft="@+id/txtRunsLeftToday"
-        android:layout_alignStart="@+id/txtRunsLeftToday"
+    <TextView
+        android:id="@+id/howVillageWorks"
+        android:layout_width="228dp"
+        android:layout_height="wrap_content"
+        android:text="The villagers consumes 20L water every day. \nWhen a new day starts additional villagers arrives if you have enough water to support them! \nOne day is 5 runs."
+        android:textSize="@dimen/activity_horizontal_margin"
+        android:layout_column="0"
+        android:layout_row="0"
+        android:layout_columnSpan="1"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_above="@+id/btnLeaveVillage"
         android:layout_below="@+id/txtRunsLeftToday"
-        android:rowCount="1"
-        android:columnCount="2"
-        android:layout_marginTop="20dp">
-
-        <TextView
-            android:id="@+id/howVillageWorks"
-            android:layout_width="228dp"
-            android:layout_height="wrap_content"
-            android:text="The villagers consumes water every day, and when a new day starts additional villagers arrives if you have enough water to support them"
-            android:textSize="@dimen/activity_horizontal_margin"
-            android:layout_alignTop="@+id/txtRunsLeftToday"
-            android:layout_alignLeft="@+id/valueNrOfRuns"
-            android:layout_alignStart="@+id/valueNrOfRuns"
-            android:layout_column="0"
-            android:layout_row="0"
-            android:layout_marginTop="0dp"/>
-
-        <ImageView
-            android:id="@+id/village_waterBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/clean_water"
-            android:layout_column="1"
-            android:layout_row="0"/>
-    </GridLayout>
+        android:layout_marginTop="30dp" />
 
 </RelativeLayout>

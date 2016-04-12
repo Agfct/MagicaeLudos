@@ -14,7 +14,7 @@ public class Water {
     public Water (int startingAmount, int maxAmountOfWater){
         this.cleanWater = startingAmount;
         this.dirtyWater = 0;
-        this.maxAmountOfWater = maxAmountOfWater+100;
+        this.maxAmountOfWater = maxAmountOfWater;
     }
 
     public void addCleanWater(double cleanWaterAmount){
