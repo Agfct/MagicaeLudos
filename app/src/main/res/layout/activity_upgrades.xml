@@ -54,6 +54,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+
     <TextView
         android:id="@+id/txtUpgradeNr2"
         android:layout_width="wrap_content"
@@ -133,6 +134,16 @@
         android:layout_alignLeft="@+id/bucketUpgrade3"
         android:layout_alignStart="@+id/bucketUpgrade3"
         android:layout_marginBottom="99dp" />
+    <TextView
+        android:id="@+id/txtBucketUpgrade1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="150 L"
+        android:textSize="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/txtUpgradeNr1"
+        android:layout_alignRight="@+id/bucketUpgrade1"
+        android:layout_alignEnd="@+id/bucketUpgrade1" />
     <!-- Upgrade level 2 (10+)-->
     <ImageView
         android:id="@+id/bucketUpgrade2"
@@ -142,6 +153,16 @@
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/bucketUpgrade1"
         android:layout_alignStart="@+id/bucketUpgrade1" />
+    <TextView
+        android:id="@+id/txtBucketUpgrade2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="200 L"
+        android:textSize="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/txtUpgradeNr2"
+        android:layout_alignRight="@+id/bucketUpgrade2"
+        android:layout_alignEnd="@+id/bucketUpgrade2" />
     <ImageView
         android:id="@+id/cleaningStationUpgrade1"
         android:layout_width="wrap_content"
@@ -150,6 +171,15 @@
         android:layout_alignTop="@+id/bucketUpgrade2"
         android:layout_alignLeft="@+id/cleaningStationUpgrade2"
         android:layout_alignStart="@+id/cleaningStationUpgrade2" />
+    <TextView
+        android:id="@+id/txtCleaningStationUpgrade1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.5 %"
+        android:textSize="@dimen/activity_horizontal_margin"
+        android:layout_alignTop="@+id/txtBucketUpgrade2"
+        android:layout_alignRight="@+id/cleaningStationUpgrade1"
+        android:layout_alignEnd="@+id/cleaningStationUpgrade1" />
     <!-- Upgrade level 3 (20+)-->
     <ImageView
         android:id="@+id/bucketUpgrade3"
@@ -160,6 +190,17 @@
         android:layout_alignLeft="@+id/txtUpgrades"
         android:layout_alignStart="@+id/txtUpgrades"
         android:layout_marginBottom="44dp" />
+    <TextView
+        android:id="@+id/txtBucketUpgrade3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="400 L"
+        android:textSize="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/txtUpgradeNr3"
+        android:layout_alignRight="@+id/bucketUpgrade3"
+        android:layout_alignEnd="@+id/bucketUpgrade3" />
+
     <ImageView
         android:id="@+id/cleaningStationUpgrade2"
         android:layout_width="wrap_content"
@@ -168,6 +209,15 @@
         android:layout_alignTop="@+id/bucketUpgrade3"
         android:layout_alignRight="@+id/valueCleaningStation"
         android:layout_alignEnd="@+id/valueCleaningStation" />
+    <TextView
+        android:id="@+id/txtCleaningStationUpgrade2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.75 %"
+        android:textSize="@dimen/activity_horizontal_margin"
+        android:layout_alignTop="@+id/txtBucketUpgrade3"
+        android:layout_alignRight="@+id/cleaningStationUpgrade2"
+        android:layout_alignEnd="@+id/cleaningStationUpgrade2" />
 
     <Button
         android:id="@+id/btnBackToVillage"

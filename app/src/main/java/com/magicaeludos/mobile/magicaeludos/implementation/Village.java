@@ -179,11 +179,11 @@ public class Village {
         if (bucketUpgrade == 0){
             return 100;
         }else if (bucketUpgrade == 1){
-            return 200;
+            return 150;
         }else if (bucketUpgrade == 2){
-            return 400;
+            return 200;
         }else if (bucketUpgrade == 3){
-            return 800;
+            return 400;
         }
         return 0;
     }
