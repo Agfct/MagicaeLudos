@@ -45,7 +45,7 @@ public class Probability {
     private boolean puddleCollect = false;
 
     private double treeRate = 2;
-    private int treeLength = 20;
+    private int treeLength = 25;
     private int treeWidth = 2;
     private int treePri = 9;
     private boolean treeCollect = false;
@@ -84,7 +84,7 @@ public class Probability {
             /*difficulty is default*/
         }
         else if(gameDifficulty ==2){
-            rockRate = 5;   rockLength = 15;
+            rockRate = 3.5;   rockLength = 15;
 
             logRate = 5;  logLength = 15;
 
@@ -93,6 +93,19 @@ public class Probability {
             puddleRate = 2; puddleLength = 8;
         }
         else if(gameDifficulty ==3){
+            rockRate = 4;   rockLength = 18;
+
+            logRate = 4;  logLength = 18;
+
+            dropRate = 2.5;   dropLength = 6;
+
+            puddleRate = 2; puddleLength = 8;
+
+            treeRate = 2;   treeLength = 25;
+
+            maxLaneBlock = 3;
+        }
+        else if(gameDifficulty ==4){
             rockRate = 4;   rockLength = 18;
 
             logRate = 4;  logLength = 18;
