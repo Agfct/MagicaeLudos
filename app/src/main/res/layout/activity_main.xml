@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/play_img"
-        android:background="@drawable/play_img"
+        android:background="@drawable/play_click"
         android:onClick="goToGameActivity"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/village_img"
-        android:background="@drawable/village_img"
+        android:background="@drawable/village_click"
         android:onClick="goToVillageActivity"
         android:layout_marginTop="50dp"
         android:layout_below="@+id/btnGameActivity"

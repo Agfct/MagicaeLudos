@@ -2,13 +2,9 @@ package com.magicaeludos.mobile.magicaeludos.implementation.activities;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
-import android.view.View;
 
 import com.magicaeludos.mobile.magicaeludos.R;
-import com.magicaeludos.mobile.magicaeludos.framework.Layout;
 import com.magicaeludos.mobile.magicaeludos.framework.MotherActivity;
-
-import java.util.concurrent.TimeUnit;
 
 public class LogoActivity extends MotherActivity {
 
