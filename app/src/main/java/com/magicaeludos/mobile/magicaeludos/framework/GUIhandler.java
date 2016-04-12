@@ -43,6 +43,11 @@ public class GUIhandler {
     private int plBarX;
     private int plBarX2;
 
+    //Water color
+    int red = 133;
+    int green = 195;
+    int blue = 235;
+
     //Objects for UI
     Water water;
 
@@ -78,9 +83,7 @@ public class GUIhandler {
         this.barWaterBottom = (int)((double)barWaterBottom / (432/(double)(barY2 - barY)));
         this.barWaterTop = (int)((double)barWaterTop / (432/(double)(barY2 - barY)));
         this.waterBarHeight = (barY2 - barY) - (barWaterTop+barWaterBottom);
-        Log.w("GUIhandler","WaterBarHeight" + waterBarHeight + " BarY2: "+ barY2);
         this.waterBarY2= barY2-barWaterBottom;
-        Log.w("GUIhandler","WaterBarY2 " + waterBarY2 + " BarWaterBottom: "+ barWaterBottom);
 
 
         //Setting some values for progress bar
@@ -146,19 +149,25 @@ public class GUIhandler {
         //Set dirty amount of the image
         int dirtyPercentage = water.getDirtyWaterPercentage();
         Log.w("GUIHandler","Dirty percentage"+dirtyPercentage);
-        int waterColor;
+        int tmp_red;
+        int tmp_green;
+        int tmp_blue;
         int reduction = 0;
         if(dirtyPercentage > 0) {
             reduction = (dirtyPercentage / 10);
         }
         if(reduction > 0){
-            waterColor = 255/reduction;
+            tmp_red = red/reduction;
+            tmp_green = green/reduction;
+            tmp_blue = blue/reduction;
         }else{
-            waterColor = 255;
+            tmp_red = red;
+            tmp_green = green;
+            tmp_blue = blue;
         }
-        Log.w("GUIHandler", "WaterColor"+waterColor);
-        ColorFilter filter = new LightingColorFilter(0, 0); //TODO: Fix to add correct color value
-//        waterPaint.setColorFilter(filter);
+//        Log.w("GUIHandler", "WaterColor"+waterColor);
+        ColorFilter filter = new LightingColorFilter(Color.rgb(tmp_red, tmp_green, tmp_blue), 0); //TODO: Fix to add correct color value
+        waterPaint.setColorFilter(filter);
 
     }
 
@@ -166,11 +175,11 @@ public class GUIhandler {
         //This line chooses the start of the rect.
 //        int progress = Math.min((int) (numberOfBars * water.getTotalWater()), (int) (numberOfBars * maxWaterAmount));
         double timeLeft =  content.getCurrentGameTime();
-        Log.w("GUIHnalder", "TimeLeft: " + timeLeft);
+//        Log.w("GUIHnalder", "TimeLeft: " + timeLeft);
         double maxTime =  content.getGameSetting().getGameTime();
-        Log.w("GUIHnalder","Formel: "+ (barY2 *(1-((maxTime-timeLeft)/maxTime))));
+//        Log.w("GUIHnalder","Formel: "+ (barY2 *(1-((maxTime-timeLeft)/maxTime))));
 //        plBarY2 = (int)((barY-pBarVillageHeight) * (1-((maxTime-timeLeft)/maxTime))+ (barHeight/2)-pBarVillageHeight);
-        Log.w("GUIhandler","BarHeight:" + barHeight+ "barY: " + barY);
+//        Log.w("GUIhandler","BarHeight:" + barHeight+ "barY: " + barY);
         plBarY2 = (int)((((double)barHeight/2)-(double)pBarVillageHeight) * (1-((maxTime-timeLeft)/maxTime)) + ((double)barY + (double)pBarVillageHeight));
         plBarY = plBarY2-plYRatio;
         rectDst_player = new Rect(plBarX, plBarY,plBarX2, plBarY2);

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.magicaeludos.mobile.magicaeludos.R;
 import com.magicaeludos.mobile.magicaeludos.framework.MotherActivity;
@@ -12,6 +13,17 @@ public class LevelSelectActivity extends MotherActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_select);
+
+        level4();
+    }
+
+    private void level4(){
+        Log.w("LevelSelect","NOO LEVEL 4");
+        TextView level4 = (TextView) findViewById(R.id.btnLevel4);
+        if(getVillage().getUpgradeNr(1) >= 3){
+            Log.w("LevelSelect","UNLOCKED LEVEL 4");
+            level4.setVisibility(View.VISIBLE);
+        }
     }
 
 

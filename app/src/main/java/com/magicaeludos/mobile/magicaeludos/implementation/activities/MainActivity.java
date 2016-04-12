@@ -23,6 +23,11 @@ public class MainActivity extends MotherActivity {
         goTo(VillageActivity.class);
     }
 
+    public void goToCreditsActivity(View view){
+        Log.w("MainActivity", "Going to the Credits");
+        goTo(CreditsActivity.class);
+    }
+
 
 
 }

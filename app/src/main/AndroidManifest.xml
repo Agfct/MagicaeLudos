@@ -41,6 +41,11 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name=".implementation.activities.CreditsActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait">
+        </activity>
         <!-- Game Activities -->
         <activity
             android:name=".implementation.activities.GameActivity"

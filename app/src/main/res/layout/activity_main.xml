@@ -39,4 +39,15 @@
         android:layout_marginTop="88dp"
         android:layout_below="@+id/btnGameActivity"
         android:layout_centerHorizontal="true" />
+    <Button
+        android:id="@+id/btnCredits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Credits"
+        android:onClick="goToCreditsActivity"
+        android:textColor="@color/grass_yellow"
+        android:background="@color/Transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
