@@ -79,6 +79,12 @@ public class Probability {
     public void setPuddlePri(int pri){puddlePri = pri;}
     public void setMaxLaneBlock(int lanes){maxLaneBlock = lanes;}
 
+    /**
+     * The function sets parameters for each level difficulty.
+     * Higher rate means that the obstacle spawns more often
+     * Higher length menas that the obstacle will cover more space behind it in the lane(s) it covers.
+     * @param gameDifficulty
+     */
     public void setDifficultyParameters(int gameDifficulty){
         if(gameDifficulty == 1){
             /*difficulty is default*/
@@ -93,11 +99,11 @@ public class Probability {
             puddleRate = 2; puddleLength = 8;
         }
         else if(gameDifficulty ==3){
-            rockRate = 4;   rockLength = 18;
+            rockRate = 3;   rockLength = 18;
 
             logRate = 4;  logLength = 18;
 
-            dropRate = 2.5;   dropLength = 6;
+            dropRate = 4;   dropLength = 6;
 
             puddleRate = 2; puddleLength = 8;
 
@@ -110,7 +116,7 @@ public class Probability {
 
             logRate = 4;  logLength = 18;
 
-            dropRate = 2.5;   dropLength = 6;
+            dropRate = 3;   dropLength = 6;
 
             puddleRate = 2; puddleLength = 8;
 
