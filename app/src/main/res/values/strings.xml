@@ -19,10 +19,10 @@
 
     <!-- Level spesific strings-->
     <string name="level_info_1">
-        A person uses 20L every day, getting the water required for a person to live is hard.
+        A person needs at least 20L of water every day for drinking and other needs. Pick up water and avoid obstacles to not spoil it!
     </string>
         <string name="level_info_2">
-        Dirty water is bad. But puddles of dirty water is better than no water.
+        10% of all people is forced to rely on contaminated water sources for basic needs. Walk over brown puddles to pick up dirty water and filtrate it at the end!
     </string>
 
     <!-- Strings containing information about water-->
