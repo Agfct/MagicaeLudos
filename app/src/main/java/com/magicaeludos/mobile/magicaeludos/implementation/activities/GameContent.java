@@ -4,8 +4,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
-import android.os.Vibrator;
 import android.util.Log;
 
 import com.magicaeludos.mobile.magicaeludos.R;
@@ -66,6 +64,7 @@ public class GameContent implements Content{
     private int waterDropAmount;
     private int hitCounter;
     private boolean ending = false;
+    private boolean villageHasBeenSpawned = false;
 
     //Audio
     private Audio gameAudio;
@@ -87,7 +86,6 @@ public class GameContent implements Content{
 
         initializeGameSettings();
 
-//        startGame(); //TODO: 3.. 2.. 1.. Countdown before startingGame ?
     }
 
     private void initializeGameSettings(){
@@ -115,12 +113,6 @@ public class GameContent implements Content{
         backgroundMusic.setLooping(true);
         backgroundMusic.setVolume(activity.getVillage().getBgmLevel());
 
-        //Testing
-//        dummies = new ArrayList<>();
-//        dummies.add(new Dummy(this, new Point(grid.getLane(1).x, grid.getLane(1).y + grid.getRowHeight() * 5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
-//        dummies.add(new Dummy(getActivity(),grid.getLane(2),grid.getColWidth(),grid.getRowHeight()));
-//        dummies.add(new Dummy(this, new Point(grid.getLane(3).x, grid.getLane(3).y + grid.getRowHeight() * 5), grid.getColWidth(), grid.getRowHeight(), Color.RED));
-
     }
 
     /**
@@ -132,8 +124,6 @@ public class GameContent implements Content{
     public void update() {
         if(running) {
             runGameTime();
-            double test = prop.probExp(0.5, 1.0 / 30.0);
-//        Log.w("GameContent", "Dette er test variabelen2: "+ test);
             List<TouchEvent> touchEvents = touchHandler.getTouchEvents();
             player.update(touchEvents);
             background.update();
@@ -192,10 +182,16 @@ public class GameContent implements Content{
         int seconds = (int) (timeElapsed / 1000);
         currentGameTime = gameTime - seconds;
 
-        //TODO: Change this if endGame location
-        if(currentGameTime <= 0) {
+
+        if(currentGameTime <= 0 &&!ending){
+            if (ending == false) {
+                ending = true;
+            }
+        }
+
+        if(currentGameTime <= -2 && ending && !villageHasBeenSpawned) {
+            villageHasBeenSpawned = true;
             spawnVillage();
-//            endGame();
         }
 
     }
@@ -222,13 +218,10 @@ public class GameContent implements Content{
     }
 
     private void spawnVillage() {
-        if (ending == false){
-            ending = true;
             Obstacle village = new Obstacle(this,
                     BitmapFactory.decodeResource(this.getActivity().getResources(),
                             R.drawable.village_endgame), 4, 5, 10, ObstacleType.VILLAGE);
             obstacles.add(village);
-        }
     }
 
 
@@ -385,7 +378,7 @@ public class GameContent implements Content{
         this.gameTime = gameTime;
     }
 
-    public void setWaterDropAmount(int waterDropAmount) { //TODO: MOVE to Water class
+    public void setWaterDropAmount(int waterDropAmount) {
         this.waterDropAmount = waterDropAmount;
     }
 

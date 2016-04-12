@@ -38,7 +38,7 @@ public class GameSetting {
 
         Log.w("GameSettings","Difficulty: " +gameDifficulty+ " bucketSize: " + village.getBucketSize());
         if(gameDifficulty == 1){
-            gameTime = 10;
+            gameTime = 65;
             gameSpeed = 10;
             waterDropAmount = 1;
             water = new Water(0,village.getBucketSize());
@@ -46,7 +46,7 @@ public class GameSetting {
             usableObstacles.add(ObstacleType.STONE);
             usableObstacles.add(ObstacleType.LOG);
         }else if(gameDifficulty == 2){
-            gameTime = 60;
+            gameTime = 65;
             gameSpeed = 10;
             waterDropAmount = 3;
             water = new Water(0,village.getBucketSize());
@@ -56,9 +56,9 @@ public class GameSetting {
             usableObstacles.add(ObstacleType.PUDDLE);
             usableObstacles.add(ObstacleType.TREE);
         }else if(gameDifficulty == 3){
-            gameTime = 60;
+            gameTime = 65;
             gameSpeed = 10;
-            waterDropAmount = 5;
+            waterDropAmount = 8;
             water = new Water(0,village.getBucketSize());
             usableObstacles.add(ObstacleType.WATER_DROP);
             usableObstacles.add(ObstacleType.STONE);
@@ -67,8 +67,8 @@ public class GameSetting {
             usableObstacles.add(ObstacleType.TREE);
         }else if(gameDifficulty == 4){
             gameTime = 120;
-            gameSpeed = 20;
-            waterDropAmount = 10;
+            gameSpeed = 15;
+            waterDropAmount = 15;
             water = new Water(0,village.getBucketSize());
             usableObstacles.add(ObstacleType.WATER_DROP);
             usableObstacles.add(ObstacleType.STONE);
@@ -76,7 +76,7 @@ public class GameSetting {
             usableObstacles.add(ObstacleType.PUDDLE);
             usableObstacles.add(ObstacleType.TREE);
         }else{
-            gameTime = 60;
+            gameTime = 65;
             gameSpeed = 10;
             waterDropAmount = 1;
             water = new Water(0,village.getBucketSize());

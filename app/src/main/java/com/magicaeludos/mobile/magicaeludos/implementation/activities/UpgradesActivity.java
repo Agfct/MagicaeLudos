@@ -44,16 +44,16 @@ public class UpgradesActivity extends MotherActivity {
         valueUpgradeNr2.setText(Integer.toString(village.getUpgradeNr(2)));
 
         //Getting the correct bucket upgrade to align layout to
-        int nrOfVillagers = village.getNrOfVillagers();
+        int upgradeLevel = village.getUpgradeNr(1);
         ImageView bucketUpgrade;
-        if(nrOfVillagers == 5){
+        if(upgradeLevel == 1){
             bucketUpgrade = (ImageView) findViewById(R.id.bucketUpgrade1);
-        }else if (nrOfVillagers == 10){
+        }else if (upgradeLevel == 2){
             bucketUpgrade = (ImageView) findViewById(R.id.bucketUpgrade2);
         }
-        else if (nrOfVillagers == 20){
+        else if (upgradeLevel == 3){
             bucketUpgrade = (ImageView) findViewById(R.id.bucketUpgrade3);
-        }else if (nrOfVillagers >= 30){
+        }else if (upgradeLevel >= 4){
             bucketUpgrade = (ImageView) findViewById(R.id.bucketUpgrade3);
         }else{
             bucketUpgrade = (ImageView) findViewById(R.id.defaultUpgrades);

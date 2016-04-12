@@ -33,9 +33,9 @@ public class AfterGameActivity extends MotherActivity {
         TextView totalDirtyWater = (TextView) findViewById(R.id.intDirtyWaterAmount);
         TextView totalWaterAmount = (TextView) findViewById(R.id.intTotalWaterAmount);
 //        totalWaterAmount.setText(cleanWater + " + " + dirtyWater + "*" + dirtyWaterMultiplier + " = "+totalWater+ " l");
-        totalCleanWater.setText(cleanWater+" l");
-        totalDirtyWater.setText(dirtyWater + " l * " + dirtyWaterMultiplier);
-        totalWaterAmount.setText(totalWater+" l");
+        totalCleanWater.setText(cleanWater+" L");
+        totalDirtyWater.setText(dirtyWater + " L * " + dirtyWaterMultiplier);
+        totalWaterAmount.setText(totalWater+" L");
     }
 
     public void goToMainActivity(View view){
