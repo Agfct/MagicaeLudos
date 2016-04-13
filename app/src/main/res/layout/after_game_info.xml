@@ -141,20 +141,22 @@
         android:layout_alignTop="@+id/intCleanWaterAmount"
         android:layout_alignRight="@+id/img_totalBucket"
         android:layout_alignEnd="@+id/img_totalBucket"/>
-    <Button
+    <ImageButton
         android:id="@+id/btnMainActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Main Menu"
+        android:src="@drawable/main_menu"
+        android:background="@drawable/main_menu_click"
         android:onClick="goToMainActivity"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
-    <Button
+    <ImageButton
         android:id="@+id/btnVillageActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Village"
+        android:src="@drawable/village"
+        android:background="@drawable/village2_click"
         android:onClick="goToVillageActivity"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/infoParagraph"
