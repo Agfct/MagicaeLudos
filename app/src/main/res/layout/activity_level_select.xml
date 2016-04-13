@@ -20,52 +20,57 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="75dp"/>
-    <Button
+    <ImageButton
         android:id="@+id/btnLevel1"
         android:tag="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Level 1"
+        android:src="@drawable/level1"
+        android:background="@drawable/level1_click"
         android:onClick="goToGameActivity"
         android:layout_marginTop="47dp"
         android:layout_below="@+id/txtSelectDifficulty"
         android:layout_centerHorizontal="true"/>
-    <Button
+    <ImageButton
         android:id="@+id/btnLevel2"
         android:tag="2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Level 2"
+        android:src="@drawable/level2"
+        android:background="@drawable/level2_click"
         android:onClick="goToGameActivity"
         android:layout_marginTop="47dp"
         android:layout_below="@+id/btnLevel1"
         android:layout_centerHorizontal="true"/>
-    <Button
+    <ImageButton
         android:id="@+id/btnLevel3"
         android:tag="3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Level 3"
+        android:src="@drawable/level3"
+        android:background="@drawable/level3_click"
         android:onClick="goToGameActivity"
         android:layout_marginTop="47dp"
         android:layout_below="@+id/btnLevel2"
         android:layout_centerHorizontal="true"/>
-    <Button
+    <ImageButton
         android:id="@+id/btnLevel4"
         android:tag="4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Level 4"
+        android:src="@drawable/level4"
+        android:background="@drawable/level4_click"
         android:onClick="goToGameActivity"
         android:layout_marginTop="47dp"
         android:layout_below="@+id/btnLevel3"
         android:visibility="gone"
         android:layout_centerHorizontal="true"/>
-    <Button
+    <ImageButton
         android:id="@+id/btnBackToMainMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"
+        android:src="@drawable/back"
+        android:background="@drawable/back"
         android:onClick="goToMainActivity"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
