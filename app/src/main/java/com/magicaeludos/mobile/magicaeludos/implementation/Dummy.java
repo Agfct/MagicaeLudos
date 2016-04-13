@@ -16,6 +16,7 @@ import com.magicaeludos.mobile.magicaeludos.implementation.activities.GameConten
 import java.util.List;
 /**
  * Created by Anders on 24.02.2016.
+ * This is a dummy
  */
 public class Dummy {
 
