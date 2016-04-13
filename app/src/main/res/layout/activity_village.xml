@@ -29,7 +29,7 @@
         android:id="@+id/txtTotalWater"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TotalWater:"
+        android:text="Total water:"
         android:textSize="@dimen/medium_text"
         android:layout_marginTop="57dp"
         android:layout_below="@+id/txtVillage"

@@ -209,6 +209,7 @@ public class GameContent implements Content{
         running = false;
         stopBackgroundAudio();
         Intent intent = new Intent(activity, AfterGameActivity.class);
+        intent.putExtra(activity.getString(R.string.level), gameSetting.getGameDifficulty());
         intent.putExtra("cleanWater", water.getCleanWater());
         intent.putExtra("dirtyWater", water.getDirtyWater());
         intent.putExtra("dirtyWaterMultiplier", activity.getVillage().getDirtyWaterMultiplier());
