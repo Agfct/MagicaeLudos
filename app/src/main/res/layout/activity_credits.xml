@@ -28,12 +28,13 @@
         android:gravity="center"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
-    <Button
+    <ImageButton
         android:id="@+id/btnMainMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="goToMainActivity"
-        android:text="Main Menu"
+        android:src="@drawable/main_menu"
+        android:background="@drawable/main_menu_click"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
 </RelativeLayout>

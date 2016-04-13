@@ -34,11 +34,12 @@
         android:layout_below="@+id/infoImage"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp" />
-    <Button
+    <ImageButton
         android:id="@+id/btnMainActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RUN"
+        android:src="@drawable/run"
+        android:background="@drawable/run_click"
         android:onClick="startGame"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
