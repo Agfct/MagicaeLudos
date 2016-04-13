@@ -22,14 +22,14 @@
 
     <RelativeLayout
         android:id="@+id/upgradeWave"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btnBackToVillage"
         android:visibility="visible"
         android:layout_alignTop="@+id/txtUpgradeNr0">
         <ImageView
             android:id="@+id/upgradeWaveImage"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/uppgrades_wave"
             android:layout_alignParentBottom="true" />

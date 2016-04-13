@@ -164,11 +164,12 @@
         android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/btnPlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Play"
+        android:src="@drawable/play_img"
+        android:background="@drawable/play_click"
         android:onClick="goToGameActivity"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
