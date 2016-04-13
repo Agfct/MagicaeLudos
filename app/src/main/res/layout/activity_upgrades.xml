@@ -233,7 +233,7 @@
         android:id="@+id/btnBackToVillage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/back"
+        android:src="@drawable/back_click_h"
         android:background="@drawable/back_click"
         android:onClick="goToVillageActivity"
         android:layout_alignParentBottom="true"
