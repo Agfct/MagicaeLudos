@@ -15,6 +15,7 @@ import java.util.Random;
 public class AfterGameActivity extends MotherActivity {
     private double time;
     private double delay = 2000; //A delay on 1000 = 1 sec
+    private int level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,7 @@ public class AfterGameActivity extends MotherActivity {
         setWaterInfo();
 
         time = System.currentTimeMillis();
+        level = this.getIntent().getIntExtra(this.getString(R.string.level), 0);
 
         int cleanWater = this.getIntent().getIntExtra("cleanWater", 0);
         int dirtyWater = this.getIntent().getIntExtra("dirtyWater", 0);
@@ -44,10 +46,14 @@ public class AfterGameActivity extends MotherActivity {
         goTo(MainActivity.class);
     }
 
+
     public void goToGameActivity(View view){
-        Log.w("AfterGameActivity", "Going to the Level select");
-        if((System.currentTimeMillis() - time) > delay)
-        goTo(LevelSelectActivity.class);
+        Log.w("LevelSelectActivity","Level: " + level);
+        Log.w("LevelSelectActivity", "Going to the Game");
+
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra(this.getString(R.string.level), level);
+        goTo(intent);
     }
 
     public void goToVillageActivity(View view){
