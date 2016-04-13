@@ -33,11 +33,12 @@
         android:text="@string/level_info_3"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
-    <Button
+    <ImageButton
         android:id="@+id/btnMainActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RUN"
+        android:src="@drawable/run"
+        android:background="@drawable/run_click"
         android:onClick="startGame"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

@@ -136,20 +136,22 @@
         android:layout_alignTop="@+id/txtRunsLeftToday"
         android:layout_alignRight="@+id/valueMostWaterInOneRun" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnLeaveVillage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"
+        android:src="@drawable/back"
+        android:background="@drawable/back_click"
         android:onClick="goToMainActivity"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
-    <Button
+    <ImageButton
         android:id="@+id/btnUpgrades"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Upgrades"
+        android:src="@drawable/upgrades"
+        android:background="@drawable/upgrades_click"
         android:onClick="goToUpgradesActivity"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/txtVillage"

@@ -219,11 +219,12 @@
         android:layout_alignRight="@+id/cleaningStationUpgrade2"
         android:layout_alignEnd="@+id/cleaningStationUpgrade2" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnBackToVillage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Leave"
+        android:src="@drawable/back"
+        android:background="@drawable/back_click"
         android:onClick="goToVillageActivity"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
