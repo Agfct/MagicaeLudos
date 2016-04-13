@@ -44,9 +44,9 @@ public class GUIhandler {
     private int plBarX2;
 
     //Water color
-    int red = 133;
-    int green = 195;
-    int blue = 235;
+    int red = 134;
+    int green = 194;
+    int blue = 234;
 
     //Objects for UI
     Water water;

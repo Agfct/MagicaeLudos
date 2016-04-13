@@ -40,9 +40,14 @@ public class AfterGameActivity extends MotherActivity {
 
     public void goToMainActivity(View view){
         Log.w("AfterGameActivity", "Going to the MainMenu");
-        Log.w("AfterGameActivity", "TimeElapsed: " + (System.currentTimeMillis() - time) + " > "+delay);
         if((System.currentTimeMillis() - time) > delay)
         goTo(MainActivity.class);
+    }
+
+    public void goToGameActivity(View view){
+        Log.w("AfterGameActivity", "Going to the Level select");
+        if((System.currentTimeMillis() - time) > delay)
+        goTo(LevelSelectActivity.class);
     }
 
     public void goToVillageActivity(View view){
