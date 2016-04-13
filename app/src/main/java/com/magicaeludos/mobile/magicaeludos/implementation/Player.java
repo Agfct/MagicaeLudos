@@ -70,9 +70,9 @@ public class Player extends GameObject {
 
         //Defining the box that registers swipe input
         this.swipeBoxX = 0;
-        this.swipeBoxY = content.getGrid().getScreenHeight()/2;
+        this.swipeBoxY = 0;
         this.swipeBoxWidth = content.getGrid().getScreenWidth();
-        this.swipeBoxHeight = swipeBoxY;
+        this.swipeBoxHeight = content.getGrid().getScreenHeight();
 
         //Defines the three lane spots that the player can move between
         this.lane1 = content.getGrid().getPlayerLane(1);

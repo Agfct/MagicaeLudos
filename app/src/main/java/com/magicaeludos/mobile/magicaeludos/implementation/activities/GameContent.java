@@ -153,7 +153,7 @@ public class GameContent implements Content{
         //MIDDLE
         paint.setColor(Color.WHITE);
         paint.setTextSize(this.getActivity().getApplicationContext().getResources().getDimensionPixelSize(R.dimen.large_text));
-        canvas.drawText("Game Time: " + currentGameTime, 100, 100, paint);
+//        canvas.drawText("Game Time: " + currentGameTime, 100, 100, paint);
 //        canvas.drawText("Time Elapsed: " + timeElapsed, 100, 120, paint);
         paint = new Paint();
 
@@ -213,7 +213,6 @@ public class GameContent implements Content{
         intent.putExtra("dirtyWater", water.getDirtyWater());
         intent.putExtra("dirtyWaterMultiplier", activity.getVillage().getDirtyWaterMultiplier());
         updateVillage();
-        activity.getVillage().setTotalWater(1000);
         activity.goTo(intent);
 
     }

@@ -148,7 +148,6 @@ public class GUIhandler {
 
         //Set dirty amount of the image
         int dirtyPercentage = water.getDirtyWaterPercentage();
-        Log.w("GUIHandler","Dirty percentage"+dirtyPercentage);
         int tmp_red;
         int tmp_green;
         int tmp_blue;
