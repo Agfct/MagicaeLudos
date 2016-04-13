@@ -6,4 +6,5 @@
     <dimen name="info_vertical_margin">128dp</dimen>
     <dimen name="medium_text">24dp</dimen>
     <dimen name="large_text">38dp</dimen>
+    <dimen name="huge_text">46dp</dimen>
 </resources>

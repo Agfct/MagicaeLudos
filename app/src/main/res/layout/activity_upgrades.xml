@@ -45,6 +45,16 @@
         android:layout_toEndOf="@+id/txtUpgradeNr0" />
 
     <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100 L"
+        android:textSize="@dimen/activity_horizontal_margin"
+        android:layout_below="@+id/txtUpgradeNr0"
+        android:layout_alignLeft="@+id/txtBucketUpgrade1"
+        android:layout_alignStart="@+id/txtBucketUpgrade1" />
+
+    <TextView
         android:id="@+id/txtUpgradeNr1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -82,10 +92,10 @@
         android:layout_height="wrap_content"
         android:text="- 1"
         android:textSize="@dimen/activity_horizontal_margin"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/txtBucketUpgrade1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="71dp" />
+        android:layout_marginTop="34dp" />
 
     <TextView
         android:id="@+id/txtBucketUpgrade"
@@ -130,10 +140,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/uppgrade_bucket_1"
-        android:layout_above="@+id/btnBackToVillage"
-        android:layout_alignLeft="@+id/bucketUpgrade3"
-        android:layout_alignStart="@+id/bucketUpgrade3"
-        android:layout_marginBottom="99dp" />
+        android:layout_below="@+id/txtBucketUpgrade2"
+        android:layout_alignRight="@+id/txtBucketUpgrade3"
+        android:layout_alignEnd="@+id/txtBucketUpgrade3"
+        android:layout_marginTop="23dp" />
     <TextView
         android:id="@+id/txtBucketUpgrade1"
         android:layout_width="wrap_content"
@@ -175,7 +185,7 @@
         android:id="@+id/txtCleaningStationUpgrade1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="5 %"
+        android:text="50 %"
         android:textSize="@dimen/activity_horizontal_margin"
         android:layout_alignTop="@+id/txtBucketUpgrade2"
         android:layout_alignRight="@+id/cleaningStationUpgrade1"
@@ -223,11 +233,21 @@
         android:id="@+id/btnBackToVillage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Leave"
+        android:text="Back"
         android:onClick="goToVillageActivity"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="25 %"
+        android:textSize="@dimen/activity_horizontal_margin"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_alignLeft="@+id/txtCleaningStationUpgrade1"
+        android:layout_alignStart="@+id/txtCleaningStationUpgrade1" />
 
 
 </RelativeLayout>

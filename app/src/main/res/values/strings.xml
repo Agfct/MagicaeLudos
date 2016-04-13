@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MagicaeLudos</string>
+    <string name="app_name">Providing Water</string>
 
     <string name="credits">Anders Lunde \n Morten Alver Normann \n Thea Hove Johansen \n Andreas Malmgård \n Marcus Nickelsen \n Anna Karina Magnussen</string>
 
@@ -19,7 +19,7 @@
 
     <!-- Level spesific strings-->
     <string name="level_info_1">
-        A person needs at least 20L of water every day for drinking and other needs. Pick up water and avoid obstacles to not spoil it!
+        A person needs at least 20L of water every day for drinking and other needs. Pick up water and avoid obstacles to not spoil it! \n Swipe the screen to move!
     </string>
     <string name="level_info_2">
         10% of all people is forced to rely on contaminated water sources for basic needs. Walk over brown puddles to pick up dirty water and filtrate it at the end!

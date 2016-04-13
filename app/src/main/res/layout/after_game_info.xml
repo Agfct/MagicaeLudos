@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/medium_text"
-        android:text="TotalWaterCollected"
+        android:text="Total Water Collected"
         android:layout_marginBottom="101dp"
         android:layout_above="@+id/btnMainActivity"
         android:layout_centerHorizontal="true"/>

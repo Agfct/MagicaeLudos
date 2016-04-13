@@ -12,15 +12,22 @@
     tools:context=".implementation.activities.MainActivity">
 
     <TextView
+        android:id="@+id/textViewTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text='"This is me"'
+        android:textSize="@dimen/large_text"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp" />
+    <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Magicae Ludos"
-        android:textSize="@dimen/large_text"
-        android:textColor="@color/black"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"/>
+        android:text="Providing Water"
+        android:textSize="@dimen/huge_text"
+        android:layout_below="@+id/textViewTop"
+        android:layout_centerHorizontal="true" />
     <ImageButton
         android:id="@+id/btnGameActivity"
         android:layout_width="wrap_content"
