@@ -77,18 +77,18 @@
         android:textSize="@dimen/medium_text"
         android:text="+"
         android:layout_alignBottom="@+id/img_dirtyWater"
-        android:layout_toRightOf="@+id/btnMainActivity"
-        android:layout_toEndOf="@+id/btnMainActivity"/>
+        android:layout_alignRight="@+id/btnMainActivity"
+        android:layout_alignEnd="@+id/btnMainActivity" />
     <ImageView
         android:id="@+id/img_dirtyWater"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/dirty_water"
-        android:layout_above="@+id/intCleanWaterAmount"
-        android:layout_toRightOf="@+id/btnMainActivity"
-        android:layout_toEndOf="@+id/btnMainActivity"
-        android:layout_marginLeft="28dp"
-        android:layout_marginStart="28dp"/>
+        android:layout_alignTop="@+id/img_purifierIcon"
+        android:layout_toRightOf="@+id/img_cleanWater"
+        android:layout_toEndOf="@+id/img_cleanWater"
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp" />
     <TextView
         android:id="@+id/intDirtyWaterAmount"
         android:layout_width="wrap_content"
@@ -104,35 +104,37 @@
         android:textSize="@dimen/medium_text"
         android:text="*"
         android:layout_alignBottom="@+id/img_dirtyWater"
-        android:layout_toLeftOf="@+id/img_purifierIcon"
-        android:layout_toStartOf="@+id/img_purifierIcon"/>
+        android:layout_toRightOf="@+id/img_dirtyWater"
+        android:layout_toEndOf="@+id/img_dirtyWater" />
     <ImageView
         android:id="@+id/img_purifierIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/purifier_3"
-        android:layout_above="@+id/intCleanWaterAmount"
-        android:layout_toRightOf="@+id/img_dirtyWater"
-        android:layout_toEndOf="@+id/img_dirtyWater"/>
+        android:layout_alignBottom="@+id/equals"
+        android:layout_toRightOf="@+id/multiplyer"
+        android:layout_toEndOf="@+id/multiplyer"
+        android:layout_marginLeft="5dp" />
     <TextView
         android:id="@+id/equals"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/medium_text"
         android:text="="
-        android:layout_marginRight="19dp"
-        android:layout_marginEnd="19dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="16dp"
         android:layout_alignBottom="@+id/img_totalBucket"
-        android:layout_toLeftOf="@+id/img_totalBucket"
-        android:layout_toStartOf="@+id/img_totalBucket"/>
+        android:layout_toRightOf="@+id/img_purifierIcon"
+        android:layout_toEndOf="@+id/img_purifierIcon" />
     <ImageView
         android:id="@+id/img_totalBucket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/uppgrade_bucket_1"
         android:layout_above="@+id/intCleanWaterAmount"
-        android:layout_alignRight="@+id/btnVillageActivity"
-        android:layout_alignEnd="@+id/btnVillageActivity"/>
+        android:layout_toRightOf="@+id/equals"
+        android:layout_toEndOf="@+id/equals"
+        android:layout_marginLeft="10dp" />
 
 
     <TextView
