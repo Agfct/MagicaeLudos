@@ -213,6 +213,7 @@ public class GameContent implements Content{
         intent.putExtra("dirtyWater", water.getDirtyWater());
         intent.putExtra("dirtyWaterMultiplier", activity.getVillage().getDirtyWaterMultiplier());
         updateVillage();
+        activity.getVillage().setTotalWater(1000);
         activity.goTo(intent);
 
     }

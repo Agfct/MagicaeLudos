@@ -45,9 +45,7 @@
         android:textSize="@dimen/medium_text"
         android:layout_alignTop="@+id/txtTotalWater"
         android:layout_toRightOf="@+id/txtVillage"
-        android:layout_toEndOf="@+id/txtVillage"
-        android:layout_marginLeft="47dp"
-        android:layout_marginStart="47dp"/>
+        android:layout_toEndOf="@+id/txtVillage" />
     <TextView
         android:id="@+id/txtVillagers"
         android:layout_width="wrap_content"
