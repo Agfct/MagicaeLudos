@@ -38,7 +38,7 @@
         android:id="@+id/btnMainActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/run"
+        android:src="@drawable/run_click_h"
         android:background="@drawable/run_click"
         android:onClick="startGame"
         android:layout_alignParentBottom="true"

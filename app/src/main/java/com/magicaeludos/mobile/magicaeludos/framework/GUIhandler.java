@@ -28,7 +28,7 @@ public class GUIhandler {
     private int barY;
     private int barX;
     private int waterBarY2;
-    private int waterBarHeight;
+    private double waterBarHeight;
     private int barWaterBottom = 67;
     private int barWaterTop = 45;
     private int pBarY2;
@@ -80,8 +80,8 @@ public class GUIhandler {
         this.barY2 = grid.getRowHeight()*4;
         this.barY = grid.getRowHeight()*2;
         this.barX = (grid.getColWidth()*3) + (grid.getColWidth()/2);
-        this.barWaterBottom = (int)((double)barWaterBottom / (432/(double)(barY2 - barY)));
-        this.barWaterTop = (int)((double)barWaterTop / (432/(double)(barY2 - barY)));
+        this.barWaterBottom = (int)((double)barWaterBottom / (433/(double)(barY2 - barY)));
+        this.barWaterTop = (int)((double)barWaterTop / (433/(double)(barY2 - barY)));
         this.waterBarHeight = (barY2 - barY) - (barWaterTop+barWaterBottom);
         this.waterBarY2= barY2-barWaterBottom;
 
@@ -143,7 +143,7 @@ public class GUIhandler {
             Log.w("GUIhandler","DIVISION BY ZERO: Max Amount of water is 0");
         }
         //This line chooses the height of the rect, the Math.min is to prevent overflow.
-        int height = Math.min((int) (numberOfBars * water.getTotalWater()), (int) (numberOfBars * maxWaterAmount));
+        int height = Math.min((int) (numberOfBars * water.getTotalWater()), (int) Math.ceil(numberOfBars * maxWaterAmount));
         rectDst_water = new Rect(barX, waterBarY2 - height,grid.getScreenWidth(), waterBarY2);
 
         //Set dirty amount of the image
@@ -179,7 +179,7 @@ public class GUIhandler {
 //        Log.w("GUIHnalder","Formel: "+ (barY2 *(1-((maxTime-timeLeft)/maxTime))));
 //        plBarY2 = (int)((barY-pBarVillageHeight) * (1-((maxTime-timeLeft)/maxTime))+ (barHeight/2)-pBarVillageHeight);
 //        Log.w("GUIhandler","BarHeight:" + barHeight+ "barY: " + barY);
-        plBarY2 = (int)((((double)barHeight/2)-(double)pBarVillageHeight) * (1-((maxTime-timeLeft)/maxTime)) + ((double)barY + (double)pBarVillageHeight));
+        plBarY2 = (int)(Math.ceil(((double)barHeight/2)-(double)pBarVillageHeight) * (1-((maxTime-timeLeft)/maxTime)) + ((double)barY + (double)pBarVillageHeight));
         plBarY = plBarY2-plYRatio;
         rectDst_player = new Rect(plBarX, plBarY,plBarX2, plBarY2);
     }

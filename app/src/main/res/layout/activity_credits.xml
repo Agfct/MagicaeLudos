@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="goToMainActivity"
-        android:src="@drawable/main_menu"
+        android:src="@drawable/main_menu_click_h"
         android:background="@drawable/main_menu_click"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
