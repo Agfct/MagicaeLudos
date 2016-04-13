@@ -55,10 +55,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/clean_water"
+        android:layout_marginTop="40dp"
         android:layout_alignTop="@+id/txtTotalWater"
-        android:layout_toLeftOf="@+id/txtTotalWater"
-        android:layout_toStartOf="@+id/txtTotalWater"
-        android:layout_marginTop="40dp"/>
+        android:layout_alignRight="@+id/btnMainActivity"
+        android:layout_alignEnd="@+id/btnMainActivity"
+        android:layout_marginRight="23dp"
+        android:layout_marginEnd="23dp" />
     <TextView
         android:id="@+id/intCleanWaterAmount"
         android:layout_width="wrap_content"
