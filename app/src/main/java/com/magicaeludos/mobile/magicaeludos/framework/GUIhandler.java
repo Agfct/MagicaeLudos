@@ -109,7 +109,7 @@ public class GUIhandler {
 
     private void fetchResources(){
         img_waterBar = BitmapFactory.decodeResource(activity.getResources(), R.drawable.water_bar);
-        img_waterBar_back = BitmapFactory.decodeResource(activity.getResources(), R.drawable.water_bar);
+        img_waterBar_back = BitmapFactory.decodeResource(activity.getResources(), R.drawable.water_back);
         img_water = BitmapFactory.decodeResource(activity.getResources(), R.drawable.blue_water);
 
         img_progressBar = BitmapFactory.decodeResource(activity.getResources(), R.drawable.village_tracking);
