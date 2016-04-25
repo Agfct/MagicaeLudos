@@ -213,6 +213,7 @@ public class GameContent implements Content{
         intent.putExtra("cleanWater", water.getCleanWater());
         intent.putExtra("dirtyWater", water.getDirtyWater());
         intent.putExtra("dirtyWaterMultiplier", activity.getVillage().getDirtyWaterMultiplier());
+        intent.putExtra("totalWaterCollected", water.getTotalCollectedWaterAmount());
         updateVillage();
         activity.goTo(intent);
 
@@ -236,11 +237,12 @@ public class GameContent implements Content{
 
         //Calculating total water amount and adding it to the village
         int totalWater = water.getCleanWater() + (int)(water.getDirtyWater() * village.getDirtyWaterMultiplier());
+        int totalCollectedWater = water.getTotalCollectedWaterAmount();
         village.addTotalWater(totalWater);
 
         //Adds a new top score to mostWater in on run
-        if(totalWater > village.getMostWaterInOneRun()){
-            village.setMostWaterInOneRun(totalWater);
+        if(totalCollectedWater > village.getMostWaterInOneRun()){
+            village.setMostWaterInOneRun(totalCollectedWater);
         }
 
         int runsLeftToday = village.getRunsLeftToday();
