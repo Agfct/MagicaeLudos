@@ -80,8 +80,8 @@ public class GUIhandler {
         this.barY2 = grid.getRowHeight()*4;
         this.barY = grid.getRowHeight()*2;
         this.barX = (grid.getColWidth()*3) + (grid.getColWidth()/2);
-        this.barWaterBottom = (int)((double)barWaterBottom / (433/(double)(barY2 - barY)));
-        this.barWaterTop = (int)((double)barWaterTop / (433/(double)(barY2 - barY)));
+        this.barWaterBottom = (int)((double)barWaterBottom / (432.0/(double)(barY2 - barY)));
+        this.barWaterTop = (int)((double)barWaterTop / (432.0/(double)(barY2 - barY)));
         this.waterBarHeight = (barY2 - barY) - (barWaterTop+barWaterBottom);
         this.waterBarY2= barY2-barWaterBottom;
 
