@@ -26,7 +26,10 @@ public class FileIO {
         this.activity = activity;
 
         SharedPreferences sharedPref = activity.getSharedPreferences(activity.getString(R.string.profile_preferences), Context.MODE_PRIVATE);
-//        clearSavedData(); //TODO: REMOVE
+
+        //Enable this to clear save data on startup
+//        clearSavedData();
+
         //If this is the first time you start the app it will initialize all variables
         if(!sharedPref.getBoolean(activity.getString(R.string.firstTime), Boolean.FALSE)){
             Log.w("FileIO", "NO PROFILE, CREATING NEW PROFILE DATA");

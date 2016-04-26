@@ -9,7 +9,8 @@ import java.util.Set;
 
 /**
  * Created by Anders on 14.03.2016.
- * Contains settings on game difficulty and length.
+ * Contains settings on game difficulty, length, speed and other game variables.
+ * This class handles all the important settings in the game, and modifies them based on the game difficulty chosen in LevelSelectActivity
  */
 public class GameSetting {
 
@@ -32,7 +33,8 @@ public class GameSetting {
     }
 
     /**
-     * This method defines all the different random variables that controlls difficulty
+     * This method defines all the different random variables that controls difficulty.
+     * Each "if sentence" contains a different difficulty setting, and modifies the game variables accordingly.
      */
     private void setValues(){
 
