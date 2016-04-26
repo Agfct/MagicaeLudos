@@ -17,8 +17,8 @@ public class Village {
     private FileIO fileIO;
 
     //Audio
-    private int bgmLevel = 40;
-    private int sfxLevel = 50;
+    private int bgmLevel = 60;
+    private int sfxLevel = 65;
     private boolean bgmSound = true;
     private boolean sfxSound = true;
 
