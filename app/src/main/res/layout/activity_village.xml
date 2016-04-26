@@ -19,13 +19,14 @@
         android:textSize="@dimen/large_text"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"/>
-    <!--<ImageView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:src="@drawable/bck_village"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/txtVillage"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:id="@+id/imageView"/>-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:src="@color/BLACK"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtVillage"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/imageView"
+        android:layout_above="@+id/btnLeaveVillage" />
     <TextView
         android:id="@+id/txtTotalWater"
         android:layout_width="wrap_content"
