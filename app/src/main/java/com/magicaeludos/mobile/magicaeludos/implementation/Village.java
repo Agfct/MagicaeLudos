@@ -29,7 +29,8 @@ public class Village {
 
     //Values
     private int totalWater;
-    private int mostWaterInOneRun;
+    private int mostCollectedWaterInOneRun;
+    private int mostGainedWaterInOneRun;
     private int totalAmountOfRuns;
     private int runsLeftToday = 0;
     private int currentDay = 0;
@@ -70,8 +71,12 @@ public class Village {
         this.totalWater += addedWaterAmount;
     }
 
-    public void setMostWaterInOneRun(int mostWaterInOneRun) {
-        this.mostWaterInOneRun = mostWaterInOneRun;
+    public void setMostCollectedWaterInOneRun(int mostCollectedWaterInOneRun) {
+        this.mostCollectedWaterInOneRun = mostCollectedWaterInOneRun;
+    }
+
+    public void setMostGainedWaterInOneRun(int mostGainedWaterInOneRun) {
+        this.mostGainedWaterInOneRun = mostGainedWaterInOneRun;
     }
 
     public void setTotalAmountOfRuns(int totalAmountOfRuns) {
@@ -82,8 +87,12 @@ public class Village {
         return totalWater;
     }
 
-    public int getMostWaterInOneRun() {
-        return mostWaterInOneRun;
+    public int getMostCollectedWaterInOneRun() {
+        return mostCollectedWaterInOneRun;
+    }
+
+    public int getMostGainedWaterInOneRun() {
+        return mostGainedWaterInOneRun;
     }
 
     public int getTotalAmountOfRuns() {

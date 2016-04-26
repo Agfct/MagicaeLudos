@@ -9,18 +9,22 @@ public class Water {
 
     private double cleanWater;
     private double dirtyWater;
+    private double totalCollectedWaterAmount;
     private int maxAmountOfWater;
 
     public Water (int startingAmount, int maxAmountOfWater){
         this.cleanWater = startingAmount;
         this.dirtyWater = 0;
+        this.totalCollectedWaterAmount = 0;
         this.maxAmountOfWater = maxAmountOfWater;
     }
 
+    // Adds clean water (negative or positive value)
     public void addCleanWater(double cleanWaterAmount){
         double totalWater = cleanWater + dirtyWater;
         double spaceLeft = (maxAmountOfWater - totalWater);
         if(cleanWaterAmount >= 0){
+            totalCollectedWaterAmount += cleanWaterAmount;
             if( cleanWaterAmount > spaceLeft){
                 this.cleanWater += spaceLeft;
             }else{
@@ -54,6 +58,7 @@ public class Water {
         double totalWater = cleanWater + dirtyWater;
         double spaceLeft = (maxAmountOfWater - totalWater);
         if(dirtyWaterAmount >= 0){
+            totalCollectedWaterAmount += dirtyWaterAmount;
             if( dirtyWaterAmount > spaceLeft){
                 this.dirtyWater += spaceLeft;
             }else{
@@ -110,6 +115,10 @@ public class Water {
         }else{
             return 0;
         }
+    }
+
+    public int getTotalCollectedWaterAmount() {
+        return (int)totalCollectedWaterAmount;
     }
 
     public int getMaxAmountOfWater() {

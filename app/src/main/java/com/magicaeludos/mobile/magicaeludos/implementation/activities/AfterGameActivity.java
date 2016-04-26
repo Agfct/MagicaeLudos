@@ -31,13 +31,18 @@ public class AfterGameActivity extends MotherActivity {
         int dirtyWater = this.getIntent().getIntExtra("dirtyWater", 0);
         double dirtyWaterMultiplier = this.getIntent().getDoubleExtra("dirtyWaterMultiplier", 0);
         int totalWater = cleanWater + (int)(dirtyWater * dirtyWaterMultiplier);
+        int totalWaterCollectedAmount = this.getIntent().getIntExtra("totalWaterCollected", 0);
         TextView totalCleanWater = (TextView) findViewById(R.id.intCleanWaterAmount);
         TextView totalDirtyWater = (TextView) findViewById(R.id.intDirtyWaterAmount);
         TextView totalWaterAmount = (TextView) findViewById(R.id.intTotalWaterAmount);
+        TextView totalWaterCollected = (TextView) findViewById(R.id.intTotalWaterCollected);
+        TextView dirtyWaterMultiplierView = (TextView) findViewById(R.id.intDirtyWaterMultiplier);
 //        totalWaterAmount.setText(cleanWater + " + " + dirtyWater + "*" + dirtyWaterMultiplier + " = "+totalWater+ " l");
         totalCleanWater.setText(cleanWater+" L");
-        totalDirtyWater.setText(dirtyWater + " L * " + dirtyWaterMultiplier);
+        totalDirtyWater.setText(dirtyWater + " L");
         totalWaterAmount.setText(totalWater+" L");
+        totalWaterCollected.setText(totalWaterCollectedAmount+" L");
+        dirtyWaterMultiplierView.setText(dirtyWaterMultiplier*100+" %");
     }
 
     public void goToMainActivity(View view){
