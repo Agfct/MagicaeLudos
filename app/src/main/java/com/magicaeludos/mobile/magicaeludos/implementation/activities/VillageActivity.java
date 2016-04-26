@@ -40,14 +40,16 @@ public class VillageActivity extends MotherActivity {
     private void updateVillageData(){
         TextView totalWater = (TextView) findViewById(R.id.valueTotalWater);
         TextView nrOfVillagers = (TextView) findViewById(R.id.valueVillagers);
-        TextView bestRun = (TextView) findViewById(R.id.valueMostWaterInOneRun);
+        TextView bestCollectedRun = (TextView) findViewById(R.id.valueMostCollectedWaterInOneRun);
+        TextView bestGainedRun = (TextView) findViewById(R.id.valueMostGainedWaterInOneRun);
         TextView nrOfRuns = (TextView) findViewById(R.id.valueNrOfRuns);
         TextView currentDay = (TextView) findViewById(R.id.valueCurrentDay);
         TextView runsLeftToday = (TextView) findViewById(R.id.valueRunsLeftToday);
 
         totalWater.setText(Integer.toString(village.getTotalWater())+" L");
         nrOfVillagers.setText(Integer.toString(village.getNrOfVillagers()));
-        bestRun.setText(Integer.toString(village.getMostWaterInOneRun())+" L");
+        bestCollectedRun.setText(Integer.toString(village.getMostCollectedWaterInOneRun()) + " L");
+        bestGainedRun.setText(Integer.toString(village.getMostGainedWaterInOneRun()) + " L");
         nrOfRuns.setText(Integer.toString(village.getTotalAmountOfRuns()));
         currentDay.setText(Integer.toString(village.getCurrentDay()));
         runsLeftToday.setText(Integer.toString(village.getRunsLeftToday()));

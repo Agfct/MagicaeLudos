@@ -6,8 +6,6 @@ import android.util.Log;
 import com.magicaeludos.mobile.magicaeludos.R;
 import com.magicaeludos.mobile.magicaeludos.implementation.Village;
 
-import java.util.Set;
-import java.util.TreeSet;
 /**
  * Created by Anders on 04.03.2016.
  * Used to saved data to mobile storage
@@ -39,7 +37,8 @@ public class FileIO {
             editor.putInt(activity.getString(R.string.totalWater), 0);
             editor.putInt(activity.getString(R.string.upgradeNr1), 0);
             editor.putInt(activity.getString(R.string.upgradeNr2), 0);
-            editor.putInt(activity.getString(R.string.mostWaterInOneRun), 0);
+            editor.putInt(activity.getString(R.string.mostCollectedWaterInOneRun), 0);
+            editor.putInt(activity.getString(R.string.mostGainedWaterInOneRun), 0);
             editor.putInt(activity.getString(R.string.totalAmountOfRuns), 0);
             editor.putInt(activity.getString(R.string.villages),1);
             editor.putInt(activity.getString(R.string.currentDay), 0);
@@ -59,7 +58,8 @@ public class FileIO {
         SharedPreferences sharedPref = activity.getSharedPreferences(activity.getString(R.string.profile_preferences), Context.MODE_PRIVATE);
 
         village.setTotalWater(sharedPref.getInt(activity.getString(R.string.totalWater),0));
-        village.setMostWaterInOneRun(sharedPref.getInt(activity.getString(R.string.mostWaterInOneRun), 0));
+        village.setMostCollectedWaterInOneRun(sharedPref.getInt(activity.getString(R.string.mostCollectedWaterInOneRun), 0));
+        village.setMostGainedWaterInOneRun(sharedPref.getInt(activity.getString(R.string.mostGainedWaterInOneRun), 0));
         village.setTotalAmountOfRuns(sharedPref.getInt(activity.getString(R.string.totalAmountOfRuns), 0));
         village.setUpgradeNr(1,sharedPref.getInt(activity.getString(R.string.upgradeNr1), 0));
         village.setUpgradeNr(2,sharedPref.getInt(activity.getString(R.string.upgradeNr2), 0));
@@ -81,7 +81,8 @@ public class FileIO {
         editor.putInt(activity.getString(R.string.totalWater), village.getTotalWater());
         editor.putInt(activity.getString(R.string.upgradeNr1), village.getUpgradeNr(1));
         editor.putInt(activity.getString(R.string.upgradeNr2), village.getUpgradeNr(2));
-        editor.putInt(activity.getString(R.string.mostWaterInOneRun), village.getMostWaterInOneRun());
+        editor.putInt(activity.getString(R.string.mostCollectedWaterInOneRun), village.getMostCollectedWaterInOneRun());
+        editor.putInt(activity.getString(R.string.mostGainedWaterInOneRun), village.getMostGainedWaterInOneRun());
         editor.putInt(activity.getString(R.string.totalAmountOfRuns),village.getTotalAmountOfRuns());
         editor.putInt(activity.getString(R.string.villages), village.getNrOfVillagers());
         editor.putInt(activity.getString(R.string.currentDay), village.getCurrentDay());
@@ -103,7 +104,8 @@ public class FileIO {
         editor.putInt(activity.getString(R.string.totalWater), 0);
         editor.putInt(activity.getString(R.string.upgradeNr1), 0);
         editor.putInt(activity.getString(R.string.upgradeNr2), 0);
-        editor.putInt(activity.getString(R.string.mostWaterInOneRun),0);
+        editor.putInt(activity.getString(R.string.mostCollectedWaterInOneRun),0);
+        editor.putInt(activity.getString(R.string.mostGainedWaterInOneRun), 0);
         editor.putInt(activity.getString(R.string.totalAmountOfRuns),0);
         editor.putInt(activity.getString(R.string.villages), 1);
         editor.putInt(activity.getString(R.string.currentDay), 0);

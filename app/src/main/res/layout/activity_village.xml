@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/bck_village"
     tools:context=".implementation.activities.MainActivity">
 
     <TextView
@@ -18,20 +19,20 @@
         android:textSize="@dimen/large_text"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"/>
-    <ImageView
-        android:layout_width="match_parent"
-        android:src="@drawable/bck_village"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtVillage"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/imageView"/>
+    <!--<ImageView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:src="@drawable/bck_village"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/txtVillage"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:id="@+id/imageView"/>-->
     <TextView
         android:id="@+id/txtTotalWater"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Total water:"
         android:textSize="@dimen/medium_text"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="30dp"
         android:layout_below="@+id/txtVillage"
         android:layout_toRightOf="@+id/btnLeaveVillage"
         android:layout_toEndOf="@+id/btnLeaveVillage"
@@ -68,19 +69,45 @@
         android:id="@+id/txtMostWaterInOneRun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Best Run:"
+        android:text="Best Run"
         android:textSize="@dimen/medium_text"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="30dp"
         android:layout_below="@+id/txtVillagers"
         android:layout_alignRight="@+id/txtVillagers"
         android:layout_alignEnd="@+id/txtVillagers"/>
     <TextView
-        android:id="@+id/valueMostWaterInOneRun"
+        android:id="@+id/txtMostCollectedWaterInOneRun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Collected:"
+        android:textSize="@dimen/medium_text"
+        android:layout_below="@+id/txtMostWaterInOneRun"
+        android:layout_alignRight="@+id/txtVillagers"
+        android:layout_alignEnd="@+id/txtVillagers"/>
+    <TextView
+        android:id="@+id/valueMostCollectedWaterInOneRun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
         android:textSize="@dimen/medium_text"
-        android:layout_alignTop="@+id/txtMostWaterInOneRun"
+        android:layout_alignTop="@+id/txtMostCollectedWaterInOneRun"
+        android:layout_alignRight="@+id/valueTotalWater"/>
+    <TextView
+        android:id="@+id/txtMostGainedWaterInOneRun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gained:"
+        android:textSize="@dimen/medium_text"
+        android:layout_below="@+id/txtMostCollectedWaterInOneRun"
+        android:layout_alignRight="@+id/txtVillagers"
+        android:layout_alignEnd="@+id/txtVillagers"/>
+    <TextView
+        android:id="@+id/valueMostGainedWaterInOneRun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="@dimen/medium_text"
+        android:layout_alignTop="@+id/txtMostGainedWaterInOneRun"
         android:layout_alignRight="@+id/valueTotalWater"/>
     <TextView
         android:id="@+id/txtNrOfRuns"
@@ -88,17 +115,17 @@
         android:layout_height="wrap_content"
         android:text="Nr of Runs:"
         android:textSize="@dimen/medium_text"
-        android:layout_below="@+id/txtMostWaterInOneRun"
+        android:layout_below="@+id/txtMostGainedWaterInOneRun"
         android:layout_alignRight="@+id/txtVillagers"
-        android:layout_alignEnd="@+id/txtVillagers"/>
+        android:layout_alignEnd="@+id/txtVillagers" />
     <TextView
         android:id="@+id/valueNrOfRuns"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
         android:textSize="@dimen/medium_text"
-        android:layout_below="@+id/valueMostWaterInOneRun"
-        android:layout_alignRight="@+id/valueMostWaterInOneRun" />
+        android:layout_alignRight="@+id/valueMostCollectedWaterInOneRun"
+        android:layout_alignTop="@+id/txtNrOfRuns" />
     <TextView
         android:id="@+id/txtCurrentDay"
         android:layout_width="wrap_content"
@@ -108,7 +135,7 @@
         android:layout_below="@+id/txtNrOfRuns"
         android:layout_alignRight="@+id/txtNrOfRuns"
         android:layout_alignEnd="@+id/txtNrOfRuns"
-        android:layout_marginTop="33dp" />
+        android:layout_marginTop="30dp" />
     <TextView
         android:id="@+id/valueCurrentDay"
         android:layout_width="wrap_content"
@@ -116,7 +143,7 @@
         android:text="0"
         android:textSize="@dimen/medium_text"
         android:layout_alignTop="@+id/txtCurrentDay"
-        android:layout_alignRight="@+id/valueMostWaterInOneRun" />
+        android:layout_alignRight="@+id/valueMostCollectedWaterInOneRun" />
 
     <TextView
         android:id="@+id/txtRunsLeftToday"
@@ -134,7 +161,7 @@
         android:text="0"
         android:textSize="@dimen/medium_text"
         android:layout_alignTop="@+id/txtRunsLeftToday"
-        android:layout_alignRight="@+id/valueMostWaterInOneRun" />
+        android:layout_alignRight="@+id/valueMostCollectedWaterInOneRun" />
 
     <ImageButton
         android:id="@+id/btnLeaveVillage"

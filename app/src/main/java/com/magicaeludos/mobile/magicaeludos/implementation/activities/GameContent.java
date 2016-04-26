@@ -240,9 +240,14 @@ public class GameContent implements Content{
         int totalCollectedWater = water.getTotalCollectedWaterAmount();
         village.addTotalWater(totalWater);
 
-        //Adds a new top score to mostWater in on run
-        if(totalCollectedWater > village.getMostWaterInOneRun()){
-            village.setMostWaterInOneRun(totalCollectedWater);
+        //Adds a new top score to mostCollectedWater in on run
+        if(totalCollectedWater > village.getMostCollectedWaterInOneRun()){
+            village.setMostCollectedWaterInOneRun(totalCollectedWater);
+        }
+
+        //Adds a new top score to mostGainedWater in on run
+        if(totalWater > village.getMostGainedWaterInOneRun()){
+            village.setMostGainedWaterInOneRun(totalWater);
         }
 
         int runsLeftToday = village.getRunsLeftToday();
