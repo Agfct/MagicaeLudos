@@ -11,14 +11,23 @@
     android:background="@drawable/background_bucket"
     tools:context=".implementation.activities.MainActivity">
 
-    <TextView
+    <ImageView
         android:id="@+id/txtUpgrades"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Upgrades"
         android:textSize="@dimen/large_text"
+        android:src="@drawable/upgrades_header"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_above="@+id/txtCleaningStation"
+        android:layout_marginBottom="70dp"
+        android:layout_toRightOf="@+id/btnBackToVillage"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="39dp"
+        android:layout_alignRight="@+id/upgradeWave"
+        android:layout_alignEnd="@+id/upgradeWave"
+        android:layout_marginRight="40dp"
+        android:layout_marginEnd="79dp" />
 
     <RelativeLayout
         android:id="@+id/upgradeWave"
@@ -101,11 +110,12 @@
         android:id="@+id/txtBucketUpgrade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bucket:"
+        android:text="Bucket"
         android:textSize="@dimen/medium_text"
-        android:layout_above="@+id/valueCleaningStation"
-        android:layout_toLeftOf="@+id/cleaningStationUpgrade2"
-        android:layout_toStartOf="@+id/cleaningStationUpgrade2" />
+        android:layout_alignRight="@+id/bucketUpgrade3"
+        android:layout_alignEnd="@+id/bucketUpgrade3"
+        android:layout_above="@+id/bucketUpgrade3"
+        android:layout_marginBottom="5dp" />
     <TextView
         android:id="@+id/valueBucketUpgrade"
         android:layout_width="wrap_content"
@@ -114,17 +124,18 @@
         android:textSize="@dimen/medium_text"
         android:layout_alignTop="@+id/txtBucketUpgrade"
         android:layout_alignRight="@+id/txtUpgrades"
-        android:layout_alignEnd="@+id/txtUpgrades" />
+        android:layout_alignEnd="@+id/txtUpgrades"
+        android:visibility="gone" />
     <TextView
         android:id="@+id/txtCleaningStation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cleaning station:"
+        android:text="Cleaning station"
         android:textSize="@dimen/medium_text"
-        android:layout_below="@+id/txtUpgrades"
-        android:layout_toLeftOf="@+id/cleaningStationUpgrade2"
-        android:layout_toStartOf="@+id/cleaningStationUpgrade2"
-        android:layout_marginTop="40dp" />
+        android:layout_above="@+id/cleaningStationUpgrade2"
+        android:layout_alignRight="@+id/upgradeWave"
+        android:layout_alignEnd="@+id/upgradeWave"
+        android:layout_marginBottom="5dp" />
     <TextView
         android:id="@+id/valueCleaningStation"
         android:layout_width="wrap_content"
@@ -133,7 +144,8 @@
         android:textSize="@dimen/medium_text"
         android:layout_alignTop="@+id/txtCleaningStation"
         android:layout_alignRight="@+id/txtUpgrades"
-        android:layout_alignEnd="@+id/txtUpgrades" />
+        android:layout_alignEnd="@+id/txtUpgrades"
+        android:visibility="gone" />
     <!-- Upgrade level 1 (5+)-->
     <ImageView
         android:id="@+id/bucketUpgrade1"

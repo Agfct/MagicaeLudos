@@ -11,15 +11,15 @@
     android:background="@drawable/background_menu_empty"
     tools:context=".implementation.activities.MainActivity">
 
-    <TextView
+    <ImageView
         android:id="@+id/txtSelectDifficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/difficulty_header"
         android:text="Select Difficulty"
         android:textSize="@dimen/large_text"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"/>
+        android:layout_centerHorizontal="true" />
     <ImageButton
         android:id="@+id/btnLevel1"
         android:tag="1"
