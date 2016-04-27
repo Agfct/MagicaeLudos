@@ -11,22 +11,25 @@
     android:background="@drawable/bck_village"
     tools:context=".implementation.activities.MainActivity">
 
-    <TextView
+    <ImageView
         android:id="@+id/txtVillage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/village_header"
         android:text="Village"
         android:textSize="@dimen/large_text"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_above="@+id/txtTotalWater" />
     <ImageView
         android:layout_width="match_parent"
         android:src="@color/BLACK"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtVillage"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:id="@+id/imageView"
-        android:layout_above="@+id/btnLeaveVillage" />
+        android:layout_above="@+id/btnLeaveVillage"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="10dp" />
     <TextView
         android:id="@+id/txtTotalWater"
         android:layout_width="wrap_content"
@@ -34,11 +37,11 @@
         android:text="Total water:"
         android:textSize="@dimen/medium_text"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/txtVillage"
         android:layout_toRightOf="@+id/btnLeaveVillage"
         android:layout_toEndOf="@+id/btnLeaveVillage"
         android:layout_marginLeft="23dp"
-        android:layout_marginStart="23dp" />
+        android:layout_marginStart="23dp"
+        android:layout_alignTop="@+id/imageView" />
     <TextView
         android:id="@+id/valueTotalWater"
         android:layout_width="wrap_content"
@@ -46,8 +49,7 @@
         android:text="0"
         android:textSize="@dimen/medium_text"
         android:layout_alignTop="@+id/txtTotalWater"
-        android:layout_toRightOf="@+id/txtVillage"
-        android:layout_toEndOf="@+id/txtVillage" />
+        android:layout_alignRight="@+id/valueMostCollectedWaterInOneRun" />
     <TextView
         android:id="@+id/txtVillagers"
         android:layout_width="wrap_content"
@@ -64,8 +66,7 @@
         android:text="0"
         android:textSize="@dimen/medium_text"
         android:layout_alignTop="@+id/txtVillagers"
-        android:layout_alignRight="@+id/valueMostWaterInOneRun"
-        android:layout_alignEnd="@+id/valueTotalWater"/>
+        android:layout_alignRight="@+id/valueMostCollectedWaterInOneRun" />
     <TextView
         android:id="@+id/txtMostWaterInOneRun"
         android:layout_width="wrap_content"
@@ -83,7 +84,7 @@
         android:text="Collected:"
         android:textSize="@dimen/medium_text"
         android:layout_below="@+id/txtMostWaterInOneRun"
-        android:layout_alignRight="@+id/txtVillagers"
+        android:layout_alignRight="@+id/txtMostWaterInOneRun"
         android:layout_alignEnd="@+id/txtVillagers"/>
     <TextView
         android:id="@+id/valueMostCollectedWaterInOneRun"
@@ -92,7 +93,8 @@
         android:text="0"
         android:textSize="@dimen/medium_text"
         android:layout_alignTop="@+id/txtMostCollectedWaterInOneRun"
-        android:layout_alignRight="@+id/valueTotalWater"/>
+        android:layout_toRightOf="@+id/txtMostCollectedWaterInOneRun"
+        android:layout_marginLeft="50dp" />
     <TextView
         android:id="@+id/txtMostGainedWaterInOneRun"
         android:layout_width="wrap_content"
@@ -109,7 +111,7 @@
         android:text="0"
         android:textSize="@dimen/medium_text"
         android:layout_alignTop="@+id/txtMostGainedWaterInOneRun"
-        android:layout_alignRight="@+id/valueTotalWater"/>
+        android:layout_alignRight="@+id/valueMostCollectedWaterInOneRun"/>
     <TextView
         android:id="@+id/txtNrOfRuns"
         android:layout_width="wrap_content"
@@ -182,8 +184,7 @@
         android:background="@drawable/upgrades_click"
         android:onClick="goToUpgradesActivity"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/txtVillage"
-        android:layout_toEndOf="@+id/txtVillage" />
+        android:layout_alignParentRight="true" />
 
     <TextView
         android:id="@+id/howVillageWorks"
@@ -201,6 +202,6 @@
         android:layout_alignParentEnd="true"
         android:layout_above="@+id/btnLeaveVillage"
         android:layout_below="@+id/txtRunsLeftToday"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>
