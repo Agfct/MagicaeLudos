@@ -7,6 +7,7 @@
     <string name="profile_preferences">com.magicaeludos.profile</string>
     <string name="firstTime">com.magicaeludos.firstTime</string>
     <string name="totalWater">com.magicaeludos.totalWater</string>
+    <string name="totalWaterCollected">com.magicaeludos.totalWaterCollected</string>
     <string name="upgradeNr1">com.magicaeludos.upgrade1</string>
     <string name="upgradeNr2">com.magicaeludos.upgrade2</string>
     <string name="mostCollectedWaterInOneRun">com.magicaeludos.mostCollectedWaterInOneRun</string>

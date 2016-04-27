@@ -29,6 +29,7 @@ public class Village {
 
     //Values
     private int totalWater;
+    private int totalWaterCollected; //totalWater for all runs ever
     private int mostCollectedWaterInOneRun;
     private int mostGainedWaterInOneRun;
     private int totalAmountOfRuns;
@@ -68,6 +69,7 @@ public class Village {
         this.totalWater = totalWater;
     }
     public void addTotalWater(int addedWaterAmount){
+        this.totalWaterCollected += addedWaterAmount;
         this.totalWater += addedWaterAmount;
     }
 
@@ -208,6 +210,14 @@ public class Village {
             return 1;
         }
         return 0;
+    }
+
+    public int getTotalWaterCollected() {
+        return totalWaterCollected;
+    }
+
+    public void setTotalWaterCollected(int totalWaterCollected) {
+        this.totalWaterCollected = totalWaterCollected;
     }
 
     public int getBgmLevel() {

@@ -23,12 +23,12 @@ public class GameObject {
         this.y = point.y;
         //To account for the village taking the whole screen
         if(width > content.getGrid().getScreenWidth()){
-            this.width = content.getGrid().getScreenWidth();
+            this.width = content.getGrid().getColWidth()*4;
         }else {
             this.width = width;
         }
         this.height = height;
-        this.sprite = new Sprite((int)x,(int)y,width,height,sprite);
+        this.sprite = new Sprite((int)x,(int)y,this.width,height,sprite);
     }
 
     //Game object using animations

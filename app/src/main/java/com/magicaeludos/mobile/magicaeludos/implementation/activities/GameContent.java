@@ -222,7 +222,7 @@ public class GameContent implements Content{
     private void spawnVillage() {
             Obstacle village = new Obstacle(this,
                     BitmapFactory.decodeResource(this.getActivity().getResources(),
-                            R.drawable.village_endgame), 4, 5, 10, ObstacleType.VILLAGE);
+                            R.drawable.village_endgame), 4, 5, 12, ObstacleType.VILLAGE);
             obstacles.add(village);
     }
 
