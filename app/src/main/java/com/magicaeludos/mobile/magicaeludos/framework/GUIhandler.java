@@ -165,7 +165,7 @@ public class GUIhandler {
             tmp_blue = blue;
         }
 //        Log.w("GUIHandler", "WaterColor"+waterColor);
-        ColorFilter filter = new LightingColorFilter(Color.rgb(tmp_red, tmp_green, tmp_blue), 0); //TODO: Fix to add correct color value
+        ColorFilter filter = new LightingColorFilter(Color.rgb(tmp_red, tmp_green, tmp_blue), 0);
         waterPaint.setColorFilter(filter);
 
     }

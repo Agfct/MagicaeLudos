@@ -18,6 +18,7 @@ public class VillageActivity extends MotherActivity {
         setContentView(R.layout.activity_village);
 
         village = this.getVillage();
+        Log.w("Village","Total Water Collected: " + village.getTotalWaterCollected());
         updateVillageData();
     }
 

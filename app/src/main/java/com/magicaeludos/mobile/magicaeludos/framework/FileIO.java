@@ -26,7 +26,10 @@ public class FileIO {
         this.activity = activity;
 
         SharedPreferences sharedPref = activity.getSharedPreferences(activity.getString(R.string.profile_preferences), Context.MODE_PRIVATE);
-//        clearSavedData(); //TODO: REMOVE
+
+        //Enable this to clear save data on startup
+//        clearSavedData();
+
         //If this is the first time you start the app it will initialize all variables
         if(!sharedPref.getBoolean(activity.getString(R.string.firstTime), Boolean.FALSE)){
             Log.w("FileIO", "NO PROFILE, CREATING NEW PROFILE DATA");
@@ -35,6 +38,7 @@ public class FileIO {
 
             //Sets all the values that will be saved inGame
             editor.putInt(activity.getString(R.string.totalWater), 0);
+            editor.putInt(activity.getString(R.string.totalWaterCollected), 0);
             editor.putInt(activity.getString(R.string.upgradeNr1), 0);
             editor.putInt(activity.getString(R.string.upgradeNr2), 0);
             editor.putInt(activity.getString(R.string.mostCollectedWaterInOneRun), 0);
@@ -57,7 +61,8 @@ public class FileIO {
         Log.w("FileIO", "UpdateVillage");
         SharedPreferences sharedPref = activity.getSharedPreferences(activity.getString(R.string.profile_preferences), Context.MODE_PRIVATE);
 
-        village.setTotalWater(sharedPref.getInt(activity.getString(R.string.totalWater),0));
+        village.setTotalWater(sharedPref.getInt(activity.getString(R.string.totalWater), 0));
+        village.setTotalWaterCollected(sharedPref.getInt(activity.getString(R.string.totalWaterCollected), 0));
         village.setMostCollectedWaterInOneRun(sharedPref.getInt(activity.getString(R.string.mostCollectedWaterInOneRun), 0));
         village.setMostGainedWaterInOneRun(sharedPref.getInt(activity.getString(R.string.mostGainedWaterInOneRun), 0));
         village.setTotalAmountOfRuns(sharedPref.getInt(activity.getString(R.string.totalAmountOfRuns), 0));
@@ -79,6 +84,7 @@ public class FileIO {
         SharedPreferences.Editor editor = sharedPref.edit();
 
         editor.putInt(activity.getString(R.string.totalWater), village.getTotalWater());
+        editor.putInt(activity.getString(R.string.totalWaterCollected), village.getTotalWaterCollected());
         editor.putInt(activity.getString(R.string.upgradeNr1), village.getUpgradeNr(1));
         editor.putInt(activity.getString(R.string.upgradeNr2), village.getUpgradeNr(2));
         editor.putInt(activity.getString(R.string.mostCollectedWaterInOneRun), village.getMostCollectedWaterInOneRun());
@@ -102,6 +108,7 @@ public class FileIO {
 
         //Resets all the values to default
         editor.putInt(activity.getString(R.string.totalWater), 0);
+        editor.putInt(activity.getString(R.string.totalWaterCollected), 0);
         editor.putInt(activity.getString(R.string.upgradeNr1), 0);
         editor.putInt(activity.getString(R.string.upgradeNr2), 0);
         editor.putInt(activity.getString(R.string.mostCollectedWaterInOneRun),0);

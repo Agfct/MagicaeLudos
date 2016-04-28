@@ -33,6 +33,9 @@ import java.util.ArrayList;
 import java.util.List;
 /**
  * Created by Anders on 10.02.2016.
+ * This class is the hearth of the application, the game itself. It handles the creation of a game's: player, settings, other.
+ * It starts out by defining the grid based on mobile screen size, then it initializes the games settings which sets the GameTime and other variables.
+ * The update and draw methods updates then draws the game and is controlled by the Layout class (which in turn is run by AndroidThread).
  */
 public class GameContent implements Content{
 
@@ -72,7 +75,7 @@ public class GameContent implements Content{
 
 
     //Test
-    ArrayList<Dummy> dummies;
+//    ArrayList<Dummy> dummies;
 
 
     public GameContent(MotherActivity activity, Layout layout) {
@@ -222,7 +225,7 @@ public class GameContent implements Content{
     private void spawnVillage() {
             Obstacle village = new Obstacle(this,
                     BitmapFactory.decodeResource(this.getActivity().getResources(),
-                            R.drawable.village_endgame), 4, 5, 10, ObstacleType.VILLAGE);
+                            R.drawable.village_endgame), 4, 5, 12, ObstacleType.VILLAGE);
             obstacles.add(village);
     }
 
