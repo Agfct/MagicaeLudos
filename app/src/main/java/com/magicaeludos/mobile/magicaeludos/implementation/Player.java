@@ -62,7 +62,7 @@ public class Player extends GameObject {
      * @param spriteSheet
      */
     public Player(GameContent content, Point point, int width, int height, Bitmap spriteSheet){
-        super(content, point, width, height, spriteSheet, 4, 2); //TODO: the number 4 is the number of frames in the player animation cycle and 1 is number of animation types (running  = 1, then if jumping its 2)
+        super(content, point, width, height, spriteSheet, 4, 2); //The number 4 is the number of frames in the player animation cycle and 2 is number of animation types (running  = 1, then if jumping its 2)
         this.touchHandler = content.getTouchHandler();
         this.movementSpeed = content.getGrid().getScreenWidth()/16;
         this.jumpLength = content.getGrid().getRowHeight()*2;
@@ -103,9 +103,6 @@ public class Player extends GameObject {
 
     public void draw(Canvas canvas){
 
-//        if(jumpVariable == 1){
-//            sprite.animateJump();
-//        }
         sprite.draw(canvas);
         //Draws additional information if development mode is on
         if(content.getActivity().isDeveloperModeOn()) {
@@ -252,7 +249,6 @@ public class Player extends GameObject {
     }
     /**
      * Moves the player to the current lane, the player only moves on the horizontal (x) axis
-     * //TODO: Make sure that the value of x can be exacly "x" or else the player wont stop
      */
     private void movePlayer(){
         double laneX = currentLane.x;
