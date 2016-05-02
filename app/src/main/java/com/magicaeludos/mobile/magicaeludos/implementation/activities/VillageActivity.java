@@ -18,7 +18,6 @@ public class VillageActivity extends MotherActivity {
         setContentView(R.layout.activity_village);
 
         village = this.getVillage();
-        Log.w("Village","Total Water Collected: " + village.getTotalWaterCollected());
         updateVillageData();
     }
 
@@ -29,12 +28,10 @@ public class VillageActivity extends MotherActivity {
     }
 
     public void goToMainActivity(View view){
-        Log.w("VillageActivity", "Going to the MainMenu");
         goTo(MainActivity.class);
     }
 
     public void goToUpgradesActivity(View view){
-        Log.w("VillageActivity", "Going to the Upgrade Activity");
         goTo(UpgradesActivity.class);
     }
 

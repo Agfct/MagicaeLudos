@@ -14,7 +14,6 @@ public class CreditsActivity extends MotherActivity {
 
 
     public void goToMainActivity(View view){
-        Log.w("CreditsActivity", "Going to Main Menu");
         goTo(MainActivity.class);
     }
 

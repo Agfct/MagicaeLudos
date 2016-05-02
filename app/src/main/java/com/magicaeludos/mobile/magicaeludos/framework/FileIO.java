@@ -32,7 +32,6 @@ public class FileIO {
 
         //If this is the first time you start the app it will initialize all variables
         if(!sharedPref.getBoolean(activity.getString(R.string.firstTime), Boolean.FALSE)){
-            Log.w("FileIO", "NO PROFILE, CREATING NEW PROFILE DATA");
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putBoolean(activity.getString(R.string.firstTime), Boolean.TRUE);
 
@@ -58,7 +57,6 @@ public class FileIO {
      * @param village
      */
     public void readFromStorageToVillage(Village village){
-        Log.w("FileIO", "UpdateVillage");
         SharedPreferences sharedPref = activity.getSharedPreferences(activity.getString(R.string.profile_preferences), Context.MODE_PRIVATE);
 
         village.setTotalWater(sharedPref.getInt(activity.getString(R.string.totalWater), 0));
@@ -79,7 +77,6 @@ public class FileIO {
      * @param village
      */
     public void saveVillageDataInStorage(Village village){
-        Log.w("FileIO", "SAVING CURRENT VILLAGE DATA");
         SharedPreferences sharedPref = activity.getSharedPreferences(activity.getString(R.string.profile_preferences), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 
@@ -102,7 +99,6 @@ public class FileIO {
      * Clears the mobile save data, putting all values back to default (Not setting "firstTime" boolean to false)
      */
     public void clearSavedData(){
-        Log.w("FileIO", "CLEARING SAVED DATA");
         SharedPreferences sharedPref = activity.getSharedPreferences(activity.getString(R.string.profile_preferences), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 

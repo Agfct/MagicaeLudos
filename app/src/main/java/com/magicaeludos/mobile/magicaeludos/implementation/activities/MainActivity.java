@@ -14,17 +14,14 @@ public class MainActivity extends MotherActivity {
 
 
     public void goToGameActivity(View view){
-        Log.w("MainActivity", "Going to the Level select");
         goTo(LevelSelectActivity.class);
     }
 
     public void goToVillageActivity(View view){
-        Log.w("MainActivity", "Going to the Village");
         goTo(VillageActivity.class);
     }
 
     public void goToCreditsActivity(View view){
-        Log.w("MainActivity", "Going to the Credits");
         goTo(CreditsActivity.class);
     }
 

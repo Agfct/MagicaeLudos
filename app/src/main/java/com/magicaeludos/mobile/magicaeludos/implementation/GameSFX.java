@@ -44,7 +44,6 @@ public class GameSFX implements SFX {
     public void stop() {  //Stops this sfx in the current soundPool
         soundPool.stop(sfxId);
         isLooping = false;
-        Log.w("GameSFX", "Stopping looped sfx");
     }
 
     @Override

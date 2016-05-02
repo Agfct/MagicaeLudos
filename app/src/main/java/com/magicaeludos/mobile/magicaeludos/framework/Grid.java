@@ -73,17 +73,14 @@ public class Grid {
         lane1 = new Point(colWidth /2,0);
         lane2 = new Point(colWidth +(colWidth /2),0);
         lane3 = new Point((colWidth *2)+ colWidth /2,0);
-        Log.w("Grid","Lane1: "+ lane1+ " Lane2: "+ lane2 + " Lane3: "+ lane3);
 
         innerLane1 = new Point((colWidth*1) - (colWidth /4),0);
         innerLane2 = new Point((colWidth*2) - (colWidth /4),0);
         innerLane3 = new Point((colWidth*3) - (colWidth /4),0);
-        Log.w("Grid","iLane1: "+ innerLane1+ " iLane2: "+ innerLane2 + " iLane3: "+ innerLane3);
 
         playerLane1 = new Point((colWidth*1) - (colWidth /4 + colWidth/8),screenHeight-(2*rowHeight));
         playerLane2 = new Point((colWidth*2) - (colWidth /4 + colWidth/8),screenHeight-(2*rowHeight));
         playerLane3 = new Point((colWidth*3) - (colWidth /4 + colWidth/8),screenHeight-(2*rowHeight));
-        Log.w("Grid","iLane1: "+ playerLane1+ " iLane2: "+ playerLane2 + " iLane3: "+ playerLane3);
     }
 
 
@@ -91,9 +88,6 @@ public class Grid {
     public void draw(Canvas canvas){
         Paint paint = new Paint();
         paint.setColor(Color.WHITE);
-//        canvas.drawText("COLS: " + COLS + " ROWS: " + ROWS,50,50,paint);
-//        canvas.drawText("colWidth: " + colWidth + " rowHeight: " + rowHeight, 50, 70, paint);
-//        canvas.drawText("screenWidth: " + screenWidth + " screenHeight: " + screenHeight, 50, 150, paint);
     }
 
     /**

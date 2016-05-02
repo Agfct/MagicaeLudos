@@ -140,7 +140,7 @@ public class GUIhandler {
         try {
             numberOfBars = (waterBarHeight / maxWaterAmount);
         }catch (ArithmeticException e){
-            Log.w("GUIhandler","DIVISION BY ZERO: Max Amount of water is 0");
+//            Log.w("GUIhandler","DIVISION BY ZERO: Max Amount of water is 0");
         }
         //This line chooses the height of the rect, the Math.min is to prevent overflow.
         int height = Math.min((int) (numberOfBars * water.getTotalWater()), (int) Math.ceil(numberOfBars * maxWaterAmount));
@@ -164,7 +164,6 @@ public class GUIhandler {
             tmp_green = green;
             tmp_blue = blue;
         }
-//        Log.w("GUIHandler", "WaterColor"+waterColor);
         ColorFilter filter = new LightingColorFilter(Color.rgb(tmp_red, tmp_green, tmp_blue), 0);
         waterPaint.setColorFilter(filter);
 
@@ -172,13 +171,8 @@ public class GUIhandler {
 
     private void calculateProgress(){
         //This line chooses the start of the rect.
-//        int progress = Math.min((int) (numberOfBars * water.getTotalWater()), (int) (numberOfBars * maxWaterAmount));
         double timeLeft =  content.getCurrentGameTime();
-//        Log.w("GUIHnalder", "TimeLeft: " + timeLeft);
         double maxTime =  content.getGameSetting().getGameTime();
-//        Log.w("GUIHnalder","Formel: "+ (barY2 *(1-((maxTime-timeLeft)/maxTime))));
-//        plBarY2 = (int)((barY-pBarVillageHeight) * (1-((maxTime-timeLeft)/maxTime))+ (barHeight/2)-pBarVillageHeight);
-//        Log.w("GUIhandler","BarHeight:" + barHeight+ "barY: " + barY);
         plBarY2 = (int)(Math.ceil(((double)barHeight/2)-(double)pBarVillageHeight) * (1-((maxTime-timeLeft)/maxTime)) + ((double)barY + (double)pBarVillageHeight));
         plBarY = plBarY2-plYRatio;
         rectDst_player = new Rect(plBarX, plBarY,plBarX2, plBarY2);

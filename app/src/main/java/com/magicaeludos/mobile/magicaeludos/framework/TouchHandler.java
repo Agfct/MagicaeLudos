@@ -49,7 +49,6 @@ public class TouchHandler implements View.OnTouchListener{
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         synchronized (this) {
-            Log.w("TouchHandler","Type: "+ event.getAction());
             int action = event.getAction() & MotionEvent.ACTION_MASK;
             int pointerIndex = (event.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK ) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
             int pointerCount = event.getPointerCount();
@@ -72,8 +71,6 @@ public class TouchHandler implements View.OnTouchListener{
                         touchEvent = touchEventPool.newObject();
                         touchEvent.type = TouchEvent.TOUCH_DOWN;
                         touchEvent.pointer = pointerId;
-//                        touchEvent.x = touchX[i] = (int) (event.getX(i) * scaleX);
-//                        touchEvent.y = touchY[i] = (int) (event.getY(i) * scaleY);
                         touchEvent.x = touchX[i] = (int) (event.getX(i));
                         touchEvent.y = touchY[i] = (int) (event.getY(i));
                         isTouched[i] = true;
@@ -87,8 +84,6 @@ public class TouchHandler implements View.OnTouchListener{
                         touchEvent = touchEventPool.newObject();
                         touchEvent.type = TouchEvent.TOUCH_UP;
                         touchEvent.pointer = pointerId;
-//                        touchEvent.x = touchX[i] = (int) (event.getX(i) * scaleX);
-//                        touchEvent.y = touchY[i] = (int) (event.getY(i) * scaleY);
                         touchEvent.x = touchX[i] = (int) (event.getX(i));
                         touchEvent.y = touchY[i] = (int) (event.getY(i));
                         isTouched[i] = false;
@@ -100,8 +95,6 @@ public class TouchHandler implements View.OnTouchListener{
                         touchEvent = touchEventPool.newObject();
                         touchEvent.type = TouchEvent.TOUCH_DRAGGED;
                         touchEvent.pointer = pointerId;
-//                        touchEvent.x = touchX[i] = (int) (event.getX(i) * scaleX);
-//                        touchEvent.y = touchY[i] = (int) (event.getY(i) * scaleY);
                         touchEvent.x = touchX[i] = (int) (event.getX(i));
                         touchEvent.y = touchY[i] = (int) (event.getY(i));
                         isTouched[i] = true;

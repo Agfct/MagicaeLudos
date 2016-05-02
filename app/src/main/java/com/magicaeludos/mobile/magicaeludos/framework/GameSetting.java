@@ -38,7 +38,6 @@ public class GameSetting {
      */
     private void setValues(){
 
-        Log.w("GameSettings","Difficulty: " +gameDifficulty+ " bucketSize: " + village.getBucketSize());
         if(gameDifficulty == 1){
             gameTime = 65;
             gameSpeed = 10;

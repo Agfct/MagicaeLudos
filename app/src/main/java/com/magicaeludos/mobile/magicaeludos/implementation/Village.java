@@ -140,7 +140,6 @@ public class Village {
 
     //Upgrades based on the amout of villagers
     private void checkUpgrades(){
-        Log.w("Village","Before UpppgradeNr. 1: " + bucketUpgrade + " 2: "+waterCleanerUpgrade);
         if(nrOfVillagers >= 5){
             if(bucketUpgrade == 0){
                 bucketUpgrade = 1;
@@ -162,7 +161,6 @@ public class Village {
                 waterCleanerUpgrade = 2;
             }
         }
-        Log.w("Village","After UpppgradeNr. 1: " + bucketUpgrade + " 2: "+waterCleanerUpgrade);
     }
 
     /* UPPGRADES */

@@ -13,7 +13,6 @@ public class Background {
     private Bitmap image;
     private GameContent content;
     private double y;
-//    private int dy;
     private Rect rect;
 
     public Background(GameContent content, Bitmap res){
@@ -41,7 +40,4 @@ public class Background {
 
     public int getBackgroundHeight(){return image.getHeight();}
 
-//    public void setDy(int dy){
-//        this.dy = dy;
-//    }
 }

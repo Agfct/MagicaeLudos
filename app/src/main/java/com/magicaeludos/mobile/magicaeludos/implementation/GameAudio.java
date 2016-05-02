@@ -39,7 +39,7 @@ public class GameAudio implements Audio {
     public SFX createSound(Context c, int resId, int db) {
         int sfxId = soundPool.load(c, resId, 0);
         return new GameSFX(soundPool, sfxId, db);
-    } //TODO: Implement code
+    }
 
 
     //Sound pool constructor deprecated

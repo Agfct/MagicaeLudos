@@ -43,14 +43,12 @@ public abstract class MotherActivity extends FragmentActivity {
     @Override
     public void onPause() {
         super.onPause();
-        Log.w("MotherActivity", "onPause()");
     }
 
     @Override
     public void onResume() {
         super.onResume();
         hideSystemUI();
-        Log.w("MotherActivity", "onResume()");
     }
 
     /**Used for all transitions between activities.
@@ -79,13 +77,6 @@ public abstract class MotherActivity extends FragmentActivity {
     // This snippet hides the system bars.
     private void hideSystemUI() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-//        View decorView = getWindow().getDecorView();
-//        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-//                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-//                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION //Made "one click" impossible
-//                | View.SYSTEM_UI_FLAG_FULLSCREEN
-//                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
 
 

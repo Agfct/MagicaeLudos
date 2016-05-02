@@ -27,7 +27,6 @@ public class LogoActivity extends MotherActivity {
     }
 
     public void goToMainActivity(){
-        Log.w("LogoActivity", "Going to the MainMenu");
         goTo(MainActivity.class);
     }
 

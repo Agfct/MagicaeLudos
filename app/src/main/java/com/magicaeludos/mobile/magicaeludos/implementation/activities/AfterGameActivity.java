@@ -37,7 +37,6 @@ public class AfterGameActivity extends MotherActivity {
         TextView totalWaterAmount = (TextView) findViewById(R.id.intTotalWaterAmount);
         TextView totalWaterCollected = (TextView) findViewById(R.id.intTotalWaterCollected);
         TextView dirtyWaterMultiplierView = (TextView) findViewById(R.id.intDirtyWaterMultiplier);
-//        totalWaterAmount.setText(cleanWater + " + " + dirtyWater + "*" + dirtyWaterMultiplier + " = "+totalWater+ " l");
         totalCleanWater.setText(cleanWater+" L");
         totalDirtyWater.setText(dirtyWater + " L");
         totalWaterAmount.setText(totalWater+" L");
@@ -46,23 +45,18 @@ public class AfterGameActivity extends MotherActivity {
     }
 
     public void goToMainActivity(View view){
-        Log.w("AfterGameActivity", "Going to the MainMenu");
         if((System.currentTimeMillis() - time) > delay)
         goTo(MainActivity.class);
     }
 
 
     public void goToGameActivity(View view){
-        Log.w("LevelSelectActivity","Level: " + level);
-        Log.w("LevelSelectActivity", "Going to the Game");
-
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra(this.getString(R.string.level), level);
         goTo(intent);
     }
 
     public void goToVillageActivity(View view){
-        Log.w("AfterGameActivity", "Going to the Village");
         if((System.currentTimeMillis() - time) > delay)
         goTo(VillageActivity.class);
     }
@@ -71,7 +65,6 @@ public class AfterGameActivity extends MotherActivity {
     private void setWaterInfo(){
         Random random = new Random();
         int factNr = random.nextInt(4);
-        Log.w("AfterGameActivity", "Random Int: " + factNr);
 
         TextView waterInfoTxT = (TextView) findViewById(R.id.infoParagraph);
         TextView waterInfoSrc = (TextView) findViewById(R.id.infoSource);

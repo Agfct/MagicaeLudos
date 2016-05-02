@@ -49,7 +49,6 @@ public class GameContent implements Content{
     private GameSetting gameSetting;
     private Paint paint = new Paint();
 
-
     //Time
     private double gameTime = 0;
     private double currentGameTime = 0;
@@ -71,11 +70,6 @@ public class GameContent implements Content{
     //Audio
     private Audio gameAudio;
     private BGM backgroundMusic;
-
-
-    //Test
-//    ArrayList<Dummy> dummies;
-
 
     public GameContent(MotherActivity activity, Layout layout) {
         this.activity = activity;
@@ -125,13 +119,12 @@ public class GameContent implements Content{
     @Override
     public void update() {
         if(running) {
+            //Counts game time down
             runGameTime();
             List<TouchEvent> touchEvents = touchHandler.getTouchEvents();
             player.update(touchEvents);
             background.update();
             obstacles.update();
-            //Check here if player and Object collides: ?
-//            water.addCleanWater(1);
             //Updates the GUI:
             guIhandler.update();
         }
@@ -149,22 +142,12 @@ public class GameContent implements Content{
 
         //BACK
         //Draws the background
-//        canvas.drawBitmap(temporaryBackground,new Rect(0,0,temporaryBackground.getWidth(),temporaryBackground.getWidth()),grid.getScreenBorders(),paint);
         background.draw(canvas);
 
         //MIDDLE
         paint.setColor(Color.WHITE);
         paint.setTextSize(this.getActivity().getApplicationContext().getResources().getDimensionPixelSize(R.dimen.large_text));
-//        canvas.drawText("Game Time: " + currentGameTime, 100, 100, paint);
-//        canvas.drawText("Time Elapsed: " + timeElapsed, 100, 120, paint);
         paint = new Paint();
-
-        //Test
-//        for (Dummy dummy: dummies
-//                ) {
-//            dummy.draw(canvas);
-//        }
-        //Test Ends
 
         obstacles.draw(canvas);
         player.draw(canvas);
@@ -183,7 +166,6 @@ public class GameContent implements Content{
         timeElapsed = System.currentTimeMillis() - startTime;
         int seconds = (int) (timeElapsed / 1000);
         currentGameTime = gameTime - seconds;
-
 
         if(currentGameTime <= 0 &&!ending){
             if (ending == false) {
@@ -216,7 +198,7 @@ public class GameContent implements Content{
         intent.putExtra("dirtyWater", water.getDirtyWater());
         intent.putExtra("dirtyWaterMultiplier", activity.getVillage().getDirtyWaterMultiplier());
         intent.putExtra("totalWaterCollected", water.getTotalCollectedWaterAmount());
-        updateAchievements();
+//        updateAchievements();
         updateVillage();
         activity.goTo(intent);
 
@@ -264,13 +246,11 @@ public class GameContent implements Content{
 
 
             //FEEDING THE VILLAGERS
-
             int currentNumberOfVillagers = village.getNrOfVillagers();
             int totalWaterLeft = village.getTotalWater() - (currentNumberOfVillagers*village.getAMOUNTOFWATERPRVILLAGER());
             //If you do not have enough water
             //Remove all water
             //Set number of villagers down one level
-            Log.w("GameContent", "OverflowWater: " + (village.getTotalWater() - (currentNumberOfVillagers * village.getAMOUNTOFWATERPRVILLAGER())));
             if(totalWaterLeft < 0){
                 village.setTotalWater(0);
                 int newAmountOfVillagers = 0;
@@ -301,24 +281,20 @@ public class GameContent implements Content{
             }else if (totalWaterLeft > 0) {
                 //If the amount of excessive water is enough to go up on level then set the number of villagers up one level.
                 int nrOfVillagersFedByExcessiveWater = totalWaterLeft/village.getAMOUNTOFWATERPRVILLAGER();
-                Log.w("GameContent", "TotalWaterLeft: " + totalWaterLeft + " ExcessiveVillagers: " + nrOfVillagersFedByExcessiveWater);
                 int newAmountOfVillagers = 0;
                 ArrayList<Integer> villagerMilestones = village.getVillagerMilestones();
                 for (int i = 0; i < villagerMilestones.size(); i++){
-                    Log.w("GameContent","exsessive + currentVillagers = "+ (nrOfVillagersFedByExcessiveWater + currentNumberOfVillagers)+ " Milestone: "+ villagerMilestones.get(i));
                     if(nrOfVillagersFedByExcessiveWater + currentNumberOfVillagers < villagerMilestones.get(i)){
                         if(i == 0){ //Below the lowest milestone
                             newAmountOfVillagers = village.getNrOfVillagers();
                             village.setNrOfVillagers(newAmountOfVillagers);
                             int waterLeftAfterNewAmountOfVillagers = totalWaterLeft - ((newAmountOfVillagers - currentNumberOfVillagers) * village.getAMOUNTOFWATERPRVILLAGER());
-                            Log.w("GameContent", " (1)WaterLeftAfterNewAmountOfVillagers: " + waterLeftAfterNewAmountOfVillagers);
                             village.setTotalWater(waterLeftAfterNewAmountOfVillagers);
                             break;
                         }else if(i > 0) {
                             newAmountOfVillagers = villagerMilestones.get(i - 1);
                             village.setNrOfVillagers(newAmountOfVillagers);
                             int waterLeftAfterNewAmountOfVillagers = totalWaterLeft - ((newAmountOfVillagers - currentNumberOfVillagers) * village.getAMOUNTOFWATERPRVILLAGER());
-                            Log.w("GameContent", " (2)WaterLeftAfterNewAmountOfVillagers: " + waterLeftAfterNewAmountOfVillagers);
                             village.setTotalWater(waterLeftAfterNewAmountOfVillagers);
                             break;
                         }
@@ -331,16 +307,13 @@ public class GameContent implements Content{
                             newAmountOfVillagers = villagerMilestones.get(i);
                             village.setNrOfVillagers(newAmountOfVillagers);
                             int waterLeftAfterNewAmountOfVillagers = totalWaterLeft - ((newAmountOfVillagers - currentNumberOfVillagers) * village.getAMOUNTOFWATERPRVILLAGER());
-                            Log.w("GameContent", " (3)WaterLeftAfterNewAmountOfVillagers: " + waterLeftAfterNewAmountOfVillagers);
                             village.setTotalWater(waterLeftAfterNewAmountOfVillagers);
                         }else{
                             //If there is no more VillagerMilestones:
                             //Set number of villagers to the highest possivble milestone
-                            Log.w("GameContent","No more milestones, highest milestone selected");
                             newAmountOfVillagers = villagerMilestones.get(i);
                             village.setNrOfVillagers(newAmountOfVillagers);
                             int waterLeftAfterNewAmountOfVillagers = totalWaterLeft - ((newAmountOfVillagers - currentNumberOfVillagers) * village.getAMOUNTOFWATERPRVILLAGER());
-                            Log.w("GameContent", " (4)WaterLeftAfterNewAmountOfVillagers: " + waterLeftAfterNewAmountOfVillagers);
                             village.setTotalWater(waterLeftAfterNewAmountOfVillagers);
                         }
 
@@ -356,7 +329,7 @@ public class GameContent implements Content{
             village.setRunsLeftToday(runsLeftToday - 1);
 
         }else{
-            Log.e("GameContent", "ERROR: THIS SHOUD NOT HAPPEN, CHECK updateVillage() METHOD");
+//            Log.e("GameContent", "ERROR: THIS SHOUD NOT HAPPEN, CHECK updateVillage() METHOD");
         }
 
         //Saves the village data to storage

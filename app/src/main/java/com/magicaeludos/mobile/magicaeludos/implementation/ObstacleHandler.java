@@ -73,7 +73,6 @@ public class ObstacleHandler {
             Obstacle o;
             switch (oProb.getName()) {
                 case WATER_DROP:
-                    Log.w("ObstacleHandler", "Water_drop");
                     o = createWaterDrop(oProb.getLane());
                     obstacles.add(o);
                     break;
@@ -94,7 +93,6 @@ public class ObstacleHandler {
                     obstacles.add(o);
                     break;
                 default:
-                    Log.v("Add obstacle","Try to add not existing obstacle");
                     break;
             }
         }
@@ -120,17 +118,6 @@ public class ObstacleHandler {
             if(Rect.intersects(playerBox,oBox)){
                 return o;
             }
-//            int oHeight = oBox.bottom;
-//            int oWidth = oBox.right;
-//            if (oBox.top + oHeight > playerBox.top) {
-//                if (oBox.top < playerBox.top + pHeight) {
-//                    if (oBox.left + oWidth > playerBox.left) {
-//                        if (oBox.left < playerBox.left + pWidth) {
-//                            return o;
-//                        }
-//                    }
-//                }
-//            }
         }
         return null;
     }
@@ -212,7 +199,6 @@ public class ObstacleHandler {
     private Obstacle createStone(int lane){
         Random rand = new Random();
         int randInt = rand.nextInt(2);
-        Log.w("ObstacleHandler","RandInt: " + randInt);
         Obstacle o;
         if(randInt == 1){
             o = new Obstacle(content,
@@ -223,7 +209,6 @@ public class ObstacleHandler {
                     BitmapFactory.decodeResource(content.getActivity().getResources(),
                             R.drawable.stone_small),lane, 1, 1, ObstacleType.STONE);
         }
-//        o.sprite.setWidth(o.sprite.getWidth()*2);
         o.setHitBoxDifferences(hitboxWidthStone, hitboxHeightStone);
         return o;
     }
@@ -232,8 +217,6 @@ public class ObstacleHandler {
         Obstacle o = new Obstacle(content,
                 BitmapFactory.decodeResource(content.getActivity().getResources(),
                         R.drawable.log),lane, 2, 1, ObstacleType.LOG);
-//       o.sprite.setWidth(content.getGrid().getColWidth() * 2);
-//       o.sprite.setHeight(o.sprite.getHeight()*2);
         o.setHitBoxDifferences(hitboxWidthLog, hitboxHeightLog);
         return o;
     }
@@ -257,7 +240,7 @@ public class ObstacleHandler {
     private void ObstacleHit(ObstacleType oType){
         vibrator.vibrate(100);
         try {
-            Thread.sleep(200);  //TODO: FIX               //1000 milliseconds is one second.
+            Thread.sleep(200);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }

@@ -31,7 +31,6 @@ public class UpgradesActivity extends MotherActivity {
     }
 
     public void goToVillageActivity(View view){
-        Log.w("VillageActivity", "Going to the Village");
         goTo(VillageActivity.class);
     }
 

@@ -110,17 +110,13 @@ public class Sprite {
     }
 
     public void animateJump(){
-        Log.w("Sprite", "Animated Jump (2)" + srcBound);
         if(animated){
             if(animationCounter <= 0){
                 animationCounter = animationLength;
                 //If at the end of the animation we reset
-                Log.w("Sprite", "Animated Jump (3)"+ srcBound);
                 if((srcBounds.get(srcBound).right+frameLength) > bitmap.getWidth()){
-                    Log.w("Sprite", "Animated Jump (IF)"+ srcBound);
                     setSrcBounds(new Rect(0, srcBound * frameHeight, frameLength, frameHeight + (srcBound * frameHeight)));
                 }else{
-                    Log.w("Sprite", "Animated Jump (else)"+ srcBound);
                     setSrcBounds(new Rect(srcBounds.get(srcBound).left + frameLength, srcBounds.get(srcBound).top, srcBounds.get(srcBound).right + frameLength, srcBounds.get(srcBound).bottom));
                 }
             }else {

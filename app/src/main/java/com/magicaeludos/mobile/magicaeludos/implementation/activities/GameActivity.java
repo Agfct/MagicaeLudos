@@ -23,8 +23,6 @@ public class GameActivity extends MotherActivity {
         //Finds the layout defined in the XML activity_game
         layout = (Layout)findViewById(R.id.layout);
 
-
-
         //Creates a GameContent class containing the game code and classes
         content = new GameContent(this, layout);
 
@@ -35,10 +33,6 @@ public class GameActivity extends MotherActivity {
         //Puts the correct gameInfo based on level selected
         setCorrectGameInfo();
 
-        //TESTING: This enables you to set background in XML and make surfaceView transparent
-        //If you do not have this code then surfaceview is black and nothing can be shown behind it in the XML code.
-//        layout.setZOrderOnTop(true);
-//        layout.getHolder().setFormat(PixelFormat.TRANSPARENT);
     }
 
     //When the app is closed down this is ran and it pauses the layout thread
@@ -54,9 +48,6 @@ public class GameActivity extends MotherActivity {
     public void onResume() {
         super.onResume();
         layout.resumeAll();
-//        if(content.isRunning()) {
-//            content.startBackgroundAudio();
-//        }
         content.startBackgroundAudio();
     }
 
@@ -66,31 +57,9 @@ public class GameActivity extends MotherActivity {
         this.goTo(MainActivity.class);
     }
 
-
-
-    //Test:
-//    activity.runOnUiThread(new Runnable() {
-//        @Override
-//        public void run() {
-//            ((GameActivity) activity).runAfterGameInfo();
-//        }
-//    });
-//    public void runAfterGameInfo(){
-//        //Finds the layout defined in the XML activity_game
-//        View afterGameInfo = findViewById(R.id.afterInfo);
-//        afterGameInfo.setVisibility(View.VISIBLE);
-//    }
-//
-//    public void hideAfterGameInfo(){
-//        //Finds the layout defined in the XML activity_game
-//        View afterGameInfo = findViewById(R.id.afterInfo);
-//        afterGameInfo.setVisibility(View.GONE);
-//    }
-
     private void setCorrectGameInfo(){
         int level = getIntent().getIntExtra(getString(R.string.level), 0);
         ViewFlipper viewFlipper = (ViewFlipper) findViewById(R.id.vf);
-        Log.w("GameActivity", "Level: "+ level);
         viewFlipper.setDisplayedChild(level-1);
     }
 
@@ -101,7 +70,6 @@ public class GameActivity extends MotherActivity {
     }
 
     public void goToAfterGame(View view){
-        Log.w("LevelSelectActivity", "Going to the AfterGame");
         goTo(MainActivity.class);
     }
 }

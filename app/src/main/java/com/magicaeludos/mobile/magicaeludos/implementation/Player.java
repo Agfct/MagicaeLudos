@@ -66,7 +66,6 @@ public class Player extends GameObject {
         this.touchHandler = content.getTouchHandler();
         this.movementSpeed = content.getGrid().getScreenWidth()/16;
         this.jumpLength = content.getGrid().getRowHeight()*2;
-        Log.w("Player", "MovementSpeed: "+ movementSpeed);
 
         //Defining the box that registers swipe input
         this.swipeBoxX = 0;
@@ -79,7 +78,6 @@ public class Player extends GameObject {
         this.lane2 = content.getGrid().getPlayerLane(2);
         this.lane3 = content.getGrid().getPlayerLane(3);
         this.currentLane = lane2;
-        Log.w("Dummy", "SwipeX: " + swipeBoxX + " swipeY: " + swipeBoxY + " swipe Width: " + swipeBoxWidth + " swipeHeight: " + swipeBoxHeight);
         paint.setColor(color);
     }
 
@@ -199,7 +197,6 @@ public class Player extends GameObject {
                 degree = Math.toDegrees(Math.atan(y / x)) + 180;
             else if (x >= 0 && y < 0)
                 degree = Math.toDegrees(Math.atan(y / x)) + 360;
-            Log.e("Player", "Degree: " + degree);
 
             //Sets the lane for the player
             //Left is between 126 & 234 degrees
@@ -208,9 +205,8 @@ public class Player extends GameObject {
             }else if ( (degree <= 54 && degree >= 0) || (degree >= 306 && degree <= 360)){
                 setLaneToRight();
             }else if (degree > 54 && degree < 126 ){
-                Log.w("Player", "Sliding DOWN");
+//                Log.w("Player", "Sliding DOWN");
             } else if (degree > 234 && degree < 306){
-                Log.w("Player", "Jumping UP");
                 if(jumpVariable == 0){
                     jumpVariable = 1;
                     jumpStart = 0;
@@ -266,7 +262,6 @@ public class Player extends GameObject {
             if(jumpStart >= jumpLength ){
                 jumpVariable = 0;
                 endSpriteJump();
-                Log.w("Player","STOPPED JUMP, Jump Start:"+ jumpStart);
             }else if (jumpStart + content.getSpeed() >= jumpLength){
                 jumpStart += jumpLength - jumpStart;
             }else{
