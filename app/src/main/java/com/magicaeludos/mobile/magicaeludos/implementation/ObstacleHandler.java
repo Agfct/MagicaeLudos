@@ -18,6 +18,7 @@ import com.magicaeludos.mobile.magicaeludos.implementation.activities.GameConten
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by MortenAlver on 07.03.2016.
@@ -209,9 +210,19 @@ public class ObstacleHandler {
     }
 
     private Obstacle createStone(int lane){
-        Obstacle o = new Obstacle(content,
-                BitmapFactory.decodeResource(content.getActivity().getResources(),
-                        R.drawable.stone_smal),lane, 1, 1, ObstacleType.STONE);
+        Random rand = new Random();
+        int randInt = rand.nextInt(2);
+        Log.w("ObstacleHandler","RandInt: " + randInt);
+        Obstacle o;
+        if(randInt == 1){
+            o = new Obstacle(content,
+                    BitmapFactory.decodeResource(content.getActivity().getResources(),
+                            R.drawable.stone_two),lane, 1, 1, ObstacleType.STONE);
+        }else {
+            o = new Obstacle(content,
+                    BitmapFactory.decodeResource(content.getActivity().getResources(),
+                            R.drawable.stone_smal),lane, 1, 1, ObstacleType.STONE);
+        }
 //        o.sprite.setWidth(o.sprite.getWidth()*2);
         o.setHitBoxDifferences(hitboxWidthStone, hitboxHeightStone);
         return o;
