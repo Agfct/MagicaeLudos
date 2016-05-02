@@ -60,7 +60,7 @@ public class GameSetting {
         }else if(gameDifficulty == 3){
             gameTime = 65;
             gameSpeed = 10;
-            waterDropAmount = 6;
+            waterDropAmount = 5;
             water = new Water(0,village.getBucketSize());
             usableObstacles.add(ObstacleType.WATER_DROP);
             usableObstacles.add(ObstacleType.STONE);

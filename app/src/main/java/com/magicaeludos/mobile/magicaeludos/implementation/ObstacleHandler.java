@@ -117,7 +117,7 @@ public class ObstacleHandler {
         for (Obstacle o: obstacles) {
             Rect oBox = o.getHitBox();
             if(Rect.intersects(playerBox,oBox)){
-                return o; //TODO: Sprite HitBox Fixed, but now Collision does not work.
+                return o;
             }
 //            int oHeight = oBox.bottom;
 //            int oWidth = oBox.right;
@@ -218,7 +218,6 @@ public class ObstacleHandler {
     }
 
     private Obstacle createLog(int lane){
-//        TODO:: create log obstacle (Fix size ? )
         Obstacle o = new Obstacle(content,
                 BitmapFactory.decodeResource(content.getActivity().getResources(),
                         R.drawable.log),lane, 2, 1, ObstacleType.LOG);

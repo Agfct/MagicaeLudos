@@ -22,7 +22,6 @@ import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler;
 import com.magicaeludos.mobile.magicaeludos.framework.TouchHandler.TouchEvent;
 import com.magicaeludos.mobile.magicaeludos.framework.Water;
 import com.magicaeludos.mobile.magicaeludos.implementation.Background;
-import com.magicaeludos.mobile.magicaeludos.implementation.Dummy;
 import com.magicaeludos.mobile.magicaeludos.implementation.GameAudio;
 import com.magicaeludos.mobile.magicaeludos.implementation.Obstacle;
 import com.magicaeludos.mobile.magicaeludos.implementation.ObstacleHandler;
@@ -217,6 +216,7 @@ public class GameContent implements Content{
         intent.putExtra("dirtyWater", water.getDirtyWater());
         intent.putExtra("dirtyWaterMultiplier", activity.getVillage().getDirtyWaterMultiplier());
         intent.putExtra("totalWaterCollected", water.getTotalCollectedWaterAmount());
+        updateAchievements();
         updateVillage();
         activity.goTo(intent);
 
@@ -229,6 +229,9 @@ public class GameContent implements Content{
             obstacles.add(village);
     }
 
+    private void updateAchievements(){
+        Log.w("GameContent","Number of Obstacles Hit: " + getHitCounter());
+    }
 
     //Updates the village after end game and updates all variables
     private void updateVillage(){
