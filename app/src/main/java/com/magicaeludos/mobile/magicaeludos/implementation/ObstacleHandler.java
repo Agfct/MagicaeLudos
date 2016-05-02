@@ -221,7 +221,7 @@ public class ObstacleHandler {
         }else {
             o = new Obstacle(content,
                     BitmapFactory.decodeResource(content.getActivity().getResources(),
-                            R.drawable.stone_smal),lane, 1, 1, ObstacleType.STONE);
+                            R.drawable.stone_small),lane, 1, 1, ObstacleType.STONE);
         }
 //        o.sprite.setWidth(o.sprite.getWidth()*2);
         o.setHitBoxDifferences(hitboxWidthStone, hitboxHeightStone);
